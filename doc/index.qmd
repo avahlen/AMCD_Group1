@@ -1,10 +1,27 @@
 ---
-title: doc
-authors:
-  - name: Norah Jones
-    affiliation: The University
-    roles: writing
-    corresponding: true
+title: IC biquad filter design (Group 1)
+author:
+  - name: Alicia von Ahlen
+    orcid: 0009-0007-3049-2455
+    email: avahlen@stud.hs-bremen.de
+    roles: "Co-Author"
+  - name: Finn Ringelsiep
+    email: fringelsiep@stud.hs-bremen.de
+    roles: "Co-Author"
+  - name: Onno Kriens
+    email: okriens@stud.hs-bremen.de
+    roles: "Co-Author"
+
+date: last-modified
+
+page-footer:
+  left: | 
+    Analogue and Mixed-Signal Circuit Design (AMCD), M. Meiners, HSB.
+  right: |
+    This manuscript was built with <a href="https://quarto.org/">Quarto<\a>
+  
+favicon: images/hsb-logo.png
+
 bibliography: references.bib
 ---
 
