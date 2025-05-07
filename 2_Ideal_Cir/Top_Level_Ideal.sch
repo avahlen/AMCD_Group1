@@ -4,6 +4,12 @@ K {}
 V {}
 S {}
 E {}
+B 2 650 -865 760 -765 {name=l2
+flags=graph,unlocked
+lock=1
+color=8
+node="tcleval([xschem translate l2 @#0:net_name])"
+}
 T {Q*R
 Simmulation may not work because of the value,
  please change at conv.} -310 -200 0 0 0.1 0.1 {}
@@ -91,6 +97,7 @@ N 440 -420 440 -360 {lab=vss}
 N 600 -640 600 -560 {lab=V_HPF}
 N -480 -420 -480 -360 {lab=vss}
 N -320 -640 -320 -560 {lab=V_BPF}
+N 600 -700 630 -740 {lab=V_HPF}
 C {vccs.sym} -10 -100 0 0 {name=G1 value=1e-6}
 C {res.sym} -250 -80 3 1 {name=R1
 value=1k
@@ -169,3 +176,21 @@ C {vccs.sym} -20 -450 0 0 {name=G2 value=1e-6}
 C {vccs.sym} 440 -450 0 0 {name=G3 value=1e-6}
 C {vccs.sym} -480 -450 0 0 {name=G4 value=1e-6}
 C {title-3.sym} -1330 480 0 0 {name=l1 author="Finn Ringelsiep" rev=0.1 lock=false}
+C {scope.sym} 630 -740 0 0 {name=l2
+attach=l2}
+C {devices/code_shown.sym} 790 -710 0 0 {name=NGSPICE only_toplevel=true 
+value="
+
+.param temp=27
+.control
+save all 
+op
+write ideal_sim.raw
+set appendwrite
+ac dec 10 1 10k
+write ideal_sim.raw
+plot v(V_LPF)(gain)
+
+
+.endc
+"}
