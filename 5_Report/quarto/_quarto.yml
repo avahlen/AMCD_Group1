@@ -1,0 +1,56 @@
+project:
+  type: default
+  title: "Analog-Mixed-Signal-Circuit-Design"
+  output-dir: outputs
+
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-title: Contents
+    toc-depth: 5
+    toc-expand: 5
+    number-sections: true
+    fig-cap-location: bottom  # Bildunterschriften unter den Bildern anzeigen
+    number-depth: 3
+    code-fold: true
+    default-fig-cap: "Figure"  # Automatische Nummerierung von Abbildungen
+    css: styles.css
+
+bibliography: references.bib
+
+title: Analog Circuit Design
+author:
+    - name: Alicia von Ahlen
+      orcid: 0009-0007-3049-2455
+      email: avahlen@stud.hs-bremen.de
+      roles: "Co-Author"
+      affiliation:
+        - name: Hochschule Bremen
+          city: Bremen
+          state: Deutschland
+          url: https://www.hs-bremen.de/die-hsb/fakultaeten/elektrotechnik-und-informatik/forschung-und-transfer/institut-fuer-nachrichtentechnik/
+    - name: Onno Kriens
+      email: okriens@stud.hs-bremen.de
+      corresponding: true
+      roles: "author"  
+    - name: Finn Ringelsiep
+      email: fringelsiep@stud.hs-bremen.de
+      roles: "Co-Author"
+    - name: Onno Kriens
+      email: okriens@stud.hs-bremen.de
+      roles: "Co-Author"
+    - name: Atakan Baydogan
+      email: abaydogan@stud.hs-bremen.de
+      roles: "Co-Author"
+license: "Apache-2.0 license"
+copyright:
+  holder: "Onno Kriens, Alicia von Ahlen, Finn Ringelsiep und Atakan, Hochschule Bremen."
+  year: 2024-2025
+
+date: today
+date-format: iso
+
+website:
+  navbar:
+    search: true
