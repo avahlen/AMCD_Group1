@@ -15,9 +15,10 @@ T {R = 1k
 C = 159n
 H0 = 1
 Q = 10
-f0 = 1kHz} -700 -290 0 0 0.5 0.5 {}
+f0 = 1kHz} -590 -290 0 0 0.5 0.5 {}
 T {For Simmulation the Schematic look at this example
 https://iic-jku.github.io/analog-circuit-design/xschem/ota-improved_tb-tran.svg} -970 -330 0 0 0.2 0.2 {}
+T {V.01} -750 -240 0 0 0.5 0.5 {}
 N -120 -120 -50 -120 {lab=vss}
 N -180 -300 -50 -300 {lab=pre_bsf}
 N -180 -160 -180 -80 {lab=pre_bsf}
@@ -167,3 +168,4 @@ C {ipin.sym} -360 -80 0 0 {name=p6 lab=V_INPUT}
 C {vccs.sym} -20 -450 0 0 {name=G2 value=1e-6}
 C {vccs.sym} 440 -450 0 0 {name=G3 value=1e-6}
 C {vccs.sym} -480 -450 0 0 {name=G4 value=1e-6}
+C {title-3.sym} -1330 480 0 0 {name=l1 author="Finn Ringelsiep" rev=0.1 lock=false}
