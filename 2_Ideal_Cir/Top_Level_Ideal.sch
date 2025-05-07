@@ -24,7 +24,7 @@ Q = 10
 f0 = 1kHz} -590 -290 0 0 0.5 0.5 {}
 T {For Simmulation the Schematic look at this example
 https://iic-jku.github.io/analog-circuit-design/xschem/ota-improved_tb-tran.svg} -970 -330 0 0 0.2 0.2 {}
-T {V.01} -750 -240 0 0 0.5 0.5 {}
+T {V.02} -750 -240 0 0 0.5 0.5 {}
 N -120 -120 -50 -120 {lab=vss}
 N -180 -300 -50 -300 {lab=pre_bsf}
 N -180 -160 -180 -80 {lab=pre_bsf}
