@@ -11,6 +11,9 @@ author:
   - name: Onno Kriens
     email: okriens@stud.hs-bremen.de
     roles: "Co-Author"
+  - name: Atakan Baydogan
+    email: abaydogan@stud.hs-bremen.de
+    roles: "Co-Author"
 
 date: last-modified
 
