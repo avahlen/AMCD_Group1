@@ -1,7 +1,49 @@
 project:
-  type: default
-  title: "Analog-Mixed-Signal-Circuit-Design"
-  output-dir: outputs
+  type: manuscript
+  title: "IIC design of a biquad filter"
+  output-dir: _manuscript
+
+lang: en
+
+bibliography: references.bib
+
+title: IIC design of a biquad filter
+author:
+  - name: Alicia von Ahlen
+    orcid: 0009-0007-3049-2455
+    email: avahlen@stud.hs-bremen.de
+    roles: "Co-Author"
+    #affiliation:
+    #  - name: Hochschule Bremen - City University of Applied Sciences
+    #    city: Bremen
+    #    state: Germany
+    #    url: https://www.hs-bremen.de/die-hsb/fakultaeten/elektrotechnik-und-informatik/forschung-und-transfer/institut-fuer-nachrichtentechnik/
+  - name: Onno Kriens
+    email: okriens@stud.hs-bremen.de
+    roles: "Co-Author"
+  - name: Finn Ringelsiep
+    email: fringelsiep@stud.hs-bremen.de
+    roles: "Co-Author"
+  - name: Atakan Baydogan
+    email: abaydogan@stud.hs-bremen.de
+    roles: "Co-Author"
+
+license: "Apache-2.0 license"
+copyright:
+  holder: "Onno Kriens, Alicia von Ahlen, Finn Ringelsiep und Atakan Baydogan, Hochschule Bremen."
+  year: 2024-2025
+
+date: today
+date-format: iso
+
+repo-url: https://github.com/avahlen/AMCD_Group1
+#repo-branch: main
+repo-actions: [edit, issue]
+downloads: [pdf, epub]
+
+website:
+  navbar:
+    search: true
 
 format:
   html:
@@ -16,41 +58,25 @@ format:
     code-fold: true
     default-fig-cap: "Figure"  # Automatische Nummerierung von Abbildungen
     css: styles.css
+  pdf:
+    documentclass: scrbook
+    toc: true
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    hyperrefoptions: 
+      - linktoc=all
+    colorlinks: true
+    linkcolor: "blue"
+    biblio-style: ieee
+    highlight-style: github
+    mainfont: "Calibri"
+    output-file: amcd
+  epub: 
+    theme: flatly
+    output-file: amcd
 
-bibliography: references.bib
 
-title: Analog-Mixed-Signal-Circuit-Design
-author:
-    - name: Alicia von Ahlen
-      orcid: 0009-0007-3049-2455
-      email: avahlen@stud.hs-bremen.de
-      roles: "Co-Author"
-      affiliation:
-        - name: Hochschule Bremen
-          city: Bremen
-          state: Deutschland
-          url: https://www.hs-bremen.de/die-hsb/fakultaeten/elektrotechnik-und-informatik/forschung-und-transfer/institut-fuer-nachrichtentechnik/
-    - name: Onno Kriens
-      email: okriens@stud.hs-bremen.de
-      corresponding: true
-      roles: "author"  
-    - name: Finn Ringelsiep
-      email: fringelsiep@stud.hs-bremen.de
-      roles: "Co-Author"
-    - name: Onno Kriens
-      email: okriens@stud.hs-bremen.de
-      roles: "Co-Author"
-    - name: Atakan Baydogan
-      email: abaydogan@stud.hs-bremen.de
-      roles: "Co-Author"
-license: "Apache-2.0 license"
-copyright:
-  holder: "Onno Kriens, Alicia von Ahlen, Finn Ringelsiep und Atakan, Hochschule Bremen."
-  year: 2024-2025
-
-date: today
-date-format: iso
-
-website:
-  navbar:
-    search: true
+execute:
+  freeze: auto

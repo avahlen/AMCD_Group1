@@ -1,1 +1,13 @@
 /.quarto/
+_freeze
+_book
+*.rel
+auto
+*_files
+*_cache
+.Rhistory
+.Rproj.user
+*.log
+.DS_Store
+.ipynb_checkpoints
+_build
