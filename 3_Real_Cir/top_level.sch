@@ -73,8 +73,6 @@ N -480 -560 -480 -540 {lab=VDD}
 N -440 -560 -440 -540 {lab=VDD}
 N -480 -560 -440 -560 {lab=VDD}
 N -440 -570 -440 -560 {lab=VDD}
-N 20 -30 20 -10 {lab=vss}
-N -20 -10 20 -10 {lab=vss}
 N -20 -560 -20 -540 {lab=VDD}
 N 20 -560 20 -540 {lab=VDD}
 N -20 -560 20 -560 {lab=VDD}
@@ -91,21 +89,26 @@ N -940 -240 -940 -220 {lab=VDD}
 N -940 -160 -940 -140 {lab=GND}
 N -20 -30 -20 -10 {lab=vss}
 N -40 -10 -20 -10 {lab=vss}
-N 480 -380 480 -360 {lab=vss}
-N 440 -360 480 -360 {lab=vss}
 N 440 -380 440 -360 {lab=vss}
 N 420 -360 440 -360 {lab=vss}
-N 20 -380 20 -360 {lab=vss}
-N -20 -360 20 -360 {lab=vss}
 N -20 -380 -20 -360 {lab=vss}
 N -40 -360 -20 -360 {lab=vss}
-N -440 -380 -440 -360 {lab=vss}
-N -480 -360 -440 -360 {lab=vss}
 N -480 -380 -480 -360 {lab=vss}
 N -500 -360 -480 -360 {lab=vss}
 N -870 -160 -870 -140 {lab=GND}
 N -870 -260 -870 -220 {lab=vss}
-C {ota-improved.sym} -20 -110 0 0 {name=x1}
+N -440 -380 -440 -360 {lab=VDD}
+N -440 -360 -360 -360 {lab=VDD}
+N -360 -380 -360 -360 {lab=VDD}
+N 20 -380 20 -360 {lab=VDD}
+N 20 -360 100 -360 {lab=VDD}
+N 100 -380 100 -360 {lab=VDD}
+N 480 -380 480 -360 {lab=VDD}
+N 480 -360 560 -360 {lab=VDD}
+N 560 -380 560 -360 {lab=VDD}
+N 20 -30 20 -10 {lab=VDD}
+N 20 -10 100 -10 {lab=VDD}
+N 100 -30 100 -10 {lab=VDD}
 C {res.sym} -250 -80 3 1 {name=R1
 value=1k
 footprint=1206
@@ -165,9 +168,6 @@ m=1
 value=100n
 footprint=1206
 device="ceramic capacitor"}
-C {ota-improved.sym} -20 -460 0 0 {name=x2}
-C {ota-improved.sym} 440 -460 0 0 {name=x3}
-C {ota-improved.sym} -480 -460 0 0 {name=x7}
 C {vdd.sym} 20 -570 0 0 {name=l10 lab=VDD}
 C {vdd.sym} 480 -570 0 0 {name=l13 lab=VDD}
 C {vdd.sym} 20 -220 0 0 {name=l1 lab=VDD}
@@ -186,3 +186,12 @@ C {lab_wire.sym} -120 -490 0 0 {name=p17 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 340 -490 0 0 {name=p18 sig_type=std_logic lab=vss}
 C {lab_wire.sym} -120 -140 0 0 {name=p19 sig_type=std_logic lab=vss}
 C {ipin.sym} -360 -80 0 0 {name=p6 lab=V_INPUT}
+C {vdd.sym} -440 -570 0 0 {name=l2 lab=VDD}
+C {vdd.sym} -360 -380 0 0 {name=l5 lab=VDD}
+C {vdd.sym} 100 -380 0 0 {name=l6 lab=VDD}
+C {vdd.sym} 560 -380 0 0 {name=l8 lab=VDD}
+C {vdd.sym} 100 -30 0 0 {name=l9 lab=VDD}
+C {ota-5t.sym} -20 -460 0 0 {name=x4}
+C {ota-5t.sym} -480 -460 0 0 {name=x1}
+C {ota-5t.sym} 450 -460 0 0 {name=x2}
+C {ota-5t.sym} -20 -110 0 0 {name=x3}
