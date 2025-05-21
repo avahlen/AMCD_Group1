@@ -1,3 +1,13 @@
+# TOC (only temporary)
+
+- abstract
+- introduction (motivation, goals, requirements, restrictions)
+- theoretical background (not sure what exactly we could talk about, eg. biquad filter, opamps 'n more)
+- methods (overview over pdk, tools, and more)
+- design (ideal circuit, real circuit)
+- simulation and measurements (prob not achieving measurement)
+- discussion and conclusion (conclusion could alaso be seperate chapter)
+
 # Abstract {.unnumbered}
 
 - An abstract should provide a self-contained summary of your entire paper or research project. 
