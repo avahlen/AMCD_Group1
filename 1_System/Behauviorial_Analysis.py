@@ -17,15 +17,25 @@ w0 = 2 * np.pi * f0 # Angular frequency in rad/s
 Q = 10 # quality factor
 H0 = 1 #play around with this later
 
-#values for tf
+#Logarithmic frequency axis
+frequencies = np.logspace(2, 4, 1000) # Frequency from 10^2 to 10^4 Hz
+s = 1j * 2 * np.pi * frequencies; # Laplace-Variable s = jω
+
+
+#values for Low Pass Filter
 b0 = H0 * w0**2;
+
+#values for High Pass Filter
+
+
+
+# Denuminator
 a0 = 1;
 a1 = w0 / Q;
 a2 = w0**2;
 
-#Logarithmic frequency axis
-frequencies = np.logspace(2, 4, 1000) # Frequency from 10^2 to 10^4 Hz
-s = 1j * 2 * np.pi * frequencies; # Laplace-Variable s = jω
+den = a0 + s/a1 + s**2/a2
+
 
 # Calculation of the transfer function H(s)
 Hs = b0 / (a0 * s**2 + a1 * s + a2)
