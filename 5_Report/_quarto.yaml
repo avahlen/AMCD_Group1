@@ -50,6 +50,7 @@ format:
   html:
     theme: flatly
     #toc: true
+    #css: styles.css
   pdf:
     documentclass: scrbook 
     # lof: true
