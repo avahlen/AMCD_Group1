@@ -12,8 +12,7 @@
 - Use keywords: Include relevant keywords that will help readers find your abstract in databases. 
 - Follow formatting guidelines: Check for any specific requirements or guidelines for your specific journal or conference. 
 - Revise and edit: Make sure your abstract is clear, accurate, and within the word limit. 
-- Consider the audience: Tailor your language to your target audience (e.g., other researchers in your field, or a wider audience). 
-
+- Consider the audience: Tailor your language to your target audience (e.g., other researchers in your field, or a wider audience).
 
 {{< include chapters/_Introduction.qmd >}}
 {{< include chapters/_Background.qmd >}}
