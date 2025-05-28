@@ -12,13 +12,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Initial values
-f0 = 150  # Resonance frequency in Hz
+f0 = 1e3  # Resonance frequency in Hz
 w0 = 2 * np.pi * f0  # Angular frequency in rad/s
 Q = 10  # Quality factor
 H0 = 1  # Play around with this later
 
 # Logarithmic frequency axis
-frequencies = np.logspace(0, 3, 1000)  # Frequency from 10^2 to 10^4 Hz
+frequencies = np.logspace(2, 4, 10000)  # Frequency from 10^2 to 10^4 Hz
 s = 1j * 2 * np.pi * frequencies  # Laplace-Variable s = jω
 
 ############################################
@@ -58,39 +58,40 @@ Hs_bs = b_bs / den
 fig, axs = plt.subplots(2)
 fig.suptitle("Bode-Diagram of the TF")
 
+"""
 # Low Pass Filter
 axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_lp)), label='Low Pass')
-axs[1].semilogx(frequencies, np.angle(Hs_lp), label='Low Pass')  # Phase in radians
+axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_lp))* (180 / np.pi), label='Low Pass')  # Phase in radians
 
 # High Pass Filter
 axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_hp)), label='High Pass')
-axs[1].semilogx(frequencies, np.angle(Hs_hp), label='High Pass')  # Phase in radians
+axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_hp)), label='High Pass')  # Phase in radians
 
 # Band Pass Filter
 axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_bp)), label='Band Pass')
-axs[1].semilogx(frequencies, np.angle(Hs_bp), label='Band Pass')  # Phase in radians
+axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_bp)), label='Band Pass')  # Phase in radians
 
 # Band Stop Filter
 axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_bs)), label='Band Stop')
-axs[1].semilogx(frequencies, np.angle(Hs_bs), label='Band Stop')  # Phase in radians
+axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_bs)), label='Band Stop')  # Phase in radians
 
 """
 # Low Pass Filter
 axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_lp)), label='Low Pass')
-axs[1].semilogx(frequencies, np.angle(Hs_lp) * (180 / np.pi), label='Low Pass')
+axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_lp)) * (180 / np.pi), label='Low Pass')
 
 # High Pass Filter
 axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_hp)), label='High Pass')
-axs[1].semilogx(frequencies, np.angle(Hs_hp) * (180 / np.pi), label='High Pass')
+axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_hp)) * (180 / np.pi), label='High Pass')
 
 # Band Pass Filter
 axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_bp)), label='Band Pass')
-axs[1].semilogx(frequencies, np.angle(Hs_bp) * (180 / np.pi), label='Band Pass')
+axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_bp)) * (180 / np.pi), label='Band Pass')
 
 # Band Stop Filter
 axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_bs)), label='Band Stop')
-axs[1].semilogx(frequencies, np.angle(Hs_bs) * (180 / np.pi), label='Band Stop')
-"""
+axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_bs)) * (180 / np.pi), label='Band Stop')
+
 axs[0].set_xlabel("Frequencies in Hz")
 axs[0].set_ylabel("Amplitude in dB")
 axs[0].set_ylim(-50, 25)
@@ -98,7 +99,7 @@ axs[0].grid()
 axs[0].legend()
 
 axs[1].set_xlabel("Frequencies in Hz")
-axs[1].set_ylabel("Phase in degree")
+axs[1].set_ylabel("Phase in radians")
 
 axs[1].grid()
 axs[1].legend()
