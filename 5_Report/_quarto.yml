@@ -27,7 +27,7 @@ format:
     highlight-style: github
     mainfont: "Calibri"
 #    keep-tex: true
-    output-file: ans_bericht 
+    output-file: amcd_report
 #  epub:
 #    theme: flatly
-#    output-file: ans_bericht
+#    output-file: amcd_report
