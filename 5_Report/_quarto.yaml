@@ -1,60 +1,19 @@
 project:
   type: manuscript
-  output-dir: _manuscript
-  
-lang: en
 
-title: "IC Design of a Biquad Filter"
-author:
-  - name: Atakan Baydogan
-    email: abaydogan@stud.hs-bremen.de
-    roles: "Author"
+manuscript:
+  article: index.qmd
 
-  - name: Onno Kriens
-    email: okriens@stud.hs-bremen.de
-    roles: "Author"
-
-  - name: Finn Ringelsiep
-    email: fringelsiep@stud.hs-bremen.de
-    roles: "Author"
-
-  - name: Alicia von Ahlen
-    orcid: 0009-0007-3049-2455
-    email: avahlen@stud.hs-bremen.de
-    corresponding: true
-    roles: "Author"
-    #affiliation:
-    #  - name: Hochschule Bremen - City University of Applied Sciences (HSB)
-    #    city: Bremen
-    #    state: Germany
-    #    url: https://www.hs-bremen.de
-date: last-modified
-date-format: iso
-#  license: "Apache-2.0 license"
-
-reader-mode: true
-
-site-url: https://avahlen.github.io/AMCD_Group1/
-repo-url: https://github.com/avahlen/AMCD_Group1/
-repo-branch: quarto-restructure
-repo-actions: [edit,issue]
-downloads: [pdf]
-
-chapters:
-  - index.qmd
-  - references.qmd
-    
-bibliography: _bibliography/references.bib
+execute:
+  freeze: auto
 
 format:
   html:
     theme: flatly
-    #toc: true
-    #css: styles.css
   pdf:
-    documentclass: scrbook 
-    # lof: true
-    # lot: true
+    documentclass: scrreprt
+#    lof: true
+#    lot: true
     toc: true    
     geometry:
       - top=30mm
@@ -67,11 +26,8 @@ format:
     biblio-style: ieee
     highlight-style: github
     mainfont: "Calibri"
-    # keep-tex: true
-    output-file: amcd_group1
-  #epub:
-  #  theme: flatly
-  #  output-file: amcd_group1
-  
-execute:
-  freeze: auto
+#    keep-tex: true
+    output-file: amcd_report 
+#  epub:
+#    theme: flatly
+#    output-file: amcd_report
