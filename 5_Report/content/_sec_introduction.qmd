@@ -1,2 +1,29 @@
+# TOC (only temporary) {.unnumbered}
+
+- abstract
+- introduction (motivation, goals, requirements, restrictions)
+- theoretical background (not sure what exactly we could talk about, eg. biquad filter, opamps 'n more)
+- methods (overview over pdk, tools, and more)
+- design (ideal circuit, real circuit)
+- simulation and measurements (prob not achieving measurement)
+- discussion and conclusion (conclusion could alaso be seperate chapter)
+
+# Abstract {.unnumbered}
+
+- An abstract should provide a self-contained summary of your entire paper or research project. 
+- It aims to give readers a quick understanding of what you did, why it's important, and what you found. 
+- It should be a good starting point for anyone considering reading your full work. 
+- Introduction: Briefly introduce the topic and its significance.
+- Research Question/Aim: State the problem you are addressing and the purpose of your research.
+- Methodology: Briefly describe how you conducted your research (e.g., experiments, interviews, analysis).
+- Key Findings: Summarize the main results or conclusions of your study.
+- Significance/Implications: Explain why your findings are important and what they contribute to the field. 
+- Be concise: Use short, clear sentences and avoid unnecessary jargon. 
+- Use keywords: Include relevant keywords that will help readers find your abstract in databases. 
+- Follow formatting guidelines: Check for any specific requirements or guidelines for your specific journal or conference. 
+- Revise and edit: Make sure your abstract is clear, accurate, and within the word limit. 
+- Consider the audience: Tailor your language to your target audience (e.g., other researchers in your field, or a wider audience).
+
+
 # Introduction
 

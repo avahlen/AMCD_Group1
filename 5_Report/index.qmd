@@ -1,24 +1,29 @@
 ---
 title: "IC Design of a Universal Biquad Filter"
 author: 
-  - name: 
+  - name: Atakan Baydogan
     orcid: 
-    email:
+    email: abaydogan@stud.hs-bremen.de
     corresponding: true
     roles: "Lead author"
-    affiliation:
-      - name: Hochschule Bremen - City University of Applied Sciences (HSB)
-        city: Bremen
-        state: Germany
-        url: https://www.hs-bremen.de  
-  - name: 
+    #affiliation:
+    #  - name: Hochschule Bremen - City University of Applied Sciences (HSB)
+    #    city: Bremen
+    #    state: Germany
+    #    url: https://www.hs-bremen.de  
+  - name: Onno Kriens
     orcid: 
-    email:
+    email: okriens@stud.hs-bremen.de
     corresponding: true
     roles: "Lead author"
-  - name: 
+  - name: Finn Ringelsiep
     orcid: 
-    email:
+    email: fringelsiep@stud.hs-bremen.de
+    corresponding: true
+    roles: "Lead author"
+  - name: Alicia von Ahlen
+    orcid: 0009-0007-3049-2455
+    email: avahlen@stud.hs-bremen.de
     corresponding: true
     roles: "Lead author"
 
@@ -38,4 +43,3 @@ bibliography: references.bib
 {{< include content/_sec_filter-design.qmd >}}
 {{< include content/_sec_characterisation.qmd >}}
 {{< include content/references.qmd >}}
-

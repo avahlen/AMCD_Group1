@@ -1,0 +1,19 @@
+{
+  "index.qmd": {
+    "index.html": "6de20fc4",
+    "index.tex": "026742af",
+    "gel2.epub": "ba54df94",
+    "amcd_group1.epub": "b50cd1cd"
+  },
+  "references.qmd": {
+    "references.html": "6966c3d7",
+    "references.embed.ipynb": "75cf67ce",
+    "references.out.ipynb": "1f2740fd",
+    "references-preview.html": "3e2e47a8"
+  },
+  "content/references.qmd": {
+    "references.embed.ipynb": "c5294c93",
+    "references.out.ipynb": "586cdca9",
+    "references-preview.html": "c4886225"
+  }
+}
