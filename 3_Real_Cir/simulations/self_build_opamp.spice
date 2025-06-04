@@ -1,0 +1,16 @@
+** sch_path: /foss/designs/AMCD_Group1/3_Real_Cir/self_build_opamp.sch
+**.subckt self_build_opamp v_out in+ in- i_bias VDD VSS
+*.ipin in+
+*.ipin in-
+*.opin v_out
+*.iopin VDD
+*.iopin VSS
+*.ipin i_bias
+XM3 v_imirror in+ v_amp v_amp sg13_hv_nmos w=2u l=5u ng=1 m=1
+XM2 v_out in- v_amp v_amp sg13_hv_nmos w=2u l=5u ng=1 m=1
+XM4 v_amp i_bias VSS VSS sg13_hv_nmos w=0.5u l=5u ng=1 m=1
+XM5 v_imirror v_imirror VDD VDD sg13_hv_pmos w=1.5u l=5u ng=1 m=1
+XM1 v_out v_imirror VDD VDD sg13_hv_pmos w=1.5u l=5u ng=1 m=1
+XM6 i_bias i_bias VSS VSS sg13_hv_nmos w=2.5u l=5u ng=1 m=1
+**.ends
+.end
