@@ -184,5 +184,4 @@ C {self_build_opamp.sym} 440 -460 0 0 {name=x3}
 C {self_build_opamp.sym} -20 -110 0 0 {name=x4}
 C {iopin.sym} -860 -240 2 0 {name=p26 lab=VDD}
 C {iopin.sym} -860 -210 2 0 {name=p1 lab=VSS}
-C {vdd.sym} -800 -260 0 0 {name=l3 lab=VDD}
 C {lab_wire.sym} -800 -210 0 0 {name=p15 sig_type=std_logic lab=VSS}

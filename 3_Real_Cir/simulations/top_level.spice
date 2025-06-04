@@ -17,28 +17,28 @@ C5 pre_bpf V_BPF 100n m=1
 R7 V_LPF pre_hpf 100k m=1
 R8 pre_hpf V_HPF 100k m=1
 C1 pre_lpf V_LPF 100n m=1
-x1 V_BPF VSS pre_bpf VDD VDD VSS self_build_opamp
-x2 V_LPF VSS pre_lpf VDD VDD VSS self_build_opamp
-x3 V_HPF VSS pre_hpf VDD VDD VSS self_build_opamp
-x4 V_BSF VSS pre_bsf VDD VDD VSS self_build_opamp
+x1 V_BPF VDD VDD VSS VSS pre_bpf self_build_opamp
+x2 V_LPF VDD VDD VSS VSS pre_lpf self_build_opamp
+x3 V_HPF VDD VDD VSS VSS pre_hpf self_build_opamp
+x4 V_BSF VDD VDD VSS VSS pre_bsf self_build_opamp
 **.ends
 
 * expanding   symbol:  self_build_opamp.sym # of pins=6
 ** sym_path: /foss/designs/AMCD_Group1/3_Real_Cir/self_build_opamp.sym
 ** sch_path: /foss/designs/AMCD_Group1/3_Real_Cir/self_build_opamp.sch
-.subckt self_build_opamp v_out in+ in- i_bias VDD VSS
-*.ipin in+
-*.ipin in-
+.subckt self_build_opamp v_out i_bias VDD VSS v_in+ v_in-
+*.ipin v_in+
+*.ipin v_in-
 *.opin v_out
 *.iopin VDD
 *.iopin VSS
 *.ipin i_bias
-XM3 v_imirror in+ v_amp v_amp sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM2 v_out in- v_amp v_amp sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM4 v_amp i_bias VSS VSS sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM5 v_imirror v_imirror VDD VDD sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM1 v_out v_imirror VDD VDD sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM6 i_bias i_bias VSS VSS sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM3 v_imirror v_in+ v_amp v_amp sg13_hv_nmos w=2u l=5u ng=1 m=1
+XM2 v_out v_in- v_amp v_amp sg13_hv_nmos w=2u l=5u ng=1 m=1
+XM4 v_amp i_bias VSS VSS sg13_hv_nmos w=0.5u l=5u ng=1 m=1
+XM5 v_imirror v_imirror VDD VDD sg13_hv_pmos w=1.5u l=5u ng=1 m=1
+XM1 v_out v_imirror VDD VDD sg13_hv_pmos w=1.5u l=5u ng=1 m=1
+XM6 i_bias i_bias VSS VSS sg13_hv_nmos w=2.5u l=5u ng=1 m=1
 .ends
 
 .GLOBAL VDD
