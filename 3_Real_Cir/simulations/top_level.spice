@@ -1,10 +1,6 @@
 ** sch_path: /foss/designs/AMCD_Group1/3_Real_Cir/top_level.sch
-**.subckt top_level V_BPF V_LPF V_HPF V_BSF V_INPUT
-*.opin V_BPF
-*.opin V_LPF
-*.opin V_HPF
-*.opin V_BSF
-*.ipin V_INPUT
+.subckt top_level V_BPF V_LPF V_HPF V_BSF V_INPUT
+*.PININFO V_BPF:O V_LPF:O V_HPF:O V_BSF:O V_INPUT:I
 R1 V_INPUT pre_bsf 1k m=1
 R2 V_BPF pre_bsf 1meg m=1
 R3 pre_bsf V_BSF 100k m=1
@@ -21,25 +17,19 @@ x1 VDD V_BPF vss pre_bpf VDD vss self_build_opamp
 x2 VDD V_LPF vss pre_lpf VDD vss self_build_opamp
 x3 VDD V_HPF vss pre_hpf VDD vss self_build_opamp
 x4 VDD V_BSF vss pre_bsf VDD vss self_build_opamp
-**.ends
+.ends
 
 * expanding   symbol:  self_build_opamp.sym # of pins=6
 ** sym_path: /foss/designs/AMCD_Group1/3_Real_Cir/self_build_opamp.sym
 ** sch_path: /foss/designs/AMCD_Group1/3_Real_Cir/self_build_opamp.sch
 .subckt self_build_opamp v_dd v_out in+ in- i_bias v_ss
-*.ipin in+
-*.ipin in-
-*.ipin v_ss
-*.ipin v_dd
-*.ipin i_bias
-*.opin v_out
-XM3 ggd in+ ssd ssd sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM2 v_out in- ssd ssd sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM4 ssd i_bias v_ss v_ss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM5 ggd ggd v_dd v_dd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM1 v_out ggd v_dd v_dd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+*.PININFO in+:I in-:I v_ss:I v_dd:I i_bias:I v_out:O
+M3 ggd in+ ssd ssd sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+M2 v_out in- ssd ssd sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+M4 ssd i_bias v_ss v_ss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+M5 ggd ggd v_dd v_dd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+M1 v_out ggd v_dd v_dd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
 .ends
 
 .GLOBAL VDD
 .GLOBAL GND
-.end
