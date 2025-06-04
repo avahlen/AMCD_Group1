@@ -1,10 +1,12 @@
 ** sch_path: /foss/designs/AMCD_Group1/3_Real_Cir/top_level.sch
-**.subckt top_level V_BPF V_LPF V_HPF V_BSF V_INPUT
+**.subckt top_level V_BPF V_HPF V_LPF VSS VDD V_BSF V_INPUT
 *.opin V_BPF
 *.opin V_LPF
 *.opin V_HPF
 *.opin V_BSF
 *.ipin V_INPUT
+*.iopin VDD
+*.iopin VSS
 R1 V_INPUT pre_bsf 1k m=1
 R2 V_BPF pre_bsf 1meg m=1
 R3 pre_bsf V_BSF 100k m=1
@@ -15,31 +17,29 @@ C5 pre_bpf V_BPF 100n m=1
 R7 V_LPF pre_hpf 100k m=1
 R8 pre_hpf V_HPF 100k m=1
 C1 pre_lpf V_LPF 100n m=1
-V1 VDD GND 3
-V2 vss GND 0
-x1 VDD V_BPF vss pre_bpf VDD vss self_build_opamp
-x2 VDD V_LPF vss pre_lpf VDD vss self_build_opamp
-x3 VDD V_HPF vss pre_hpf VDD vss self_build_opamp
-x4 VDD V_BSF vss pre_bsf VDD vss self_build_opamp
+x1 V_BPF VSS pre_bpf VDD VDD VSS self_build_opamp
+x2 V_LPF VSS pre_lpf VDD VDD VSS self_build_opamp
+x3 V_HPF VSS pre_hpf VDD VDD VSS self_build_opamp
+x4 V_BSF VSS pre_bsf VDD VDD VSS self_build_opamp
 **.ends
 
 * expanding   symbol:  self_build_opamp.sym # of pins=6
 ** sym_path: /foss/designs/AMCD_Group1/3_Real_Cir/self_build_opamp.sym
 ** sch_path: /foss/designs/AMCD_Group1/3_Real_Cir/self_build_opamp.sch
-.subckt self_build_opamp v_dd v_out in+ in- i_bias v_ss
+.subckt self_build_opamp v_out in+ in- i_bias VDD VSS
 *.ipin in+
 *.ipin in-
-*.ipin v_ss
-*.ipin v_dd
-*.ipin i_bias
 *.opin v_out
-XM3 ggd in+ ssd ssd sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM2 v_out in- ssd ssd sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM4 ssd i_bias v_ss v_ss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM5 ggd ggd v_dd v_dd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM1 v_out ggd v_dd v_dd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+*.iopin VDD
+*.iopin VSS
+*.ipin i_bias
+XM3 v_imirror in+ v_amp v_amp sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM2 v_out in- v_amp v_amp sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM4 v_amp i_bias VSS VSS sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM5 v_imirror v_imirror VDD VDD sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM1 v_out v_imirror VDD VDD sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM6 i_bias i_bias VSS VSS sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
 .ends
 
 .GLOBAL VDD
-.GLOBAL GND
 .end
