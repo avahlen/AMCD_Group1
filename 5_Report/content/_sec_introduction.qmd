@@ -8,6 +8,29 @@
 - discussion
 - conclusion
 
+
+
+Gliederung vorschlag
+
+1 abstract
+2 Introduction
+3 Theoretical background 
+    3.1 OTA
+    3.2 Miller / 2order /biquard
+    3.3 system overview
+    3.4 methods
+4 Charactaristic
+    4.1 req
+    4.2 python
+    4.5 LTspice 
+5 IC design
+    5.1 ideal
+    5.2 gm/id
+    5.3 real 
+6 klayout
+6 discussion
+7 conclusion
+
 # Introduction
 
 As the availability of standardized integrated circuit solutions continues to diminish, the demand for tailored, application-specific analog and mixed-signal designs is steadily increasing [@Dobkin2011]. Reflecting this shift, students enrolled in the “Concept Engineering Mixed-Technology Systems” course, taught by Professor Meiners at The City University of Applied Sciences, have been tasked with designing a biquadratic filter. The goal is to create a high-performance, application-specific solution suitable for integration within a defined analog front-end system.
