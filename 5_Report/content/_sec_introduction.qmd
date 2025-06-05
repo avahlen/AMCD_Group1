@@ -10,7 +10,7 @@
 
 
 
-## Gliederung vorschlag
+## Gliederung vorschlag (Atakan)
 
 1 abstract
 2 Introduction
@@ -31,14 +31,43 @@
 6 discussion
 7 conclusion
 
-## TOC suggestion (Alicia)
+## ONNO
 
-1 Abstract
+1. Abstract
 
-2 Introduction
+2. Intruduction
+
+3. Theoretical View
+	3.1 (OP)
+	3.2 OTA
+	3.3 Biasing
+	3.4 Biquad
+
+4. Top_Level (ASLK)
+	4.1 Simulation
+		4.1.1 Python
+		4.1.2 PSpice
+		4.1.3 Xschem
+
+5. Bauteilebene
+	5.1 Intruduction (Pretl)
+	5.2 Parameters
+	5.2 Xschem
+	5.3 Miller
+
+6. IC-Design
+	K_Layout
+7. Discussion
+
+
+## TOC suggestion (Main)
+
+1 Abstract (max. 0,5 page)
+
+2 Introduction (1 page)
 2.1 Motivation
 2.2 Scope
-2.3 Constraints
+2.3 Constraints (Meiners Kram)
 
 3 Theoretical Background
 3.1 Opamp
@@ -60,12 +89,12 @@
 4.2.1 Used opamp representation
 4.2.2 Sizing
 
-5 Design
+(5 Design 
 5.1 methods
 5.1.1 Xschem
 5.1.2 ngspice
-5.1.3 KLayout
-5.2 Process
+5.1.3 KLayout 
+5.2 Process) siehe finn
 
 6 Discussion
 6.1 Stability Analysis
