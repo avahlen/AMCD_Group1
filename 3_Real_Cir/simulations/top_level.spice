@@ -1,8 +1,4 @@
 ** sch_path: /foss/designs/AMCD_Group1/3_Real_Cir/top_level.sch
-<<<<<<< HEAD
-.subckt top_level V_BPF V_LPF V_HPF V_BSF V_INPUT
-*.PININFO V_BPF:O V_LPF:O V_HPF:O V_BSF:O V_INPUT:I
-=======
 **.subckt top_level V_BPF V_HPF V_LPF VSS VDD V_BSF V_INPUT
 *.opin V_BPF
 *.opin V_LPF
@@ -11,7 +7,6 @@
 *.ipin V_INPUT
 *.iopin VDD
 *.iopin VSS
->>>>>>> 85799f702934c3663eb30fe8b38da87ba9ed7d86
 R1 V_INPUT pre_bsf 1k m=1
 R2 V_BPF pre_bsf 1meg m=1
 R3 pre_bsf V_BSF 100k m=1
@@ -22,38 +17,15 @@ C5 pre_bpf V_BPF 100n m=1
 R7 V_LPF pre_hpf 100k m=1
 R8 pre_hpf V_HPF 100k m=1
 C1 pre_lpf V_LPF 100n m=1
-<<<<<<< HEAD
-V1 VDD GND 3
-V2 vss GND 0
-x1 VDD V_BPF vss pre_bpf VDD vss self_build_opamp
-x2 VDD V_LPF vss pre_lpf VDD vss self_build_opamp
-x3 VDD V_HPF vss pre_hpf VDD vss self_build_opamp
-x4 VDD V_BSF vss pre_bsf VDD vss self_build_opamp
-.ends
-=======
 x1 V_BPF VDD VDD VSS VSS pre_bpf self_build_opamp
 x2 V_LPF VDD VDD VSS VSS pre_lpf self_build_opamp
 x3 V_HPF VDD VDD VSS VSS pre_hpf self_build_opamp
 x4 V_BSF VDD VDD VSS VSS pre_bsf self_build_opamp
 **.ends
->>>>>>> 85799f702934c3663eb30fe8b38da87ba9ed7d86
 
 * expanding   symbol:  self_build_opamp.sym # of pins=6
 ** sym_path: /foss/designs/AMCD_Group1/3_Real_Cir/self_build_opamp.sym
 ** sch_path: /foss/designs/AMCD_Group1/3_Real_Cir/self_build_opamp.sch
-<<<<<<< HEAD
-.subckt self_build_opamp v_dd v_out in+ in- i_bias v_ss
-*.PININFO in+:I in-:I v_ss:I v_dd:I i_bias:I v_out:O
-M3 ggd in+ ssd ssd sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-M2 v_out in- ssd ssd sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-M4 ssd i_bias v_ss v_ss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-M5 ggd ggd v_dd v_dd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-M1 v_out ggd v_dd v_dd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-.ends
-
-.GLOBAL VDD
-.GLOBAL GND
-=======
 .subckt self_build_opamp v_out i_bias VDD VSS v_in+ v_in-
 *.ipin v_in+
 *.ipin v_in-
@@ -71,4 +43,3 @@ XM6 i_bias i_bias VSS VSS sg13_hv_nmos w=2.5u l=5u ng=1 m=1
 
 .GLOBAL VDD
 .end
->>>>>>> 85799f702934c3663eb30fe8b38da87ba9ed7d86
