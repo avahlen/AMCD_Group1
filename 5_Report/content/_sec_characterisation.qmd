@@ -1,1 +1,33 @@
 # Characterisation
+
+this chap is more about our biquad, and how we made it the way it is now
+
+i am failry open to discuss the exact contents of this chapter, as it is the one i am the most unsure about
+
+we also need to excatly decide on where this chapter ends, as Finn will continue with chap 5 and the break between the chapters shall be as smooth as possible
+
+## Behauvioral Analysis
+
+i have no idea if this is grammatically correct, behauvior is a very hard word
+
+### Transfer Function
+
+the python plots based on TF from red pitaya manual
+
+### Ideal Opamp
+
+kinda forgot where I wanted to go with this one... ehhh maybe it will come back
+
+uhhh i think it was about the ideal circuit and spice analysis etc
+
+## Implementation (or Real Circuit)
+
+this is about the transition from the ideal circuit to real circuit
+
+### used opamp representation
+
+like with opamp did we use specifically (5 ota i think), why, what are special about that
+
+### Sizing
+
+with the script from pretl, if i remember correctly

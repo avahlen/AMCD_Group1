@@ -1,0 +1,43 @@
+# Theoretical Background
+
+my idea was to group all theoretics into one chapter, like a when the information becomes necessary during the quarto book, people can just jump back to this. we would circumvent having to introduce every little concept seperately whenever it comes up...
+
+## Operational Amplifier
+
+i think this is kinda where our focus is again, so like a good theory is necessary
+
+### Current Mirror
+
+we talked a lot about the stages during the lectures, so i thought good idea to introduce them seperatly 
+
+### Differential Stage
+
+both of them (and then maybe? slot them together, could be ddone in varients???)
+
+### Variants ?
+
+maybe like miller opamp or something like that
+
+### Small-Signal Representation
+
+thought i would be a good idea to at least have this somewhere
+
+### Stability
+
+stability of op amp on its own
+
+### Sizing
+
+dont know if it makes sense here, i think at some theoretics should be written about sizing, but open to discuss placement
+
+## Biquad
+
+theoretical background on biquad, there are some ressources from AMCD aulis about this, just want introduction on what excatly this filter ist
+
+### Characteristics
+
+characteristics of design, implementation etc. lets see what we can find
+
+### Stability
+
+stability of biquad as a whole
