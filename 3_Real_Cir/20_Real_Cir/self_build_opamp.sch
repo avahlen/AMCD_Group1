@@ -9,12 +9,10 @@ N 110 -50 200 -50 {lab=v_imirror}
 N 110 -90 110 -50 {lab=v_imirror}
 N 200 -120 200 -50 {lab=v_imirror}
 N 150 -120 200 -120 {lab=v_imirror}
-N 290 -50 290 -10 {lab=v_out}
 N 110 -200 110 -150 {lab=VDD}
 N 290 -200 290 -150 {lab=VDD}
 N 110 -200 290 -200 {lab=VDD}
-N -200 20 70 20 {lab=v_in+}
-N 290 -90 290 -50 {lab=v_out}
+N -200 20 70 20 {lab=v_inp}
 N 290 50 290 80 {lab=v_amp}
 N 110 50 110 80 {lab=v_amp}
 N 200 80 200 100 {lab=v_amp}
@@ -40,11 +38,9 @@ N -140 190 -70 190 {lab=VSS}
 N 530 -110 530 -90 {
 lab=GND}
 N 530 -190 530 -170 {lab=VDD}
-N 580 150 580 170 {
-lab=GND}
-N 580 70 580 90 {lab=VDD}
-N 290 -50 370 -50 {lab=v_out}
-N 330 20 370 20 {lab=v_in-}
+N 620 -110 620 -90 {
+lab=i_bias}
+N 620 -190 620 -170 {lab=VDD}
 N -200 80 -70 80 {lab=i_bias}
 N 240 20 240 80 {lab=v_amp}
 N 200 80 240 80 {lab=v_amp}
@@ -58,11 +54,20 @@ N -30 130 40 130 {lab=i_bias}
 N -140 130 -70 130 {lab=VSS}
 N -140 130 -140 190 {lab=VSS}
 N -200 190 -140 190 {lab=VSS}
-C {ipin.sym} -200 20 0 0 {name=p1 lab=v_in+
+N 710 -100 710 -80 {
+lab=GND}
+N 710 -180 710 -160 {lab=v_inp}
+N 350 20 370 20 {lab=v_inm}
+N 290 -30 290 -10 {lab=v_inm}
+N 350 -30 360 -30 {lab=v_inm}
+N 290 -90 290 -30 {lab=v_inm}
+N 350 -30 350 20 {lab=v_inm}
+N 290 -30 350 -30 {lab=v_inm}
+N 330 20 350 20 {lab=v_inm}
+C {ipin.sym} -200 20 0 0 {name=p1 lab=v_inp
 }
-C {ipin.sym} 370 20 2 0 {name=p2 lab=v_in-
+C {ipin.sym} 370 20 2 0 {name=p2 lab=v_inm
 }
-C {opin.sym} 370 -50 0 0 {name=p6 lab=v_out}
 C {lab_wire.sym} 190 -50 0 0 {name=p17 sig_type=std_logic lab=v_imirror}
 C {lab_wire.sym} 220 80 0 0 {name=p7 sig_type=std_logic lab=v_amp}
 C {iopin.sym} -200 -200 2 0 {name=p8 lab=VDD
@@ -80,24 +85,20 @@ value="
 "}
 C {devices/code_shown.sym} -130 280 0 0 {name=NGSPICE only_toplevel=true 
 value="
-.param temp=27 vdd=1.2 *per=4.5u
+.param temp=27 vdd=1.5 *per=4.5u
 .option method=gear
 
 .control
-save all 
-tran 100n 100u
-*set wr_singlescale
-*set wr_vecnames
-write self_build_opamp_tb_sim.raw
-plot v_out
+save all
+op
+ac dec 101 1k 10MEG
+plot db(v(v_out))
 .endc
 "}
 C {devices/gnd.sym} 530 -90 0 0 {name=l15 lab=GND}
 C {devices/vsource.sym} 530 -140 0 0 {name=Vdd value="dc \{vdd\}"}
 C {devices/vdd.sym} 530 -190 0 0 {name=l16 lab=VDD}
-C {devices/gnd.sym} 580 170 0 0 {name=l1 lab=GND}
-C {devices/vsource.sym} 580 120 0 0 {name=Vdd1 value="dc \{vdd\}"}
-C {devices/vdd.sym} 580 70 0 0 {name=l2 lab=VDD}
+C {devices/vdd.sym} 620 -190 0 0 {name=l2 lab=VDD}
 C {devices/gnd.sym} -200 190 0 0 {name=l3 lab=GND}
 C {devices/vdd.sym} 10 -200 0 0 {name=l4 lab=VDD}
 C {sg13g2_pr/sg13_lv_nmos.sym} 90 20 0 0 {name=M8
@@ -148,3 +149,12 @@ m=1
 model=sg13_lv_pmos
 spiceprefix=X
 }
+C {isource.sym} 620 -140 0 0 {name=I0 value=20u}
+C {ipin.sym} 620 -90 3 0 {name=p3 lab=i_bias}
+C {devices/gnd.sym} 710 -80 0 0 {name=l1 lab=GND}
+C {devices/vsource.sym} 710 -130 0 0 {name=Vdd1 value="dc 0.8 ac 1"}
+C {ipin.sym} 710 -180 1 0 {name=p9 lab=v_inp
+}
+C {lab_wire.sym} -140 20 0 0 {name=p10 sig_type=std_logic lab=v_inp}
+C {opin.sym} 360 -30 0 0 {name=p11 lab=v_out}
+C {lab_wire.sym} 340 -30 0 0 {name=p6 sig_type=std_logic lab=v_out}

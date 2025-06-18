@@ -1,19 +1,22 @@
 ** sch_path: /foss/designs/AMCD_Group1/3_Real_Cir/20_Real_Cir/self_build_opamp.sch
-**.subckt self_build_opamp v_in+ v_in- v_out VDD VSS i_bias
-*.ipin v_in+
-*.ipin v_in-
-*.opin v_out
+**.subckt self_build_opamp v_inp v_inm VDD VSS i_bias i_bias v_inp v_out
+*.ipin v_inp
+*.ipin v_inm
 *.iopin VDD
 *.iopin VSS
 *.ipin i_bias
+*.ipin i_bias
+*.ipin v_inp
+*.opin v_out
 Vdd VDD GND dc {vdd}
-Vdd1 VDD GND dc {vdd}
-XM8 v_imirror v_in+ v_amp v_amp sg13_lv_nmos w=2u l=5u ng=1 m=1
-XM3 v_in- v_in- v_amp v_amp sg13_lv_nmos w=2u l=5u ng=1 m=1
+XM8 v_imirror v_inp v_amp v_amp sg13_lv_nmos w=2u l=5u ng=1 m=1
+XM3 v_inm v_inm v_amp v_amp sg13_lv_nmos w=2u l=5u ng=1 m=1
 XM2 v_amp i_bias VSS VSS sg13_lv_nmos w=0.5u l=5u ng=1 m=1
-XM4 i_bias VSS VSS i_bias sg13_lv_nmos w=2.5u l=5u ng=1 m=1
-XM6 v_in- v_imirror VDD VDD sg13_lv_pmos w=1.5u l=5u ng=1 m=1
+XM4 i_bias i_bias VSS VSS sg13_lv_nmos w=2.5u l=5u ng=1 m=1
+XM6 v_inm v_imirror VDD VDD sg13_lv_pmos w=1.5u l=5u ng=1 m=1
 XM1 v_imirror v_imirror VDD VDD sg13_lv_pmos w=1.5u l=5u ng=1 m=1
+I0 VDD i_bias 20u
+Vdd1 v_inp GND dc 0.8 ac 1
 **** begin user architecture code
 
 .lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
@@ -23,16 +26,14 @@ XM1 v_imirror v_imirror VDD VDD sg13_lv_pmos w=1.5u l=5u ng=1 m=1
 
 
 
-.param temp=27 vdd=1.2 *per=4.5u
+.param temp=27 vdd=1.5 *per=4.5u
 .option method=gear
 
 .control
 save all
-tran 100n 100u
-*set wr_singlescale
-*set wr_vecnames
-write self_build_opamp_tb_sim.raw
-plot v_out
+op
+ac dec 101 1k 10MEG
+plot db(v(v_out))
 .endc
 
 
