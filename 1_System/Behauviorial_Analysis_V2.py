@@ -37,7 +37,7 @@ b_hp = (H0 * (s**2 / w0**2))
 b_bp = (-H0 * (s / w0))
 
 # Band Stop Filter
-b_bs = (1 + (s**2 / (w0**2))) * H0
+b_bs = -((1 + (s**2 / (w0**2))) * H0)
 
 # Denominator -> for all filters the same
 a0 = 1
@@ -90,7 +90,7 @@ axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_bp)) * (180 / np.pi), label='
 
 # Band Stop Filter
 axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_bs)), label='Band Stop')
-axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_bs)) * (180 / np.pi), label='Band Stop')
+axs[1].semilogx(frequencies, (np.angle(Hs_bs)) * (180 / np.pi), label='Band Stop')
 
 axs[0].set_xlabel("Frequencies in Hz")
 axs[0].set_ylabel("Amplitude in dB")
