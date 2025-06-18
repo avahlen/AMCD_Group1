@@ -57,13 +57,13 @@ N -200 190 -140 190 {lab=VSS}
 N 710 -100 710 -80 {
 lab=GND}
 N 710 -180 710 -160 {lab=v_inp}
-N 350 20 370 20 {lab=v_inm}
 N 290 -30 290 -10 {lab=v_inm}
-N 350 -30 360 -30 {lab=v_inm}
 N 290 -90 290 -30 {lab=v_inm}
-N 350 -30 350 20 {lab=v_inm}
-N 290 -30 350 -30 {lab=v_inm}
-N 330 20 350 20 {lab=v_inm}
+N 340 -30 360 -30 {lab=v_inm}
+N 340 20 370 20 {lab=v_inm}
+N 340 -30 340 20 {lab=v_inm}
+N 290 -30 340 -30 {lab=v_inm}
+N 330 20 340 20 {lab=v_inm}
 C {ipin.sym} -200 20 0 0 {name=p1 lab=v_inp
 }
 C {ipin.sym} 370 20 2 0 {name=p2 lab=v_inm
@@ -92,6 +92,7 @@ value="
 save all
 op
 ac dec 101 1k 10MEG
+*wr data nameeeee
 plot db(v(v_out))
 .endc
 "}
@@ -152,7 +153,7 @@ spiceprefix=X
 C {isource.sym} 620 -140 0 0 {name=I0 value=20u}
 C {ipin.sym} 620 -90 3 0 {name=p3 lab=i_bias}
 C {devices/gnd.sym} 710 -80 0 0 {name=l1 lab=GND}
-C {devices/vsource.sym} 710 -130 0 0 {name=Vdd1 value="dc 0.8 ac 1"}
+C {devices/vsource.sym} 710 -130 0 0 {name=Vdd1 value="dc 0.6 ac 1"}
 C {ipin.sym} 710 -180 1 0 {name=p9 lab=v_inp
 }
 C {lab_wire.sym} -140 20 0 0 {name=p10 sig_type=std_logic lab=v_inp}
