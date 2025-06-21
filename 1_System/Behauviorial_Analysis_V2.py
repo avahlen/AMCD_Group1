@@ -25,7 +25,6 @@ s = 1j * 2 * np.pi * frequencies  # Laplace-Variable s = jω
 # Transfer functions of Active Filters
 ############################################
 
-
 ### Numerator
 # Low Pass Filter
 b_lp = H0

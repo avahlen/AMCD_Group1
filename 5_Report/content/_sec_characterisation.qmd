@@ -6,13 +6,74 @@ i am failry open to discuss the exact contents of this chapter, as it is the one
 
 we also need to excatly decide on where this chapter ends, as Finn will continue with chap 5 and the break between the chapters shall be as smooth as possible
 
-## Behauvioral Analysis
+## Behauvioural Analysis and macro modelling
 
-i have no idea if this is grammatically correct, behauvior is a very hard word
+The behauvioural analysis is done through macro modelling the universal biquad filter as a system. The system can be described with transfer functions and modelled with python.
 
-### Transfer Function
+### Transfer Functions
 
 the python plots based on TF from red pitaya manual
+
+The ASLK PRO Manual [@aslkpro2012] provides the transfer functions of the four filter outputs: low pass, high pass, band pass, and band stop. The transfer functions are adaptations of the general second order transfer function [@razavi2018]:
+
+$$
+H(s) = \frac{a_1 \cdot s^2 + b_1 \cdot s + c_1}{a_2 \cdot s^2 + b_2 \cdot s + c_2}
+$$
+
+The coeffcients can be choosen so, that different responses, like low pass, high pass, band pass, and band stop are achieved.
+
+In filter design a variant of this generalized transfer function is often choosen to easier describe the system by quality factor and angular frequency [@razavi2012].
+
+$$
+H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
+$$
+
+In the following transfer function the input and output voltage are referenced according the figure ???. The sections only contain their specific transfer function and frequency response. The python script used to obtain these plots is linked below.
+
+:::{.callout-note collapse="true"}
+# python script for plotting frequency responses
+
+:::
+
+---
+title: "python script for plotting frequency responses"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+:::{.callout-warning}
+insert ref to universal biquad circuit
+:::
+
+:::{.callout-warning}
+please recheck ALL TFs against manaul for corecctness
+:::
+
+#### Low pass
+
+$$
+\frac{V_{03}}{V_i} = \frac{H_0}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)}
+$$
+
+#### High pass
+
+$$
+\frac{V_{01}}{V_i} = \frac{\left( H_0 \cdot \frac{s^2}{\omega_0^2} \right)}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)} 
+$$
+
+#### Band pass
+
+$$
+\frac{V_{02}}{V_i} = \frac{\left( - H_0 \cdot \frac{s}{\omega_0} \right)}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)}
+$$
+
+#### Band stop
+
+$$
+\frac{V_{04}}{V_i} = \frac{\left( 1 + \frac{s^2}{\omega_0^2} \right) \cdot H_0}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)}
+$$
 
 ### Ideal Opamp
 

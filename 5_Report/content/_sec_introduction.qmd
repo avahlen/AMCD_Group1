@@ -108,12 +108,54 @@
 
 # Introduction
 
-This chapter provides a short motivation and overview for the IC design process done during the lecture "Analogue and Digital Mixed Circuit Design" that Prof. Dr.-Ing. M. Meiners gives in the graduate course Electronic Engineering M.Sc. at City University of Applied Sciences Bremen.
+:::{.callout-warning}
+Check for reading flow please (for whole chapter)
+:::
+
+This chapter provides a short motivation and overview for the IC design process done during the lecture "Analogue and Digital Mixed-Signal Circuit Design" that Prof. Dr.-Ing. M. Meiners gives in the graduate course Electronic Engineering M.Sc. at City University of Applied Sciences Bremen.
 
 The chapter will start with the motivation behind the Biquad IC filter design, outline the scope of work of the project, and ends with giving concrete specifications for the implemented filter.
 
 ## Motivation
 
-## Scope
+The design and implementation of analog filters is a cornerstone in signal processing, with applications ranging from audio processing to communication systems. Among these, second order fitlers, like the biquad filter, are versatile building blocks due to its ability to realize four types of second order filters - low pass, high pass, band pass, and band stop. This project focuses on the integrated circuit (IC) design of a biquad filter, to get insight into the theortical and practical engineering considerations behind IC design.
+
+For a deeper understanding of IC design, this project does not rely on off-the-shelf operational amplifiers for the filter design, but aims to implement the entire filter architecture at the transistor level. This approach not only deepens the understanding of analog filter behavior but also introduces the challenges and intricacies of IC design, such as layout constraints, power efficiency, and stability.
+
+This project demonstrates the design process of IC design from theorectical modelling, over simulation and design constraints to prototyping and to learn hands-on experience with tools used during the design process.
+
+## Scope of the project
+
+:::{.callout-important}
+finish this section!
+:::
+
+- scope of this project in AMCD:
+	- characterisation biquad filter with specification
+	- behauviroal analysis of biqaud (mathematical description as second order functions)
+	- circuit of biquad filters
+	- usage of own opamps:
+		- design of opamp to usage in biquad filter
+		- best case scenario is tap out of ic, but realistic is a simulated LVS schem (with personalized version of given opamp circuit by pretl)
+
+makes no sense to write this now, only produce garbage
 
 ## Specifications
+
+:::{.callout-warning}
+Not sure if this is written in the correct time!?!
+:::
+
+The main onjective is to design a universal biquad filter, based on the filter design proposed in the ASLK PRO Board Manual from Texas Instruments [@aslkpro2012]. The biquad filter shall have the following specifications:
+
+$$
+f_0 = 1\,kHz
+$$
+
+$$
+Q = 10
+$$
+
+The circuit design is done in **Xschem** and the simulation in **ngspice**. For the design on transistor level the 130nm CMOS technology **SG13G2** is used. All these tools and PDk are integrated into a docker image **IIC-OSIC-TOOLS** [@pretl_git2025] provided by Prof. Dr. Harald Pretl from Johannes Keplar University. 
+
+This documentation provides a development report, which documents the design process with the taken steps and decisions made.

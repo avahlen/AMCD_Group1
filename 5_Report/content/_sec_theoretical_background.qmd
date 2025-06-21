@@ -34,9 +34,13 @@ dont know if it makes sense here, i think at some theoretics should be written a
 
 theoretical background on biquad, there are some ressources from AMCD aulis about this, just want introduction on what excatly this filter ist
 
+
+
 ### Characteristics
 
 characteristics of design, implementation etc. lets see what we can find
+
+do we  need behauviour here too?
 
 ### Stability
 
