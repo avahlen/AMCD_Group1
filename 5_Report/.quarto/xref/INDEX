@@ -1,5 +1,10 @@
 {
+  "content/references.qmd": {
+    "references.embed.ipynb": "442d21a7",
+    "references.out.ipynb": "6613e676",
+    "references-preview.html": "1049ae1a"
+  },
   "index.qmd": {
-    "index.html": "4899d336"
+    "index.html": "6555f63e"
   }
 }

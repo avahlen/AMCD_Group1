@@ -10,6 +10,7 @@ execute:
 format:
   html:
     theme: flatly
+    code-fold: true
   pdf:
     documentclass: scrreprt
 #    lof: true

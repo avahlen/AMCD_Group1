@@ -12,12 +12,14 @@ The behauvioural analysis is done through macro modelling the universal biquad f
 
 ### Transfer Functions and frequency response
 
-the python plots based on TF from red pitaya manual
+:::{.callout-warning}
+This whole section needs to be reworked, I am not happy with the reading flow right now! -AvA
+:::
 
 The ASLK PRO Manual [@aslkpro2012] provides the transfer functions of the four filter outputs: low pass, high pass, band pass, and band stop. The transfer functions are adaptations of the general second order transfer function [@razavi2018]:
 
 $$
-H(s) = \frac{a_1 \cdot s^2 + b_1 \cdot s + c_1}{a_2 \cdot s^2 + b_2 \cdot s + c_2}
+H(s) = \frac{a_1 s^2 + b_1 s + c_1}{a_2 s^2 + b_2 s + c_2}
 $$
 
 The coeffcients can be choosen so, that different responses, like low pass, high pass, band pass, and band stop are achieved.
@@ -30,20 +32,11 @@ $$
 
 In the following transfer function the input and output voltage are referenced according the figure ???. The sections only contain their specific transfer function and frequency response. The python script used to obtain these plots is linked below.
 
----
-title: "python script for plotting frequency responses"
-format:
-  html:
-    code-fold: true
-    code-block-border-left: true
-    code-line-numbers: true
-jupyter: python3
----
-
 ```{python}
 
 #| label: fig-freqResponseFilter
 #| fig-cap: "Behauvioural analysis of biquad filter"
+#| code-fold: true
 
 # Behavioral Analysis Biquad Filter
 
@@ -165,6 +158,12 @@ $$ {#eq-TFBandstopFalse}
 $$
 \frac{V_{04}}{V_i} = - \frac{\left( 1 + \frac{s^2}{\omega_0^2} \right) \cdot H_0}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)}
 $$ {#eq-TFBandstopCorrect}
+
+### Stability
+
+#### Pole-zero plot
+
+![pole-zero plot of all transfer functions of the biquad](/images/sec_characterisation/pole_zero_biquad.png){#fig-poleZeroStability}
 
 ### Ideal Opamp
 

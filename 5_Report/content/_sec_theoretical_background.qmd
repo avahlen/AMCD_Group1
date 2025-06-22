@@ -2,6 +2,48 @@
 
 my idea was to group all theoretics into one chapter, like a when the information becomes necessary during the quarto book, people can just jump back to this. we would circumvent having to introduce every little concept seperately whenever it comes up...
 
+:::{.callout-warning}
+I am thinking about changing the order, so that we are starting with biquads and work through the filter design from big to small...
+:::
+
+This chapter introduces the theory and core concepts necessary for IC design of a biquad filter. It is structured in a way, that it goes from the big picture to the small components. First, biquad filters are introduced with a focus on the universal biquad filter. After that, operational amplifiers come into the the foreground, as biquad filters make use of them in their circuits. Operational amplifiers are looked upon from an IC design standpoint.
+
+## Biquad filter
+
+The biquadratic filter, also known as the biquad filter, has its earliest implementation in the 1960s but is still in use today, most commonly in radio frequency receivers [@razavi2018]. In its application in RF-technology, it is used to remove unwanted neighboring signals ans noise [@razavi2024]. As biquad filter are second-order filters, they are also used as building blocks for higher filter implementations, by cascading them [@aslkpro2012].
+
+### Universal biquad filter
+
+For the filter design in this project, an universal biquad filter is used. The universal biquad filter is biquad filter variant with four operational amplifiers used in its design and the property of being able to be used in four different filter variants. Depending on the output of the universal biquad used, a low pass filter, high pass filter, band pass filter, or band stop filter will be implemented. This can be seen in (ref to figure of biquad fitler design). [@aslkpro2012]
+
+:::{.callout-warning}
+insert figure of biquad circuit HERE!
+:::
+
+The universal biquad filter consists of two non-inverting amplifiers working as adders in the circuit and two integrators. By setting $R$ and $C$ to specific values, the resonance frequency can be chosen. Other parameters adjustable in the universal biquad filter are the quality factor $Q$ and the low-frequency gain $H_0$. The quality factor and low-frequency gain determine the frequency response peaks of the low pass filter and the band pass filter. [@aslkpro2012]
+
+#### Characteristics
+
+characteristics of design, implementation etc. lets see what we can find
+
+do we  need behauviour here too?
+
+If the dc-amplification is set to $H_0 = 1$, only the quality factor $Q$ controls the position of the poles and the peaking in the frequency response. 
+
+#### Stability
+
+stability of biquad as a whole
+
+:::{.callout-warning}
+maybe better to movve this to characteristics section... else there will be repeats or the other section will be very short
+:::
+
+##### Pole-Zero diagram
+
+##### Component stability
+
+
+
 ## Operational Amplifier
 
 i think this is kinda where our focus is again, so like a good theory is necessary
@@ -30,18 +72,3 @@ stability of op amp on its own
 
 dont know if it makes sense here, i think at some theoretics should be written about sizing, but open to discuss placement
 
-## Biquad
-
-theoretical background on biquad, there are some ressources from AMCD aulis about this, just want introduction on what excatly this filter ist
-
-
-
-### Characteristics
-
-characteristics of design, implementation etc. lets see what we can find
-
-do we  need behauviour here too?
-
-### Stability
-
-stability of biquad as a whole

@@ -126,19 +126,11 @@ This project demonstrates the design process of IC design from theorectical mode
 
 ## Scope of the project
 
-:::{.callout-important}
-finish this section!
-:::
+The scope of this project is supposed to follow a real-world design flow, starting at a theorectical analysis of the specified filter and - in the best case - end in a tap-out of a prototype. If that stage is reached the prototype can be compared to the theorectical and simulation results obtained during the design process and checked for functionality.
 
-- scope of this project in AMCD:
-	- characterisation biquad filter with specification
-	- behauviroal analysis of biqaud (mathematical description as second order functions)
-	- circuit of biquad filters
-	- usage of own opamps:
-		- design of opamp to usage in biquad filter
-		- best case scenario is tap out of ic, but realistic is a simulated LVS schem (with personalized version of given opamp circuit by pretl)
+As a tap-out of a prototype is fairly unrealistic in the time given, the goal is to simulate the specified filter with templates for operational amplifiers and base the IC layout on these templates.
 
-makes no sense to write this now, only produce garbage
+All in all, this project includes a systems analysis if the specified filter, simulation results with ideal components and real components, taken from provided templates, and a physical layout prototype.
 
 ## Specifications
 

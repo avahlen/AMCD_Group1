@@ -14,6 +14,5 @@ site_libs
 *_files
 _book
 _manuscript
-.quarto
+5_Report/.quarto
 /.quarto/
-

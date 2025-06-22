@@ -91,6 +91,7 @@ axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_bp)) * (180 / np.pi), label='
 axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_bs)), label='Band Stop')
 axs[1].semilogx(frequencies, (np.angle(Hs_bs)) * (180 / np.pi), label='Band Stop')
 
+
 axs[0].set_xlabel("Frequencies in Hz")
 axs[0].set_ylabel("Amplitude in dB")
 axs[0].set_ylim(-50, 25)
@@ -105,6 +106,8 @@ axs[1].legend()
 
 plt.tight_layout()
 plt.show()
+
+#%%
 
 # Pol-Zero Diagram for Low Pass Filter
 numerator_lp = [b_lp]
