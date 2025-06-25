@@ -54,58 +54,58 @@ C {ipin.sym} -200 20 0 0 {name=p1 lab=v_in+
 C {ipin.sym} 370 20 2 0 {name=p2 lab=v_in-
 }
 C {opin.sym} 370 -50 0 0 {name=p6 lab=v_out}
-C {sg13g2_pr/sg13_hv_nmos.sym} 90 20 0 0 {name=M3
-l=5u
-w=2u
-ng=1
-m=1
-model=sg13_hv_nmos
-spiceprefix=X
-}
-C {sg13g2_pr/sg13_hv_nmos.sym} 310 20 0 1 {name=M2
-l=5u
-w=2u
-ng=1
-m=1
-model=sg13_hv_nmos
-spiceprefix=X
-}
-C {sg13g2_pr/sg13_hv_nmos.sym} 180 130 0 0 {name=M4
-l=5u
-w=0.5u
-ng=1
-m=1
-model=sg13_hv_nmos
-spiceprefix=X
-}
-C {sg13g2_pr/sg13_hv_pmos.sym} 130 -120 0 1 {name=M5
-l=5u
-w=1.5u
-ng=1
-m=1
-model=sg13_hv_pmos
-spiceprefix=X
-}
-C {sg13g2_pr/sg13_hv_pmos.sym} 270 -120 0 0 {name=M1
-l=5u
-w=1.5u
-ng=1
-m=1
-model=sg13_hv_pmos
-spiceprefix=X
-}
 C {lab_wire.sym} 190 -50 0 0 {name=p17 sig_type=std_logic lab=v_imirror}
 C {lab_wire.sym} 200 80 0 0 {name=p7 sig_type=std_logic lab=v_amp}
 C {iopin.sym} -200 -200 2 0 {name=p8 lab=VDD
 }
 C {iopin.sym} -200 190 2 0 {name=p4 lab=VSS
 }
-C {sg13g2_pr/sg13_hv_nmos.sym} -50 130 0 1 {name=M6
+C {ipin.sym} -200 80 0 0 {name=p5 lab=i_bias}
+C {sg13g2_pr/sg13_lv_pmos.sym} 270 -120 0 0 {name=M7
+l=5u
+w=1.5u
+ng=1
+m=1
+model=sg13_lv_pmos
+spiceprefix=X
+}
+C {sg13g2_pr/sg13_lv_pmos.sym} 130 -120 0 1 {name=M1
+l=5u
+w=1.5u
+ng=1
+m=1
+model=sg13_lv_pmos
+spiceprefix=X
+}
+C {sg13g2_pr/sg13_lv_nmos.sym} 90 20 0 0 {name=M8
+l=5u
+w=2u
+ng=1
+m=1
+model=sg13_lv_nmos
+spiceprefix=X
+}
+C {sg13g2_pr/sg13_lv_nmos.sym} 310 20 0 1 {name=M3
+l=5u
+w=2u
+ng=1
+m=1
+model=sg13_lv_nmos
+spiceprefix=X
+}
+C {sg13g2_pr/sg13_lv_nmos.sym} 180 130 0 0 {name=M2
+l=5u
+w=0.5u
+ng=1
+m=1
+model=sg13_lv_nmos
+spiceprefix=X
+}
+C {sg13g2_pr/sg13_lv_nmos.sym} -50 130 0 1 {name=M4
 l=5u
 w=2.5u
 ng=1
 m=1
-model=sg13_hv_nmos
+model=sg13_lv_nmos
 spiceprefix=X
 }
-C {ipin.sym} -200 80 0 0 {name=p5 lab=i_bias}
