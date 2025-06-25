@@ -161,9 +161,18 @@ $$ {#eq-TFBandstopCorrect}
 
 ### Stability
 
+#### System stability
+A system is stable if its impulse response is absolutley integrateable. In case of a given transfer function, this can be also checked by calculating the poles of the transfer function. If all the poles lay in the left half of the s-plane, the system is considered stable. There is a special case where single poles can lay on the $j\omega$-axis, on their own or in combination with poles in the left half of the s-plane. Systems which fall under that, are called marginally stable. [@fliege1991]
+
 #### Pole-zero plot
 
 ![pole-zero plot of all transfer functions of the biquad](/images/sec_characterisation/pole_zero_biquad.png){#fig-poleZeroStability}
+
+@fig-poleZeroStability shows the pole-zero plots of all four filters, low pass, high pass, band pass and band stop. In all four plots the poles are located in the left half of the s-plane and the system can therefore theoretically be classified as stable. [@razavi2018] confirms this, as the article explains that with $Q \rightarrow \infty$ the poles of the system approach the $j\omega$ axis and the system becomes unstable.
+
+#### Component stability
+
+
 
 ### Ideal Opamp
 
