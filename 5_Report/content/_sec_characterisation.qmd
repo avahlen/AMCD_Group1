@@ -6,6 +6,8 @@ i am failry open to discuss the exact contents of this chapter, as it is the one
 
 we also need to excatly decide on where this chapter ends, as Finn will continue with chap 5 and the break between the chapters shall be as smooth as possible
 
+
+
 ## Behauvioural Analysis and macro modelling
 
 The behauvioural analysis is done through macro modelling the universal biquad filter as a system. The system can be described with transfer functions and modelled with python.
@@ -24,13 +26,13 @@ $$
 
 The coeffcients can be choosen so, that different responses, like low pass, high pass, band pass, and band stop are achieved.
 
-In filter design a variant of this generalized transfer function is often choosen to easier describe the system by quality factor and angular frequency [@razavi2018].
+In filter design a variant of this generalized transfer function is often choosen because it is easier describe the system by quality factor and angular frequency [@razavi2018].
 
 $$
 H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
 $$
 
-In the following transfer function the input and output voltage are referenced according the figure ???. The sections only contain their specific transfer function and frequency response. The python script used to obtain these plots is linked below.
+In the following transfer function the input and output voltage are referenced according to @fig-BiquadCircuit. The sections only contain their specific transfer function and frequency response. The python script used to obtain these plots is linked below.
 
 ```{python}
 
@@ -161,24 +163,122 @@ $$ {#eq-TFBandstopCorrect}
 
 ### Stability
 
+The stability of the biquad is checked at different hierarchical levels. The first analysis considers the system from a theorectical standpoint with transfer functions, and checks if conceptual design of the biquad filter is stable. On a component level the stability of the integrators and adders is analyzed, to verify that the chosen values for resistors and capcitors do not induce oscillations through the feedback loop. 
+
+(At last, the general stability of the OTA circuit itself needs to be checked, so that) <- lets see what we can find for this...
+
 #### System stability
-A system is stable if its impulse response is absolutley integrateable. In case of a given transfer function, this can be also checked by calculating the poles of the transfer function. If all the poles lay in the left half of the s-plane, the system is considered stable. There is a special case where single poles can lay on the $j\omega$-axis, on their own or in combination with poles in the left half of the s-plane. Systems which fall under that, are called marginally stable. [@fliege1991]
+A system is stable if its impulse response is absolutley integrateable. In case of a given transfer function, this can also be checked by calculating the poles of the transfer function. If all the poles lay in the left half of the s-plane, the system is considered stable. There is a special case where single poles can lay on the $j\omega$-axis, on their own or in combination with poles in the left half of the s-plane. Systems which fall under that, are called marginally stable. [@fliege1991]
 
 #### Pole-zero plot
 
-![pole-zero plot of all transfer functions of the biquad](/images/sec_characterisation/pole_zero_biquad.png){#fig-poleZeroStability}
+```{python}
+#| label: fig-poleZeroStability
+#| fig-cap: "Pole-zero plot for all transfer functions"
+#| code-fold: true
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import tf2zpk
+
+# Given values
+f = 1e3
+w = 2 * np.pi * f
+R = 1e3
+C = 1 / (w * R)
+Q = 10
+H0 = 1
+
+# Calculate w0
+w0 = 1 / (R * C)
+
+# Transfer function coefficients
+a2 = 1 / w0**2
+a1 = 1 / (w0 * Q)
+a0 = 1
+
+# Define transfer functions manually as (numerator, denominator) pairs
+systems = {
+    'Lowpass Filter': ([H0], [a2, a1, a0]),
+    'Highpass Filter': ([H0 / w0**2, 0, 0], [a2, a1, a0]),
+    'Bandpass Filter': ([-H0 / w0, 0], [a2, a1, a0]),
+    'Bandstop Filter': ([H0 / w0**2, 0, H0], [a2, a1, a0])
+}
+
+# Function to plot pole-zero map
+def plot_pzmap(num, den, title, subplot_pos):
+    zeros, poles, _ = tf2zpk(num, den)
+    plt.subplot(2, 2, subplot_pos)
+    plt.plot(np.real(zeros), np.imag(zeros), 'go', label='Zeros')
+    plt.plot(np.real(poles), np.imag(poles), 'rx', label='Poles')
+    plt.axhline(0, color='gray', lw=0.5)
+    plt.axvline(0, color='gray', lw=0.5)
+    plt.title(title)
+    plt.xlim([-1500, 1500])
+    plt.ylim([-10000, 10000])
+    plt.grid(True)
+    plt.legend(loc='upper right')
+
+# Plot all systems
+plt.figure(figsize=(12, 10))
+for i, (title, (num, den)) in enumerate(systems.items(), 1):
+    plot_pzmap(num, den, title, i)
+
+plt.tight_layout()
+plt.show()
+
+
+
+```
 
 @fig-poleZeroStability shows the pole-zero plots of all four filters, low pass, high pass, band pass and band stop. In all four plots the poles are located in the left half of the s-plane and the system can therefore theoretically be classified as stable. [@razavi2018] confirms this, as the article explains that with $Q \rightarrow \infty$ the poles of the system approach the $j\omega$ axis and the system becomes unstable.
 
+This analysis onbly considers the system as a mathematical model and as a whole. Further considerations regarding the stability of the components, integrators and adders, and the stability of the operational amplifiers themselves, have to be done.
+
 #### Component stability
 
+Circuits with opamps often have feedback loops, meaning that the output of the operational amplifier is somehow connected to the inverted input of the opamp. These feedback loops become problematic when the feedback signal is in phase with the input signal, as positive feedback is created and the circuit is working as an oscillator. [@reisch2007]
 
+The stability of the non-inverting amplifier can be verified by calculating the phase reserve $\alpha$ of the circuit. If $f_k$ is the frequency where the feedback gain is equal to 1 and $\varphi_k$ is the corresponding phase to that frequency, then 
+the phase reserve is calculated by:
+
+$$
+\alpha = 180°
+$$
+
+For circuits to be considered stable, the phase reserve has to be positive. To reduce overshoots during the transient response, it is customary to have a phase reserve of $\alpha > 45°$. [@reisch2007]
+
+:::{.callout-warning}
+insert figure from reisch page 244
+:::
+
+![Example of a transcient response of a circuit with a phase reserve of $\alpha = 5.7°$](/images/sec_characterisation/reisch_example_stability_tran.png){#fig-reischExampleStabilityTransient}
+
+Figure (reisch) shows the transient response of a circuit with a phase reserve of $\alpha = 5.7°. The overshoots are clearly visible and number of the overshoots per puls are larger then the customary "one over, one under"-rule. As the phase reserve is positive, the figure shows that even though the transient response is not ideal, the oscillations are attenuated and the circuit is can be considered as stable.
+
+In practical application, the phase reserve can be graphically determined with the help of bode diagrams. The bode diagram of the circuit with an open feedback loop is simulated, so that the frequency $f_k$ can be read out. This is the frequnecy where the feedback gain is 1 or 0 dB. The corresponding frequency to that, is the phase of the feedback gain $\varphi_k$, the difference between $-180°$ and $\varphi_k$ is the phase reserve $\alpha$. [@reisch2007]
+
+:::{.callout-warning}
+insert circuit where the stability analsis was done from, like in ltspice
+:::
+
+:::{.callout-warning}
+insert bode diagram figures (both: integrator and adder)
+:::
+
+In the following figures (ref) and (ref) this method was used to determine the stability over the phase reserve.
+(add here part about whether they are stable...)
+
+#### OTA stability
+
+i have not found anything in pretl script, but i clearly remember mr. meiners talking about this...
 
 ### Ideal Opamp
 
 kinda forgot where I wanted to go with this one... ehhh maybe it will come back
 
 uhhh i think it was about the ideal circuit and spice analysis etc
+
+To check the behauviour of the implemented circuit against the modelled behauviour of the transfer function, the universal biquad was built as an ideal circuit with voltage-regulated current sources instead of OTAs.
 
 ## Implementation (or Real Circuit)
 

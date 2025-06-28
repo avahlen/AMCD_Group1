@@ -1,3 +1,9 @@
+:::{.callout-important}
+We need to go through the whole document and check whether opamp or ota is the right word in the context!
+
+In the end we need to go through this, and change all second to last meantions of OP/operational amplifier to opamp 
+:::
+
 # TOC (only temporary) {.unnumbered}
 
 - abstract
