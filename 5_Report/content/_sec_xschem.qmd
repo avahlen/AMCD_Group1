@@ -1,5 +1,9 @@
 # Xschem Simulation
 
+
+
+
+
 ## Environment Setup
 
 Proper configuration of the simulation environment is crucial for accurate and reliable simulation results using Xschem within a Docker container. This section details the necessary considerations regarding path handling and Docker environment variables for a robust simulation process.
@@ -96,7 +100,6 @@ A_v \approx \frac{g_m}{g_{ds1}\parallel g_{ds2}}
 
 ### AC Simulation (Linear Behavior Verification)
 - Perform AC simulations **after transient analysis** to verify the linearized behavior (LTI system).
-
 
 
 
@@ -418,18 +421,11 @@ The presented methodology offers a systematic, reproducible approach to OTA desi
 
 
 
-
-
-
-
-
-
-
-
 ### GM/ID Ratios Selection
 - Explicit recommendations:
   - Input differential amplifiers: GM/ID = **10** (moderate, balancing noise, speed, stability).
   - Bias circuits: GM/ID = **5** (DC stability, low-speed demands).
+
 
 ### Determining Transistor Sizes (W/L Ratios)
 - Transistor sizes explicitly advised to be derived from GM/ID lookup tables and experience.
@@ -465,5 +461,3 @@ The presented methodology offers a systematic, reproducible approach to OTA desi
 - Mention explicitly identified lessons learned and give clear recommendations for future improvements based on the simulated design results.
 
 ---
-
-Use these details directly sourced from your professor’s transcript as you write each section. This ensures your report is tightly aligned with your professor’s specific instructions and recommendations.
