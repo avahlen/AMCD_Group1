@@ -39,10 +39,11 @@ save all
 op
 *tran 100u 100m
 ac dec 101 1k 10MEG
-*wr data nameeeee
-write tb_ota_AC_UGbuffer.txt
-plot db(v(v_out))
-plot v(v_in)
+set filetype=ascii
+set wr_singlescale
+wrdata tb_ota_AC_UG.csv frequency v(out) vp(out)
+*plot db(v(v_out))
+*plot v(v_in)
 .endc
 "}
 C {devices/gnd.sym} 420 -230 0 0 {name=l15 lab=GND}

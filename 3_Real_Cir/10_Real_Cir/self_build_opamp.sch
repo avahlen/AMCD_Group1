@@ -109,3 +109,4 @@ m=1
 model=sg13_lv_nmos
 spiceprefix=X
 }
+C {3_Real_Cir/10_Real_Cir/self_build_opamp.sch} 80 -980 0 0 {}
