@@ -68,38 +68,38 @@ Initially, our group developed our own five-transistor OTA schematic within Xsch
 
 
 ### OTA Gain Target and Calculation
-- Target Gain explicitly mentioned: at least **60 dB**.
+<!-- - Target Gain explicitly mentioned: at least **60 dB**.
 - Provided OTA (five-transistor type) has a gain around **34 dB**.
 - Gain formula explicitly given:
 \[
 A_v \approx \frac{g_m}{g_{ds1}\parallel g_{ds2}}
 \]
-
+-->
 ### OTA Current Demand Calculation
-- Explicit advice to calculate required OTA current from loading conditions (resistive loads and integrators).
+<!-- - Explicit advice to calculate required OTA current from loading conditions (resistive loads and integrators).-->
 
 ## Circuit Parameter Choices
 
 ### Capacitor Selection (Unit Capacitor: 100 nF)
-- Recommended unit capacitor explicitly stated: **100 nF** for easy and realistic layout considerations.
+<!-- - Recommended unit capacitor explicitly stated: **100 nF** for easy and realistic layout considerations.-->
 
 ### Resistor Determination (~1.6 kΩ)
-- Derived resistor values explicitly mentioned: **approximately 1.6 kΩ** based on the RC constant calculations.
+<!-- - Derived resistor values explicitly mentioned: **approximately 1.6 kΩ** based on the RC constant calculations.-->
 
 ## Simulation Procedure
 
 ### Transient Simulation
 
 #### OTA Standalone Characterization
-- **Must start with transient simulation** (explicitly advised).
-- Verify OTA reaches steady state before proceeding further.
+<!-- - **Must start with transient simulation** (explicitly advised).
+- Verify OTA reaches steady state before proceeding further.-->
 
 #### OTA with Realistic Load Conditions
-- Clearly advised: simulate OTA under realistic resistive and integrator loads.
-- Verify steady-state and operational behavior under realistic conditions explicitly mentioned.
+<!-- - Clearly advised: simulate OTA under realistic resistive and integrator loads.
+- Verify steady-state and operational behavior under realistic conditions explicitly mentioned.-->
 
 ### AC Simulation (Linear Behavior Verification)
-- Perform AC simulations **after transient analysis** to verify the linearized behavior (LTI system).
+<!-- - Perform AC simulations **after transient analysis** to verify the linearized behavior (LTI system).-->
 
 
 
@@ -422,42 +422,40 @@ The presented methodology offers a systematic, reproducible approach to OTA desi
 
 
 ### GM/ID Ratios Selection
-- Explicit recommendations:
+<!-- - Explicit recommendations:
   - Input differential amplifiers: GM/ID = **10** (moderate, balancing noise, speed, stability).
-  - Bias circuits: GM/ID = **5** (DC stability, low-speed demands).
+  - Bias circuits: GM/ID = **5** (DC stability, low-speed demands).-->
 
 
 ### Determining Transistor Sizes (W/L Ratios)
-- Transistor sizes explicitly advised to be derived from GM/ID lookup tables and experience.
-- Recommended transistor channel length: **3 to 5 times minimum length** (explicitly advised for analog IC design).
+<!-- - Transistor sizes explicitly advised to be derived from GM/ID lookup tables and experience.
+- Recommended transistor channel length: **3 to 5 times minimum length** (explicitly advised for analog IC design).-->
 
 ## Test Bench Setup
 
 ### Ideal OTA Test Bench
-- Explicit instruction: start testing with an ideal OTA model provided, to characterize basic performance.
+<!-- - Explicit instruction: start testing with an ideal OTA model provided, to characterize basic performance.-->
 
 ### Loaded OTA Test Bench (Integrators, Resistors)
-- Explicit requirement to create a second test bench simulating the OTA under realistic circuit loading conditions (integrators and resistor network).
+<!-- - Explicit requirement to create a second test bench simulating the OTA under realistic circuit loading conditions (integrators and resistor network).-->
 
 ## Robustness and Corner Analysis
 
 ### Process Corner Simulations
-- Explicit recommendation for corner simulations to verify robustness and performance under variations in temperature and manufacturing processes.
+<!-- - Explicit recommendation for corner simulations to verify robustness and performance under variations in temperature and manufacturing processes.-->
 
 ### Monte Carlo Analysis (Optional)
-- Suggested (explicitly mentioned) to conduct Monte Carlo simulations to statistically analyze variability and reliability.
+<!-- - Suggested (explicitly mentioned) to conduct Monte Carlo simulations to statistically analyze variability and reliability.-->
 
 ## Results and Discussion
 
 ### Analysis of Simulation Results
-- Recommended to analyze carefully transient and AC simulation results.
-- Advised explicitly to verify steady-state operational conditions and compare them to expected theoretical performance.
+<!-- - Recommended to analyze carefully transient and AC simulation results.
+- Advised explicitly to verify steady-state operational conditions and compare them to expected theoretical performance.-->
 
 ### Critical Observations and Performance Limitations
-- Suggested explicitly to discuss any observed performance limitations or unexpected behavior explicitly identified in simulation results.
+<!-- - Suggested explicitly to discuss any observed performance limitations or unexpected behavior explicitly identified in simulation results.-->
 
 ## Conclusion and Recommendations
-- Summarize explicitly achieved performance: OTA gain, stability, and operational conditions.
-- Mention explicitly identified lessons learned and give clear recommendations for future improvements based on the simulated design results.
-
----
+<!-- - Summarize explicitly achieved performance: OTA gain, stability, and operational conditions.
+- Mention explicitly identified lessons learned and give clear recommendations for future improvements based on the simulated design results.-->
