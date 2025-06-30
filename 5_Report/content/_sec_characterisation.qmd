@@ -18,30 +18,16 @@ The behauvioural analysis is done through macro modelling the universal biquad f
 
 :::{.callout-warning}
 This whole section needs to be reworked, I am not happy with the reading flow right now! -AvA
+
+I am going to shift the theory over to theory and only talk about the implementation...
 :::
 
-The ASLK PRO Manual [@aslkpro2012] provides the transfer functions of the four filter outputs: low pass, high pass, band pass, and band stop. The transfer functions are adaptations of the general second order transfer function [@razavi2018]:
-
-$$
-H(s) = \frac{a_1 s^2 + b_1 s + c_1}{a_2 s^2 + b_2 s + c_2}
-$$ {#eq-TFSecondOrder}
-
-The coeffcients can be choosen so, that different responses, like low pass, high pass, band pass, and band stop are achieved.
-
-In filter design a variant of this generalized transfer function is often choosen because it is easier describe the system by quality factor and angular frequency [@razavi2018].
-
-$$
-H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
-$$ {#eq-TFSecondOrderBiquad}
+The ASLK PRO Manual [@aslkpro2012] provides the transfer functions of the four filter outputs: low pass, high pass, band pass, and band stop. The transfer functions are adaptations of the general second order transfer function as seen in @eg-TFSecondOrder [@razavi2018].
 
 In the following transfer function the input and output voltage are referenced according to @fig-BiquadCircuit. The sections only contain their specific transfer function and frequency response.
 
 :::{.callout-warning}
-insert ref to universal biquad circuit
-:::
-
-:::{.callout-warning}
-please recheck ALL TFs against manaul for corecctness
+please recheck ALL TFs against manual for corecctness
 :::
 
 #### Low pass
@@ -142,6 +128,8 @@ axs[1].grid(True, which="both", ls="--")
 plt.tight_layout()
 plt.show()
 ```
+
+With knowing the dc gain $H_0 = 1$ and quality factot $Q = 10$, the amplitude of the peak can be calculated as seen in @eg-calculatePeak. Expression the value in dB, gives peak amplitude of $A_{peak,dB} = 20.002\,dB$ which corresponds to the peak value seen in @fig-freqResponseLowpass.
 
 #### High pass
 
