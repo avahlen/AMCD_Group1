@@ -159,10 +159,11 @@ $$ {#eg-calculatePeak}
 
 For $Q = 100$ the peak is $A_{peak} = 100.001$, which converted into dB is $A_{peak,dB} = 40\,dB$, as is shown in @fig-lowPassDifferentQ.
 
-
 ## Operational Amplifier
 
 i think this is kinda where our focus is again, so like a good theory is necessary
+
+
 
 ### Current Mirror
 
@@ -180,7 +181,7 @@ maybe like miller opamp or something like that
 
 thought i would be a good idea to at least have this somewhere
 
-### Sizing
+### Sizing (Onno)
 
 dont know if it makes sense here, i think at some theoretics should be written about sizing, but open to discuss placement
 
