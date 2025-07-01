@@ -2,7 +2,7 @@
 
 - abstract
 - introduction (motivation, goals, requirements, restrictions)
-- filter design (theorectical background, methods)
+- filter design (theoretical background, methods)
 - characterisation (filter requirements, theory in python, ideal circuit)
 - design (real circuit, xschem, klayout)
 - discussion
@@ -81,8 +81,8 @@
 3.2.1 Characteristics
 3.2.2 Stability
 
-4 Characetrisation
-4.1 Behauvioural analysis
+4 Characterisation
+4.1 Behavioural analysis
 4.1.1 Python
 4.1.2 Ideal Opamp?
 4.2 Implementation (real circuit)
@@ -98,13 +98,13 @@
 
 6 Discussion
 6.1 Stability Analysis
-6.2 Comparision
+6.2 Comparison
 6.2.1 Python
 6.2.2 Ideal
 6.2.3 Real
 6.3 is filter good?
 
-7 Conculsion and outlook
+7 Conclusion and outlook
 
 # Introduction
 
@@ -118,7 +118,7 @@ The chapter will start with the motivation behind the Biquad IC filter design, o
 
 ## Motivation
 
-The design and implementation of analog filters is a cornerstone in signal processing, with applications ranging from audio processing to communication systems. Among these, second order fitlers, like the biquad filter, are versatile building blocks due to its ability to realize four types of second order filters - low pass, high pass, band pass, and band stop. This project focuses on the integrated circuit (IC) design of a biquad filter, to get insight into the theortical and practical engineering considerations behind IC design.
+The design and implementation of analog filters is a cornerstone in signal processing, with applications ranging from audio processing to communication systems. Among these, second order filters, like the biquad filter, are versatile building blocks due to its ability to realize four types of second order filters - low pass, high pass, band pass, and band stop. This project focuses on the integrated circuit (IC) design of a biquad filter, to get insight into the theoretical and practical engineering considerations behind IC design.
 
 For a deeper understanding of IC design, this project does not rely on off-the-shelf operational amplifiers for the filter design, but aims to implement the entire filter architecture at the transistor level. This approach not only deepens the understanding of analog filter behavior but also introduces the challenges and intricacies of IC design, such as layout constraints, power efficiency, and stability.
 
@@ -151,3 +151,21 @@ $$
 The circuit design is done in **Xschem** and the simulation in **ngspice**. For the design on transistor level the 130nm CMOS technology **SG13G2** is used. All these tools and PDk are integrated into a docker image **IIC-OSIC-TOOLS** [@pretl_git2025] provided by Prof. Dr. Harald Pretl from Johannes Keplar University. 
 
 This documentation provides a development report, which documents the design process with the taken steps and decisions made.
+
+## Open-Source
+
+All the results of this report and development approach to design a Biquad are publicly available on GitHub (LINK...). Everyone is invited and should feel free to use, change, and share this work. 
+This whole course and project wouldn't be possible without the great Open-Source-Tools provided by the amazing community of layout designers, enthusiasts, and developers. 
+Here a list with just a few of this programs: 'IIC-OSIC-TOOLS', 'IHP Open PDK', 'Linux', 'Docker', 'Xschem', 'ngspice', 'KLayout', 'Quarto', 'Pandoc', 'TexLive', 'Python', 'Git', 'CoCalc',
+
+### Hymne
+
+In realms where code is free to fly,<br>
+We build and share, our hearts reach high. <br>
+No walls, no locks, our wisdom streams, <br>
+In open light, we chase our dreams. <br>
+
+So sing the joy, the thrill, the spark, <br>
+In open source, we find our arc. <br>
+Together strong, we rise, explore— <br>
+In lines of code, forevermore. <br>

@@ -32,7 +32,7 @@ keyword:
   - PCB
 
 abstract: |
-    Lorem ipsum
+    Lorem ipsum Pipsum
 
     - An abstract should provide a self-contained summary of your entire paper or research project.
     - It aims to give readers a quick understanding of what you did, why it's important, and what you found. 
@@ -54,10 +54,16 @@ bibliography: references.bib
 ---
 
 {{< include content/_sec_introduction.qmd >}}
+
 {{< include content/_sec_theoretical_background.qmd >}}
+
 {{< include content/_sec_characterisation.qmd >}}
+
 {{< include content/_sec_filter-design.qmd >}}
+
 {{< include content/_sec_discussion.qmd >}}
+
 {{< include content/_sec_conclusion-outlook.qmd >}}
 
 {{< include content/references.qmd >}}
+
