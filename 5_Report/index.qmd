@@ -6,11 +6,11 @@ author:
     email: abaydogan@stud.hs-bremen.de
     corresponding: true
     roles: "Lead author"
-    #affiliation:
+   # affiliation:
     #  - name: Hochschule Bremen - City University of Applied Sciences (HSB)
-    #    city: Bremen
-    #    state: Germany
-    #    url: https://www.hs-bremen.de  
+     #   city: Bremen
+      #  state: Germany
+       # url: https://www.hs-bremen.de  
   - name: Onno Kriens
     orcid: 
     email: okriens@stud.hs-bremen.de
