@@ -18,9 +18,13 @@ For the filter design in this project, an universal biquad filter is used. The u
 
 ![circuit design of an universal biquad filter](/images/sec_theorectical_background/biquad_circuit.pdf){#fig-BiquadCircuit width=100%}
 
+NOTE: change to png
+
 The universal biquad filter consists of two non-inverting amplifiers working as adders in the circuit and two integrators. By setting $R$ and $C$ to specific values, the resonance frequency can be chosen. Other parameters adjustable in the universal biquad filter are the quality factor $Q$ and the low-frequency gain $H_0$. The quality factor and low-frequency gain determine the frequency response peaks of the low pass filter and the band pass filter. [@aslkpro2012]
 
 ### Characteristics
+
+NOTE: no more than 3 subsections!
 
 As the universal biquad filter is a second order filter with the specified outputs low pass, high pass, band pass, and band stop, each filter option can be described with a tranfer function on system level. The general second order transfer function is:
 
