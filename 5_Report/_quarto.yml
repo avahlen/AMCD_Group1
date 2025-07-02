@@ -1,11 +1,25 @@
-project:
-  type: manuscript
+# project:
+#   type: manuscript
   
-preview:
-  watch: "content/*.qmd"
+# manuscript:
+#   article: index.qmd
 
-manuscript:
-  article: index.qmd
+project:
+  type: book
+  output-dir: _book
+
+book:
+  chapters:
+    - index.qmd
+    - content/_sec_introduction.qmd
+    - content/_sec_theoretical_background.qmd
+    - content/_sec_characterisation.qmd
+    - content/_sec_filter-design.qmd        
+    - content/_sec_discussion.qmd
+    - content/_sec_conclusion-outlook.qmd
+    - content/references.qmd
+    
+bibliography: references.bib
 
 execute:
   freeze: auto
