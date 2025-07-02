@@ -22,7 +22,7 @@ This whole section needs to be reworked, I am not happy with the reading flow ri
 I am going to shift the theory over to theory and only talk about the implementation...
 :::
 
-The ASLK PRO Manual [@aslkpro2012] provides the transfer functions of the four filter outputs: low pass, high pass, band pass, and band stop. The transfer functions are adaptations of the general second order transfer function as seen in @eg-TFSecondOrder [@razavi2018].
+The ASLK PRO Manual [@aslkpro2012] provides the transfer functions of the four filter outputs: low pass, high pass, band pass, and band stop. The transfer functions are adaptations of the general second order transfer function as seen in @eq-TFSecondOrder. [@razavi2018]
 
 In the following transfer function the input and output voltage are referenced according to @fig-BiquadCircuit. The sections only contain their specific transfer function and frequency response.
 
@@ -129,7 +129,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-With knowing the dc gain $H_0 = 1$ and quality factot $Q = 10$, the amplitude of the peak can be calculated as seen in @eg-calculatePeak. Expression the value in dB, gives peak amplitude of $A_{peak,dB} = 20.002\,dB$ which corresponds to the peak value seen in @fig-freqResponseLowpass.
+With knowing the dc gain $H_0 = 1$ and quality factot $Q = 10$, the amplitude of the peak can be calculated as seen in @eq-calculatePeak. Expression the value in dB, gives peak amplitude of $A_{peak,dB} = 20.002\,dB$ which corresponds to the peak value seen in @fig-freqResponseLowpass.
 
 #### High pass
 
