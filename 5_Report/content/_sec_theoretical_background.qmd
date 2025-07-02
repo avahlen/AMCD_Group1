@@ -159,11 +159,43 @@ $$ {#eg-calculatePeak}
 
 For $Q = 100$ the peak is $A_{peak} = 100.001$, which converted into dB is $A_{peak,dB} = 40\,dB$, as is shown in @fig-lowPassDifferentQ.
 
+
+
+## MOSFET (Metal-Oxide-Semiconductor Field-Effect-Transistor )
+
+To get a general insight how an Operational Amplifier works and to uderstand the difference between a "off th shelf" part and a self made IC-Design, its nessesary to understand the main component: The MOSFET.
+
+To be more precise, its nesessary to understand the behaviour of a MOSFET. Since were designing one from scratch, its possible to change the width W and leght L of the pysical layout. By doing this there is a lot of room for freedom and experimental space. 
+
+
+BILD N-MOS
+
+BILD P-MOS
+
+
+### Small-Signal Representation
+
+### Sizing 
+
+As mentioned earlier we have several degrees of freedom in our design, like $W$, $L$, or the bias current $I_D$. 
+The problem is, that its extremly complex to describe a MOSFET mathmaticly and on top to that of change values to get a desired behaviour. Glady a wide used technique, which was introduced by P. Jespers and B. Murmann, is the g_\mathrm{m}/I_\mathrm{D} approach \ref{Jesper.... Pretl 3).
+
+*Saturation* 
+Saturation is a specific operation mode of a transistor. Its also called "ON mode", because a channel between drain and source is created. This state is reached when the voltage $V_DS >= (V_GS - V_th)$. When this happens the drain-source current I_DS gets stable (saturates) and becomes nearly indipendet of V_DS. Still it can be very well controlled via V_GS, due to an effect called "pinch-off" (\ref{https://en.wikipedia.org/wiki/MOSFET}).
+
+The g_\mathrm{m}/I_\mathrm{D} method is primarly inteded to be used in saturated MOSFETs. To ensure this we keep the drain-source voltage as V_ds = V_DD / 2.
+
+### Current Mirror
+
+### Differential Stage
+
+
+
+
+
 ## Operational Amplifier
 
 i think this is kinda where our focus is again, so like a good theory is necessary
-
-
 
 ### Current Mirror
 
@@ -181,7 +213,7 @@ maybe like miller opamp or something like that
 
 thought i would be a good idea to at least have this somewhere
 
-### Sizing (Onno)
+### Sizing 
 
 dont know if it makes sense here, i think at some theoretics should be written about sizing, but open to discuss placement
 

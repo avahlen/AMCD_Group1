@@ -4,6 +4,7 @@ project:
 preview:
   watch: "content/*.qmd"
   watch-inputs: true
+  port: 4040
 
 manuscript:
   article: index.qmd
