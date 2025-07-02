@@ -55,9 +55,57 @@ Adopting this debugging approach significantly enhanced the efficiency and accur
 ## OTA Circuit Integration
 Initially, our group developed our own five-transistor OTA schematic within Xschem to gain practical insights and explore various design parameters. After conducting detailed simulations and analyses, and discussing our results with the professor, we concluded that the five-transistor OTA provided by Prof. Prettel offered superior performance and reliability for our application. Thus, the decision was made to proceed with Prof. Prettel's well-established OTA design.  
 
-### Own OTA design
+### Self-built Five-Transistor OTA  {#sec-self-built-ota}
 
-![Self Build OTA](../images/sec_xschem/self_build_ota.png){#fig-self_build_ota width=80% fig-alt="Self-built OTA schematic in Xschem"}
+Figure \@fig-self-built-ota shows the minimalist OTA we designed during the early project phase.  The circuit follows the canonical five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference \(v_{\text{in+}} - v_{\text{in–}}\) into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly \(g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr)\).  Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2 and thus fixes the OTA’s quiescent current—and with it both transconductance and bandwidth.  Long channel lengths of 5 µm (≈ 3 × L\(_\text{min}\)) were chosen throughout to secure intrinsic gain and suppress flicker noise, while the intentionally narrow M2 (0.5 µm) keeps the high-impedance summing node light.  All bulks are tied to their sources, a safe low-voltage strategy in SG13G2 that prevents body-effect shifts.
+
+Simulations at V\(_\text{DD}\)=1.5 V show ≈ 34 dB open-loop gain and a unity-gain frequency in the low-tens of MHz for 20 µA bias—adequate for preliminary filter studies yet visibly below the performance of Prof. Prettel’s cascode-enhanced reference OTA adopted later in the project.  Even so, building and characterising this core proved invaluable: it validated our GM/ID sizing workflow, exercised SG13 layout conventions, and—most importantly—established the Xschem → Ngspice net-listing chain we now use for every subsequent test bench.
+
+![Self-built five-transistor OTA schematic.](../images/sec_xschem/self_build_ota.png){#fig-self-built-ota width=80% fig-alt="schematic of the five-transistor OTA prototype"}
+
+#### Transient validation – unity-gain buffer  {#sec-ota-ug}
+
+To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (Fig. \@fig-ota-ug-tb): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.  
+The long two-second period guarantees only one transition inside the 100 ms simulation window.  
+A 20 µA current source on i_bias establishes the tail current, with supplies at V<sub>DD</sub> = 1.5 V and V<sub>SS</sub> = 0 V.
+
+![Unity-gain test-bench schematic.](/images/sec_xschem/tb_self_tran.png){#fig-ota-ug-tb width=80% fig-alt="Unity-gain follower."}
+
+The essential NGSpice control block is
+
+```spice
+.control
+save all
+tran 100u 100m
+set filetype=ascii
+set wr_singlescale
+wrdata tb_ota_tran_UGbuffer.txt v(v_out) v(v_in)
+.endc
+
+![Transient waveforms: v_in vs. v_out.](../images/sec_xschem/self_tran_vin_vout.png){#fig-ota-ug-wave width=80% fig-alt="Ngspice transient plot of the unity-gain follower."}
+
+Figure @fig-ota-ug-wave plots the resulting traces. The output (left) mirrors the input (right) with virtually overlap: the plateau settles at ≈ 1.10 V (-0.1 dB static error) and returns to ground without overshoot or ringing. The clean response confirms correct feedback polarity, adequate open-loop gain for unity operation, and stable biasing of the mirror-loaded output stage. No slew-rate limitation appears even with a 1 µs edge, indicating that the 20 µA bias current provides sufficient drive for the intended bandwidth. This experiment therefore serves as a rapid functional smoke-test, validating pin-out, bias network, and the Xschem → NGSpice workflow before proceeding to detailed AC, noise, and corner analysis.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### OTA Description (Five-Transistor OTA by Prof. Prettel)
@@ -223,8 +271,7 @@ With the square-law value for transconductance efficiency we completely deviate 
 
 Another deviation from square-law to real MOSFET behaviour can be seen when we increase the gate-source voltage of the FET and measure the drain-current. According to square-law formual for the drain-current the current should just increase to the square with increasing gate-source voltage. But by taking the square of the drain-current and increasing $V_{GS}$ we can see that the drain-current does not magically start flowing above the threshold-voltage and also the behaviour is also not linear (quadratically when not taking the square of the current):
 
-
-![Drain Current over Gate-Source Voltage, Simulation vs. square-law [@RWalker]](images/sec_xschem/ac_id_vs_gs.png){#fig-id_vs_gs width=80%}
+![Drain Current over Gate-Source Voltage, Simulation vs. square-law [@RWalker]](../images/sec_xschem/ac_id_vs_gs.png){#fig-id_vs_gs width=80%}
 
 This simulation is done for a n-channel MOSFET with a drain-source voltage of 1.8 V and a size of L = 180 nm and W = 5 $\mu$m. 
 

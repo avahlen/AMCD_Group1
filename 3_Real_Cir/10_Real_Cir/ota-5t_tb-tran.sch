@@ -64,33 +64,6 @@ C {devices/code_shown.sym} 0 -100 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
 value=".lib cornerMOSlv.lib mos_tt
 "}
-C {devices/code_shown.sym} 0 -750 0 0 {name=NGSPICE only_toplevel=true 
-value="
-.temp 27
-.control
-option sparse
-save all
-op
-write ota-5t_tb-ac.csv
-set appendwrite
-
-ac dec 101 1k 100MEG
-write ota-5t_tb-ac.raw
-plot 20*log10(v_out)
-
-meas ac dcgain MAX vmag(v_out) FROM=10 TO=10k
-let f3db = dcgain/sqrt(2)
-meas ac fbw WHEN vmag(v_out)=f3db FALL=1
-let gainerror=(dcgain-1)/1
-print dcgain
-print fbw
-print gainerror
-
-noise v(v_out) Vin dec 101 1k 100MEG
-print onoise_total
-
-.endc
-"}
 C {devices/vsource.sym} 520 -330 0 0 {name=Vdd value=1.5}
 C {devices/gnd.sym} 520 -280 0 0 {name=l3 lab=GND}
 C {devices/title.sym} 160 -30 0 0 {name=l5 author="(c) 2024-2025 H. Pretl, Apache-2.0 license"}
@@ -121,4 +94,20 @@ C {devices/lab_wire.sym} 1090 -530 0 0 {name=p8 sig_type=std_logic lab=v_ena}
 C {devices/code_shown.sym} 0 -190 0 0 {name=SAVE only_toplevel=true
 format="tcleval( @value )"
 value=".include [file rootname [xschem get schname]].save
+"}
+C {devices/code_shown.sym} 40 -720 0 0 {name=NGSPICE1 only_toplevel=true 
+value="
+.param temp=27 vdd=1.5 *per=4.5u
+.option method=gear
+
+.control
+save all
+op
+tran 100u 100m
+*ac dec 101 1k 10MEG
+*wr data nameeeee
+write tb_ota_tran_UGbuffer1.txt
+plot v(v_out)
+plot v(v_in)
+.endc
 "}

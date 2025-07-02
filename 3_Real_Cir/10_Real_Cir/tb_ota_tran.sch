@@ -29,7 +29,7 @@ value="
 .lib cornerRES.lib res_typ
 .lib cornerMOSlv.lib mos_tt
 "}
-C {devices/code_shown.sym} -130 280 0 0 {name=NGSPICE only_toplevel=true 
+C {devices/code_shown.sym} -130 290 0 0 {name=NGSPICE only_toplevel=true 
 value="
 .param temp=27 vdd=1.5 *per=4.5u
 .option method=gear
