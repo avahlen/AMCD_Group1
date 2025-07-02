@@ -566,10 +566,10 @@ a0 = 1
 
 # Define transfer functions manually as (numerator, denominator) pairs
 systems = {
-    'Lowpass Filter': ([H0], [a2, a1, a0]),
-    'Highpass Filter': ([H0 / w0**2, 0, 0], [a2, a1, a0]),
-    'Bandpass Filter': ([-H0 / w0, 0], [a2, a1, a0]),
-    'Bandstop Filter': ([H0 / w0**2, 0, H0], [a2, a1, a0])
+    'Low pass filter': ([H0], [a2, a1, a0]),
+    'High pass filter': ([H0 / w0**2, 0, 0], [a2, a1, a0]),
+    'Band pass filter': ([-H0 / w0, 0], [a2, a1, a0]),
+    'Band stop filter': ([H0 / w0**2, 0, H0], [a2, a1, a0])
 }
 
 # Function to plot pole-zero map
