@@ -9,6 +9,7 @@ _freeze
 *_files
 _book
 _manuscript
-/.quarto/
 .quarto
 simulations
+.html
+
