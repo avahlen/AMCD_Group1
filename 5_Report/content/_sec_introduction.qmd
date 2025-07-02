@@ -6,79 +6,62 @@ In the end we need to go through this, and change all second to last meantions o
 
 # TOC (only temporary) {.unnumbered}
 
-- abstract
-- introduction (motivation, goals, requirements, restrictions)
-- filter design (theoretical background, methods)
-- characterisation (filter requirements, theory in python, ideal circuit)
-- design (real circuit, xschem, klayout)
-- discussion
-- conclusion
+## New Final Final (no rEALLY) structure of doc
 
+Legend:
 
+- finished (no more work needs to be done)
+- review (peer review ongoing)
+- editing (generally done, small todos like formatting, missing figure, links, etc)
+- writing (currently under construction by fixed person responsible)
+- planning (no text yet, but fixed person)
+- missing (NOTHING, complete emptiness)
 
-## Gliederung vorschlag (Atakan)
+0 Abstract (missing)
 
-1 abstract
-2 Introduction
-3 Theoretical background 
-    3.1 OTA
-    3.2 Miller / 2order /biquard
-    3.3 system overview
-    3.4 methods
-4 Charactaristic
-    4.1 req
-    4.2 python
-    4.5 LTspice 
-5 IC design
-    5.1 ideal
-    5.2 gm/id
-    5.3 real 
-6 klayout
-6 discussion
-7 conclusion
+1 Introduction  
+1.1 Motivation (review)  
+1.2 Scope of the Project (review)  
 
-## ONNO
+1.3 Specifications (review)  
+1.4 Open Source (editing)
 
-1. Abstract
+2 Theorectic Background
+2.1 Biquad Filter
+2.1.2 Universal Biquad Filter (editing)
+2.2 ...Übergang von Biquad zu Mosfet über opamp/OTA (planning)
+2.3 MOSFET (writing)
 
-2. Intruduction
+3 Characteristics (writing)
 
-3. Theoretical View
-	3.1 (OP)
-	3.2 OTA
-	3.3 Biasing
-	3.4 Biquad
+4 Implementation (writing)
 
-4. Top_Level (ASLK)
-	4.1 Simulation
-		4.1.1 Python
-		4.1.2 PSpice
-		4.1.3 Xschem
+5 Finns Layout (writing)
 
-5. Bauteilebene
-	5.1 Intruduction (Pretl)
-	5.2 Parameters
-	5.2 Xschem
-	5.3 Miller
+6 Diskussion (missing)
 
-6. IC-Design
-	K_Layout
-7. Discussion
-
+7 Conclusion and Outlook (missing)
 
 ## TOC suggestion (Main)
 
 1 Abstract (max. 0,5 page)
 
 2 Introduction (1 page)
+
 2.1 Motivation
+
 2.2 Scope
+
 2.3 Constraints (Meiners Kram)
 
 3 Theoretical Background
+
 3.1 Opamp
+
 3.1.1 Current Mirror
+
 3.1.2 Diff Stage
+
 3.1.2 Variants (like Miller maybe?)
 3.1.3 Small signal representation
 3.1.4 Stability

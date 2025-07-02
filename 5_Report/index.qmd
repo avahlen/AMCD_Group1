@@ -29,7 +29,8 @@ author:
 
 keyword:
   - Filter Design 
-  - PCB
+  - IC Design
+  - Open Source Tools
 
 abstract: |
     Lorem ipsum Pipsum

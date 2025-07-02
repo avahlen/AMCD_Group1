@@ -619,7 +619,7 @@ For circuits to be considered stable, the phase reserve has to be positive. To r
 insert figure from reisch page 244
 :::
 
-![Example of a transcient response of a circuit with a phase reserve of $\alpha = 5.7°$](/images/sec_characterisation/reisch_example_stability_tran.png){#fig-reischExampleStabilityTransient}
+![Example of a transcient response of a circuit with a phase reserve of $\alpha = 5.7°$ [@reisch2007]](/images/sec_characterisation/reisch_stability_example_trans.png){#fig-reischExampleStabilityTransient}
 
 Figure (reisch) shows the transient response of a circuit with a phase reserve of $\alpha = 5.7°. The overshoots are clearly visible and number of the overshoots per puls are larger then the customary "one over, one under"-rule. As the phase reserve is positive, the figure shows that even though the transient response is not ideal, the oscillations are attenuated and the circuit is can be considered as stable.
 
