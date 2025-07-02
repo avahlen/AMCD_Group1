@@ -190,32 +190,28 @@ Figure&nbsp;1: Self Build OTA
 </section>
 <section id="ota-gain-target-and-calculation" class="level3">
 <h3 class="anchored" data-anchor-id="ota-gain-target-and-calculation">OTA Gain Target and Calculation</h3>
-<ul>
-<li>Target Gain explicitly mentioned: at least <strong>60 dB</strong>.</li>
-<li>Provided OTA (five-transistor type) has a gain around <strong>34 dB</strong>.</li>
-<li>Gain formula explicitly given: [ A_v ]</li>
-</ul>
+<!-- - Target Gain explicitly mentioned: at least **60 dB**.
+- Provided OTA (five-transistor type) has a gain around **34 dB**.
+- Gain formula explicitly given:
+\[
+A_v \approx \frac{g_m}{g_{ds1}\parallel g_{ds2}}
+\]
+-->
 </section>
 <section id="ota-current-demand-calculation" class="level3">
 <h3 class="anchored" data-anchor-id="ota-current-demand-calculation">OTA Current Demand Calculation</h3>
-<ul>
-<li>Explicit advice to calculate required OTA current from loading conditions (resistive loads and integrators).</li>
-</ul>
+<!-- - Explicit advice to calculate required OTA current from loading conditions (resistive loads and integrators).-->
 </section>
 </section>
 <section id="circuit-parameter-choices" class="level2">
 <h2 class="anchored" data-anchor-id="circuit-parameter-choices">Circuit Parameter Choices</h2>
 <section id="capacitor-selection-unit-capacitor-100-nf" class="level3">
 <h3 class="anchored" data-anchor-id="capacitor-selection-unit-capacitor-100-nf">Capacitor Selection (Unit Capacitor: 100 nF)</h3>
-<ul>
-<li>Recommended unit capacitor explicitly stated: <strong>100 nF</strong> for easy and realistic layout considerations.</li>
-</ul>
+<!-- - Recommended unit capacitor explicitly stated: **100 nF** for easy and realistic layout considerations.-->
 </section>
 <section id="resistor-determination-1.6-kω" class="level3">
 <h3 class="anchored" data-anchor-id="resistor-determination-1.6-kω">Resistor Determination (~1.6 kΩ)</h3>
-<ul>
-<li>Derived resistor values explicitly mentioned: <strong>approximately 1.6 kΩ</strong> based on the RC constant calculations.</li>
-</ul>
+<!-- - Derived resistor values explicitly mentioned: **approximately 1.6 kΩ** based on the RC constant calculations.-->
 </section>
 </section>
 <section id="simulation-procedure" class="level2">
@@ -224,24 +220,18 @@ Figure&nbsp;1: Self Build OTA
 <h3 class="anchored" data-anchor-id="transient-simulation">Transient Simulation</h3>
 <section id="ota-standalone-characterization" class="level4">
 <h4 class="anchored" data-anchor-id="ota-standalone-characterization">OTA Standalone Characterization</h4>
-<ul>
-<li><strong>Must start with transient simulation</strong> (explicitly advised).</li>
-<li>Verify OTA reaches steady state before proceeding further.</li>
-</ul>
+<!-- - **Must start with transient simulation** (explicitly advised).
+- Verify OTA reaches steady state before proceeding further.-->
 </section>
 <section id="ota-with-realistic-load-conditions" class="level4">
 <h4 class="anchored" data-anchor-id="ota-with-realistic-load-conditions">OTA with Realistic Load Conditions</h4>
-<ul>
-<li>Clearly advised: simulate OTA under realistic resistive and integrator loads.</li>
-<li>Verify steady-state and operational behavior under realistic conditions explicitly mentioned.</li>
-</ul>
+<!-- - Clearly advised: simulate OTA under realistic resistive and integrator loads.
+- Verify steady-state and operational behavior under realistic conditions explicitly mentioned.-->
 </section>
 </section>
 <section id="ac-simulation-linear-behavior-verification" class="level3">
 <h3 class="anchored" data-anchor-id="ac-simulation-linear-behavior-verification">AC Simulation (Linear Behavior Verification)</h3>
-<ul>
-<li>Perform AC simulations <strong>after transient analysis</strong> to verify the linearized behavior (LTI system).</li>
-</ul>
+<!-- - Perform AC simulations **after transient analysis** to verify the linearized behavior (LTI system).-->
 </section>
 </section>
 <section id="gmid-methodology" class="level2">
@@ -385,7 +375,7 @@ Figure&nbsp;6: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span cl
 <li>Evaluate key performance metrics like slew rate and gain-bandwidth product.</li>
 </ol>
 <p>At the beginning of the notebook, fundamental technology parameters are defined, including supply voltages, threshold voltages, mobility, and channel-length modulation factors for NMOS and PMOS transistors.</p>
-<div id="3e993710" class="cell" data-execution_count="1">
+<div id="d6394455" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Technology and model parameters</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>VDD <span class="op">=</span> <span class="fl">1.8</span>     <span class="co"># Supply voltage [V]</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>VTHN <span class="op">=</span> <span class="fl">0.4</span>    <span class="co"># NMOS threshold voltage [V]</span></span>
@@ -400,7 +390,7 @@ Figure&nbsp;6: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span cl
 I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 \tag{24}
 \]</span></p>
 <p>The differential pair (M1 and M2) defines the input transconductance of the OTA. Sizing begins by selecting bias current and overdrive voltage (V<span class="math inline">\(_{OV}\)</span>):</p>
-<div id="f3197ef3" class="cell" data-execution_count="2">
+<div id="b6d6a007" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bias current for each NMOS transistor</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ID1 <span class="op">=</span> <span class="fl">100e-6</span>   <span class="co"># [A]</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -416,7 +406,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 \tag{24}
 </div>
 <p>In this example: - Bias current (ID1) is 100 µA per transistor. - Overdrive voltage (VOV1) is 0.2 V. - Calculated W/L ensures M1 and M2 operate in saturation with desired transconductance.</p>
 <p>The tail current source (M5) provides total bias current to the differential pair:</p>
-<div id="6ed34fc2" class="cell" data-execution_count="3">
+<div id="6c03df05" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tail current source sizing (M5)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ID5 <span class="op">=</span> <span class="fl">200e-6</span>   <span class="co"># Total bias current [A]</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>VOV5 <span class="op">=</span> <span class="fl">0.2</span>     <span class="co"># Overdrive voltage [V]</span></span>
@@ -429,7 +419,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 \tag{24}
 </div>
 <p>M5 carries the combined current of M1 and M2, typically twice ID1.</p>
 <p>PMOS current mirrors (M3 and M4) act as active loads for the differential pair, impacting gain and output resistance:</p>
-<div id="bda50937" class="cell" data-execution_count="4">
+<div id="42d79642" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load transistors sizing (M3 and M4)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ID3 <span class="op">=</span> <span class="fl">100e-6</span>   <span class="co"># [A]</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>VOV3 <span class="op">=</span> <span class="fl">0.2</span>     <span class="co"># [V]</span></span>
@@ -442,7 +432,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 \tag{24}
 </div>
 <p>Lowering overdrive voltage (V<span class="math inline">\(_{OV3}\)</span>) increases output resistance, improving OTA voltage gain.</p>
 <p>Once W/L ratios are calculated, device transconductance (g<span class="math inline">\(_m\)</span>) and output resistance (r<span class="math inline">\(_o\)</span>) are derived:</p>
-<div id="75a671b1" class="cell" data-execution_count="5">
+<div id="66d43a97" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gm1 <span class="op">=</span> mu_n_Cox <span class="op">*</span> WL1 <span class="op">*</span> VOV1 <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ro1 <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (lambda_n <span class="op">*</span> ID1)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ro3 <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (lambda_p <span class="op">*</span> ID3)</span>
@@ -461,7 +451,7 @@ ro3: 1.00e+05 Ω</code></pre>
 A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3}) \tag{25}
 \]</span></p>
 <p>In Python:</p>
-<div id="8654c6ab" class="cell" data-execution_count="6">
+<div id="32402276" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Av <span class="op">=</span> gm1 <span class="op">*</span> (ro1 <span class="op">*</span> ro3) <span class="op">/</span> (ro1 <span class="op">+</span> ro3)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Voltage gain A_v: </span><span class="sc">{</span>Av<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -470,7 +460,7 @@ A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3}) \tag{25}
 </div>
 <p><strong>Evaluating Performance Metrics - Slew Rate and GBW:</strong></p>
 <p>Slew rate and gain-bandwidth product (GBW) predict OTA dynamic performance:</p>
-<div id="24a97063" class="cell" data-execution_count="7">
+<div id="6632c678" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>CL <span class="op">=</span> <span class="fl">1e-12</span>   <span class="co"># Load capacitance [F]</span></span>
@@ -495,76 +485,54 @@ Gain Bandwidth Product: 7.96e+07 Hz</code></pre>
 </section>
 <section id="gmid-ratios-selection" class="level3">
 <h3 class="anchored" data-anchor-id="gmid-ratios-selection">GM/ID Ratios Selection</h3>
-<ul>
-<li>Explicit recommendations:
-<ul>
-<li>Input differential amplifiers: GM/ID = <strong>10</strong> (moderate, balancing noise, speed, stability).</li>
-<li>Bias circuits: GM/ID = <strong>5</strong> (DC stability, low-speed demands).</li>
-</ul></li>
-</ul>
+<!-- - Explicit recommendations:
+  - Input differential amplifiers: GM/ID = **10** (moderate, balancing noise, speed, stability).
+  - Bias circuits: GM/ID = **5** (DC stability, low-speed demands).-->
 </section>
 <section id="determining-transistor-sizes-wl-ratios" class="level3">
 <h3 class="anchored" data-anchor-id="determining-transistor-sizes-wl-ratios">Determining Transistor Sizes (W/L Ratios)</h3>
-<ul>
-<li>Transistor sizes explicitly advised to be derived from GM/ID lookup tables and experience.</li>
-<li>Recommended transistor channel length: <strong>3 to 5 times minimum length</strong> (explicitly advised for analog IC design).</li>
-</ul>
+<!-- - Transistor sizes explicitly advised to be derived from GM/ID lookup tables and experience.
+- Recommended transistor channel length: **3 to 5 times minimum length** (explicitly advised for analog IC design).-->
 </section>
 </section>
 <section id="test-bench-setup" class="level2">
 <h2 class="anchored" data-anchor-id="test-bench-setup">Test Bench Setup</h2>
 <section id="ideal-ota-test-bench" class="level3">
 <h3 class="anchored" data-anchor-id="ideal-ota-test-bench">Ideal OTA Test Bench</h3>
-<ul>
-<li>Explicit instruction: start testing with an ideal OTA model provided, to characterize basic performance.</li>
-</ul>
+<!-- - Explicit instruction: start testing with an ideal OTA model provided, to characterize basic performance.-->
 </section>
 <section id="loaded-ota-test-bench-integrators-resistors" class="level3">
 <h3 class="anchored" data-anchor-id="loaded-ota-test-bench-integrators-resistors">Loaded OTA Test Bench (Integrators, Resistors)</h3>
-<ul>
-<li>Explicit requirement to create a second test bench simulating the OTA under realistic circuit loading conditions (integrators and resistor network).</li>
-</ul>
+<!-- - Explicit requirement to create a second test bench simulating the OTA under realistic circuit loading conditions (integrators and resistor network).-->
 </section>
 </section>
 <section id="robustness-and-corner-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="robustness-and-corner-analysis">Robustness and Corner Analysis</h2>
 <section id="process-corner-simulations" class="level3">
 <h3 class="anchored" data-anchor-id="process-corner-simulations">Process Corner Simulations</h3>
-<ul>
-<li>Explicit recommendation for corner simulations to verify robustness and performance under variations in temperature and manufacturing processes.</li>
-</ul>
+<!-- - Explicit recommendation for corner simulations to verify robustness and performance under variations in temperature and manufacturing processes.-->
 </section>
 <section id="monte-carlo-analysis-optional" class="level3">
 <h3 class="anchored" data-anchor-id="monte-carlo-analysis-optional">Monte Carlo Analysis (Optional)</h3>
-<ul>
-<li>Suggested (explicitly mentioned) to conduct Monte Carlo simulations to statistically analyze variability and reliability.</li>
-</ul>
+<!-- - Suggested (explicitly mentioned) to conduct Monte Carlo simulations to statistically analyze variability and reliability.-->
 </section>
 </section>
 <section id="results-and-discussion" class="level2">
 <h2 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h2>
 <section id="analysis-of-simulation-results" class="level3">
 <h3 class="anchored" data-anchor-id="analysis-of-simulation-results">Analysis of Simulation Results</h3>
-<ul>
-<li>Recommended to analyze carefully transient and AC simulation results.</li>
-<li>Advised explicitly to verify steady-state operational conditions and compare them to expected theoretical performance.</li>
-</ul>
+<!-- - Recommended to analyze carefully transient and AC simulation results.
+- Advised explicitly to verify steady-state operational conditions and compare them to expected theoretical performance.-->
 </section>
 <section id="critical-observations-and-performance-limitations" class="level3">
 <h3 class="anchored" data-anchor-id="critical-observations-and-performance-limitations">Critical Observations and Performance Limitations</h3>
-<ul>
-<li>Suggested explicitly to discuss any observed performance limitations or unexpected behavior explicitly identified in simulation results.</li>
-</ul>
+<!-- - Suggested explicitly to discuss any observed performance limitations or unexpected behavior explicitly identified in simulation results.-->
 </section>
 </section>
 <section id="conclusion-and-recommendations" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion-and-recommendations">Conclusion and Recommendations</h2>
-<ul>
-<li>Summarize explicitly achieved performance: OTA gain, stability, and operational conditions.</li>
-<li>Mention explicitly identified lessons learned and give clear recommendations for future improvements based on the simulated design results.</li>
-</ul>
-<hr>
-<p>Use these details directly sourced from your professor’s transcript as you write each section. This ensures your report is tightly aligned with your professor’s specific instructions and recommendations.</p>
+<!-- - Summarize explicitly achieved performance: OTA gain, stability, and operational conditions.
+- Mention explicitly identified lessons learned and give clear recommendations for future improvements based on the simulated design results.-->
 </section>
 
 </main>

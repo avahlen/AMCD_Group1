@@ -1,9 +1,5 @@
 # Xschem Simulation
 
-
-
-
-
 ## Environment Setup
 
 Proper configuration of the simulation environment is crucial for accurate and reliable simulation results using Xschem within a Docker container. This section details the necessary considerations regarding path handling and Docker environment variables for a robust simulation process.

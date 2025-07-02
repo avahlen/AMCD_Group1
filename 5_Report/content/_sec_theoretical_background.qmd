@@ -30,7 +30,7 @@ $$ {#eq-TFSecondOrder}
 
 The coeffcients can be choosen so, that different responses, like low pass, high pass, band pass, and band stop are achieved.
 
-In filter design a variant of this generalized transfer function is often choosen because it is easier describe the system by quality factor and angular frequency. @eg-TFSecondOrderBiquad is an exemplatory low pass filter with a transfer function specified for filter design. [@razavi2018]
+In filter design a variant of this generalized transfer function is often choosen because it is easier describe the system by quality factor and angular frequency. @eq-TFSecondOrderBiquad is an exemplatory low pass filter with a transfer function specified for filter design. [@razavi2018]
 
 $$
 H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
@@ -155,7 +155,7 @@ The height of the peak can be calculated with:
 
 $$
 A_{peak} = \frac{Q}{\sqrt{1 - \frac{1}{4Q^2}}}
-$$ {#eg-calculatePeak}
+$$ {#eq-calculatePeak}
 
 For $Q = 100$ the peak is $A_{peak} = 100.001$, which converted into dB is $A_{peak,dB} = 40\,dB$, as is shown in @fig-lowPassDifferentQ.
 
