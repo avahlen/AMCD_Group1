@@ -3,8 +3,6 @@ project:
   
 preview:
   watch: "content/*.qmd"
-  watch-inputs: true
-  port: 4040
 
 manuscript:
   article: index.qmd
@@ -33,7 +31,7 @@ format:
     highlight-style: github
     mainfont: "Calibri"
 #    keep-tex: true
-    output-file: amcd_report 
+#    output-file: amcd_report 
 #  epub:
 #    theme: flatly
 #    output-file: amcd_report
