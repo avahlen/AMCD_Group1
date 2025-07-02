@@ -172,225 +172,299 @@ Users, especially those working on Windows-based systems, need to distinguish cl
 <section id="ota-circuit-integration" class="level2">
 <h2 class="anchored" data-anchor-id="ota-circuit-integration">OTA Circuit Integration</h2>
 <p>Initially, our group developed our own five-transistor OTA schematic within Xschem to gain practical insights and explore various design parameters. After conducting detailed simulations and analyses, and discussing our results with the professor, we concluded that the five-transistor OTA provided by Prof.&nbsp;Prettel offered superior performance and reliability for our application. Thus, the decision was made to proceed with Prof.&nbsp;Prettel’s well-established OTA design.</p>
-<section id="own-ota-design" class="level3">
-<h3 class="anchored" data-anchor-id="own-ota-design">Own OTA design</h3>
-<div id="fig-self_build_ota" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Self-built OTA schematic in Xschem">
+<section id="sec-self-built-ota" class="level3">
+<h3 class="anchored" data-anchor-id="sec-self-built-ota">Self-built Five-Transistor OTA</h3>
+<p>Figure @fig-self-built-ota shows the minimalist OTA we designed during the early project phase. The circuit follows the canonical five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference (v_{} - v_{}) into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly (g_{m,}(r_{o,} r_{o,})). Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2 and thus fixes the OTA’s quiescent current—and with it both transconductance and bandwidth. Long channel lengths of 5 µm (≈ 3 × L(_)) were chosen throughout to secure intrinsic gain and suppress flicker noise, while the intentionally narrow M2 (0.5 µm) keeps the high-impedance summing node light. All bulks are tied to their sources, a safe low-voltage strategy in SG13G2 that prevents body-effect shifts.</p>
+<p>Simulations at V(_)=1.5 V show ≈ 34 dB open-loop gain and a unity-gain frequency in the low-tens of MHz for 20 µA bias—adequate for preliminary filter studies yet visibly below the performance of Prof.&nbsp;Prettel’s cascode-enhanced reference OTA adopted later in the project. Even so, building and characterising this core proved invaluable: it validated our GM/ID sizing workflow, exercised SG13 layout conventions, and—most importantly—established the Xschem → Ngspice net-listing chain we now use for every subsequent test bench.</p>
+<div id="fig-self-built-ota" class="quarto-float quarto-figure quarto-figure-center anchored" alt="schematic of the five-transistor OTA prototype">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-self_build_ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../images/sec_xschem/self_build_ota.png" class="img-fluid figure-img" style="width:80.0%" alt="Self-built OTA schematic in Xschem">
+<div aria-describedby="fig-self-built-ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/self_build_ota.png" class="img-fluid figure-img" style="width:80.0%" alt="schematic of the five-transistor OTA prototype">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-self_build_ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Self Build OTA
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-self-built-ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Self-built five-transistor OTA schematic.
 </figcaption>
 </figure>
 </div>
-</section>
-<section id="ota-description-five-transistor-ota-by-prof.-prettel" class="level3">
-<h3 class="anchored" data-anchor-id="ota-description-five-transistor-ota-by-prof.-prettel">OTA Description (Five-Transistor OTA by Prof.&nbsp;Prettel)</h3>
-</section>
-<section id="ota-gain-target-and-calculation" class="level3">
-<h3 class="anchored" data-anchor-id="ota-gain-target-and-calculation">OTA Gain Target and Calculation</h3>
-<!-- - Target Gain explicitly mentioned: at least **60 dB**.
+<section id="sec-ota-ug" class="level4">
+<h4 class="anchored" data-anchor-id="sec-ota-ug">Transient validation – unity-gain buffer</h4>
+<p>To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (Fig. @fig-ota-ug-tb): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.<br>
+The long two-second period guarantees only one transition inside the 100 ms simulation window.<br>
+A 20 µA current source on i_bias establishes the tail current, with supplies at V<sub>DD</sub> = 1.5 V and V<sub>SS</sub> = 0 V.</p>
+<div id="fig-ota-ug-tb" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Unity-gain follower.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ota-ug-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./images/sec_xschem/tb_self_tran.png" class="img-fluid figure-img" style="width:80.0%" alt="Unity-gain follower.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ota-ug-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Unity-gain test-bench schematic.
+</figcaption>
+</figure>
+</div>
+<p>The essential NGSpice control block is</p>
+<pre class="spice"><code>.control
+save all
+tran 100u 100m
+set filetype=ascii
+set wr_singlescale
+wrdata tb_ota_tran_UGbuffer.txt v(v_out) v(v_in)
+.endc
+
+![Transient waveforms: v_in vs. v_out.](../images/sec_xschem/self_tran_vin_vout.png){#fig-ota-ug-wave width=80% fig-alt="Ngspice transient plot of the unity-gain follower."}
+
+Figure @fig-ota-ug-wave plots the resulting traces. The output (left) mirrors the input (right) with virtually overlap: the plateau settles at ≈ 1.10 V (-0.1 dB static error) and returns to ground without overshoot or ringing. The clean response confirms correct feedback polarity, adequate open-loop gain for unity operation, and stable biasing of the mirror-loaded output stage. No slew-rate limitation appears even with a 1 µs edge, indicating that the 20 µA bias current provides sufficient drive for the intended bandwidth. This experiment therefore serves as a rapid functional smoke-test, validating pin-out, bias network, and the Xschem → NGSpice workflow before proceeding to detailed AC, noise, and corner analysis.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### OTA Description (Five-Transistor OTA by Prof. Prettel)
+
+
+### OTA Gain Target and Calculation
+&lt;!-- - Target Gain explicitly mentioned: at least **60 dB**.
 - Provided OTA (five-transistor type) has a gain around **34 dB**.
 - Gain formula explicitly given:
 \[
 A_v \approx \frac{g_m}{g_{ds1}\parallel g_{ds2}}
 \]
--->
-</section>
-<section id="ota-current-demand-calculation" class="level3">
-<h3 class="anchored" data-anchor-id="ota-current-demand-calculation">OTA Current Demand Calculation</h3>
-<!-- - Explicit advice to calculate required OTA current from loading conditions (resistive loads and integrators).-->
-</section>
-</section>
-<section id="circuit-parameter-choices" class="level2">
-<h2 class="anchored" data-anchor-id="circuit-parameter-choices">Circuit Parameter Choices</h2>
-<section id="capacitor-selection-unit-capacitor-100-nf" class="level3">
-<h3 class="anchored" data-anchor-id="capacitor-selection-unit-capacitor-100-nf">Capacitor Selection (Unit Capacitor: 100 nF)</h3>
-<!-- - Recommended unit capacitor explicitly stated: **100 nF** for easy and realistic layout considerations.-->
-</section>
-<section id="resistor-determination-1.6-kω" class="level3">
-<h3 class="anchored" data-anchor-id="resistor-determination-1.6-kω">Resistor Determination (~1.6 kΩ)</h3>
-<!-- - Derived resistor values explicitly mentioned: **approximately 1.6 kΩ** based on the RC constant calculations.-->
-</section>
-</section>
-<section id="simulation-procedure" class="level2">
-<h2 class="anchored" data-anchor-id="simulation-procedure">Simulation Procedure</h2>
-<section id="transient-simulation" class="level3">
-<h3 class="anchored" data-anchor-id="transient-simulation">Transient Simulation</h3>
-<section id="ota-standalone-characterization" class="level4">
-<h4 class="anchored" data-anchor-id="ota-standalone-characterization">OTA Standalone Characterization</h4>
-<!-- - **Must start with transient simulation** (explicitly advised).
-- Verify OTA reaches steady state before proceeding further.-->
-</section>
-<section id="ota-with-realistic-load-conditions" class="level4">
-<h4 class="anchored" data-anchor-id="ota-with-realistic-load-conditions">OTA with Realistic Load Conditions</h4>
-<!-- - Clearly advised: simulate OTA under realistic resistive and integrator loads.
-- Verify steady-state and operational behavior under realistic conditions explicitly mentioned.-->
-</section>
-</section>
-<section id="ac-simulation-linear-behavior-verification" class="level3">
-<h3 class="anchored" data-anchor-id="ac-simulation-linear-behavior-verification">AC Simulation (Linear Behavior Verification)</h3>
-<!-- - Perform AC simulations **after transient analysis** to verify the linearized behavior (LTI system).-->
-</section>
-</section>
-<section id="gmid-methodology" class="level2">
-<h2 class="anchored" data-anchor-id="gmid-methodology">GM/ID Methodology</h2>
-<p>One of the first questions we have to ask in IC design is how small or how large we can design the MOSFETs we’re using in the circuits. MOSFETs can be used in saturation mode or in the triode state (as well as in cut-off but this is not relevant for us). When the FET is in saturation the drain current <span class="math inline">\(I_{D}\)</span> is controlled primarily by the gate-source voltage <span class="math inline">\(V_{GS}\)</span>. In this case the drain-source voltage has a smaller impact on the drain current. For the Transistor to work in saturation the drain-source terminals need to be driven with a voltage high enough so this “saturates” the FET and the highest drain-current is achieved.</p>
-<p>On the other hand if the voltage applied across the drain-source contacts (on a NMOS for example) is relatively low (compared to the voltage for saturation), the FET will operate in the so called triode mode. In triode mode the drain-source voltage <span class="math inline">\(V_{DS}\)</span> has a fundamentally larger impact on the drain current then in the saturation mode. <span class="citation" data-cites="hpretlacd">[@hpretlacd]</span></p>
-<p>One Methodology to solve the question we asked at the beginning of this chapter is the <span class="math inline">\(\frac{gm}{I_{D}}\)</span> methodology which we will introduce in a moment. There are basically three MOSFET characteristics directly describing the behaviour of it:</p>
-<ul>
-<li><span class="math inline">\(\frac{g_m}{I_D}\)</span> : Transconductance Efficiency</li>
-<li><span class="math inline">\(\frac{\omega_{T}}{f_T}\)</span> : Transit frequency</li>
-<li><span class="math inline">\(\frac{g_m}{g_{ds}}\)</span> : Intrinsic Gain</li>
-</ul>
-<p>To understand the first characteristic for our FETs we have to take a look at the different operating points which depend on the applied voltages. Whenever we apply voltages to a FET in order to control a specific drain current <span class="math inline">\(I_{D}\)</span>, we can operate the FET in either weak inversion, strong inversion or moderate inversion. This behaviour is controlled by the Overdrive Voltage <span class="math inline">\(V_{OV}\)</span> which is defined as the difference between the gate-source voltage and the threshold voltage. To note this small point the drain-current is controlled by the voltage between gate and source. Whenever an nmos is not being used as a low-side switch or amplifier or the pmos is being used as a low-side component problems can arise. Since we are using FETs in our switched capacitor integrator for example this is quite important.</p>
-<p><span class="math display">\[
+--&gt;
+### OTA Current Demand Calculation
+&lt;!-- - Explicit advice to calculate required OTA current from loading conditions (resistive loads and integrators).--&gt;
+
+## Circuit Parameter Choices
+
+### Capacitor Selection (Unit Capacitor: 100 nF)
+&lt;!-- - Recommended unit capacitor explicitly stated: **100 nF** for easy and realistic layout considerations.--&gt;
+
+### Resistor Determination (~1.6 kΩ)
+&lt;!-- - Derived resistor values explicitly mentioned: **approximately 1.6 kΩ** based on the RC constant calculations.--&gt;
+
+## Simulation Procedure
+
+### Transient Simulation
+
+#### OTA Standalone Characterization
+&lt;!-- - **Must start with transient simulation** (explicitly advised).
+- Verify OTA reaches steady state before proceeding further.--&gt;
+
+#### OTA with Realistic Load Conditions
+&lt;!-- - Clearly advised: simulate OTA under realistic resistive and integrator loads.
+- Verify steady-state and operational behavior under realistic conditions explicitly mentioned.--&gt;
+
+### AC Simulation (Linear Behavior Verification)
+&lt;!-- - Perform AC simulations **after transient analysis** to verify the linearized behavior (LTI system).--&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## GM/ID Methodology
+One of the first questions we have to ask in IC design is how small or how large we can design the MOSFETs we're using in the circuits. MOSFETs can be used in saturation mode or in the triode state (as well as in cut-off but this is not relevant for us). When the FET is in saturation the drain current $I_{D}$ is controlled primarily by the gate-source voltage $V_{GS}$. In this case the drain-source voltage has a smaller impact on the drain current. For the Transistor to work in saturation the drain-source terminals need to be driven with a voltage high enough so this "saturates" the FET and the highest drain-current is achieved. 
+
+On the other hand if the voltage applied across the drain-source contacts (on a NMOS for example) is relatively low (compared to the voltage for saturation), the FET will operate in the so called triode mode. In triode mode the drain-source voltage $V_{DS}$ has a fundamentally larger impact on the drain current then in the saturation mode. [@hpretlacd] 
+
+ One Methodology to solve the question we asked at the beginning of this chapter is the $\frac{gm}{I_{D}}$ methodology which we will introduce in a moment. There are basically three MOSFET characteristics directly describing the behaviour of it:
+
+
+- $\frac{g_m}{I_D}$ : Transconductance Efficiency 
+- $\frac{\omega_{T}}{f_T}$  : Transit frequency
+- $\frac{g_m}{g_{ds}}$ : Intrinsic Gain
+
+
+To understand the first characteristic for our FETs we have to take a look at the different operating points which depend on the applied voltages. Whenever we apply voltages to a FET in order to control a specific drain current $I_{D}$, we can operate the FET in either weak inversion, strong inversion or moderate inversion. This behaviour is controlled by the Overdrive Voltage $V_{OV}$ which is defined as the difference between the gate-source voltage and the threshold voltage. To note this small point the drain-current is controlled by the voltage between gate and source. Whenever an nmos is not being used as a low-side switch or amplifier or the pmos is being used as a low-side component problems can arise. Since we are using FETs in our switched capacitor integrator for example this is quite important. 
+
+$$
     V_{OV} = V_{GS} - V_{TH} \tag{27}
-\]</span></p>
-<p>We have to keep in mind that the threshold voltage isn’t a magical number that can be applied to every MOSFET, it rather depends on the geometry (with W and L for example) and other factors. For the example nmos given in the Analog Circuit Design IHP SG13G2 Devices Table by Professor Pretl, the threshold voltage is 0.5V. Therefore the overdrive voltage describes how “much” the gate-source voltage is above the threshold of the FET. Depending on this overdrive voltage the circuit/ic designer can apply different <span class="math inline">\(\frac{g_{M}}{I_{D}}\)</span> values with the unit [<span class="math inline">\(\frac{1}{V}\)</span>]. This unit is derived in the following way:</p>
-<p>With <span class="math inline">\(g_{M}\)</span> defined by:</p>
-<p><span class="math display">\[
+$$
+
+We have to keep in mind that the threshold voltage isn't a magical number that can be applied to every MOSFET, it rather depends on the geometry (with W and L for example) and other factors. For the example nmos given in the Analog Circuit Design IHP SG13G2 Devices Table by Professor Pretl, the threshold voltage is 0.5V. Therefore the overdrive voltage describes how "much" the gate-source voltage is above the threshold of the FET. Depending on this overdrive voltage the circuit/ic designer can apply different $\frac{g_{M}}{I_{D}}$ values with the unit [$\frac{1}{V}$]. This unit is derived in the following way:
+
+With $g_{M}$ defined by:
+
+$$
 g_{M} = \frac{\partial I_D}{\partial V_{GS}}  \tag{28}
-\]</span></p>
-<p>and <span class="math inline">\(I_{D}\)</span> having the unit Ampere [A] and the voltage <span class="math inline">\(V_{GS}\)</span> we get:</p>
-<p><span class="math display">\[
+$$
+
+and $I_{D}$ having the unit Ampere [A] and the voltage $V_{GS}$ we get:
+
+$$
 \frac{\frac{A}{V}}{A} = \frac{1}{V} \tag{29}
-\]</span></p>
-<p>Before we continue with the <span class="math inline">\(\frac{g_{M}}{I_{D}}\)</span> method we want to note that there also is the <em>square-law</em> model with which circuit designers can design MOSFET circuits. This model is usually applicable for PCB circuits and takes the situation into account where the MOSFET is driven in the stong inversion state. The square-law model is being applied assuming that the FET is operating in the “linear” or “triode” mode, however on nanometer scale FETs (down to 130 nm with the IHP-SG13G2 PDK) this model doesn’t give us precise solutions anymore. Many effects like parasitic capacitances alter the operational behaviour of the FET and lead to the square-law model deviating afar from the real-world behaviour in many situations <span class="citation" data-cites="SQRLaw">[@SQRLaw]</span>.</p>
-<p>The square-model drain-current behavior is being described by the following formula:</p>
-<p><span class="math display">\[
+$$
+
+
+Before we continue with the $\frac{g_{M}}{I_{D}}$ method we want to note that there also is the *square-law* model with which circuit designers can design MOSFET circuits. This model is usually applicable for PCB circuits and takes the situation into account where the MOSFET is driven in the stong inversion state. The square-law model is being applied assuming that the FET is operating in the "linear" or "triode" mode, however on nanometer scale FETs (down to 130 nm with the IHP-SG13G2 PDK) this model doesn't give us precise solutions anymore. Many effects like parasitic capacitances alter the operational behaviour of the FET and lead to the square-law model deviating afar from the real-world behaviour in many situations [@SQRLaw].
+
+The square-model drain-current behavior is being described by the following formula:
+
+$$
 I_{D} = \frac{Z \cdot \overline{\mu_n} \cdot C_{OX}}{L} [(V_{GS} - V_{T}) \cdot V_{DS} - \frac{V_{DS}^2}{2}]  \tag{30}
-\]</span></p>
-<p>with the two conditions:</p>
-<p><span class="math inline">\(0 \leq V_{DS} \leq V_{D_{SAT}}\)</span> and <span class="math inline">\(V_{GS} \geq V_T\)</span></p>
-<p>with following definitions:</p>
-<ul>
-<li><span class="math inline">\(C_{OX} = \frac{\epsilon_{ox}}{x_{ox}}\)</span></li>
-<li>Z = MOSFET width</li>
-<li>L = MOSFET Channel length</li>
-<li><span class="math inline">\(V_T\)</span> = Threshold voltage</li>
-<li><span class="math inline">\(\overline{\mu_n}\)</span> = effective electron mobility</li>
-</ul>
-<p>The threshold voltage is defined as:</p>
-<p><span class="math display">\[
+$$
+
+with the two conditions:
+
+$0 \leq V_{DS} \leq V_{D_{SAT}}$ and $V_{GS} \geq V_T$
+
+with following definitions:
+
+- $C_{OX} = \frac{\epsilon_{ox}}{x_{ox}}$
+- Z = MOSFET width
+- L = MOSFET Channel length
+- $V_T$ = Threshold voltage
+- $\overline{\mu_n}$ = effective electron mobility
+
+The threshold voltage is defined as:
+
+$$
 V_T = 2 \phi_F + \frac{\epsilon_s}{C_{OX}} \sqrt{\frac{2q N_{A}}{\epsilon} (2\phi_F)} \tag{31}
-\]</span></p>
-<p>with:</p>
-<p><span class="math inline">\(\phi_F\)</span> being the Fermi Potential (surface potential) defined by:</p>
-<p><span class="math display">\[
+$$
+
+with:
+
+$\phi_F$ being the Fermi Potential (surface potential) defined by:
+
+$$
 \phi_F = \frac{kT}{q} \cdot ln (\frac{N_A}{n_i}) \tag{32}
-\]</span></p>
-<p>with <span class="math inline">\(N_A\)</span> being the acceptor doping concentration and <span class="math inline">\(n_i\)</span> being the intrinsic carrier concentration. The term 2 <span class="math inline">\(\phi_F\)</span> corresponds to the surface potential required to achieve strong inversion.</p>
-<p>For more details the reader can consult <span class="citation" data-cites="SQRLaw">[@SQRLaw]</span>,<span class="citation" data-cites="MurmannGmId">[@MurmannGmId]</span> or <span class="citation" data-cites="gmId">[@gmId]</span>.</p>
-<p>To illustrate the problems of the square-law model when designing MOSFET circuits at nanometer scale we will look at some graphs visualizing it’s limitation. First of all let’s look at the formulas for the square-law when we want to achieve more performance with our FETs:</p>
-<p>Transconductance Efficiency: <span class="math display">\[
+$$
+
+with $N_A$ being the acceptor doping concentration and $n_i$ being the intrinsic carrier concentration. 
+The term 2 $\phi_F$ corresponds to the surface potential required to achieve strong inversion. 
+
+
+For more details the reader can consult [@SQRLaw],[@MurmannGmId] or [@gmId].
+
+To illustrate the problems of the square-law model when designing MOSFET circuits at nanometer scale we will look at some graphs visualizing it's limitation. First of all let's look at the formulas for the square-law when we want to achieve more performance with our FETs:
+
+Transconductance Efficiency:
+$$
 \frac{g_m}{I_D} \cong \frac{2}{V_{OV}} \tag{33}
-\]</span></p>
-<p>higher efficiencs here means more transconductance for the same drain current.</p>
-<p>Transit Frequency:</p>
-<p><span class="math display">\[
+$$
+
+higher efficiencs here means more transconductance for the same drain current.
+
+Transit Frequency: 
+
+$$
 \frac{g_M}{C_{gg}} \cong \frac{3}{2}\frac{\mu V_{OV}}{L^2} \tag{34}
-\]</span></p>
-<p>higher transit frequency for the same gate-capacitance.</p>
-<p>Intrinsic Gain:</p>
-<p><span class="math display">\[
+$$
+
+higher transit frequency for the same gate-capacitance.
+
+
+Intrinsic Gain:
+
+$$
 \frac{g_m}{g_{ds}} \cong \frac{2}{\lambda V_{OV}} \tag{35}
-\]</span></p>
-<p>high transconductance (at same drain-current <span class="math inline">\(I_D\)</span>) without higher output conductance.</p>
-<p>The square-law model completely fails in these cases when the MOSFET is not operation in strong inversion. In moderate and weak inversion we are forced to use a different mathmatical model , and the <span class="math inline">\(\frac{g_M}{I_D}\)</span> method is a really good starting point <span class="citation" data-cites="RWalker">[@RWalker]</span>.</p>
-<p>The following figures will show the deviation between square-law and measurements as well as the <span class="math inline">\(\frac{g_M}{I_D}\)</span> methodology:</p>
-<p>So first of all when we use <span class="math inline">\(g_M\)</span> and <span class="math inline">\(I_D\)</span> we specify that for a specific drain-current we get a specific transconductance, for example with a <span class="math inline">\(\frac{g_M}{I_D}\)</span> of 10 S/A we get 10 <span class="math inline">\(\mu\)</span> S per 1 <span class="math inline">\(\mu\)</span> A of bias current. And depending on how “much” the transistor is operating above it’s threshold voltage <span class="math inline">\(V_{th}\)</span> (basically the Overdrive Voltage <span class="math inline">\(V_{OV}\)</span> ) you get different inversion levels. From weak inveresions for low overdrive voltages to moderate inversion when operating at approximately <span class="math inline">\(V_{OV}\)</span> = <span class="math inline">\(V_{th}\)</span> to high inversion when <span class="math inline">\(V_{OV}\)</span> &gt; <span class="math inline">\(V_{th}\)</span>.</p>
-<p>With the square-law value for transconductance efficiency we completely deviate with that approximation in weak and moderate inversion:</p>
-<div id="fig-inversion-vs-vov" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-inversion-vs-vov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/sec_xschem/ac_inversion_vs_vov.png" class="img-fluid figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inversion-vs-vov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Inversion level vs.&nbsp;Overdrive Voltage <span class="citation" data-cites="RWalker">[@RWalker]</span>
-</figcaption>
-</figure>
-</div>
-<p>Another deviation from square-law to real MOSFET behaviour can be seen when we increase the gate-source voltage of the FET and measure the drain-current. According to square-law formual for the drain-current the current should just increase to the square with increasing gate-source voltage. But by taking the square of the drain-current and increasing <span class="math inline">\(V_{GS}\)</span> we can see that the drain-current does not magically start flowing above the threshold-voltage and also the behaviour is also not linear (quadratically when not taking the square of the current):</p>
-<div id="fig-id_vs_gs" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-id_vs_gs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/sec_xschem/ac_id_vs_gs.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-id_vs_gs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Drain Current over Gate-Source Voltage, Simulation vs.&nbsp;square-law <span class="citation" data-cites="RWalker">[@RWalker]</span>
-</figcaption>
-</figure>
-</div>
-<p>This simulation is done for a n-channel MOSFET with a drain-source voltage of 1.8 V and a size of L = 180 nm and W = 5 <span class="math inline">\(\mu\)</span>m.</p>
-<p>The drain-current behaviour at sub-threshold gate voltages is completely inaccurate for the square-law too, and the following graph visualizes the limitation of the square-law at this point again:</p>
-<div id="fig-gmid_vs_gs" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-gmid_vs_gs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/sec_xschem/ac_gmid_vs_gs.png" class="img-fluid figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gmid_vs_gs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Drain Current over Gate-Source Voltage, comparison between an nmos, a bjt and the square-law <span class="citation" data-cites="RWalker">[@RWalker]</span>
-</figcaption>
-</figure>
-</div>
-<p>These three examples show that the approach using square-law to size MOSFETs is not sufficient when the transistor is operating in weak or moderate inversion and when driving the FET (nmos for example) with a low gate-source (or overdrive-) voltage. To cite Mr.&nbsp;Walker on this topic: “This means that the square law equation (which assumes 100% drift current) does not work unless the gate overdrive is several <span class="math inline">\(\frac{kT}{q}\)</span>, <span class="citation" data-cites="RWalker">[@RWalker]</span>”.</p>
-<p>To conclude this, we can keep in mind that there is no simple formula that can describe the drain-current behaviour in all situations and be universally used. So using the <span class="math inline">\(\frac{g_m}{I_D}\)</span> methodology is the way to go in our project.</p>
-<p>Now with that out of the way we can design our circuits using the <span class="math inline">\(\frac{g_m}{I_D}\)</span> methodology. The main properties of our MOSFETs we can manipulate in xschem are the lenght of the channel L, the width W and the bias current <span class="math inline">\(I_D\)</span>. The common way to use this method is to first characterize nmos and pmos field effect transistors and then use this data to design the circuits. In the chapter “MOSFET characterization Testbench” chapter in <span class="citation" data-cites="hpretlacd">[@hpretlacd]</span> we can see how the values for the <span class="math inline">\(\frac{g_m}{I_D}\)</span> methodology are being simulated for later use.</p>
-<p>The lenght of the MOSFET channel also has a large influence on it’s frequency characteristic as it can be seen in this simulation:</p>
-<div id="fig-ft_vs_L" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ft_vs_L-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/sec_xschem/ac_eaa_ft_vs_L.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ft_vs_L-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: transit frequency vs.&nbsp;channel length L <span class="citation" data-cites="hpretlacd">[@hpretlacd]</span>
-</figcaption>
-</figure>
-</div>
-<p>The operating areas of interest for us are the saturation region (when using the FET as an amplifier for example) and the region when the FET is being used to “just” work as a switch. With setting <span class="math inline">\(V_{DS}\)</span> to <span class="math inline">\(\frac{V_{DD}}{2}\)</span> we keep the FET in saturation. Reminding ourselves again that with larger <span class="math inline">\(g_M\)</span> we have more “gain” and with a smaller <span class="math inline">\(I_D\)</span> we have higher efficiency we try to hit the sweetspot between size (as every square milimeter has it’s cost) and current consumption (if we have wearable battery powered devices for example). Keeping also in mind that temperature has a large effect we cannot use arbitratily large drain currents.</p>
-<p>Following plot visualizes the dependancy of <span class="math inline">\(\frac{g_M}{I_D}\)</span> to the gate-source voltage and shows the transit frequency behaviour too:</p>
-<div id="fig-gm_vs_gs_vs_ft" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-gm_vs_gs_vs_ft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/sec_xschem/ac_ft_vs_gm_vgs.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gm_vs_gs_vs_ft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span class="math inline">\(f_T\)</span> over the gate-source voltage <span class="citation" data-cites="hpretlacd">[@hpretlacd]</span>
-</figcaption>
-</figure>
-</div>
-<section id="gmid-overview" class="level3">
-<h3 class="anchored" data-anchor-id="gmid-overview">GM/ID Overview</h3>
-<p>Device sizing is a fundamental step in analog circuit design. Specifically, for Operational Transconductance Amplifiers (OTAs), proper sizing ensures the desired trade-off between gain, bandwidth, power consumption, and linearity. A structured approach to sizing guarantees that the transistors operate in their optimal region—typically strong inversion and saturation for analog applications.</p>
-<p>This section presents a basic OTA sizing methodology based on the work of Prepl, whose notebook is publicly available at <a href="https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/sizing_basic_ota.ipynb">GitHub: analog-circuit-design</a>.</p>
-<p>The notebook demonstrates a Python-based framework for calculating initial transistor dimensions in a basic OTA. Below is an explanation of the key steps, equations, and important code snippets from the sizing method, along with visual aids to clarify the process.</p>
-<p>The sizing workflow follows these general steps:</p>
-<ol type="1">
-<li>Define technology and process parameters.</li>
-<li>Specify bias currents and overdrive voltages.</li>
-<li>Calculate width-to-length ratios (W/L) for each transistor.</li>
-<li>Determine transconductance, output resistance, and gain.</li>
-<li>Evaluate key performance metrics like slew rate and gain-bandwidth product.</li>
-</ol>
-<p>At the beginning of the notebook, fundamental technology parameters are defined, including supply voltages, threshold voltages, mobility, and channel-length modulation factors for NMOS and PMOS transistors.</p>
-<div id="d6394455" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Technology and model parameters</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>VDD <span class="op">=</span> <span class="fl">1.8</span>     <span class="co"># Supply voltage [V]</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>VTHN <span class="op">=</span> <span class="fl">0.4</span>    <span class="co"># NMOS threshold voltage [V]</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>VTHP <span class="op">=</span> <span class="op">-</span><span class="fl">0.4</span>   <span class="co"># PMOS threshold voltage [V]</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mu_n_Cox <span class="op">=</span> <span class="fl">200e-6</span>  <span class="co"># NMOS process transconductance parameter [A/V^2]</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>mu_p_Cox <span class="op">=</span> <span class="fl">100e-6</span>  <span class="co"># PMOS process transconductance parameter [A/V^2]</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>lambda_n <span class="op">=</span> <span class="fl">0.1</span>     <span class="co"># Channel length modulation NMOS [1/V]</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>lambda_p <span class="op">=</span> <span class="fl">0.1</span>     <span class="co"># Channel length modulation PMOS [1/V]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+$$
+
+high transconductance (at same drain-current $I_D$) without higher output conductance. 
+
+The square-law model completely fails in these cases when the MOSFET is not operation in strong inversion. In moderate and weak inversion we are forced to use a different mathmatical model , and the $\frac{g_M}{I_D}$ method is a really good starting point [@RWalker].
+
+The following figures will show the deviation between square-law and measurements as well as the $\frac{g_M}{I_D}$ methodology:
+
+So first of all when we use $g_M$ and $I_D$ we specify that for a specific drain-current we get a specific transconductance, for example with a $\frac{g_M}{I_D}$ of 10 S/A we get 10 $\mu$ S per 1 $\mu$ A of bias current. And depending on how "much" the transistor is operating above it's threshold voltage $V_{th}$ (basically the Overdrive Voltage $V_{OV}$ ) you get different inversion levels. From weak inveresions for low overdrive voltages to moderate inversion when operating at approximately $V_{OV}$ = $V_{th}$ to high inversion when $V_{OV}$ &gt; $V_{th}$. 
+
+With the square-law value for transconductance efficiency we completely deviate with that approximation in weak and moderate inversion:
+
+![Inversion level vs. Overdrive Voltage [@RWalker]](images/sec_xschem/ac_inversion_vs_vov.png){#fig-inversion-vs-vov width=100%}
+
+Another deviation from square-law to real MOSFET behaviour can be seen when we increase the gate-source voltage of the FET and measure the drain-current. According to square-law formual for the drain-current the current should just increase to the square with increasing gate-source voltage. But by taking the square of the drain-current and increasing $V_{GS}$ we can see that the drain-current does not magically start flowing above the threshold-voltage and also the behaviour is also not linear (quadratically when not taking the square of the current):
+
+![Drain Current over Gate-Source Voltage, Simulation vs. square-law [@RWalker]](../images/sec_xschem/ac_id_vs_gs.png){#fig-id_vs_gs width=80%}
+
+This simulation is done for a n-channel MOSFET with a drain-source voltage of 1.8 V and a size of L = 180 nm and W = 5 $\mu$m. 
+
+
+The drain-current behaviour at sub-threshold gate voltages is completely inaccurate for the square-law too, and the following graph visualizes the limitation of the square-law at this point again:
+
+
+![Drain Current over Gate-Source Voltage, comparison between an nmos, a bjt and the square-law [@RWalker]](/images/sec_xschem/ac_gmid_vs_gs.png){#fig-gmid_vs_gs width=90%}
+
+
+These three examples show that the approach using square-law to size MOSFETs is not sufficient when the transistor is operating in weak or moderate inversion and when driving the FET (nmos for example) with a low gate-source (or overdrive-) voltage. To cite Mr. Walker on this topic:
+"This means that the square law equation (which assumes 100% drift current) does not work unless the gate overdrive is several $\frac{kT}{q}$, [@RWalker]". 
+
+To conclude this, we can keep in mind that there is no simple formula that can describe the drain-current behaviour in all situations and be universally used. So using the $\frac{g_m}{I_D}$ methodology is the way to go in our project. 
+
+
+Now with that out of the way we can design our circuits using the $\frac{g_m}{I_D}$ methodology. The main properties of our MOSFETs we can manipulate in xschem are the lenght of the channel L, the width W and the bias current $I_D$. The common way to use this method is to first characterize nmos and pmos field effect transistors and then use this data to design the circuits. In the chapter "MOSFET characterization Testbench" chapter in [@hpretlacd] we can see how the values for the $\frac{g_m}{I_D}$ methodology are being simulated for later use. 
+
+The lenght of the MOSFET channel also has a large influence on it's frequency characteristic as it can be seen in this simulation:
+
+![transit frequency vs. channel length L [@hpretlacd]](/images/sec_xschem/ac_eaa_ft_vs_L.png){#fig-ft_vs_L width=80%}
+
+
+The operating areas of interest for us are the saturation region (when using the FET as an amplifier for example) and the region when the FET is being used to "just" work as a switch. With setting $V_{DS}$ to $\frac{V_{DD}}{2}$ we keep the FET in saturation. Reminding ourselves again that with larger $g_M$ we have more "gain" and with a smaller $I_D$ we have higher efficiency we try to hit the sweetspot between size (as every square milimeter has it's cost) and current consumption (if we have wearable battery powered devices for example). Keeping also in mind that temperature has a large effect we cannot use arbitratily large drain currents. 
+
+Following plot visualizes the dependancy of $\frac{g_M}{I_D}$ to the gate-source voltage and shows the transit frequency behaviour too:
+
+![$\frac{g_M}{I_D}$ and $f_T$ over the gate-source voltage [@hpretlacd]](images/sec_xschem/ac_ft_vs_gm_vgs.png){#fig-gm_vs_gs_vs_ft width=80%}
+
+### GM/ID Overview
+
+Device sizing is a fundamental step in analog circuit design. Specifically, for Operational Transconductance Amplifiers (OTAs), proper sizing ensures the desired trade-off between gain, bandwidth, power consumption, and linearity. A structured approach to sizing guarantees that the transistors operate in their optimal region—typically strong inversion and saturation for analog applications.
+
+This section presents a basic OTA sizing methodology based on the work of Prepl, whose notebook is publicly available at [GitHub: analog-circuit-design](https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/sizing_basic_ota.ipynb).
+
+The notebook demonstrates a Python-based framework for calculating initial transistor dimensions in a basic OTA. Below is an explanation of the key steps, equations, and important code snippets from the sizing method, along with visual aids to clarify the process.
+
+The sizing workflow follows these general steps:
+
+1. Define technology and process parameters.
+2. Specify bias currents and overdrive voltages.
+3. Calculate width-to-length ratios (W/L) for each transistor.
+4. Determine transconductance, output resistance, and gain.
+5. Evaluate key performance metrics like slew rate and gain-bandwidth product.
+
+At the beginning of the notebook, fundamental technology parameters are defined, including supply voltages, threshold voltages, mobility, and channel-length modulation factors for NMOS and PMOS transistors.
+
+
+::: {#b94da776 .cell execution_count=1}
+``` {.python .cell-code}
+# Technology and model parameters
+VDD = 1.8     # Supply voltage [V]
+VTHN = 0.4    # NMOS threshold voltage [V]
+VTHP = -0.4   # PMOS threshold voltage [V]
+mu_n_Cox = 200e-6  # NMOS process transconductance parameter [A/V^2]
+mu_p_Cox = 100e-6  # PMOS process transconductance parameter [A/V^2]
+lambda_n = 0.1     # Channel length modulation NMOS [1/V]
+lambda_p = 0.1     # Channel length modulation PMOS [1/V]</code></pre>
+<p>:::</p>
 <p>These parameters are critical for calculating transistor drain current in saturation:</p>
 <p><span class="math display">\[
 I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 \tag{24}
 \]</span></p>
 <p>The differential pair (M1 and M2) defines the input transconductance of the OTA. Sizing begins by selecting bias current and overdrive voltage (V<span class="math inline">\(_{OV}\)</span>):</p>
-<div id="b6d6a007" class="cell" data-execution_count="2">
+<div id="7facc817" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bias current for each NMOS transistor</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ID1 <span class="op">=</span> <span class="fl">100e-6</span>   <span class="co"># [A]</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -406,7 +480,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 \tag{24}
 </div>
 <p>In this example: - Bias current (ID1) is 100 µA per transistor. - Overdrive voltage (VOV1) is 0.2 V. - Calculated W/L ensures M1 and M2 operate in saturation with desired transconductance.</p>
 <p>The tail current source (M5) provides total bias current to the differential pair:</p>
-<div id="6c03df05" class="cell" data-execution_count="3">
+<div id="d17d6449" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tail current source sizing (M5)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ID5 <span class="op">=</span> <span class="fl">200e-6</span>   <span class="co"># Total bias current [A]</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>VOV5 <span class="op">=</span> <span class="fl">0.2</span>     <span class="co"># Overdrive voltage [V]</span></span>
@@ -419,7 +493,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 \tag{24}
 </div>
 <p>M5 carries the combined current of M1 and M2, typically twice ID1.</p>
 <p>PMOS current mirrors (M3 and M4) act as active loads for the differential pair, impacting gain and output resistance:</p>
-<div id="42d79642" class="cell" data-execution_count="4">
+<div id="d453ddc8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load transistors sizing (M3 and M4)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ID3 <span class="op">=</span> <span class="fl">100e-6</span>   <span class="co"># [A]</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>VOV3 <span class="op">=</span> <span class="fl">0.2</span>     <span class="co"># [V]</span></span>
@@ -432,7 +506,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 \tag{24}
 </div>
 <p>Lowering overdrive voltage (V<span class="math inline">\(_{OV3}\)</span>) increases output resistance, improving OTA voltage gain.</p>
 <p>Once W/L ratios are calculated, device transconductance (g<span class="math inline">\(_m\)</span>) and output resistance (r<span class="math inline">\(_o\)</span>) are derived:</p>
-<div id="66d43a97" class="cell" data-execution_count="5">
+<div id="607da697" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gm1 <span class="op">=</span> mu_n_Cox <span class="op">*</span> WL1 <span class="op">*</span> VOV1 <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ro1 <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (lambda_n <span class="op">*</span> ID1)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ro3 <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (lambda_p <span class="op">*</span> ID3)</span>
@@ -451,7 +525,7 @@ ro3: 1.00e+05 Ω</code></pre>
 A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3}) \tag{25}
 \]</span></p>
 <p>In Python:</p>
-<div id="32402276" class="cell" data-execution_count="6">
+<div id="0b6a3269" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Av <span class="op">=</span> gm1 <span class="op">*</span> (ro1 <span class="op">*</span> ro3) <span class="op">/</span> (ro1 <span class="op">+</span> ro3)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Voltage gain A_v: </span><span class="sc">{</span>Av<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -460,7 +534,7 @@ A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3}) \tag{25}
 </div>
 <p><strong>Evaluating Performance Metrics - Slew Rate and GBW:</strong></p>
 <p>Slew rate and gain-bandwidth product (GBW) predict OTA dynamic performance:</p>
-<div id="6632c678" class="cell" data-execution_count="7">
+<div id="a3c0aad6" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>CL <span class="op">=</span> <span class="fl">1e-12</span>   <span class="co"># Load capacitance [F]</span></span>
@@ -482,6 +556,7 @@ Gain Bandwidth Product: 7.96e+07 Hz</code></pre>
 <li><strong>Gain Bandwidth Product (GBW)</strong>: Small-signal frequency response.</li>
 </ul>
 <p>The presented methodology offers a systematic, reproducible approach to OTA design. Starting with hand calculations and validating through simulation helps designers optimize OTA performance while balancing speed, power, and gain. This lays groundwork for addressing noise, mismatch, and layout parasitics. Further information is publicly available at <a href="https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/sizing_basic_ota.ipynb">GitHub: analog-circuit-design</a>.</p>
+</section>
 </section>
 <section id="gmid-ratios-selection" class="level3">
 <h3 class="anchored" data-anchor-id="gmid-ratios-selection">GM/ID Ratios Selection</h3>
