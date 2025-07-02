@@ -22,7 +22,7 @@ NOTE: change to png
 
 The universal biquad filter consists of two non-inverting amplifiers working as adders in the circuit and two integrators. By setting $R$ and $C$ to specific values, the resonance frequency can be chosen. Other parameters adjustable in the universal biquad filter are the quality factor $Q$ and the low-frequency gain $H_0$. The quality factor and low-frequency gain determine the frequency response peaks of the low pass filter and the band pass filter. [@aslkpro2012]
 
-#### Characteristics
+### Characteristics
 
 NOTE: no more than 3 subsections!
 

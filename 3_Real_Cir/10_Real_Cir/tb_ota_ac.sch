@@ -41,7 +41,7 @@ op
 ac dec 101 1k 10MEG
 set filetype=ascii
 set wr_singlescale
-wrdata tb_ota_AC_UG.csv frequency v(out) vp(out)
+*wrdata tb_ota_AC_UG.csv frequency v(out) vp(out)
 *plot db(v(v_out))
 *plot v(v_in)
 .endc

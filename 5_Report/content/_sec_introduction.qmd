@@ -101,9 +101,9 @@ Legend:
 Check for reading flow please (for whole chapter)
 :::
 
-This chapter provides a short motivation and overview for the IC design process done during the lecture "Analogue and Digital Mixed-Signal Circuit Design" that Prof. Dr.-Ing. M. Meiners gives in the graduate course Electronic Engineering M.Sc. at City University of Applied Sciences Bremen.
+This chapter provides a short motivation and overview for the IC design process done during the lecture "Analogue and Mixed-Signal Circuit Design" that Prof. Dr.-Ing. M. Meiners gives in the graduate course Electronic Engineering M.Sc. at City University of Applied Sciences Bremen.
 
-The chapter will start with the motivation behind the Biquad IC filter design, outline the scope of work of the project, and ends with giving concrete specifications for the implemented filter.
+The chapter will start with the motivation behind the biquad IC filter design, outline the scope of work of the project, and ends with giving concrete specifications for the implemented filter.
 
 ## Motivation
 
