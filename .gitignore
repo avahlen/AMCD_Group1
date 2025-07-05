@@ -11,6 +11,6 @@ _book
 _manuscript
 .quarto
 simulations
-.html
+*.html
 site_libs/
 
