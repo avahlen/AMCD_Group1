@@ -75,10 +75,10 @@ x3 vdd BSF net1 GND ibias d_ena vss ota-improved
 
 
 * expanding   symbol:  ota-improved.sym # of pins=7
-** sym_path: /foss/designs/analog-circuit-design/xschem/ota-improved.sym
-** sch_path: /foss/designs/analog-circuit-design/xschem/ota-improved.sch
-.subckt ota-improved vdd vout vinp vinn ibias_5u d_ena vss
-*.ipin ibias_5u
+** sym_path: /foss/designs/AMCD_Group1/3_Real_Cir/30_Biquad/ota-improved.sym
+** sch_path: /foss/designs/AMCD_Group1/3_Real_Cir/30_Biquad/ota-improved.sch
+.subckt ota-improved vdd vout vinn vinp ibias d_ena vss
+*.ipin ibias
 *.iopin vdd
 *.iopin vss
 *.ipin vinp
@@ -111,7 +111,7 @@ Vmeas1 tail net7 0
 .save i(vmeas1)
 XMpd1 ena_n d_ena vss vss sg13_lv_nmos w=1u l=0.13u ng=1 m=1
 XMpd2 ena_n d_ena vdd vdd sg13_lv_pmos w=1u l=0.13u ng=1 m=1
-Vmeas4 ibias_5u net1 0
+Vmeas4 ibias net1 0
 .save i(vmeas4)
 XMpd11 vout ena_n vss vss sg13_lv_nmos w=0.5u l=0.13u ng=1 m=1
 XM10_4 net11 dp_casc tail vss sg13_lv_nmos w=1u l=0.5u ng=1 m=1

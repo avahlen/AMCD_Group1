@@ -33,7 +33,7 @@ write ideal_sim.raw
 set appendwrite
 ac dec 10 1 10k
 write ideal_sim.raw
-plot v(V_LPF)(gain)
+plot v(V_LPF)
 
 
 .endc

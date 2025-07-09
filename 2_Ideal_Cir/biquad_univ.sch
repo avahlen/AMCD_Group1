@@ -1,4 +1,4 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
@@ -124,22 +124,25 @@ C {gnd.sym} 410 -240 0 1 {name=l2 lab=GND sig_type=std_logic}
 C {devices/code_shown.sym} 1190 -410 0 0 {name=NGSPICE only_toplevel=true 
 value="
 .temp 27
-.param R=1k C=100n RQ=R*10 RH=R/1
+.param R=1k C=159n RQ=R*10 RH=R/1
 .control
+set filetype=ascii
 option sparse
 save all
 op
-write biquad.raw
+*write biquad.raw
 set appendwrite
 
 *ac dec 20 10 1G
 ac lin 1000 1 3k
-write biquad.raw
+*write biquad.raw
+write biquad_univ.csv LPF HPF BPF BSF
 plot db(v(LPF)) db(v(HPF)) db(v(BPF)) db(v(BSF))
+plot 180/PI*vp(LPF) 180/PI*vp(HPF) 180/PI*vp(BPF) 180/PI*vp(BSF)
 
 .endc
 "}
-C {launcher.sym} 900 -170 0 0 {name=h1
+C {launcher.sym} 900 -180 0 0 {name=h1
 descr="simulate" 
 tclcommand="xschem save; xschem netlist; xschem simulate"}
 C {devices/launcher.sym} 900 -130 0 0 {name=h3
