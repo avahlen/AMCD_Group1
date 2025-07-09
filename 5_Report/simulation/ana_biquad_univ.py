@@ -116,6 +116,7 @@ ax1.semilogx(frequencies, magnitude_db)
 ax1.set_ylabel("Magnitude (dB)")
 ax1.set_title("Bode Diagram")
 ax1.grid(True, which="both", ls="--")
+ax1.set_xlim([1e5,1e6])
 
 ax2.semilogx(frequencies, phase_deg)
 ax2.set_ylabel("Phase (degrees)")
