@@ -29,7 +29,7 @@ Legend:
 2 Theorectic Background
 2.1 Biquad Filter
 2.1.2 Universal Biquad Filter (editing)
-2.2 ...Übergang von Biquad zu Mosfet über opamp/OTA (planning)
+2.2 ...Übergang von Biquad zu Mosfet über opamp/OTA (writing)
 2.3 MOSFET (writing)
 
 3 Characteristics (writing)
