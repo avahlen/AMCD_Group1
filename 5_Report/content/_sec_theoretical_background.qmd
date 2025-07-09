@@ -40,10 +40,10 @@ $$
 H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
 $$ {#eq-TFSecondOrderBiquad}
 
-$Q$ determines amoung other things the amount of peaking the transfer function has at the chosen frequency. @fig-lowPassDifferentQ shows this graphically, the amout of peaking increases with increasing quality factor $Q$.
+$Q$ determines amoung other things the amount of peaking the transfer function has at the chosen frequency. @lst-lowPassDifferentQ shows this graphically, the amout of peaking increases with increasing quality factor $Q$.
 
 ```{python}
-#| label: fig-lowPassDifferentQ
+#| label: lst-lowPassDifferentQ
 #| fig-cap: "Low pass filter with different quality factors"
 #| code-fold: true
 

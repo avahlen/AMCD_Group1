@@ -30,7 +30,7 @@ format:
     theme: flatly
     code-fold: true
   pdf:
-    documentclass: scrreprt
+    documentclass: scrbook
 #    lof: true
 #    lot: true
     toc: true    
