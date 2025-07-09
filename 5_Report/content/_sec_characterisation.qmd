@@ -633,73 +633,10 @@ insert circuit where the stability analsis was done from, like in ltspice
 insert bode diagram figures (both: integrator and adder)
 :::
 
-```{python}
-#| label: fig-IntegratorStability
-#| fig-cap: "Stability analysis Integrator"
-#| code-fold: true
-import numpy as np
-import matplotlib.pyplot as plt
 
-# Adjust path to match your local file
-file_path = '../../1_System/simulations/stability_integrator.csv'
-
-# Read all lines
-with open(file_path, 'r') as f:
-    lines = f.readlines()
-
-# Find the start of the data
-data_start_index = next(i for i, line in enumerate(lines) if line.strip().lower().startswith('values:')) + 1
-
-# Set number of variables from header (3: freq + 2 signals)
-num_vars = 3
-num_outputs = num_vars - 1
-
-frequencies = []
-outputs = [[] for _ in range(num_outputs)]
-
-i = data_start_index
-while i < len(lines):
-    if lines[i].strip() == "":
-        i += 1
-        continue
-
-    # Frequency
-    freq_parts = lines[i].strip().split('\t')[-1].split(',')
-    freq = float(freq_parts[0])
-    frequencies.append(freq)
-    i += 1
-
-    # Complex output lines
-    for j in range(num_outputs):
-        real, imag = map(float, lines[i].strip().split(','))
-        outputs[j].append(complex(real, imag))
-        i += 1
-
-frequencies = np.array(frequencies)
-outputs = [np.array(out) for out in outputs]
-
-# Select the first output (v(v_out)) for Bode plot
-output = outputs[0]
-magnitude_db = 20 * np.log10(np.abs(output))
-phase_deg = np.angle(output, deg=True)
-
-# Plot Bode diagram
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True)
-
-ax1.semilogx(frequencies, magnitude_db)
-ax1.axvline(7e5, color='red')
-ax1.set_ylabel("Magnitude/dB")
-ax1.grid(True, which="both", ls="--")
-
-ax2.semilogx(frequencies, phase_deg)
-ax2.axvline(7e5, color='red')
-ax2.set_ylabel("Phase/degrees")
-ax2.set_xlabel("Frequency/Hz")
-
-plt.grid(True, which="both", ls="--")
-plt.tight_layout()
-plt.show()
-```
+:::{#fig-test}
+:::
+ insert python code back
 
 In the following figures (ref) and @fig-IntegratorStability this method was used to determine the stability over the phase reserve.
 
@@ -708,7 +645,7 @@ In the following figures (ref) and @fig-IntegratorStability this method was used
 The stability of the integrator circuit, as seen in @fig-IntegratorStability, shows a intersection of the magnitude plot with the $0\,dB$ line at about $f_k = 70k\Hz$, which corresponds to a phase of $\varphi_k = 68°$. This would leave a phase reserve of:
 
 $$
-\alpha_{int} = 180° - \varphi_k = 112°
+\alpha_{int} = 180° - \varphi_k = 112° > 45°
 $$
 
 Therefore the integrator would be stable.

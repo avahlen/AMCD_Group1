@@ -122,7 +122,7 @@ value=1k
 footprint=1206
 device=resistor
 m=1}
-C {vsource.sym} 890 -460 0 0 {name=V2 value="PULSE(-0.2 0.2 0 0.1u 0.1u 0.5m 1ms 10) AC 1"}
+C {vsource.sym} 890 -460 0 0 {name=V2 value="AC 1"}
 C {capa.sym} 890 -560 0 0 {name=C1
 m=1
 value=100n
