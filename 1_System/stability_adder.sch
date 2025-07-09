@@ -99,13 +99,13 @@ descr="annotate OP"
 tclcommand="set show_hidden_texts 1; xschem annotate_op"
 }
 C {devices/lab_pin.sym} 520 -380 0 0 {name=p2 sig_type=std_logic lab=v_dd}
-C {ota-improved.sym} 1050 -630 0 0 {name=xota}
+C {ota-5t.sym} 1050 -630 0 0 {name=xota}
 C {devices/vsource.sym} 600 -330 0 0 {name=Vss value=0}
 C {devices/gnd.sym} 600 -280 0 0 {name=l1 lab=GND}
 C {devices/lab_pin.sym} 600 -380 0 0 {name=p1 sig_type=std_logic lab=v_ss}
 C {devices/lab_wire.sym} 1300 -630 0 0 {name=p3 sig_type=std_logic lab=v_out}
 C {devices/lab_wire.sym} 760 -660 0 0 {name=p4 sig_type=std_logic lab=v_in}
-C {devices/isource.sym} 1090 -780 0 0 {name=I0 value=5u pwl(0 0 5u 0 11u 20u)"}
+C {devices/isource.sym} 1090 -780 0 0 {name=I0 value=20u pwl(0 0 5u 0 11u 20u)"}
 C {devices/vsource.sym} 1090 -430 0 0 {name=Venable value=1.5 savecurrent=false}
 C {devices/spice_probe.sym} 820 -660 0 0 {name=p5 attrs=""}
 C {devices/spice_probe.sym} 1180 -630 0 0 {name=p6 attrs=""}
@@ -125,4 +125,4 @@ value=1k
 footprint=1206
 device=resistor
 m=1}
-C {vsource.sym} 890 -460 0 0 {name=V2 value="PULSE(-0.2 0.2 0 0.1u 0.1u 0.5m 1ms 10) AC 1"}
+C {vsource.sym} 890 -460 0 0 {name=V2 value="AC 1"}
