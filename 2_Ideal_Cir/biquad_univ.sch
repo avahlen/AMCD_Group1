@@ -126,16 +126,16 @@ value="
 .temp 27
 .param R=1k C=159n RQ=R*10 RH=R/1
 .control
-set filetype=ascii
+*set filetype=ascii
 option sparse
 save all
-op
-*write biquad.raw
+*op
+*write biquad_univ.raw
 set appendwrite
 
 *ac dec 20 10 1G
-ac lin 1000 1 3k
-*write biquad.raw
+ac lin 1000 1 10k
+write biquad_univ.raw
 write biquad_univ.csv LPF HPF BPF BSF
 plot db(v(LPF)) db(v(HPF)) db(v(BPF)) db(v(BSF))
 plot 180/PI*vp(LPF) 180/PI*vp(HPF) 180/PI*vp(BPF) 180/PI*vp(BSF)

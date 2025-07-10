@@ -60,7 +60,7 @@ C {devices/code_shown.sym} 0 -750 0 0 {name=NGSPICE only_toplevel=true
 value="
 .temp 27
 .control
-set filetype=ascii
+*set filetype=ascii
 option sparse
 save all
 *op

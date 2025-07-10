@@ -60,7 +60,7 @@ C {devices/code_shown.sym} 0 -750 0 0 {name=NGSPICE only_toplevel=true
 value="
 .temp 27
 .control
-set filetype=acsii
+*set filetype=acsii
 option sparse
 save all
 *op

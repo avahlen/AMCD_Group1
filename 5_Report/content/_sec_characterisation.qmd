@@ -636,13 +636,85 @@ insert bode diagram figures (both: integrator and adder)
 
 :::{#fig-test}
 :::
- insert python code back
 
-In the following figures (ref) and @fig-IntegratorStability this method was used to determine the stability over the phase reserve.
+```{python}
+#| label: fig-stabilityAdder
+#| fig-cap: "Stability analysis of the adder"
+#| code-fold: true
+
+# Stability analysis adder
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0, '../simulation')
+import ltspy3
+
+sd=ltspy3.SimData('../simulation/stability_adder.raw',[b'v(v_out)',b'frequency'])
+
+nvout = sd.variables.index(b'v(v_out)')
+nfrequency = sd.variables.index(b'frequency')
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True)
+
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvout])))
+ax1.set_ylabel("Magnitude/dB")
+ax1.axvline(3e5,color='red',linestyle='--')
+ax1.grid(True, which="both", ls="--")
+
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvout], deg=True))
+ax2.axvline(3e5,color='red',linestyle='--')
+ax2.axhline(82.75,color='red',linestyle='--')
+ax2.set_ylabel("Phase/deg")
+ax2.set_xlabel("Frequency/Hz")
+
+
+plt.grid(True, which="both", ls="--")
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+#| label: fig-stabilityIntegrator
+#| fig-cap: "Stability analysis of the integrator"
+#| code-fold: true
+
+# Stability analysis integrator
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0, '../simulation')
+import ltspy3
+
+sd=ltspy3.SimData('../simulation/stability_integrator.raw',[b'v(v_out)',b'frequency'])
+
+nvout = sd.variables.index(b'v(v_out)')
+nfrequency = sd.variables.index(b'frequency')
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True)
+
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvout])))
+ax1.set_ylabel("Magnitude/dB")
+ax1.axvline(7e5,color='red',linestyle='--')
+ax1.grid(True, which="both", ls="--")
+
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvout], deg=True))
+ax2.axvline(7e5,color='red',linestyle='--')
+ax2.axhline(68,color='red',linestyle='--')
+ax2.set_ylabel("Phase/deg")
+ax2.set_xlabel("Frequency/Hz")
+
+plt.grid(True, which="both", ls="--")
+plt.tight_layout()
+plt.show()
+```
+
+In the following figures (ref) and @fig-stabilityIntegrator this method was used to determine the stability over the phase reserve.
 
 (add here part about whether they are stable...)
 
-The stability of the integrator circuit, as seen in @fig-IntegratorStability, shows a intersection of the magnitude plot with the $0\,dB$ line at about $f_k = 70k\Hz$, which corresponds to a phase of $\varphi_k = 68°$. This would leave a phase reserve of:
+The stability of the integrator circuit, as seen in @fig-stabilityIntegrator, shows a intersection of the magnitude plot with the $0\,dB$ line at about $f_k = 70k\Hz$, which corresponds to a phase of $\varphi_k = 68°$. This would leave a phase reserve of:
 
 $$
 \alpha_{int} = 180° - \varphi_k = 112° > 45°
@@ -663,6 +735,53 @@ kinda forgot where I wanted to go with this one... ehhh maybe it will come back
 uhhh i think it was about the ideal circuit and spice analysis etc
 
 To check the behauviour of the implemented circuit against the modelled behauviour of the transfer function, the universal biquad was built as an ideal circuit with voltage-regulated current sources instead of OTAs.
+
+```{python}
+#| label: fig-idealCir
+#| fig-cap: "Simulation of an idealised biquad"
+#| code-fold: true
+
+# plot Ideal (voltage controlled current? source) biquad
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0, '../simulation')
+import ltspy3
+
+sd=ltspy3.SimData('../simulation/biquad_univ.raw')
+
+nvoutLPF = sd.variables.index(b'v(lpf)')
+nvoutHPF = sd.variables.index(b'v(hpf)')
+nvoutBPF = sd.variables.index(b'v(bpf)')
+nvoutBSF = sd.variables.index(b'v(bsf)')
+nfrequency = sd.variables.index(b'frequency')
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True)
+
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvoutLPF])),label='lpf')
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvoutHPF])),label='hpf')
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvoutBPF])),label='bpf')
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvoutBSF])),label='bsf')
+ax1.set_xlim([10e1,10e3])
+ax1.set_ylim([-40,20])
+ax1.set_ylabel("Magnitude/dB")
+ax1.grid(True, which="both", ls="--")
+ax1.legend()
+
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutLPF], deg=True),label='lpf')
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutHPF], deg=True),label='hpf')
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutBPF], deg=True),label='bpf')
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutBSF], deg=True),label='bsf')
+ax2.set_ylabel("Phase/deg")
+ax2.set_xlabel("Frequency/Hz")
+ax2.legend()
+
+plt.grid(True, which="both", ls="--")
+plt.tight_layout()
+plt.show()
+```
+
+here plot comp between python and ideal
 
 ## Implementation (or Real Circuit)
 
