@@ -17,6 +17,7 @@ book:
     - content/_sec_filter-design.qmd        
     - content/_sec_discussion.qmd
     - content/_sec_conclusion-outlook.qmd
+    - content/_sec_finns_part.qmd
     - content/references.qmd
     
 bibliography: references.bib
