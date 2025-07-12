@@ -1,52 +1,3 @@
-## Preamble to the Schematic
-
-Before designing it was necessary to understand the main workflow of the
-tool chain. The schematic design program is called Xschem. This tool
-allows for a graphical representation of the netlist, like other
-discreet ECAD software. The main difference between discreet tools and
-integrated tools like Xschem are the devices that are placed within the
-schematic.
-
-While in discreet circuit design all ICs are just "blackbox"-symbols,
-Xschem introduces a concept called hierarchical design. As most
-integrated circuits are made from mosfets, resistors and capacitors,
-these are within the symbol of for example the OTA. This increases the
-complexity a lot especially when naming conventions are not followed. As
-a guideline for naming conventions we used the "designers etiquette"
-provided by Professor Pretel.
-
-## Designing the ideal circuit
-
-The original circuit was copied out of the ASLK Pro Board Manual
-Experiment 4. This source provided both the ideal schematic and the
-means to calculate the resistive and reactive elements. The calculation
-of the capacitors and some of the resistors is based on the following
-formulas:
-
-In contrast to board level design simulating the schematic meant
-replacing the discrete operational amplifiers with small signal models.
-One of the lab tutors suggested using voltage controlled current sources
-as they were easier to handle.
-
-## Designing the real circuit
-
-While the ideal circuit was based an ideal voltage controlled current
-source, the real circuit needed to implement these as OTAs at a lower
-hierarchal level. The current source was replaces by the 5T- OTA. This
-five-transistor model is the smallest implementation of an OTA. The
-schematic was sourced out of the script by Professor Pretel. This
-implementation is based on 3 parts.
-
-![](../images/sec_finns_property/image1.png){width="3.84in"
-height="2.5903729221347334in"}
-
-The OTA consists of 3 stages. M1 and M2 form the differential input
-pair. They are powered by a current mirror which is formed by M3 and M4.
-This allows the positive input to mirror its current to summative point
-at the drain of M4. To bias the circuit the gate of the transistor M5 is
-connected to a diode connected Mosfet. This allows for a stable current
-to power the biasing transistor M5.
-
 # Integrated Layouting
 
 The following chapters describe how to design an integrated circuit
@@ -54,7 +5,7 @@ using the software KLayout. An introduction and setup for the software
 will be given as well as some tips and tricks to easier work with the
 software.
 
-## 1.1 Introduction into the fundamentals of integrated layouting. 
+## Introduction into the fundamentals of integrated layouting. 
 
 Before designing a on the wafer, the basics of the design process must
 be understood. To that end an explanation of the software as well as the
@@ -70,23 +21,25 @@ The device library contains the symbols used in the schematic and the
 PCells/devices used in the layout. The verification checks consist of
 the design rule check (DRC) as well as the layout vs. schematic (LVS).
 The technology data represents the basis of DRC and defines the physical
-constraints of the technology.
+constraints of the technology (see @PDK_WIKI)
 
 The used technology was the sg13g2 technology from IHP. Which is a
 BiCMOS technology with a 130nm minimum gate length. This PDK is open
-source and in a preview status.
+source and in a preview status (see @ihpOpenPDK)
 
 To design the layout itself one first needs to be familiar with the
 different masks and the structure of a waver. The following is a
 simplified explanation of the different layers, their use and the
 manufacturing process behind it. For this report this is kept simple and
-will only focus on the layers used in the design.
+will only focus on the layers used in the design. 
+The simplified explationatin was heavly inspired by the Chapters 2 to 5 in
+CMOS by Jacaob Baker (see @baker2010cmos)
 
 The base is the bulk and a field oxide (FOX) layer on top of it. In this
 technology the bulk is a p-substrate. The FOX layer is an insulator,
 which separates devices from one another.
 
-To make a device first the FOX layer needs to be opened. That is done by
+To make a device first the FOX layer needs to be opened (see @fig-doping_substrate). That is done by
 etching away the FOX. The active mask allows the designer to specify the
 areas where the FOX will be opened. This is necessary for the doping
 process, which is usually done by an n- or p-select mask. In sg12g2 the
@@ -95,10 +48,10 @@ the FOX, otherwise the doping specified in the n-select mask will be
 stopped by the FOX. The select mask also needs to be bigger than the
 Active mask due to misalignment during the manufacturing process.
 
-![](../images/sec_finns_property/image2.png){width="6.225048118985127in"
+![Doping process of the substrate](../images/sec_finns_property/image2.png){#fig-doping_substrate width="6.225048118985127in"
 height="2.272636701662292in"}
 
-Figure : Doping process of the substrate
+
 
 The next layer is the poly layer. The poly layer forms the gate of the
 transistors, the name is an abbreviation for Polysilicon. The poly can
@@ -176,7 +129,7 @@ height="1.4267399387576554in"}
 The previous chapter described the fundamentals of the integrated
 layout, in this chapter these fundamentals are put into practice to
 create the layout for the 5T-OTA outlined by the schematic by Haraled
-Pretel(see)
+Pretel(see @pretl2025_ota5t_schematic)
 
 The schematic outlined by Professor Pretel consists of 13 N- and PMOS
 devices. These devices are defined within the PDK and are the
@@ -274,7 +227,7 @@ sg13g2\]-\>sg13g2_maximal*. Copy the contents of this script and paste
 them into a new DRC script. Running this script will provide the
 "*Marker Database Brower*" from which the individual DRC errors can be
 selected. As the error names and a semi-detailed description can be
-found the "*SG13G2_os_layout_rules.pdf*" on the Github of IHP (see).
+found the "*SG13G2_os_layout_rules.pdf*" on the Github of IHP (see @IHP_SG13G2_layout_rules).
 
 To run LVS run the shell script and open the netlist browser under
 *Tool-\>Netlist Browser*. To see the LVS errors click on *file-\>open*
@@ -442,7 +395,7 @@ select these layers, one may need to show all layers under Layer-\>Show
 all. To keep the comparison in the netlist browser simple, name the nets
 of the layout according to the names of the nets in the schematic.
 Please refer to the designer's etiquette, while labeling the layout or
-schematic (see LINK).
+schematic (see @pretl2025).
 
 When working out the LVS it is advised to check mainly the devices in
 the list. This will provide a comprehensive overview of the devices, and
@@ -513,7 +466,7 @@ out.
 ## The layout of the 5T-OTA
 
 To design the 5T-OTA the schematic and the values of Professor Pretel
-were used (see).
+were used (see @pretl2025_ota5t_schematic).
 
 As the export functionality of KLayout is rather limited, it is best to
 open the .gds file in KLayout directly, but the is also a SVG in the
