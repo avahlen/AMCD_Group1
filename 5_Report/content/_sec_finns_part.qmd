@@ -32,8 +32,8 @@ different masks and the structure of a waver. The following is a
 simplified explanation of the different layers, their use and the
 manufacturing process behind it. For this report this is kept simple and
 will only focus on the layers used in the design. 
-The simplified explationatin was heavly inspired by the Chapters 2 to 5 in
-CMOS by Jacaob Baker (see @baker2010cmos)
+The simplified explenation was heavily inspired by the chapters 2 to 5 in
+CMOS by Jacaob Baker (see @baker2010cmos).
 
 The base is the bulk and a field oxide (FOX) layer on top of it. In this
 technology the bulk is a p-substrate. The FOX layer is an insulator,
