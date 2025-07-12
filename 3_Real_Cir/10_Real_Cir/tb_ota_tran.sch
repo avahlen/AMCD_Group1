@@ -40,7 +40,7 @@ op
 tran 100u 100m
 *ac dec 101 1k 10MEG
 *wr data nameeeee
-write tb_ota_tran_UGbuffer1.txt
+write tb_ota_tran_UGrep.raw
 plot v(v_out)
 plot v(v_in)
 .endc

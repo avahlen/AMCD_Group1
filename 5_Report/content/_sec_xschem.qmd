@@ -52,24 +52,22 @@ To identify and resolve issues quickly and accurately, direct file editing and i
 
 Adopting this debugging approach significantly enhanced the efficiency and accuracy of symbol and netlist preparation processes throughout the simulation.
 
-## OTA Circuit Integration
-Initially, our group developed our own five-transistor OTA schematic within Xschem to gain practical insights and explore various design parameters. After conducting detailed simulations and analyses, and discussing our results with the professor, we concluded that the five-transistor OTA provided by Prof. Prettel offered superior performance and reliability for our application. Thus, the decision was made to proceed with Prof. Prettel's well-established OTA design.  
+## OTA Circuit Integration Self-built Five-Transistor OTA  {#sec-self-built-ota}
+Initially, our group developed our own five-transistor OTA schematic within Xschem to gain practical insights and explore various design parameters.
 
-### Self-built Five-Transistor OTA  {#sec-self-built-ota}
+Figure \@fig-self-built-ota shows the minimalist OTA we designed during the early project phase.  The circuit follows the canonical five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference \(v_{\text{in+}} - v_{\text{in–}}\) into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain.  Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2 and thus fixes the OTA’s quiescent current—and with it both transconductance and bandwidth.
 
-Figure \@fig-self-built-ota shows the minimalist OTA we designed during the early project phase.  The circuit follows the canonical five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference \(v_{\text{in+}} - v_{\text{in–}}\) into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly \(g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr)\).  Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2 and thus fixes the OTA’s quiescent current—and with it both transconductance and bandwidth.  Long channel lengths of 5 µm (≈ 3 × L\(_\text{min}\)) were chosen throughout to secure intrinsic gain and suppress flicker noise, while the intentionally narrow M2 (0.5 µm) keeps the high-impedance summing node light.  All bulks are tied to their sources, a safe low-voltage strategy in SG13G2 that prevents body-effect shifts.
-
-Simulations at V\(_\text{DD}\)=1.5 V show ≈ 34 dB open-loop gain and a unity-gain frequency in the low-tens of MHz for 20 µA bias—adequate for preliminary filter studies yet visibly below the performance of Prof. Prettel’s cascode-enhanced reference OTA adopted later in the project.  Even so, building and characterising this core proved invaluable: it validated our GM/ID sizing workflow, exercised SG13 layout conventions, and—most importantly—established the Xschem → Ngspice net-listing chain we now use for every subsequent test bench.
+Simulations at V\(_\text{DD}\)=1.5 V show ≈ 34 dB open-loop gain and a unity-gain frequency in the low-tens of MHz for 20 µA bias—adequate for preliminary filter studies yet visibly below the performance of Prof. Prettel’s cascode-enhanced reference OTA adopted later in the project.  Even so, building and characterising this core proved invaluable: it validated our GM/ID sizing workflow, and—most importantly—established the Xschem → Ngspice net-listing chain we now use for every subsequent test bench.
 
 ![Self-built five-transistor OTA schematic.](../images/sec_xschem/self_build_ota.png){#fig-self-built-ota width=80% fig-alt="schematic of the five-transistor OTA prototype"}
 
-#### Transient validation – unity-gain buffer  {#sec-ota-ug}
+### Transient validation – unity-gain buffer  {#sec-ota-ug}
 
 To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (Fig. \@fig-ota-ug-tb): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.  
 The long two-second period guarantees only one transition inside the 100 ms simulation window.  
 A 20 µA current source on i_bias establishes the tail current, with supplies at V<sub>DD</sub> = 1.5 V and V<sub>SS</sub> = 0 V.
 
-![Unity-gain test-bench schematic.](/images/sec_xschem/tb_self_tran.png){#fig-ota-ug-tb width=80% fig-alt="Unity-gain follower."}
+![Unity-gain test-bench schematic.](../images/sec_xschem/tb_self_tran.png){#fig-ota-ug-tb width=80% fig-alt="Unity-gain follower."}
 
 The essential NGSpice control block is
 
@@ -84,7 +82,67 @@ wrdata tb_ota_tran_UGbuffer.txt v(v_out) v(v_in)
 
 ![Transient waveforms: v_in vs. v_out.](../images/sec_xschem/self_tran_vin_vout.png){#fig-ota-ug-wave width=80% fig-alt="Ngspice transient plot of the unity-gain follower."}
 
-Figure @fig-ota-ug-wave plots the resulting traces. The output (left) mirrors the input (right) with virtually overlap: the plateau settles at ≈ 1.10 V (-0.1 dB static error) and returns to ground without overshoot or ringing. The clean response confirms correct feedback polarity, adequate open-loop gain for unity operation, and stable biasing of the mirror-loaded output stage. No slew-rate limitation appears even with a 1 µs edge, indicating that the 20 µA bias current provides sufficient drive for the intended bandwidth. This experiment therefore serves as a rapid functional smoke-test, validating pin-out, bias network, and the Xschem → NGSpice workflow before proceeding to detailed AC, noise, and corner analysis.
+Figure @fig-ota-ug-wave plots the resulting traces. The output (left) mirrors the input (right) with virtually overlap: the plateau settles at ≈ 1.10 V (-0.1 dB static error) and returns to ground without overshoot or ringing. The clean response confirms correct feedback polarity, adequate open-loop gain for unity operation, and stable biasing of the mirror-loaded output stage. No slew-rate limitation appears even with a 1 µs edge, indicating that the 20 µA bias current provides sufficient drive for the intended bandwidth. This experiment therefore serves as a rapid functional smoke-test, validating pin-out, bias network, and the Xschem → NGSpice workflow.
+
+After conducting simulations and analyses, and discussing our results with the professor, we concluded that the five-transistor OTA provided by Prof. Prettel offered superior performance and reliability for our application. Thus, the decision was made to proceed with Prof. Prettel's well-established OTA design.  
+
+## xschem OTA Description (Five-Transistor OTA by Prof. Prettel)
+
+Prof. Prettel’s five-transistor OTA is an optimized implementation, specifically tailored for efficient analog circuit integration using the SG13G2 CMOS process. His design, depicted in Figure @fig-prettel-ota, maintains simplicity while enhancing performance through thoughtful sizing and layout practices. This OTA employs a standard architecture comprising an NMOS differential input pair, a tail current source transistor, and a PMOS current mirror load. The input differential voltage is transformed by the differential pair into two opposite-phase currents, recombined by the PMOS mirror at the single-ended output node. This generates an open-loop voltage gain proportional to g_{m,\text{input}} (r_{o,\text{M3}} \parallel r_{o,\text{M4}}). A dedicated transistor sets a stable bias current, ensuring predictable and robust OTA performance over varying operating conditions. Channel lengths and widths are carefully chosen to balance between adequate intrinsic gain, bandwidth, and noise characteristics. Particularly, the transistor sizes follow good IC design practices, with lengths exceeding the minimum dimensions to suppress short-channel effects and flicker noise. Bulk connections are properly handled to avoid body effects, typically by tying bulks directly to their corresponding source terminals. The accompanying layout from Prof. Prettel (Figure @fig-prettel-ota-layout) illustrates thoughtful device placement and symmetry, reducing mismatches and parasitic coupling. Furthermore, multiple finger transistors are employed effectively to optimize layout density and performance, adhering to industry-standard guidelines.
+
+Simulations and measured data presented by Prof. Prettel validate this design as a stable, efficient, and high-performance option for analog signal processing. It exhibits superior gain and bandwidth compared to simpler OTA configurations, making it suitable for more demanding applications in integrated analog and mixed-signal circuits. Due to these advantages, our group adopted Prof. Prettel’s OTA as the baseline for subsequent design and integration phases in our project.
+
+### Simulation of OTA by Prof. Prettel
+
+To validate the performance of Prof. Prettel’s OTA, simulations were conducted using the Xschem and NGSpice toolchain. These analyses include both AC (small-signal) and transient (large-signal) simulations.
+
+<!-- plot AC improved analysis -->
+
+The AC analysis provides insight into the frequency response and stability margins of the OTA. The simulated frequency response plot (Figure @fig-prettel-ac-analysis) demonstrates a high DC gain of approximately 33 dB, maintaining a flat frequency response up to the corner frequency in the tens of MHz region, after which the gain starts decreasing at approximately 20 dB per decade. This frequency behavior aligns with the expectations for the intended applications, confirming the OTA’s suitability for integration into higher-order filter structures and analog signal processing circuits. The absence of peaking or unexpected frequency responses indicates that the OTA is inherently stable under small-signal conditions.
+
+<!-- plot improved Transient Analysis -->
+
+The transient simulation, shown in Figure @fig-prettel-transient-analysis, provides a clear picture of the OTA’s large-signal behavior and dynamic response. In this scenario, the OTA was tested in a configuration involving a step input voltage (v_ena). The OTA’s output (v_out) demonstrates a fast and stable settling behavior, reaching the expected voltage level rapidly without overshoot or oscillations. The simulation results highlight the OTA’s stability, confirming robust biasing and the effective suppression of transient-related issues such as ringing or slow settling.
+
+Furthermore, simulations verified the stability and correctness of DC operating points across process-voltage-temperature variations, confirming the reliability and robustness of the chosen transistor dimensions and biasing strategies. The OTA shows consistent behavior, affirming that the design is resilient against typical variations encountered in practical implementations.
+
+Overall, the simulation results reinforce Prof. Prettel’s OTA as a robust, high-performance analog block suitable for integration into complex analog and mixed-signal systems.
+
+
+
+----------------------------------------------------------------------
+
+### gm‑C Biquad Prototype – Concept and Implementation {#sec-gm-biquad}
+
+Modern mixed‑signal front‑ends often rely on transconductor‑capacitor (gm‑C) biquads because they combine wide tuning range with excellent high‑frequency efficiency.  The starting point of our design is the fully‑differential gm‑C biquad shown by Baker (Fig. 3.53)fileciteturn0file0, reproduced in Figure @fig-gm-biquad-ref.  Each integrator is realised with an operational‑transconductance amplifier (OTA) that converts the differential input voltage into a current proportional to its transconductance , which then charges or discharges the integrating capacitors.  By appropriate choice of the capacitor ratios (here ) and the transconductance values , the network realises the generic second‑order low‑pass transfer function
+
+
+
+with centre frequency  and quality factor .  Because both poles stem from active integrators rather than passive RLC tanks, the filter can be accurately tuned post‑fabrication simply by adjusting the OTA bias current.
+
+OTA realisation
+
+For the OTA core we adopted the differential architecture from Baker Fig. 3.15, re‑drawn in Xschem as a reusable symbol (Figure @fig-gm-ota).  The device operates from a single 1.5 V supply, uses a folded‑cascode current‑mirror load, and presents just two high‑impedance nodes—ideal for gm‑C work.  All NMOS/PMOS pairs are sized to keep them in saturation at a tail bias of 100 µA, which fixes the small‑signal transconductance at
+
+
+
+for the chosen overdrive voltage of 1.65 V.
+
+{#fig-gm-biquad-ref width=80% fig-alt="Transconductor–capacitor biquad composed of four OTAs and capacitor ratios 1:2."}
+
+{#fig-gm-ota width=60% fig-alt="Schematic symbol and transistor‑level implementation of the OTA used in the biquad."}
+
+Biquad assembly in Xschem
+
+Two OTA–capacitor integrators were placed back‑to‑back inside an Xschem hierarchical sheet (Figure @fig-xschem-biquad).  The capacitor values follow the textbook 1 : 2 ratio, while the inter‑stage coupling capacitors are duplicated to preserve differential symmetry.  A common‑mode voltage source  fixes both OTA outputs, and each OTA receives an identical 100 µA bias from a global current mirror, ensuring orthogonal tuning via a single current reference.
+
+{#fig-xschem-biquad width=80% fig-alt="Top‑level schematic of the gm‑C biquad filter in Xschem."}
+
+Small‑signal verification
+
+An AC sweep from 100 Hz to 100 MHz confirms the expected second‑order low‑pass behaviour (Figure @fig-gm-biquad-ac).  The pass‑band remains flat up to about 9 MHz, after which the magnitude rolls off at close to 40 dB/dec—characteristic of a pair of coincident poles.  At the designed cut‑off of  the response is down –3 dB and shows no peaking, indicating a quality factor Q≈0.7 consistent with theory.  Because all capacitors are on‑chip MIM devices and  is current‑programmed, centre frequency can be shifted more than a decade simply by adjusting the global bias without altering passive components.
+
+{#fig-gm-biquad-ac width=80% fig-alt="Simulated |H(jω)| for the gm‑C biquad; 40 dB/dec roll‑off confirms second‑order operation."}
 
 
 
@@ -108,42 +166,9 @@ Figure @fig-ota-ug-wave plots the resulting traces. The output (left) mirrors th
 
 
 
-### OTA Description (Five-Transistor OTA by Prof. Prettel)
 
 
-### OTA Gain Target and Calculation
-<!-- - Target Gain explicitly mentioned: at least **60 dB**.
-- Provided OTA (five-transistor type) has a gain around **34 dB**.
-- Gain formula explicitly given:
-\[
-A_v \approx \frac{g_m}{g_{ds1}\parallel g_{ds2}}
-\]
--->
-### OTA Current Demand Calculation
-<!-- - Explicit advice to calculate required OTA current from loading conditions (resistive loads and integrators).-->
 
-## Circuit Parameter Choices
-
-### Capacitor Selection (Unit Capacitor: 100 nF)
-<!-- - Recommended unit capacitor explicitly stated: **100 nF** for easy and realistic layout considerations.-->
-
-### Resistor Determination (~1.6 kΩ)
-<!-- - Derived resistor values explicitly mentioned: **approximately 1.6 kΩ** based on the RC constant calculations.-->
-
-## Simulation Procedure
-
-### Transient Simulation
-
-#### OTA Standalone Characterization
-<!-- - **Must start with transient simulation** (explicitly advised).
-- Verify OTA reaches steady state before proceeding further.-->
-
-#### OTA with Realistic Load Conditions
-<!-- - Clearly advised: simulate OTA under realistic resistive and integrator loads.
-- Verify steady-state and operational behavior under realistic conditions explicitly mentioned.-->
-
-### AC Simulation (Linear Behavior Verification)
-<!-- - Perform AC simulations **after transient analysis** to verify the linearized behavior (LTI system).-->
 
 
 
@@ -303,7 +328,7 @@ Following plot visualizes the dependancy of $\frac{g_M}{I_D}$ to the gate-source
 
 ### GM/ID Overview
 
-Device sizing is a fundamental step in analog circuit design. Specifically, for Operational Transconductance Amplifiers (OTAs), proper sizing ensures the desired trade-off between gain, bandwidth, power consumption, and linearity. A structured approach to sizing guarantees that the transistors operate in their optimal region—typically strong inversion and saturation for analog applications.
+Device sizing is a fundamental step in analog circuit design.Proper sizing ensures the desired trade-off between gain, bandwidth, power consumption, and linearity. A structured approach to sizing guarantees that the transistors operate in their optimal region—typically strong inversion and saturation for analog applications.
 
 This section presents a basic OTA sizing methodology based on the work of Prepl, whose notebook is publicly available at [GitHub: analog-circuit-design](https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/sizing_basic_ota.ipynb).
 
@@ -459,46 +484,3 @@ The presented methodology offers a systematic, reproducible approach to OTA desi
 
 
 
-
-
-
-
-
-### GM/ID Ratios Selection
-<!-- - Explicit recommendations:
-  - Input differential amplifiers: GM/ID = **10** (moderate, balancing noise, speed, stability).
-  - Bias circuits: GM/ID = **5** (DC stability, low-speed demands).-->
-
-
-### Determining Transistor Sizes (W/L Ratios)
-<!-- - Transistor sizes explicitly advised to be derived from GM/ID lookup tables and experience.
-- Recommended transistor channel length: **3 to 5 times minimum length** (explicitly advised for analog IC design).-->
-
-## Test Bench Setup
-
-### Ideal OTA Test Bench
-<!-- - Explicit instruction: start testing with an ideal OTA model provided, to characterize basic performance.-->
-
-### Loaded OTA Test Bench (Integrators, Resistors)
-<!-- - Explicit requirement to create a second test bench simulating the OTA under realistic circuit loading conditions (integrators and resistor network).-->
-
-## Robustness and Corner Analysis
-
-### Process Corner Simulations
-<!-- - Explicit recommendation for corner simulations to verify robustness and performance under variations in temperature and manufacturing processes.-->
-
-### Monte Carlo Analysis (Optional)
-<!-- - Suggested (explicitly mentioned) to conduct Monte Carlo simulations to statistically analyze variability and reliability.-->
-
-## Results and Discussion
-
-### Analysis of Simulation Results
-<!-- - Recommended to analyze carefully transient and AC simulation results.
-- Advised explicitly to verify steady-state operational conditions and compare them to expected theoretical performance.-->
-
-### Critical Observations and Performance Limitations
-<!-- - Suggested explicitly to discuss any observed performance limitations or unexpected behavior explicitly identified in simulation results.-->
-
-## Conclusion and Recommendations
-<!-- - Summarize explicitly achieved performance: OTA gain, stability, and operational conditions.
-- Mention explicitly identified lessons learned and give clear recommendations for future improvements based on the simulated design results.-->

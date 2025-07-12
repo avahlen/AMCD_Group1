@@ -41,9 +41,9 @@ op
 ac dec 101 1k 10MEG
 set filetype=ascii
 set wr_singlescale
-*wrdata tb_ota_AC_UG.csv frequency v(out) vp(out)
-*plot db(v(v_out))
-*plot v(v_in)
+write tb_ota_AC_UG.raw
+plot db(v(v_out))
+plot v(v_in)
 .endc
 "}
 C {devices/gnd.sym} 420 -230 0 0 {name=l15 lab=GND}
@@ -56,7 +56,7 @@ C {devices/gnd.sym} -40 110 0 0 {name=l1 lab=GND}
 C {devices/vsource.sym} -40 80 0 0 {name=Vdd1 value="AC 1"
 *SIN (offset amplitude)
 }
-C {3_Real_Cir/10_Real_Cir/self_build_opamp.sym} 190 40 0 0 {name=x2}
+C {3_Real_Cir/10_Real_Cir/self_build_opamp.sym} 200 40 0 0 {name=x2}
 C {ipin.sym} 280 150 2 0 {name=p1 lab=i_bias}
 C {devices/vdd.sym} 190 -80 0 0 {name=l3 lab=VDD}
 C {devices/gnd.sym} 190 150 0 0 {name=l4 lab=GND}
