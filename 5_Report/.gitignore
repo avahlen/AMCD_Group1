@@ -16,3 +16,9 @@ site_libs/
 
 
 /.quarto/
+
+*.pdf
+*.aux
+*.log
+*.tex
+*.toc

@@ -110,11 +110,10 @@ In the manufacturing process the thick poly layer prevents the n-select
 mask to dope the part below the gate, therefore creating the drain and
 source regions of the nmos.
 
-![A screenshot of a computer screen AI-generated content may be
-incorrect.](../images/sec_finns_property/image4.png){width="4.067361111111111in"
+![Figure : Manufacturing the poly layer in the process](../images/sec_finns_property/image4.png){width="4.067361111111111in"
 height="3.2402777777777776in"}
 
-Figure : Manufacturing the poly layer in the process
+
 
 Also note that the drain and source contacts are interchangeable, as
 they are identical regions in the active area. The last two pictures
@@ -128,10 +127,10 @@ an NWell. The NWell is a region that can be specified by the designer
 and works like an implant in the substrate. The FOX is also opened by
 the active layer but pSD layer is used to implant the p+ region.
 
-![](../images/sec_finns_property/image5.png){width="6.929376640419948in"
+![Side view of an PMOS transistor](../images/sec_finns_property/image5.png){width="6.929376640419948in"
 height="2.365990813648294in"}
 
-Figure : Side view of an PMOS transistor
+
 
 The N- or PMOS is formed in the bulk, but there are no electrical
 connections to the pins of the device. Connections between devices can
@@ -147,10 +146,10 @@ switch between the different Metal layers, vias can be used, similar to
 a multilayer PCB design. These vias are formed by opening the insulator
 and placing in an conductor like tungsten the opening.
 
-![](../images/sec_finns_property/image6.png){width="6.109148075240595in"
+![Metal connection to the drain and source contacts](../images/sec_finns_property/image6.png){width="6.109148075240595in"
 height="3.931312335958005in"}
 
-Figure : Metal connection to the drain and source contacts
+
 
 The MOSFET is a 4-pin device, consisting of source, gate, drain and
 body. While the body often is omitted on a schematic level, in the
@@ -167,12 +166,12 @@ acquired in this chapter can be mapped to this technology. The figure 5
 compares the technology on the left, with the learned knowledge on the
 right. Note that the PWell is not used for NMOS devices only for ties.
 
-![](../images/sec_finns_property/image8.png){width="6.989583333333333in"
+![ayer comparison between IHP and theory](../images/sec_finns_property/image8.png){width="6.989583333333333in"
 height="1.4267399387576554in"}
 
-Figure : Layer comparison
 
-## 1.2 KLayout 
+
+## KLayout 
 
 The previous chapter described the fundamentals of the integrated
 layout, in this chapter these fundamentals are put into practice to
@@ -209,7 +208,7 @@ Versus Schematic) describes the process of comparing the schematic to
 the layout. This will throw an error when two nets are shorted or a
 device it not correctly connected.
 
-### 1.2.1 The Setup of KLayout
+### The Setup of KLayout
 
 While the previous chapters showed only a cross section of the waver,
 the designer only sees the waver from a top view, but needs to recall
@@ -321,7 +320,7 @@ double click it and navigate to PCell parameters and enter the W/L
 ratios. Updating the PCell will change the device to the desired
 parameters.
 
-## 1.3 The Layout Process
+## The Layout Process
 
 The workflow is much more incremental than in PCB design, as one
 implements device by device.\
@@ -346,10 +345,10 @@ Metal1 through the Cnt layer. In contrast to the source and drain
 contacts this need to be done by hand. See figure 5 for a DRC clean
 connection of the gate of an NMOS device.
 
-![](../images/sec_finns_property/image9.png){width="4.967361111111111in"
+![Example DRC clean connection of the gate](../images/sec_finns_property/image9.png){width="4.967361111111111in"
 height="3.186608705161855in"}
 
-Figure : Example DRC clean connection of the gate
+
 
 In general, connect each device separately from each other. It might be
 tempting to design the layout close together, with overlapping NWells,
@@ -362,7 +361,7 @@ taught valuable lessons. The next section presents these lessons,
 outlining a specific workflow and offering tips and guidance for
 beginners.
 
-#### 1.3.1 Tips and tricks for the Layout Process. 
+#### Tips and tricks for the Layout Process. 
 
 -   Run LVS and DRC every 1 to 3 devices!
 
@@ -429,7 +428,7 @@ change in future releases.**
 
 -   The GUI is sometimes not working, especially true for LVS.
 
-### 1.3.2 Working with LVS during layouting
+### Working with LVS during layouting
 
 The Netlist Database Browser will provide an overview of all the nets
 both in the layout and the schematic or "Reference". Each net has a
@@ -469,17 +468,17 @@ has been altered for visibility reasons. Also note that each PMOS needs
 its own tie to the VDD potential, while the ties for the NMOS can be
 placed anywhere on the layout, as the substrate is the bulk.
 
-![](../images/sec_finns_property/image11.png){width="6.122449693788276in"
+![Tying down different types of bulks contacts. Not to scale.](../images/sec_finns_property/image11.png){width="6.122449693788276in"
 height="3.1256944444444446in"}
 
-Figure : Tying down different types of bulks. Not to scale.
+
 
 While using the netlist browser allows also for a rudimentary net
 highlighting in the layout. The practicality depends on the number of
 devices connected to the net. In general troubleshooting get more
 difficult, the more pins are connected to the same net.
 
-### 1.3.3 Working with DRC during layouting. 
+### Working with DRC during layouting. 
 
 Running the DRC often and addressing them as soon as possible, allows
 for a denser and generally more compact layout. It also reduces the time
@@ -511,7 +510,7 @@ not fully completed, cleaning these DRC errors has at best no impact on
 the design. Nevertheless, these errors must be cleared before the tape
 out.
 
-## 1.4 The layout of the 5T-OTA
+## The layout of the 5T-OTA
 
 To design the 5T-OTA the schematic and the values of Professor Pretel
 were used (see).
