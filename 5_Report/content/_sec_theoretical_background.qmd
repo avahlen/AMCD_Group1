@@ -217,9 +217,11 @@ The word transconductance is
 
 Transconductance is a fundamental parameter that describes the relationship between the input voltage and the output current in electronic devices, particularly in transistors and vacuum tubes. It is defined as the ratio of the change in output current to the change in input voltage, under conditions where all other variables are held constant. Mathematically, it is expressed as:
 
-\[ g_m = \frac{\Delta I_{out}}{\Delta V_{in}} \]
+$$
+g_m = \frac{\Delta I_{out}}{\Delta V_{in}}
+$$
 
-where \( g_m \) is the transconductance, \( \Delta I_{out} \) is the change in output current, and \( \Delta V_{in} \) is the change in input voltage. The unit of transconductance is the siemens (S), which is equivalent to amperes per volt (A/V). Historically, it was also measured in "mhos," which is "ohm" spelled backwards, reflecting its inverse relationship to resistance.
+where $g_m$ is the transconductance, $\Delta I_{out}$ is the change in output current, and $\Delta V_{in}$ is the change in input voltage. The unit of transconductance is the siemens (S), which is equivalent to amperes per volt (A/V). Historically, it was also measured in "mhos," which is "ohm" spelled backwards, reflecting its inverse relationship to resistance.
 
 The term "transconductance" originates from the concept of "transfer conductance." It combines the ideas of "transfer," indicating the transfer of a signal from the input to the output, and "conductance," which is the reciprocal of resistance and measures how easily a material conducts electric current. In essence, transconductance quantifies how effectively a device can convert a voltage change at its input into a proportional current change at its output.
 
@@ -253,12 +255,12 @@ BILD P-MOS
 ### Sizing 
 
 As mentioned earlier we have several degrees of freedom in our design, like $W$, $L$, or the bias current $I_D$. 
-The problem is, that its extremly complex to describe a MOSFET mathmaticly and on top to that of change values to get a desired behaviour. Glady a wide used technique, which was introduced by P. Jespers and B. Murmann, is the g_\mathrm{m}/I_\mathrm{D} approach \ref{Jesper.... Pretl 3).
+The problem is, that its extremly complex to describe a MOSFET mathmaticly and on top to that of change values to get a desired behaviour. Glady a wide used technique, which was introduced by P. Jespers and B. Murmann, is the $g_\mathrm{m}/I_\mathrm{D}$ approach \ref{Jesper.... Pretl 3).
 
 *Saturation* 
 Saturation is a specific operation mode of a transistor. Its also called "ON mode", because a channel between drain and source is created. This state is reached when the voltage $V_DS >= (V_GS - V_th)$. When this happens the drain-source current I_DS gets stable (saturates) and becomes nearly indipendet of V_DS. Still it can be very well controlled via V_GS, due to an effect called "pinch-off" (\ref{https://en.wikipedia.org/wiki/MOSFET}).
 
-The g_\mathrm{m}/I_\mathrm{D} method is primarly inteded to be used in saturated MOSFETs. To ensure this we keep the drain-source voltage as V_ds = V_DD / 2.
+The $g_\mathrm{m}/I_\mathrm{D}$ method is primarly inteded to be used in saturated MOSFETs. To ensure this we keep the drain-source voltage as $V_ds = V_DD / 2$.
 
 ### Current Mirror
 

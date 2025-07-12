@@ -14,13 +14,20 @@ book:
     - content/_sec_introduction.qmd
     - content/_sec_theoretical_background.qmd
     - content/_sec_characterisation.qmd
+    - content/_sec_xschem.qmd
+    - content/_sec_finns_part.qmd
     - content/_sec_filter-design.qmd        
     - content/_sec_discussion.qmd
     - content/_sec_conclusion-outlook.qmd
-    - content/_sec_finns_part.qmd
     - content/references.qmd
     
 bibliography: references.bib
+
+favicon: images/hsb-logo.png
+site-url: https://avahlen.github.io/AMCD_Group1/
+repo-url: https://github.com/avahlen/AMCD_Group1
+repo-branch: main
+downloads: [pdf,epub]
 
 execute:
   freeze: auto
@@ -47,6 +54,6 @@ format:
     mainfont: "Calibri"
     keep-tex: true
     output-file: amcd_report 
-#  epub:
-#    theme: flatly
-#    output-file: amcd_report
+  epub:
+    theme: flatly
+    output-file: amcd_report

@@ -714,7 +714,7 @@ In the following figures (ref) and @fig-stabilityIntegrator this method was used
 
 (add here part about whether they are stable...)
 
-The stability of the integrator circuit, as seen in @fig-stabilityIntegrator, shows a intersection of the magnitude plot with the $0\,dB$ line at about $f_k = 70k\Hz$, which corresponds to a phase of $\varphi_k = 68°$. This would leave a phase reserve of:
+The stability of the integrator circuit, as seen in @fig-stabilityIntegrator, shows a intersection of the magnitude plot with the $0\,dB$ line at about $f_k = 70\,kHz$, which corresponds to a phase of $\varphi_k = 68°$. This would leave a phase reserve of:
 
 $$
 \alpha_{int} = 180° - \varphi_k = 112° > 45°
