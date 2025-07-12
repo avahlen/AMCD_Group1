@@ -61,9 +61,9 @@ traces.
 
 In the manufacturing process the thick poly layer prevents the n-select
 mask to dope the part below the gate, therefore creating the drain and
-source regions of the nmos.
+source regions of the nmos (see @fig-poly_manu).
 
-![Figure : Manufacturing the poly layer in the process](../images/sec_finns_property/image4.png){width="4.067361111111111in"
+![Figure : Manufacturing the poly layer in the process](../images/sec_finns_property/image4.png){#fig-poly_manu width="4.067361111111111in"
 height="3.2402777777777776in"}
 
 
@@ -78,9 +78,9 @@ As the PMOS is a negated NMOS, the designer first needs to place the p+
 regions in an n-substrate. This is done by enveloping the transistor in
 an NWell. The NWell is a region that can be specified by the designer
 and works like an implant in the substrate. The FOX is also opened by
-the active layer but pSD layer is used to implant the p+ region.
+the active layer but pSD layer is used to implant the p+ region (see @fig-pmos_manu).
 
-![Side view of an PMOS transistor](../images/sec_finns_property/image5.png){width="6.929376640419948in"
+![Side view of an PMOS transistor](../images/sec_finns_property/image5.png){#fig-pmos_manu width="6.929376640419948in"
 height="2.365990813648294in"}
 
 
@@ -93,13 +93,13 @@ between devices. Connections from an active or poly layer region to the
 metal layer can´t be made by overlaying the layers as they are separated
 by an insulator. To connect these different layers the contact layer
 (Cnt) is used. It connects active or poly layer to the metal 1 layer, by
-removing the insulator over these regions. Note that the first
+removing the insulator over these regions (see @fig-metal_connection). Note that the first
 connection between these regions is always over the metal 1 layer. To
 switch between the different Metal layers, vias can be used, similar to
 a multilayer PCB design. These vias are formed by opening the insulator
-and placing in an conductor like tungsten the opening.
+and placing in an conductor like tungsten the opening. In the figure this process is simplied.
 
-![Metal connection to the drain and source contacts](../images/sec_finns_property/image6.png){width="6.109148075240595in"
+![Metal connection to the drain and source contacts](../images/sec_finns_property/image6.png){#fig-metal_connection width="6.109148075240595in"
 height="3.931312335958005in"}
 
 
@@ -115,11 +115,11 @@ of a PMOS will be pulled to VDD. To have multiple locations to where the
 bulk or NWell connected to their potentials is advised.
 
 The later chapters will work in the sg13g2 technology, the knowledge
-acquired in this chapter can be mapped to this technology. The figure 5
+acquired in this chapter can be mapped to this technology. The figure (see @fig-layer_comp)
 compares the technology on the left, with the learned knowledge on the
 right. Note that the PWell is not used for NMOS devices only for ties.
 
-![ayer comparison between IHP and theory](../images/sec_finns_property/image8.png){width="6.989583333333333in"
+![ayer comparison between IHP and theory](../images/sec_finns_property/image8.png){#fig-layer_comp width="6.989583333333333in"
 height="1.4267399387576554in"}
 
 
@@ -295,10 +295,10 @@ configure it accordingly.
 
 To connect the gate of a MOS device the GatPoly needs to be connected to
 Metal1 through the Cnt layer. In contrast to the source and drain
-contacts this need to be done by hand. See figure 5 for a DRC clean
+contacts this need to be done by hand. See (@fig-gat_connection) for a DRC clean
 connection of the gate of an NMOS device.
 
-![Example DRC clean connection of the gate](../images/sec_finns_property/image9.png){width="4.967361111111111in"
+![Example DRC clean connection of the gate](../images/sec_finns_property/image9.png){#fig-gat_connection width="4.967361111111111in"
 height="3.186608705161855in"}
 
 
@@ -313,6 +313,7 @@ The layout of the 5T-OTA was done in multiple iterations, each iteration
 taught valuable lessons. The next section presents these lessons,
 outlining a specific workflow and offering tips and guidance for
 beginners.
+
 
 #### Tips and tricks for the Layout Process. 
 
@@ -416,12 +417,12 @@ body "pin" is not connected to a defined potential. In an prior chapter
 the process of tying down the substrate was already explained. In this
 technology the substrate is a p-substrate, this means the NWells need to
 be tied down and there must be multiple tying down points for the
-p-substrate (see Figure 7). Please note that the size of the masks shown
+p-substrate (see @fig-tiedown). Please note that the size of the masks shown
 has been altered for visibility reasons. Also note that each PMOS needs
 its own tie to the VDD potential, while the ties for the NMOS can be
 placed anywhere on the layout, as the substrate is the bulk.
 
-![Tying down different types of bulks contacts. Not to scale.](../images/sec_finns_property/image11.png){width="6.122449693788276in"
+![Tying down different types of bulks contacts. Not to scale.](../images/sec_finns_property/image11.png){#fig-tiedown width="6.122449693788276in"
 height="3.1256944444444446in"}
 
 
@@ -437,7 +438,7 @@ Running the DRC often and addressing them as soon as possible, allows
 for a denser and generally more compact layout. It also reduces the time
 spend reworking the layout after all devices have been connected.
 
-As described in chapter (link to chapter) the "Marker Database Browser"
+As described in set up chapter  the "Marker Database Browser"
 is a built-in tool for addressing DRC errors. This tool shows the amount
 of DRC errors as well as the type. After following the steps described
 in the setup, one can open the Brower under Tool-\>Marker Browser. And
