@@ -13,4 +13,12 @@ _manuscript
 simulations
 *.html
 site_libs/
+*.quarto_ipynb
 
+/.quarto/
+
+*.pdf
+*.aux
+*.log
+*.tex
+*.toc
