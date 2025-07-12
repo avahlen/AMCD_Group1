@@ -42,6 +42,10 @@ Legend:
 
 7 Conclusion and Outlook (missing)
 
+## To Dos
+
+
+
 ## TOC suggestion (Main)
 
 1 Abstract (max. 0,5 page)
@@ -152,7 +156,7 @@ This documentation provides a development report, which documents the design pro
 
 All the results of this report and development approach to design a Biquad are publicly available on GitHub (LINK...). Everyone is invited and should feel free to use, change, and share this work. 
 This whole course and project wouldn't be possible without the great Open-Source-Tools provided by the amazing community of layout designers, enthusiasts, and developers. 
-Here a list with just a few of this programs: `IC-OSIC-TOOLS`, `IHP Open PDK`, `Linux`, `Docker`, `Xschem`, `ngspice`, `KLayout`, `Quarto`, `Pandoc`, `TexLive`, `Python`, `Git`, `CoCalc`,
+Here a list with just a few of this programs: `IC-OSIC-TOOLS`, `IHP Open PDK`, `Linux`, `Docker`, `Xschem`, `ngspice`, `KLayout`, `Quarto`, `Vim`, `Pandoc`, `TexLive`, `Python`, `Git`, `CoCalc`, `LibreOffice`, 
 
 
 
