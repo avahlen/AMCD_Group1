@@ -204,9 +204,10 @@ Now create a folder called LVS in this main layout directory.
 
 For ease of access, create shell-script in your main layout folder to
 run LVS. The command saved with in the file should be:\
-python /foss/pdks/ihp-sg13g2/libs.tech/klayout/tech/lvs/run_lvs.py
-\--netlist= YOUR_PROJECT.spice \--layout= YOUR_PROJECT.gds
-\--run_dir=LVS/
+
+```shell
+python /foss/pdks/ihp-sg13g2/libs.tech/klayout/tech/lvs/run_lvs.py --netlist= YOUR_PROJECT.spice --layout=YOUR_PROJECT.gds --run_dir=LVS/
+```
 
 Try running this command, to ensure it runs correctly. If it fails,
 saying something about "use_same_circuit", check the names of your
@@ -239,7 +240,8 @@ After loading the .lvsdb file the cross-reference tab will show the
 discrepancies between the netlists. This is because no layout has been
 created yet.
 
-Some quality-of-life options:
+:::{.callout-tip collapse="true"}
+#### Some quality-of-life options
 
 -   To provide a better overview of the used layers, right click on the
     right-hand side layer tab to open a pop up menu and select "*hide
@@ -258,6 +260,7 @@ Some quality-of-life options:
 
 -   To change to dark mode select
     *File-\>Setup-\>Display-\>Background-\>Background Color-\>#42*
+:::
 
 The real layout process can now begin in Klayout. Different from PCB
 design, the symbols on the schematic side do not need to be matched to a
@@ -314,7 +317,7 @@ taught valuable lessons. The next section presents these lessons,
 outlining a specific workflow and offering tips and guidance for
 beginners.
 
-
+::::{.callout-tip collapse="true"}
 #### Tips and tricks for the Layout Process. 
 
 -   Run LVS and DRC every 1 to 3 devices!
@@ -355,8 +358,8 @@ beginners.
 -   Use the polygon only on special occasions as it is harder to clear
     of DRC errors.
 
-**Remarks for those who come from EDA software like KiCad. These might
-change in future releases.**
+:::{.callout-note collapse="true"}
+##### Coming from discrete EDA software
 
 -   The devices will not be placed automatically.
 
@@ -381,6 +384,8 @@ change in future releases.**
 -   Text size can't be set but will adjust to the zoom level.
 
 -   The GUI is sometimes not working, especially true for LVS.
+:::
+::::
 
 ### Working with LVS during layouting
 
