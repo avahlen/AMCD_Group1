@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Theoretical Background</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../content/_sec_characterisation.html" rel="next">
+<link href="../content/_sec_introduction.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e22fbe6e69edb8577f7b7bd0719516f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/_sec_theoretical_background.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theoretical Background</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">IC Design of a Universal Biquad Filter</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TOC (only temporary)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_theoretical_background.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theoretical Background</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_characterisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Characterisation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_finns_part.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Preamble to the Schematic</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_filter-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Filter Design</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_conclusion-outlook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bibliography</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#biquad-filter" id="toc-biquad-filter" class="nav-link active" data-scroll-target="#biquad-filter"><span class="header-section-number">2.1</span> Biquad filter</a>
+  <ul class="collapse">
+  <li><a href="#universal-biquad-filter" id="toc-universal-biquad-filter" class="nav-link" data-scroll-target="#universal-biquad-filter"><span class="header-section-number">2.1.1</span> Universal biquad filter</a></li>
+  <li><a href="#characteristics" id="toc-characteristics" class="nav-link" data-scroll-target="#characteristics"><span class="header-section-number">2.1.2</span> Characteristics</a></li>
+  </ul></li>
+  <li><a href="#operational-amplifier" id="toc-operational-amplifier" class="nav-link" data-scroll-target="#operational-amplifier"><span class="header-section-number">2.2</span> Operational Amplifier</a>
+  <ul class="collapse">
+  <li><a href="#voltage-feedback-amplifiers-vfa" id="toc-voltage-feedback-amplifiers-vfa" class="nav-link" data-scroll-target="#voltage-feedback-amplifiers-vfa"><span class="header-section-number">2.2.1</span> Voltage-Feedback Amplifiers (VFA)</a></li>
+  <li><a href="#operational-transconductance-amplifier-ota" id="toc-operational-transconductance-amplifier-ota" class="nav-link" data-scroll-target="#operational-transconductance-amplifier-ota"><span class="header-section-number">2.2.2</span> Operational Transconductance Amplifier (OTA)</a></li>
+  <li><a href="#variants" id="toc-variants" class="nav-link" data-scroll-target="#variants"><span class="header-section-number">2.2.3</span> Variants ?</a></li>
+  </ul></li>
+  <li><a href="#mosfet-metal-oxide-semiconductor-field-effect-transistor" id="toc-mosfet-metal-oxide-semiconductor-field-effect-transistor" class="nav-link" data-scroll-target="#mosfet-metal-oxide-semiconductor-field-effect-transistor"><span class="header-section-number">2.3</span> MOSFET (Metal-Oxide-Semiconductor Field-Effect-Transistor )</a>
+  <ul class="collapse">
+  <li><a href="#small-signal-representation" id="toc-small-signal-representation" class="nav-link" data-scroll-target="#small-signal-representation"><span class="header-section-number">2.3.1</span> Small-Signal Representation</a></li>
+  <li><a href="#sizing" id="toc-sizing" class="nav-link" data-scroll-target="#sizing"><span class="header-section-number">2.3.2</span> Sizing</a></li>
+  <li><a href="#current-mirror" id="toc-current-mirror" class="nav-link" data-scroll-target="#current-mirror"><span class="header-section-number">2.3.3</span> Current Mirror</a></li>
+  <li><a href="#differential-stage" id="toc-differential-stage" class="nav-link" data-scroll-target="#differential-stage"><span class="header-section-number">2.3.4</span> Differential Stage</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theoretical Background</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>my idea was to group all theoretics into one chapter, like a when the information becomes necessary during the quarto book, people can just jump back to this. we would circumvent having to introduce every little concept seperately whenever it comes up…</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I am thinking about changing the order, so that we are starting with biquads and work through the filter design from big to small…</p>
+</div>
+</div>
+<p>This chapter introduces the theory and core concepts necessary for IC design of a biquad filter. It is structured in a way, that it goes from the big picture to the small components. First, biquad filters are introduced with a focus on the universal biquad filter. After that, operational amplifiers come into the the foreground, as biquad filters make use of them in their circuits. Operational amplifiers are looked upon from an IC design standpoint.</p>
+<section id="biquad-filter" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="biquad-filter"><span class="header-section-number">2.1</span> Biquad filter</h2>
+<p>The biquadratic filter, also known as the biquad filter, has its earliest implementation in the 1960s but is still in use today, most commonly in radio frequency receivers <span class="citation" data-cites="razavi2018">(<a href="references.html#ref-razavi2018" role="doc-biblioref">Razavi 2018</a>)</span>. In its application in RF-technology, it is used to remove unwanted neighboring signals ans noise <span class="citation" data-cites="razavi2024">(<a href="references.html#ref-razavi2024" role="doc-biblioref">Razavi 2024</a>)</span>. As biquad filter are second-order filters, they are also used as building blocks for higher filter implementations, by cascading them and adding first order filters <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span>.</p>
+<section id="universal-biquad-filter" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="universal-biquad-filter"><span class="header-section-number">2.1.1</span> Universal biquad filter</h3>
+<p>For the filter design in this project, an universal biquad filter is used. The universal biquad filter is biquad filter variant with four operational amplifiers used in its design and the property of being able to be used in four different filter variants. Depending on the output of the universal biquad used, a low pass filter, high pass filter, band pass filter, or band stop filter will be implemented. This can be seen in (ref to figure of biquad fitler design). <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span></p>
+<div id="fig-BiquadCircuit" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-BiquadCircuit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<embed src="../images/sec_theorectical_background/biquad_circuit.pdf" class="img-fluid" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-BiquadCircuit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: circuit design of an universal biquad filter
+</figcaption>
+</figure>
+</div>
+<p>NOTE: change to png</p>
+<p>The universal biquad filter consists of two non-inverting amplifiers working as adders in the circuit and two integrators. By setting <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span> to specific values, the resonance frequency can be chosen. Other parameters adjustable in the universal biquad filter are the quality factor <span class="math inline">\(Q\)</span> and the low-frequency gain <span class="math inline">\(H_0\)</span>. The quality factor and low-frequency gain determine the frequency response peaks of the low pass filter and the band pass filter. <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span></p>
+</section>
+<section id="characteristics" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="characteristics"><span class="header-section-number">2.1.2</span> Characteristics</h3>
+<p>NOTE: no more than 3 subsections!</p>
+<p>As the universal biquad filter is a second order filter with the specified outputs low pass, high pass, band pass, and band stop, each filter option can be described with a tranfer function on system level. The general second order transfer function is:</p>
+<p><span id="eq-TFSecondOrder"><span class="math display">\[
+H(s) = \frac{a_1 s^2 + b_1 s + c_1}{a_2 s^2 + b_2 s + c_2}
+\tag{2.1}\]</span></span></p>
+<p>The coeffcients can be choosen so, that different responses, like low pass, high pass, band pass, and band stop are achieved.</p>
+<p>In filter design a variant of this generalized transfer function is often choosen because it is easier describe the system by quality factor and angular frequency. <a href="#eq-TFSecondOrderBiquad" class="quarto-xref">Equation&nbsp;<span>2.2</span></a> is an exemplatory low pass filter with a transfer function specified for filter design. <span class="citation" data-cites="razavi2018">(<a href="references.html#ref-razavi2018" role="doc-biblioref">Razavi 2018</a>)</span></p>
+<p><span id="eq-TFSecondOrderBiquad"><span class="math display">\[
+H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
+\tag{2.2}\]</span></span></p>
+<p><span class="math inline">\(Q\)</span> determines amoung other things the amount of peaking the transfer function has at the chosen frequency. <span class="quarto-unresolved-ref">?lst-lowPassDifferentQ</span> shows this graphically, the amout of peaking increases with increasing quality factor <span class="math inline">\(Q\)</span>.</p>
+<div id="cell-lst-lowPassDifferentQ" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Behavioral Analysis Biquad Filter</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial values</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>f0 <span class="op">=</span> <span class="fl">1e3</span>  <span class="co"># Resonance frequency in Hz</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>w0 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f0  <span class="co"># Angular frequency in rad/s</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Q1 <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Quality factor</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Q2 <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Q3 <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Q4 <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Q5 <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>H0 <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Play around with this later</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Logarithmic frequency axis</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>frequencies <span class="op">=</span> np.logspace(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">10000</span>)  <span class="co"># Frequency from 10^2 to 10^4 Hz</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="ot">1j</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> frequencies  <span class="co"># Laplace-Variable s = jω</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">############################################</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Transfer functions of Active Filters</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">############################################</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">### Numerator</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Low Pass Filter</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>b_lp <span class="op">=</span> H0</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># High Pass Filter</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#b_hp = (H0 * (s**2 / w0**2))</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Band Pass Filter</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#b_bp = (-H0 * (s / w0))</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Band Stop Filter</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">#b_bs = -((1 + (s**2 / (w0**2))) * H0)</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Denominator -&gt; for all filters the same</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>a0 <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>a1_1 <span class="op">=</span> (s <span class="op">/</span> (w0 <span class="op">*</span> Q1))</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>a1_2 <span class="op">=</span> (s <span class="op">/</span> (w0 <span class="op">*</span> Q2))</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>a1_3 <span class="op">=</span> (s <span class="op">/</span> (w0 <span class="op">*</span> Q3))</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>a1_4 <span class="op">=</span> (s <span class="op">/</span> (w0 <span class="op">*</span> Q4))</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>a1_5 <span class="op">=</span> (s <span class="op">/</span> (w0 <span class="op">*</span> Q5))</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>a2 <span class="op">=</span> (s<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (w0<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>den1 <span class="op">=</span> a0 <span class="op">+</span> a1_1 <span class="op">+</span> a2</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>den2 <span class="op">=</span> a0 <span class="op">+</span> a1_2 <span class="op">+</span> a2</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>den3 <span class="op">=</span> a0 <span class="op">+</span> a1_3 <span class="op">+</span> a2</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>den4 <span class="op">=</span> a0 <span class="op">+</span> a1_4 <span class="op">+</span> a2</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>den5 <span class="op">=</span> a0 <span class="op">+</span> a1_5 <span class="op">+</span> a2</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co">############################################</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculation of the transfer functions H(s)</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co">############################################</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>Hs_lp_1 <span class="op">=</span> b_lp <span class="op">/</span> den1</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>Hs_lp_2 <span class="op">=</span> b_lp <span class="op">/</span> den2</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>Hs_lp_3 <span class="op">=</span> b_lp <span class="op">/</span> den3</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>Hs_lp_4 <span class="op">=</span> b_lp <span class="op">/</span> den4</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>Hs_lp_5 <span class="op">=</span> b_lp <span class="op">/</span> den5</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co">#Hs_hp = b_hp / den</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co">#Hs_bp = b_bp / den</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co">#Hs_bs = b_bs / den</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Bode Diagram</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="co">#fig.suptitle("frequency response of biquad filter")</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Low Pass Filter</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].semilogx(frequencies, <span class="dv">20</span> <span class="op">*</span> np.log10(np.<span class="bu">abs</span>(Hs_lp_1)), label<span class="op">=</span><span class="st">'$Q = 1$'</span>)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].semilogx(frequencies, np.unwrap(np.angle(Hs_lp_1)) <span class="op">*</span> (<span class="dv">180</span> <span class="op">/</span> np.pi), label<span class="op">=</span><span class="st">'$Q = 1$'</span>)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].semilogx(frequencies, <span class="dv">20</span> <span class="op">*</span> np.log10(np.<span class="bu">abs</span>(Hs_lp_2)), label<span class="op">=</span><span class="st">'$Q = 2$'</span>)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].semilogx(frequencies, np.unwrap(np.angle(Hs_lp_2)) <span class="op">*</span> (<span class="dv">180</span> <span class="op">/</span> np.pi), label<span class="op">=</span><span class="st">'$Q = 2$'</span>)</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].semilogx(frequencies, <span class="dv">20</span> <span class="op">*</span> np.log10(np.<span class="bu">abs</span>(Hs_lp_3)), label<span class="op">=</span><span class="st">'$Q = 5$'</span>)</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].semilogx(frequencies, np.unwrap(np.angle(Hs_lp_3)) <span class="op">*</span> (<span class="dv">180</span> <span class="op">/</span> np.pi), label<span class="op">=</span><span class="st">'$Q = 5$'</span>)</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].semilogx(frequencies, <span class="dv">20</span> <span class="op">*</span> np.log10(np.<span class="bu">abs</span>(Hs_lp_4)), label<span class="op">=</span><span class="st">'$Q = 10$'</span>)</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].semilogx(frequencies, np.unwrap(np.angle(Hs_lp_4)) <span class="op">*</span> (<span class="dv">180</span> <span class="op">/</span> np.pi), label<span class="op">=</span><span class="st">'$Q = 10$'</span>)</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].semilogx(frequencies, <span class="dv">20</span> <span class="op">*</span> np.log10(np.<span class="bu">abs</span>(Hs_lp_5)), label<span class="op">=</span><span class="st">'$Q = 100$'</span>)</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].semilogx(frequencies, np.unwrap(np.angle(Hs_lp_5)) <span class="op">*</span> (<span class="dv">180</span> <span class="op">/</span> np.pi), label<span class="op">=</span><span class="st">'$Q = 100$'</span>)</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="co"># High Pass Filter</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="co">axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_hp)), label='high pass')</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="co">axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_hp)) * (180 / np.pi), label='high pass')</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Band Pass Filter</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="co">axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_bp)), label='band pass')</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co">axs[1].semilogx(frequencies, np.unwrap(np.angle(Hs_bp)) * (180 / np.pi), label='band pass')</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Band Stop Filter</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="co">axs[0].semilogx(frequencies, 20 * np.log10(np.abs(Hs_bs)), label='band stop')</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="co">axs[1].semilogx(frequencies, (np.angle(Hs_bs)) * (180 / np.pi), label='band stop')</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="co">#axs[0].title("amplitude response")</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_xlabel(<span class="st">"frequency/Hz"</span>)</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">"amplitude/dB"</span>)</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="co">#axs[0].set_ylim(-50, 25)</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">"both"</span>, ls<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].legend(loc<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="co">#axs[1].title("phase response")</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xlabel(<span class="st">"frequency/Hz"</span>)</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">"phase/deg"</span>)</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">"both"</span>, ls<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].legend()</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="lst-lowpassdifferentq" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-lowpassdifferentq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;2.1: Low pass filter with different quality factors
+</figcaption>
+<div aria-describedby="lst-lowpassdifferentq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="_sec_theoretical_background_files/figure-html/lst-lowpassdifferentq-output-1.png" width="661" height="467" class="figure-img">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>The height of the peak can be calculated with:</p>
+<p><span id="eq-calculatePeak"><span class="math display">\[
+A_{peak} = \frac{Q}{\sqrt{1 - \frac{1}{4Q^2}}}
+\tag{2.3}\]</span></span></p>
+<p>For <span class="math inline">\(Q = 100\)</span> the peak is <span class="math inline">\(A_{peak} = 100.001\)</span>, which converted into dB is <span class="math inline">\(A_{peak,dB} = 40\,dB\)</span>, as is shown in <span class="quarto-unresolved-ref">?fig-lowPassDifferentQ</span>.</p>
+</section>
+</section>
+<section id="operational-amplifier" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="operational-amplifier"><span class="header-section-number">2.2</span> Operational Amplifier</h2>
+<p>As seen in <a href="#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> a Biquad Filter consists four Operational Amplifiers. To get a better understanding of these, this chaper will discuss the main arguments of OPAMS. There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid there exist nine diffrent types of the Opamps, but only four are mainly used <span class="citation" data-cites="Approximating_OPAMP">(<a href="references.html#ref-Approximating_OPAMP" role="doc-biblioref">Schmid 2000</a>)</span>. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output. This results in four basic configurations, as shown in the accompanying table <a href="#tbl-opamp_comapre" class="quarto-xref">Table&nbsp;<span>2.1</span></a>.</p>
+<div id="tbl-opamp_comapre" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-opamp_comapre-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: Four typicall Operational Amplifiers
+</figcaption>
+<div aria-describedby="tbl-opamp_comapre-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 42%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Voltage output</th>
+<th>Current output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Voltage input</strong></td>
+<td>Voltage-Feedback Amplifiers</td>
+<td>Operational Transconductance Amplifier</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><img src="../images/sec_theorectical_background/OpV_VV.png" class="img-fluid figure-img"></td>
+<td><img src="../images/sec_theorectical_background/OpV_VC.png" class="img-fluid figure-img"></td>
+</tr>
+<tr class="odd">
+<td><strong>Current input</strong></td>
+<td>Current-Feedback Amplifiers</td>
+<td>Current Amplifier</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><img src="../images/sec_theorectical_background/OpV_CV.png" class="img-fluid figure-img"></td>
+<td><img src="../images/sec_theorectical_background/OpV_CC.png" class="img-fluid figure-img"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As a general rule, the simplest circuit that can do a job is usually the best choice. <span class="citation" data-cites="hpretlacd">(<a href="references.html#ref-hpretlacd" role="doc-biblioref">H. Pretl and Michael Koefinger 2025</a>)</span></p>
+</div>
+</div>
+<section id="voltage-feedback-amplifiers-vfa" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="voltage-feedback-amplifiers-vfa"><span class="header-section-number">2.2.1</span> Voltage-Feedback Amplifiers (VFA)</h3>
+<p>When discussing operational amplifiers (OPAMPs), most sources refer to the Voltage-Feedback Amplifier. These VFAs are <strong>voltage-controlled voltage sources</strong>, essentially acting as voltage boosters. They are characterized by a high-impedance input for both the non-inverting and inverting terminals, and a low-impedance voltage output. To realize various desired circuits, such as amplification, integration, addition/subtraction, etc…, these functions should ideally be achieved only through the surrounding circuitry. To meet this requirement, three main requirements need be satisfied:</p>
+<ul>
+<li><strong>Extremely High Voltage Gain</strong>: Typically ranging from 60 to 120 dB (or a gain factor of <span class="math inline">\(10^4\)</span> to <span class="math inline">\(10^6\)</span>), this gain should be available over a wide frequency range.</li>
+<li><strong>High Impedance at Differential Inputs</strong>: Ensuring minimal loading of the signal source.</li>
+<li><strong>Low Impedance at the Output</strong>: Allowing the amplifier to drive various loads without significant voltage drop.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Difference between a voltage source and a current source
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Voltage source</strong><br>
+A voltage source creates a constant voltage output by changing the output.</p>
+<p><strong>Current source</strong> A current source creates a constant current by changing the voltage</p>
+<p>Both of this sources can be explained by Ohms-Law: <span class="math inline">\(R = \frac{U}{I}\)</span>. For example the voltage source: There is no influence of the load, so <span class="math inline">\(R\)</span> may change and its value is unknown to the source. So to keep the voltage stable we can only change the current.</p>
+</div>
+</div>
+</section>
+<section id="operational-transconductance-amplifier-ota" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="operational-transconductance-amplifier-ota"><span class="header-section-number">2.2.2</span> Operational Transconductance Amplifier (OTA)</h3>
+<p>In the design process of the biquad only OTAs will be used, so the focus of this chapter will be on them. The operational transconductance amplifier puts out out a current proportional to its input voltage, unlike Voltage-Feedback Amplifiers REF:KAPITEL_VFA. In other words an OTA is a <strong>voltage controlled current source</strong>.</p>
+<div id="fig-otasym" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-otasym-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_theorectical_background/ota_symbol.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-otasym-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Schematic symbol of an OTA <span class="citation" data-cites="book-rotaktivefilter">(<a href="references.html#ref-book-rotaktivefilter" role="doc-biblioref"><strong>book-rotaktivefilter?</strong></a>)</span>
+</figcaption>
+</figure>
+</div>
+<p>As seen in the figure <a href="#fig-otasym" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> the OTA has the two differental inputs and the current output. On top of that it has a biasing current input <span class="math inline">\(I_{bias}\)</span> which can control the</p>
+<section id="transconductance" class="level4" data-number="2.2.2.1">
+<h4 data-number="2.2.2.1" class="anchored" data-anchor-id="transconductance"><span class="header-section-number">2.2.2.1</span> Transconductance</h4>
+<p>Transconductance is a fundamental parameter that describes the relationship between the input voltage and the output current in electronic devices, particularly in transistors and vacuum tubes. It is defined as the ratio of the change in output current to the change in input voltage, under conditions where all other variables are held constant. Mathematically, it is expressed as:</p>
+<p><span class="math display">\[
+g_m = \frac{\Delta I_{out}}{\Delta V_{in}}
+\]</span></p>
+<p>where <span class="math inline">\(g_m\)</span> is the transconductance, <span class="math inline">\(\Delta I_{out}\)</span> is the change in output current, and <span class="math inline">\(\Delta V_{in}\)</span> is the change in input voltage. The unit of transconductance is the siemens (S), which is equivalent to amperes per volt (A/V). Historically, it was also measured in “mhos,” which is “ohm” spelled backwards, reflecting its inverse relationship to resistance.</p>
+<p>The term “transconductance” originates from the concept of “transfer conductance.” It combines the ideas of “transfer,” indicating the transfer of a signal from the input to the output, and “conductance,” which is the reciprocal of resistance and measures how easily a material conducts electric current. In essence, transconductance quantifies how effectively a device can convert a voltage change at its input into a proportional current change at its output.</p>
+<p>Transconductance is a crucial parameter in the design and analysis of electronic circuits, especially in amplifiers. In vacuum tubes and field-effect transistors (FETs), the transconductance determines the device’s ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current. This property makes transconductance a key factor in the performance and efficiency of various electronic devices and circuits.</p>
+<p>####HW 5-Transistor OTA</p>
+</section>
+</section>
+<section id="variants" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="variants"><span class="header-section-number">2.2.3</span> Variants ?</h3>
+<p>maybe like miller opamp or something like that</p>
+</section>
+</section>
+<section id="mosfet-metal-oxide-semiconductor-field-effect-transistor" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="mosfet-metal-oxide-semiconductor-field-effect-transistor"><span class="header-section-number">2.3</span> MOSFET (Metal-Oxide-Semiconductor Field-Effect-Transistor )</h2>
+<p>To get a general insight how an Operational Amplifier works and to uderstand the difference between a “off th shelf” part and a self made IC-Design, its nessesary to understand the main component: The MOSFET.</p>
+<p>To be more precise, its nesessary to understand the behaviour of a MOSFET. Since were designing one from scratch, its possible to change the width W and leght L of the pysical layout. By doing this there is a lot of room for freedom and experimental space.</p>
+<p>BILD N-MOS</p>
+<p>BILD P-MOS</p>
+<section id="small-signal-representation" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="small-signal-representation"><span class="header-section-number">2.3.1</span> Small-Signal Representation</h3>
+</section>
+<section id="sizing" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="sizing"><span class="header-section-number">2.3.2</span> Sizing</h3>
+<p>As mentioned earlier we have several degrees of freedom in our design, like <span class="math inline">\(W\)</span>, <span class="math inline">\(L\)</span>, or the bias current <span class="math inline">\(I_D\)</span>. The problem is, that its extremly complex to describe a MOSFET mathmaticly and on top to that of change values to get a desired behaviour. Glady a wide used technique, which was introduced by P. Jespers and B. Murmann, is the <span class="math inline">\(g_\mathrm{m}/I_\mathrm{D}\)</span> approach \ref{Jesper…. Pretl 3).</p>
+<p><em>Saturation</em> Saturation is a specific operation mode of a transistor. Its also called “ON mode”, because a channel between drain and source is created. This state is reached when the voltage <span class="math inline">\(V_DS &gt;= (V_GS - V_th)\)</span>. When this happens the drain-source current I_DS gets stable (saturates) and becomes nearly indipendet of V_DS. Still it can be very well controlled via V_GS, due to an effect called “pinch-off” (<span class="math inline">\(\ref{https://en.wikipedia.org/wiki/MOSFET}\)</span>).</p>
+<p>The <span class="math inline">\(g_\mathrm{m}/I_\mathrm{D}\)</span> method is primarly inteded to be used in saturated MOSFETs. To ensure this we keep the drain-source voltage as <span class="math inline">\(V_ds = V_DD / 2\)</span>.</p>
+</section>
+<section id="current-mirror" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="current-mirror"><span class="header-section-number">2.3.3</span> Current Mirror</h3>
+</section>
+<section id="differential-stage" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="differential-stage"><span class="header-section-number">2.3.4</span> Differential Stage</h3>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-hpretlacd" class="csl-entry" role="listitem">
+H. Pretl and Michael Koefinger. 2025. <span>“<span>Analog Circuit Design</span>.”</span> <a href="https://iic-jku.github.io/analog-circuit-design/" class="uri">https://iic-jku.github.io/analog-circuit-design/</a>.
+</div>
+<div id="ref-aslkpro2012" class="csl-entry" role="listitem">
+Rao, K. R. K., and C. P. Ravikumar. 2012. <em>Analog System Lab Kit PRO MANUAL</em>. Texas Instruments.
+</div>
+<div id="ref-razavi2018" class="csl-entry" role="listitem">
+Razavi, Behzad. 2018. <span>“The Biquadratic Filter.”</span> <em>IEEE Solid-State Circuit Magazine</em>, 11–16.
+</div>
+<div id="ref-razavi2024" class="csl-entry" role="listitem">
+———. 2024. <span>“The Design of a Biquadratic Filter.”</span> <em>IEEE Solid-State Circuit Magazine</em>, 6–13.
+</div>
+<div id="ref-Approximating_OPAMP" class="csl-entry" role="listitem">
+Schmid, H. 2000. <span>“Approximating the Universal Active Element.”</span> <em>IEEE Transactions on Circuits and Systems II: Analog and Digital Signal Processing</em> 47 (11): 1160–69. <a href="https://doi.org/10.1109/82.885124">https://doi.org/10.1109/82.885124</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../content/_sec_introduction.html" class="pagination-link" aria-label="TOC (only temporary)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">TOC (only temporary)</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../content/_sec_characterisation.html" class="pagination-link" aria-label="Characterisation">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Characterisation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
