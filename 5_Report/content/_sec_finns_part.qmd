@@ -206,7 +206,7 @@ For ease of access, create shell-script in your main layout folder to
 run LVS. The command saved with in the file should be:\
 
 ```shell
-python /foss/pdks/ihp-sg13g2/libs.tech/klayout/tech/lvs/run_lvs.py --netlist= YOUR_PROJECT.spice --layout=YOUR_PROJECT.gds --run_dir=LVS/
+python /foss/pdks/ihp-sg13g2/libs.tech/klayout/tech/lvs/run_lvs.py --netlist=YOUR_PROJECT.spice --layout=YOUR_PROJECT.gds --run_dir=LVS/
 ```
 
 Try running this command, to ensure it runs correctly. If it fails,
