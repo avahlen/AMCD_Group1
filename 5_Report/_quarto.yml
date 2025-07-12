@@ -14,7 +14,7 @@ book:
     - content/_sec_introduction.qmd
     - content/_sec_theoretical_background.qmd
     - content/_sec_characterisation.qmd
-    - content/_sec_xschem.qmd
+    #- content/_sec_xschem.qmd
     - content/_sec_finns_part.qmd
     - content/_sec_filter-design.qmd        
     - content/_sec_discussion.qmd
