@@ -168,8 +168,8 @@ For $Q = 100$ the peak is $A_{peak} = 100.001$, which converted into dB is $A_{p
 
 
 ## Operational Amplifier
-As seen in @fig-BiquadCircuit a Biquad Flter consists four Operational Amplifiers. To get a better understanding of these, this chaper will discuss the main arguments of OPAMS.
-There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid there exist nine diffrent types of the Opamps, but onyl four are mainly used [@Approximating_OPAMP]. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output. 
+As seen in @fig-BiquadCircuit a Biquad Filter consists four Operational Amplifiers. To get a better understanding of these, this chaper will discuss the main arguments of OPAMS.
+There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid there exist nine diffrent types of the Opamps, but only four are mainly used [@Approximating_OPAMP]. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output. 
 This results in four basic configurations, as shown in the accompanying table @tbl-opamp_comapre.
 
 
@@ -190,14 +190,14 @@ As a general rule, the simplest circuit that can do a job is usually the best ch
 
 
 ### Voltage-Feedback Amplifiers (VFA)
-When discussing operational amplifiers (OPAMPs), most sources refer to the Voltage-Feedback Amplifier. These VFAs are voltage-controlled voltage sources, essentially acting as **voltage boosters**. They are characterized by a high-impedance input for both the non-inverting and inverting terminals, and a low-impedance voltage output. To realize various desired circuits, such as amplification, integration, addition/subtraction, etc., these functions should ideally be achieved only through the surrounding circuitry. To meet this requirement, three main requirements need be satisfied:
+When discussing operational amplifiers (OPAMPs), most sources refer to the Voltage-Feedback Amplifier. These VFAs are **voltage-controlled voltage sources**, essentially acting as voltage boosters. They are characterized by a high-impedance input for both the non-inverting and inverting terminals, and a low-impedance voltage output. To realize various desired circuits, such as amplification, integration, addition/subtraction, etc..., these functions should ideally be achieved only through the surrounding circuitry. To meet this requirement, three main requirements need be satisfied:
 
-- **Extremely High Voltage Gain**: Typically ranging from 60 to 120 dB (or a gain factor of \(10^4\) to \(10^6\)), this gain should be available over a wide frequency range.
+- **Extremely High Voltage Gain**: Typically ranging from 60 to 120 dB (or a gain factor of $10^4$ to $10^6$), this gain should be available over a wide frequency range.
 - **High Impedance at Differential Inputs**: Ensuring minimal loading of the signal source.
 - **Low Impedance at the Output**: Allowing the amplifier to drive various loads without significant voltage drop.
 
 
-::: {.callout-info}
+::: {.callout-important}
 ## Difference between a voltage source and a current source 
 **Voltage source**  
 A voltage source creates a constant voltage output by changing the output. 
@@ -209,11 +209,13 @@ Both of this sources can be explained by Ohms-Law: $R = \frac{U}{I}$. For exampl
 :::
 
 ### Operational Transconductance Amplifier (OTA)
-In the design process only OTAs will be used, so the focus of this chapter will be on them. The operational transconductance amplifier puts out out a current, Unlike Voltage-Feedback Amplifiers REF:KAPITEL_VFA, proportional to its input voltage. In other words an OTA is a voltage controlled current source. 
+In the design process of the biquad only OTAs will be used, so the focus of this chapter will be on them. The operational transconductance amplifier puts out out a current proportional to its input voltage, unlike Voltage-Feedback Amplifiers REF:KAPITEL_VFA. In other words an OTA is a **voltage controlled current source**. 
 
-The word transconductance is
+![Schematic symbol of an OTA @book-rotaktivefilter](../images/sec_theorectical_background/ota_symbol.png){#fig-otasym}
 
-### Transconductance
+As seen in the figure @fig-otasym the OTA has the two differental inputs and the current output. On top of that it has a biasing current input $I_{bias}$ which can control the 
+
+#### Transconductance
 
 Transconductance is a fundamental parameter that describes the relationship between the input voltage and the output current in electronic devices, particularly in transistors and vacuum tubes. It is defined as the ratio of the change in output current to the change in input voltage, under conditions where all other variables are held constant. Mathematically, it is expressed as:
 
@@ -226,6 +228,8 @@ where $g_m$ is the transconductance, $\Delta I_{out}$ is the change in output cu
 The term "transconductance" originates from the concept of "transfer conductance." It combines the ideas of "transfer," indicating the transfer of a signal from the input to the output, and "conductance," which is the reciprocal of resistance and measures how easily a material conducts electric current. In essence, transconductance quantifies how effectively a device can convert a voltage change at its input into a proportional current change at its output.
 
 Transconductance is a crucial parameter in the design and analysis of electronic circuits, especially in amplifiers. In vacuum tubes and field-effect transistors (FETs), the transconductance determines the device's ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current. This property makes transconductance a key factor in the performance and efficiency of various electronic devices and circuits.
+
+####HW 5-Transistor OTA
 
 
 
