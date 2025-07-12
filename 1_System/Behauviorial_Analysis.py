@@ -12,13 +12,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Initial values
-f0 = 150  # Resonance frequency in Hz
+f0 = 1000  # Resonance frequency in Hz
 w0 = 2 * np.pi * f0  # Angular frequency in rad/s
 Q = 10  # Quality factor
 H0 = 1  # Play around with this later
 
 # Logarithmic frequency axis
-frequencies = np.logspace(0, 3, 1000)  # Frequency from 10^2 to 10^4 Hz
+frequencies = np.logspace(0, 4, 1000)  # Frequency from 10^2 to 10^4 Hz
 s = 1j * 2 * np.pi * frequencies  # Laplace-Variable s = jω
 
 ############################################

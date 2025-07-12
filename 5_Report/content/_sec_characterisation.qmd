@@ -610,20 +610,20 @@ The stability of the non-inverting amplifier can be verified by calculating the 
 the phase reserve is calculated by:
 
 $$
-\alpha = 180°
+\alpha = 180° - \varphi_k
 $$
 
 For circuits to be considered stable, the phase reserve has to be positive. To reduce overshoots during the transient response, it is customary to have a phase reserve of $\alpha > 45°$. [@reisch2007]
-
-:::{.callout-warning}
-insert figure from reisch page 244
-:::
 
 ![Example of a transcient response of a circuit with a phase reserve of $\alpha = 5.7°$ [@reisch2007]](/images/sec_characterisation/reisch_stability_example_trans.png){#fig-reischExampleStabilityTransient}
 
 Figure (reisch) shows the transient response of a circuit with a phase reserve of $\alpha = 5.7°. The overshoots are clearly visible and number of the overshoots per puls are larger then the customary "one over, one under"-rule. As the phase reserve is positive, the figure shows that even though the transient response is not ideal, the oscillations are attenuated and the circuit is can be considered as stable.
 
 In practical application, the phase reserve can be graphically determined with the help of bode diagrams. The bode diagram of the circuit with an open feedback loop is simulated, so that the frequency $f_k$ can be read out. This is the frequnecy where the feedback gain is 1 or 0 dB. The corresponding frequency to that, is the phase of the feedback gain $\varphi_k$, the difference between $-180°$ and $\varphi_k$ is the phase reserve $\alpha$. [@reisch2007]
+
+:::{.callout-warning}
+Talk abut which ota was used for stability analysis
+:::
 
 :::{.callout-warning}
 insert circuit where the stability analsis was done from, like in ltspice
@@ -633,12 +633,100 @@ insert circuit where the stability analsis was done from, like in ltspice
 insert bode diagram figures (both: integrator and adder)
 :::
 
-In the following figures (ref) and (ref) this method was used to determine the stability over the phase reserve.
+
+:::{#fig-test}
+:::
+
+```{python}
+#| label: fig-stabilityAdder
+#| fig-cap: "Stability analysis of the adder"
+#| code-fold: true
+
+# Stability analysis adder
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0, '../simulation')
+import ltspy3
+
+sd=ltspy3.SimData('../simulation/stability_adder.raw',[b'v(v_out)',b'frequency'])
+
+nvout = sd.variables.index(b'v(v_out)')
+nfrequency = sd.variables.index(b'frequency')
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True)
+
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvout])))
+ax1.set_ylabel("Magnitude/dB")
+ax1.axvline(3e5,color='red',linestyle='--')
+ax1.grid(True, which="both", ls="--")
+
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvout], deg=True))
+ax2.axvline(3e5,color='red',linestyle='--')
+ax2.axhline(82.75,color='red',linestyle='--')
+ax2.set_ylabel("Phase/deg")
+ax2.set_xlabel("Frequency/Hz")
+
+
+plt.grid(True, which="both", ls="--")
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+#| label: fig-stabilityIntegrator
+#| fig-cap: "Stability analysis of the integrator"
+#| code-fold: true
+
+# Stability analysis integrator
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0, '../simulation')
+import ltspy3
+
+sd=ltspy3.SimData('../simulation/stability_integrator.raw',[b'v(v_out)',b'frequency'])
+
+nvout = sd.variables.index(b'v(v_out)')
+nfrequency = sd.variables.index(b'frequency')
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True)
+
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvout])))
+ax1.set_ylabel("Magnitude/dB")
+ax1.axvline(7e5,color='red',linestyle='--')
+ax1.grid(True, which="both", ls="--")
+
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvout], deg=True))
+ax2.axvline(7e5,color='red',linestyle='--')
+ax2.axhline(68,color='red',linestyle='--')
+ax2.set_ylabel("Phase/deg")
+ax2.set_xlabel("Frequency/Hz")
+
+plt.grid(True, which="both", ls="--")
+plt.tight_layout()
+plt.show()
+```
+
+In the following figures (ref) and @fig-stabilityIntegrator this method was used to determine the stability over the phase reserve.
+
 (add here part about whether they are stable...)
+
+The stability of the integrator circuit, as seen in @fig-stabilityIntegrator, shows a intersection of the magnitude plot with the $0\,dB$ line at about $f_k = 70\,kHz$, which corresponds to a phase of $\varphi_k = 68°$. This would leave a phase reserve of:
+
+$$
+\alpha_{int} = 180° - \varphi_k = 112° > 45°
+$$
+
+Therefore the integrator would be stable.
 
 #### OTA stability
 
 i have not found anything in pretl script, but i clearly remember mr. meiners talking about this...
+
+i have found something in pretls script, but looks not easy... look at chapter about mosfets
 
 ### Ideal Opamp
 
@@ -647,6 +735,267 @@ kinda forgot where I wanted to go with this one... ehhh maybe it will come back
 uhhh i think it was about the ideal circuit and spice analysis etc
 
 To check the behauviour of the implemented circuit against the modelled behauviour of the transfer function, the universal biquad was built as an ideal circuit with voltage-regulated current sources instead of OTAs.
+
+```{python}
+#| label: fig-idealCir
+#| fig-cap: "Simulation of an idealised biquad"
+#| code-fold: true
+
+# plot Ideal (voltage controlled current? source) biquad
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0, '../simulation')
+import ltspy3
+
+sd=ltspy3.SimData('../simulation/biquad_univ.raw')
+
+nvoutLPF = sd.variables.index(b'v(lpf)')
+nvoutHPF = sd.variables.index(b'v(hpf)')
+nvoutBPF = sd.variables.index(b'v(bpf)')
+nvoutBSF = sd.variables.index(b'v(bsf)')
+nfrequency = sd.variables.index(b'frequency')
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True)
+
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvoutLPF])),label='lpf')
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvoutHPF])),label='hpf')
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvoutBPF])),label='bpf')
+ax1.semilogx(sd.values[nfrequency],20*np.log10(abs(sd.values[nvoutBSF])),label='bsf')
+ax1.set_xlim([10e1,10e3])
+ax1.set_ylim([-40,20])
+ax1.set_ylabel("Magnitude/dB")
+ax1.grid(True, which="both", ls="--")
+ax1.legend()
+
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutLPF], deg=True),label='lpf')
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutHPF], deg=True),label='hpf')
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutBPF], deg=True),label='bpf')
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutBSF], deg=True),label='bsf')
+ax2.set_ylabel("Phase/deg")
+ax2.set_xlabel("Frequency/Hz")
+ax2.legend()
+
+plt.grid(True, which="both", ls="--")
+plt.tight_layout()
+plt.show()
+```
+
+here plot comp between python and ideal
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0, '../simulation')
+import ltspy3
+
+sd=ltspy3.SimData('../simulation/biquad_univ.raw')
+
+nvoutLPF = sd.variables.index(b'v(lpf)')
+nvoutHPF = sd.variables.index(b'v(hpf)')
+nvoutBPF = sd.variables.index(b'v(bpf)')
+nvoutBSF = sd.variables.index(b'v(bsf)')
+nfrequency = sd.variables.index(b'frequency')
+
+#behauvioural moddling with tfs
+
+# Initial values
+f0 = 1000  # Resonance frequency in Hz
+w0 = 2 * np.pi * f0  # Angular frequency in rad/s
+Q = 10  # Quality factor
+H0 = 1  # Play around with this later
+
+# Logarithmic frequency axis
+frequencies = np.logspace(0, 4, 1000)  # Frequency from 10^2 to 10^4 Hz
+s = 1j * 2 * np.pi * frequencies  # Laplace-Variable s = jω
+
+############################################
+# Transfer functions of Active Filters
+############################################
+
+
+### Numerator
+# Low Pass Filter
+b_lp = H0
+
+# High Pass Filter
+b_hp = (H0 * (s**2 / w0**2))
+
+# Band Pass Filter
+b_bp = (-H0 * (s / w0))
+
+# Band Stop Filter
+b_bs = -(1 + (s**2 / (w0**2))) * H0
+
+# Denominator -> for all filters the same
+a0 = 1
+a1 = (s / (w0 * Q))
+a2 = (s**2 / (w0**2))
+
+den = a0 + a1 + a2
+
+############################################
+# Calculation of the transfer functions H(s)
+############################################
+Hs_lp = b_lp / den
+Hs_hp = b_hp / den
+Hs_bp = b_bp / den
+Hs_bs = b_bs / den
+
+#mag plots
+
+fig, axs = plt.subplots(2, 2, sharex=True, sharey=True)
+
+ax1, ax2, ax3, ax4 = axs.flatten()
+
+# Plotting each
+ax1.semilogx(frequencies, 20 * np.log10(np.abs(Hs_lp)), label='tf')
+ax1.semilogx(sd.values[nfrequency], 20 * np.log10(abs(sd.values[nvoutLPF])), label='ngspice')
+ax1.set_ylabel("magnitude/dB")
+ax1.set_title("low pass filter")
+ax1.set_xlim([10,10e3])
+ax1.set_ylim([-40,25])
+ax1.grid(True, which="both", ls="--")
+ax1.legend()
+
+ax2.semilogx(frequencies, 20 * np.log10(np.abs(Hs_hp)), label='tf')
+ax2.semilogx(sd.values[nfrequency], 20 * np.log10(abs(sd.values[nvoutHPF])), label='ngspice')
+ax2.set_title("high pass filter")
+#ax2.set_xlim([10,10e3])
+#ax2.set_ylim([-40,25])
+ax2.grid(True, which="both", ls="--")
+ax2.legend()
+
+ax3.semilogx(frequencies, 20 * np.log10(np.abs(Hs_bp)), label='tf')
+ax3.semilogx(sd.values[nfrequency], 20 * np.log10(abs(sd.values[nvoutBPF])), label='ngspice')
+ax3.set_xlabel("frequency/Hz")
+ax3.set_ylabel("magnitude/dB")
+ax3.set_title("band pass filter")
+#ax3.set_xlim([10,10e3])
+#ax3.set_ylim([-40,25])
+ax3.grid(True, which="both", ls="--")
+ax3.legend()
+
+ax4.semilogx(frequencies, 20 * np.log10(np.abs(Hs_bs)), label='tf')
+ax4.semilogx(sd.values[nfrequency], 20 * np.log10(abs(sd.values[nvoutBSF])), label='ngspice')
+ax4.set_xlabel("frequency/Hz")
+ax4.set_title("band stop filter")
+#ax4.set_xlim([10,10e3])
+#ax4.set_ylim([-40,25])
+ax4.grid(True, which="both", ls="--")
+ax4.legend()
+
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0, '../simulation')
+import ltspy3
+
+sd=ltspy3.SimData('../simulation/biquad_univ.raw')
+
+nvoutLPF = sd.variables.index(b'v(lpf)')
+nvoutHPF = sd.variables.index(b'v(hpf)')
+nvoutBPF = sd.variables.index(b'v(bpf)')
+nvoutBSF = sd.variables.index(b'v(bsf)')
+nfrequency = sd.variables.index(b'frequency')
+
+#behauvioural moddling with tfs
+
+# Initial values
+f0 = 1000  # Resonance frequency in Hz
+w0 = 2 * np.pi * f0  # Angular frequency in rad/s
+Q = 10  # Quality factor
+H0 = 1  # Play around with this later
+
+# Logarithmic frequency axis
+frequencies = np.logspace(0, 4, 1000)  # Frequency from 10^2 to 10^4 Hz
+s = 1j * 2 * np.pi * frequencies  # Laplace-Variable s = jω
+
+############################################
+# Transfer functions of Active Filters
+############################################
+
+
+### Numerator
+# Low Pass Filter
+b_lp = H0
+
+# High Pass Filter
+b_hp = (H0 * (s**2 / w0**2))
+
+# Band Pass Filter
+b_bp = (-H0 * (s / w0))
+
+# Band Stop Filter
+b_bs = -(1 + (s**2 / (w0**2))) * H0
+
+# Denominator -> for all filters the same
+a0 = 1
+a1 = (s / (w0 * Q))
+a2 = (s**2 / (w0**2))
+
+den = a0 + a1 + a2
+
+############################################
+# Calculation of the transfer functions H(s)
+############################################
+Hs_lp = b_lp / den
+Hs_hp = b_hp / den
+Hs_bp = b_bp / den
+Hs_bs = b_bs / den
+
+#phase plots
+
+fig, axs = plt.subplots(2, 2, sharex=True, sharey=True)
+
+ax1, ax2, ax3, ax4 = axs.flatten()
+
+# Plotting each
+ax1.semilogx(frequencies, np.angle(Hs_lp, deg=True), label='tf')
+ax1.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutLPF], deg=True),label='ngspice')
+ax1.set_ylabel("phase/deg")
+ax1.set_title("low pass filter")
+ax1.set_xlim([10,10e3])
+#ax1.set_ylim([-40,25])
+ax1.grid(True, which="both", ls="--")
+ax1.legend()
+
+ax2.semilogx(frequencies, np.angle(Hs_hp, deg=True), label='tf')
+ax2.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutHPF], deg=True),label='ngspice')
+ax2.set_title("high pass filter")
+#ax1.set_xlim([10,10e3])
+#ax1.set_ylim([-40,25])
+ax2.grid(True, which="both", ls="--")
+ax2.legend()
+
+ax3.semilogx(frequencies, np.angle(Hs_bp, deg=True), label='tf')
+ax3.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutBPF], deg=True),label='ngspice')
+ax3.set_xlabel("frequency/Hz")
+ax3.set_ylabel("phase/deg")
+ax3.set_title("band pass filter")
+#ax1.set_xlim([10,10e3])
+#ax1.set_ylim([-40,25])
+ax3.grid(True, which="both", ls="--")
+ax3.legend()
+
+ax4.semilogx(frequencies, np.angle(Hs_bs, deg=True), label='tf')
+ax4.semilogx(sd.values[nfrequency],np.angle(sd.values[nvoutBSF], deg=True),label='ngspice')
+ax4.set_xlabel("frequency/Hz")
+ax4.set_title("band stop filter")
+#ax1.set_xlim([10,10e3])
+#ax1.set_ylim([-40,25])
+ax4.grid(True, which="both", ls="--")
+ax4.legend()
+
+plt.tight_layout()
+plt.show()
+```
 
 ## Implementation (or Real Circuit)
 

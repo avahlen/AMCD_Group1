@@ -9,27 +9,65 @@ project:
   output-dir: _book
 
 book:
+  title: "IC Design of a Universal Biquad Filter"
+  author: 
+    - name: Atakan Baydogan
+      orcid: 
+      email: abaydogan@stud.hs-bremen.de
+      corresponding: true
+      roles: "Lead author"
+      affiliation:
+        - name: City University of Applied Sciences (HSB)
+          city: Bremen
+          state: Germany
+          url: https://www.hs-bremen.de  
+    - name: Onno Kriens
+      orcid: 
+      email: okriens@stud.hs-bremen.de
+      corresponding: true
+      roles: "Lead author"
+    - name: Finn Ringelsiep
+      orcid: 
+      email: fringelsiep@stud.hs-bremen.de
+      corresponding: true
+      roles: "Lead author"
+    - name: Alicia von Ahlen
+      orcid: 0009-0007-3049-2455
+      email: avahlen@stud.hs-bremen.de
+      corresponding: true
+      roles: "Lead author"
+
+  date: last-modified
+  
   chapters:
     - index.qmd
     - content/_sec_introduction.qmd
     - content/_sec_theoretical_background.qmd
     - content/_sec_characterisation.qmd
+    #- content/_sec_xschem.qmd
+    - content/_sec_finns_part.qmd
     - content/_sec_filter-design.qmd        
     - content/_sec_discussion.qmd
     - content/_sec_conclusion-outlook.qmd
     - content/references.qmd
+
+
+  reader-mode: true
+
+  favicon: images/hsb-logo.png
+  site-url: https://avahlen.github.io/AMCD_Group1/
+  repo-url: https://github.com/avahlen/AMCD_Group1
+  repo-branch: main
+  downloads: [pdf,epub]
     
 bibliography: references.bib
-
-execute:
-  freeze: auto
 
 format:
   html:
     theme: flatly
     code-fold: true
   pdf:
-    documentclass: scrreprt
+    documentclass: scrbook
 #    lof: true
 #    lot: true
     toc: true    
@@ -44,8 +82,11 @@ format:
     biblio-style: ieee
     highlight-style: github
     mainfont: "Calibri"
-#    keep-tex: true
-#    output-file: amcd_report 
-#  epub:
-#    theme: flatly
-#    output-file: amcd_report
+    keep-tex: true
+    output-file: amcd_report 
+  epub:
+    theme: flatly
+    output-file: amcd_report
+
+execute:
+  freeze: auto
