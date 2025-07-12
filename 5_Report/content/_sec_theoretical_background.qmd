@@ -205,7 +205,7 @@ A voltage source creates a constant voltage output by changing the output.
 **Current source** 
 A current source creates a constant current by changing the voltage
 
-Both of this sources can be explained by Ohms-Law: $R = \fraq{U}{I}$. For example the voltage source: There is no influence of the load, so $R$ may change and its value is unknown to the source. So to keep the voltage stable we can only change the current.
+Both of this sources can be explained by Ohms-Law: $R = \frac{U}{I}$. For example the voltage source: There is no influence of the load, so $R$ may change and its value is unknown to the source. So to keep the voltage stable we can only change the current.
 :::
 
 ### Operational Transconductance Amplifier (OTA)

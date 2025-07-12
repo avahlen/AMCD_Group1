@@ -45,8 +45,8 @@ format:
     biblio-style: ieee
     highlight-style: github
     mainfont: "Calibri"
-#    keep-tex: true
-#    output-file: amcd_report 
+    keep-tex: true
+    output-file: amcd_report 
 #  epub:
 #    theme: flatly
 #    output-file: amcd_report
