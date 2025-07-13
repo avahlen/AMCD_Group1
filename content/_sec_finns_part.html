@@ -341,7 +341,7 @@ Please note that all the scripts later used are case sensitive, so consider this
 <p>Upon first saving, select the GDS file standard and name your file <em>YOUR_PROJECT.GDS</em>. The main layout directory should now contain <em>YOUR_PROJECT.sch/.spice/.gds</em> files. As well as a simulation folder. Now create a folder called LVS in this main layout directory.</p>
 <p>For ease of access, create shell-script in your main layout folder to run LVS. The command saved with in the file should be:<br>
 </p>
-<pre class="shell"><code>python /foss/pdks/ihp-sg13g2/libs.tech/klayout/tech/lvs/run_lvs.py --netlist= YOUR_PROJECT.spice --layout=YOUR_PROJECT.gds --run_dir=LVS/</code></pre>
+<pre class="shell"><code>python /foss/pdks/ihp-sg13g2/libs.tech/klayout/tech/lvs/run_lvs.py --netlist=YOUR_PROJECT.spice --layout=YOUR_PROJECT.gds --run_dir=LVS/</code></pre>
 <p>Try running this command, to ensure it runs correctly. If it fails, saying something about “use_same_circuit”, check the names of your files, including the cell name of your layout. It’s crucial that all files are named the same.</p>
 <p>This script will produce a. lvsdb file in the LVS directory. This file contains the comparison between the netlist of the schematic, as well as the extracted netlist of the layout.</p>
 <p>As the design process is a constant back and forth with design and running LVS and DRC, these steps are necessary to ensure a good workflow.</p>

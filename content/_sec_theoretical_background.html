@@ -348,14 +348,13 @@ Warning
 <div id="fig-BiquadCircuit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-BiquadCircuit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<embed src="../images/sec_theorectical_background/biquad_circuit.pdf" class="img-fluid" style="width:100.0%">
+<img src="../images/sec_theorectical_background/biquad_circuit.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-BiquadCircuit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.1: circuit design of an universal biquad filter
 </figcaption>
 </figure>
 </div>
-<p>NOTE: change to png</p>
 <p>The universal biquad filter consists of two non-inverting amplifiers working as adders in the circuit and two integrators. By setting <span class="math inline">\(R\)</span> and <span class="math inline">\(C\)</span> to specific values, the resonance frequency can be chosen. Other parameters adjustable in the universal biquad filter are the quality factor <span class="math inline">\(Q\)</span> and the low-frequency gain <span class="math inline">\(H_0\)</span>. The quality factor and low-frequency gain determine the frequency response peaks of the low pass filter and the band pass filter. <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span></p>
 </section>
 <section id="characteristics" class="level3" data-number="1.1.2">
@@ -370,8 +369,13 @@ H(s) = \frac{a_1 s^2 + b_1 s + c_1}{a_2 s^2 + b_2 s + c_2}
 <p><span id="eq-TFSecondOrderBiquad"><span class="math display">\[
 H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
 \tag{1.2}\]</span></span></p>
-<p><span class="math inline">\(Q\)</span> determines amoung other things the amount of peaking the transfer function has at the chosen frequency. <span class="quarto-unresolved-ref">?lst-lowPassDifferentQ</span> shows this graphically, the amout of peaking increases with increasing quality factor <span class="math inline">\(Q\)</span>.</p>
-<div id="cell-lst-lowPassDifferentQ" class="cell" data-execution_count="1">
+<p><span class="math inline">\(Q\)</span> determines amoung other things the amount of peaking the transfer function has at the chosen frequency. <a href="#fig-lowPassDifferentQ" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> shows this graphically, the amout of peaking increases with increasing quality factor <span class="math inline">\(Q\)</span>.</p>
+<div id="lst-lowpassdifferentq" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="1">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-lowpassdifferentq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;1.1
+</figcaption>
+<div aria-describedby="lst-lowpassdifferentq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Behavioral Analysis Biquad Filter</span></span>
@@ -479,26 +483,28 @@ H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
 <span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].legend()</span>
 <span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../images/sec_theorectical_background/lowPassDifferentQ.png'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">'png'</span>, dpi<span class="op">=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display">
-<div id="lst-lowpassdifferentq" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-lowpassdifferentq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;1.1: Low pass filter with different quality factors
-</figcaption>
-<div aria-describedby="lst-lowpassdifferentq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="_sec_theoretical_background_files/figure-html/lst-lowpassdifferentq-output-1.png" width="661" height="467" class="figure-img">
 </div>
 </figure>
 </div>
+<div id="fig-lowPassDifferentQ" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lowPassDifferentQ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_theorectical_background/lowPassDifferentQ.png" class="img-fluid figure-img">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lowPassDifferentQ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Low pass filter with different quality factors
+</figcaption>
+</figure>
 </div>
 <p>The height of the peak can be calculated with:</p>
 <p><span id="eq-calculatePeak"><span class="math display">\[
 A_{peak} = \frac{Q}{\sqrt{1 - \frac{1}{4Q^2}}}
 \tag{1.3}\]</span></span></p>
-<p>For <span class="math inline">\(Q = 100\)</span> the peak is <span class="math inline">\(A_{peak} = 100.001\)</span>, which converted into dB is <span class="math inline">\(A_{peak,dB} = 40\,dB\)</span>, as is shown in <span class="quarto-unresolved-ref">?fig-lowPassDifferentQ</span>.</p>
+<p>For <span class="math inline">\(Q = 100\)</span> the peak is <span class="math inline">\(A_{peak} = 100.001\)</span>, which converted into dB is <span class="math inline">\(A_{peak,dB} = 40\,dB\)</span>, as is shown in <a href="#fig-lowPassDifferentQ" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>.</p>
 </section>
 </section>
 <section id="operational-amplifier" class="level2" data-number="1.2">
@@ -596,11 +602,24 @@ A voltage source creates a constant voltage output by changing the output.</p>
 <img src="../images/sec_theorectical_background/ota_symbol.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-otasym-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.2: Schematic symbol of an OTA <span class="citation" data-cites="book-rotaktivefilter">(<a href="references.html#ref-book-rotaktivefilter" role="doc-biblioref"><strong>book-rotaktivefilter?</strong></a>)</span>
+Figure&nbsp;1.3: Schematic symbol of an OTA <span class="citation" data-cites="book-rotaktivefilter">(<a href="references.html#ref-book-rotaktivefilter" role="doc-biblioref"><strong>book-rotaktivefilter?</strong></a>)</span>
 </figcaption>
 </figure>
 </div>
-<p>As seen in the figure <a href="#fig-otasym" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> the OTA has the two differental inputs and the current output. On top of that it has a biasing current input <span class="math inline">\(I_{bias}\)</span> which can control the</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>den cite findet quarto nicht</p>
+</div>
+</div>
+<p>As seen in the figure <a href="#fig-otasym" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> the OTA has the two differental inputs and the current output. On top of that it has a biasing current input <span class="math inline">\(I_{bias}\)</span> which can control the</p>
 <section id="transconductance" class="level4" data-number="1.2.2.1">
 <h4 data-number="1.2.2.1" class="anchored" data-anchor-id="transconductance"><span class="header-section-number">1.2.2.1</span> Transconductance</h4>
 <p>Transconductance is a fundamental parameter that describes the relationship between the input voltage and the output current in electronic devices, particularly in transistors and vacuum tubes. It is defined as the ratio of the change in output current to the change in input voltage, under conditions where all other variables are held constant. Mathematically, it is expressed as:</p>
@@ -616,6 +635,19 @@ g_m = \frac{\Delta I_{out}}{\Delta V_{in}}
 <section id="variants" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="variants"><span class="header-section-number">1.2.3</span> Variants ?</h3>
 <p>maybe like miller opamp or something like that</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>wegen dem doppel-slash, bekomme ich von quarto beim kompilieren eine warnung</p>
+</div>
+</div>
 </section>
 </section>
 <section id="mosfet-metal-oxide-semiconductor-field-effect-transistor" class="level2" data-number="1.3">
@@ -630,8 +662,8 @@ g_m = \frac{\Delta I_{out}}{\Delta V_{in}}
 <section id="sizing" class="level3" data-number="1.3.2">
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="sizing"><span class="header-section-number">1.3.2</span> Sizing</h3>
 <p>As mentioned earlier we have several degrees of freedom in our design, like <span class="math inline">\(W\)</span>, <span class="math inline">\(L\)</span>, or the bias current <span class="math inline">\(I_D\)</span>. The problem is, that its extremly complex to describe a MOSFET mathmaticly and on top to that of change values to get a desired behaviour. Glady a wide used technique, which was introduced by P. Jespers and B. Murmann, is the <span class="math inline">\(g_\mathrm{m}/I_\mathrm{D}\)</span> approach \ref{Jesper…. Pretl 3).</p>
-<p><em>Saturation</em> Saturation is a specific operation mode of a transistor. Its also called “ON mode”, because a channel between drain and source is created. This state is reached when the voltage <span class="math inline">\(V_DS &gt;= (V_GS - V_th)\)</span>. When this happens the drain-source current I_DS gets stable (saturates) and becomes nearly indipendet of V_DS. Still it can be very well controlled via V_GS, due to an effect called “pinch-off” (<span class="math inline">\(\ref{https://en.wikipedia.org/wiki/MOSFET}\)</span>).</p>
-<p>The <span class="math inline">\(g_\mathrm{m}/I_\mathrm{D}\)</span> method is primarly inteded to be used in saturated MOSFETs. To ensure this we keep the drain-source voltage as <span class="math inline">\(V_ds = V_DD / 2\)</span>.</p>
+<p><em>Saturation</em> Saturation is a specific operation mode of a transistor. Its also called “ON mode”, because a channel between drain and source is created. This state is reached when the voltage <span class="math inline">\(V_{DS} &gt;= (V_{GS} - V_{th})\)</span>. When this happens the drain-source current I_DS gets stable (saturates) and becomes nearly indipendet of V_DS. Still it can be very well controlled via V_GS, due to an effect called “pinch-off” (<span class="math inline">\(\ref{https://en.wikipedia.org/wiki/MOSFET}\)</span>).</p>
+<p>The <span class="math inline">\(g_\mathrm{m}/I_\mathrm{D}\)</span> method is primarly inteded to be used in saturated MOSFETs. To ensure this we keep the drain-source voltage as <span class="math inline">\(V_{ds} = V_{DD} / 2\)</span>.</p>
 </section>
 <section id="current-mirror" class="level3" data-number="1.3.3">
 <h3 data-number="1.3.3" class="anchored" data-anchor-id="current-mirror"><span class="header-section-number">1.3.3</span> Current Mirror</h3>
