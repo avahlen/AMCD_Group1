@@ -117,9 +117,9 @@ This project demonstrates the design process of IC design from theorectical mode
 
 ## Scope of the project
 
-The scope of this project is supposed to follow a real-world design flow, starting at a theorectical analysis of the specified filter and - in the best case - end in a tap-out of a prototype. If that stage is reached the prototype can be compared to the theorectical and simulation results obtained during the design process and checked for functionality.
+The scope of this project is supposed to follow a real-world design flow, starting at a theorectical analysis of the specified filter and - in the best case - end in a tape-out of a prototype. If that stage is reached the prototype can be compared to the theorectical and simulation results obtained during the design process and checked for functionality.
 
-As a tap-out of a prototype is fairly unrealistic in the time given, the goal is to simulate the specified filter with templates for operational amplifiers and base the IC layout on these templates.
+As a tape-out of a prototype is fairly unrealistic in the time given, the goal is to simulate the specified filter with templates for operational amplifiers and base the IC layout on these templates.
 
 All in all, this project includes a systems analysis if the specified filter, simulation results with ideal components and real components, taken from provided templates, and a physical layout prototype.
 
@@ -129,7 +129,7 @@ All in all, this project includes a systems analysis if the specified filter, si
 Not sure if this is written in the correct time!?!
 :::
 
-The main onjective is to design a universal biquad filter, based on the filter design proposed in the ASLK PRO Board Manual from Texas Instruments [@aslkpro2012]. The biquad filter shall have the following specifications:
+The main objective is to design a universal biquad filter, based on the filter design proposed in the ASLK PRO Board Manual from Texas Instruments [@aslkpro2012]. The biquad filter shall have the following specifications:
 
 $$
 f_0 = 1\,kHz
@@ -143,13 +143,6 @@ The circuit design is done in **Xschem** and the simulation in **ngspice**. For 
 
 This documentation provides a development report, which documents the design process with the taken steps and decisions made.
 
-
-
-
-## Test
-
-
-
 ## Open-Source
 
 All the results of this report and development approach to design a Biquad are publicly available on GitHub (LINK...). Everyone is invited and should feel free to use, change, and share this work. 
@@ -158,7 +151,7 @@ Here a list with just a few of this programs: `IC-OSIC-TOOLS`, `IHP Open PDK`, `
 
 
 
-### Hymne
+### Anthem
 
 In realms where code is free to fly,<br>
 We build and share, our hearts reach high. <br>
