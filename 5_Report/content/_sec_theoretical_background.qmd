@@ -238,7 +238,7 @@ The term transconductance originates from the concept of **transfer conductance*
 
 @hpretlacd introduces a basic 5-Transistor OTA as a design proposal for a real circuits.
 
-![@hpretlacd 's 5-Transistor OTA](../images/sec_theorectical_background/basic_ota_output.svg){#fig-5tota}
+![@hpretlacd 's 5-Transistor OTA](../images/sec_theorectical_background/basic_ota_output.png){#fig-5tota}
 
 It consists of few elements which are going to be described in the next chapters. The basic function of this OTA can be described with: 
 The transistors $M_1$ and $M_2$ form a differential pair, which is biased by the current source $M_5$. Transistors $M_5$ and $M_6$ create a current mirror, where the input bias current $I_{\text{bias}}$ sets the bias current for the Operational Transconductance Amplifier. To keep the biasing current stable a current mirror is used instead of applying the $I_{\text{bias}}$ directly to $M_5$ The differential pair $M_1$ and $M_2$ is loaded by the current mirror $M_3$ and $M_4$, which mirrors the drain current of $M_1$ to the right side of the circuit. The combined currents from $M_4$ and $M_2$ at the output node result in the generation of an output current. To archieve this desired result, it is important to ensure that $M_{1,2}$ and $M_{3,4}$ are symmetric, meaning they should have identical $W$ (width) and $L$ (length) dimensions. To set the right bias current, $M_{5,6}$ should be choosen accordingly.
@@ -259,7 +259,7 @@ A current mirror is also capable of copying one current and convert it to multip
 
 A differential pair, also referred to as a differential amplifier, is an electronic circuit designed to compare the difference between two input voltages while minimising any voltage that is common to both inputs. It consists of two transistors and can be differential with has two inputs and two outputs, as seen in @fig-diff_pair. 
 
-![A differential pair @hpretlacd](../images/sec_theorectical_background/differential_pair.svg){#fig-diff_pair}
+![A differential pair @hpretlacd](../images/sec_theorectical_background/differential_pair.png){#fig-diff_pair}
 
 Common-Mode
 
@@ -282,9 +282,9 @@ In integrated circuit design, where pre-built components are not available, MOSF
 ## Circuit symbol of MOSFETs
 In the literature, the circuit symbol of MOSFETs is not uniform. Some denote them with a small arrow between the gate ($G$) and source ($S$), which is not very precise due to the fact that a MOSFET is symmetric. This means that the drain ($D$) and source ($S$) can be interchanged, and the names are only defined to make circuits clearer. Therefore, an accurate symbol for the n-MOS (shown in @fig-nmos) and p-MOS (shown in @fig-pmos) is shown in the following figures taken from @hpretlacd:
 
-![n-MOSFET circuit symbol](../images/sec_theorectical_background/nmos_symbol.svg){#fig-nmos}
+![n-MOSFET circuit symbol](../images/sec_theorectical_background/nmos_symbol.png){#fig-nmos}
 
-![p-MOSFET circuit symbol](../images/sec_theorectical_background/pmos_symbol.svg){#fig-pmos}
+![p-MOSFET circuit symbol](../images/sec_theorectical_background/pmos_symbol.png){#fig-pmos}
 
 However, in this development report, the symbols are not strictly hold like shown here. But all of the used figures are based on this symmetric model of a MOSFET.
 Besides this in many situations the bulk $B$ is connnected to the source $S$ terminal. Thus the bulk $B$ is not mentioned in the circuit diagramms. 
