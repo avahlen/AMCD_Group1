@@ -81,6 +81,7 @@ set filetype=ascii
 set wr_singlescale
 wrdata tb_ota_tran_UGbuffer.txt v(v_out) v(v_in)
 .endc
+```
 
 ![Transient waveforms: v_in vs. v_out.](../images/sec_xschem/self_tran_vin_vout.png){#fig-ota-ug-wave width=80% fig-alt="Ngspice transient plot of the unity-gain follower."}
 
@@ -112,6 +113,22 @@ Overall, the simulation results reinforce Prof. Prettel’s OTA as a robust, hig
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ----------------------------------------------------------------------
 
 ### gm‑C Biquad Prototype – Concept and Implementation {#sec-gm-biquad}
@@ -120,11 +137,11 @@ Modern mixed‑signal front‑ends often rely on transconductor‑capacitor (gm�
 
 
 
-with centre frequency  and quality factor .  Because both poles stem from active integrators rather than passive RLC tanks, the filter can be accurately tuned post‑fabrication simply by adjusting the OTA bias current.
+with centre frequency and quality factor. Because both poles stem from active integrators rather than passive RLC tanks, the filter can be accurately tuned post‑fabrication simply by adjusting the OTA bias current.
 
 OTA realisation
 
-For the OTA core we adopted the differential architecture from Baker Fig. 3.15, re‑drawn in Xschem as a reusable symbol (Figure @fig-gm-ota).  The device operates from a single 1.5 V supply, uses a folded‑cascode current‑mirror load, and presents just two high‑impedance nodes—ideal for gm‑C work.  All NMOS/PMOS pairs are sized to keep them in saturation at a tail bias of 100 µA, which fixes the small‑signal transconductance at
+For the OTA core we adopted the differential architecture from Baker Fig. 3.15, re‑drawn in Xschem as a reusable symbol (Figure @fig-gm-ota). The device operates from a single 1.5 V supply, uses a folded‑cascode current‑mirror load, and presents just two high‑impedance nodes—ideal for gm‑C work.  All NMOS/PMOS pairs are sized to keep them in saturation at a tail bias of 100 µA, which fixes the small‑signal transconductance at
 
 
 
@@ -150,7 +167,7 @@ An AC sweep from 100 Hz to 100 MHz confirms the expected second‑order low�
 
 
 
-
+_____________________________________________________________
 
 
 
@@ -218,7 +235,6 @@ and $I_{D}$ having the unit Ampere [A] and the voltage $V_{GS}$ we get:
 $$
 \frac{\frac{A}{V}}{A} = \frac{1}{V} \tag{29}
 $$
-
 
 Before we continue with the $\frac{g_{M}}{I_{D}}$ method we want to note that there also is the *square-law* model with which circuit designers can design MOSFET circuits. This model is usually applicable for PCB circuits and takes the situation into account where the MOSFET is driven in the stong inversion state. The square-law model is being applied assuming that the FET is operating in the "linear" or "triode" mode, however on nanometer scale FETs (down to 130 nm with the IHP-SG13G2 PDK) this model doesn't give us precise solutions anymore. Many effects like parasitic capacitances alter the operational behaviour of the FET and lead to the square-law model deviating afar from the real-world behaviour in many situations [@SQRLaw].
 
@@ -338,7 +354,7 @@ The notebook demonstrates a Python-based framework for calculating initial trans
 
 The sizing workflow follows these general steps:
 
-1. Define technology and process parameters.
+1. Define process parameters.
 2. Specify bias currents and overdrive voltages.
 3. Calculate width-to-length ratios (W/L) for each transistor.
 4. Determine transconductance, output resistance, and gain.

@@ -117,16 +117,16 @@ model=sg13_lv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_pmos.sym} -40 -310 0 1 {name=M4
-l=lp
-w=wp
+l=\{lp\}
+w=\{wp\}
 ng=1
 m=1
 model=sg13_lv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_lv_pmos.sym} -180 -310 0 1 {name=M5
-l= lp
-w= wp
+l=\{lp\}
+w=\{wp\}
 ng=1
 m=1
 model=sg13_lv_pmos

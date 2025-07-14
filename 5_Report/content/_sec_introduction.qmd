@@ -4,7 +4,7 @@ We need to go through the whole document and check whether opamp or ota is the r
 In the end we need to go through this, and change all second to last meantions of OP/operational amplifier to opamp 
 :::
 
-# TOC (only temporary) {.unnumbered}
+# Introduction
 
 ## New Final Final (no rEALLY) structure of doc
 
@@ -98,8 +98,6 @@ Legend:
 6.3 is filter good?
 
 7 Conclusion and outlook
-
-# Introduction
 
 :::{.callout-warning}
 Check for reading flow please (for whole chapter)
