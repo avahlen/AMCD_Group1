@@ -106,8 +106,9 @@ C {vsource.sym} 160 -200 0 0 {name=Vinn value="DC 0.5 AC -0.5"}
 C {gnd.sym} 160 -170 0 0 {name=l4 lab=GND}
 C {vsource.sym} 280 -200 0 0 {name=Vcm value=0.5 savecurrent=false}
 C {gnd.sym} 280 -170 0 0 {name=l6 lab=GND}
-C {devices/code_shown.sym} 620 -380 0 0 {name=NGSPICE only_toplevel=true 
+C {devices/code_shown.sym} 560 -420 0 0 {name=NGSPICE only_toplevel=true 
 value="
+.param lp=5u wp=0.30u l=5u w=0.15u
 .temp 27
 .control
 option sparse
