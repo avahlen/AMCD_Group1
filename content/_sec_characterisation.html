@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Characterisation – IC Design of a Universal Biquad Filter</title>
+<title>3&nbsp; Characterisation – IC Design of a Universal Biquad Filter</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -167,7 +167,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/_sec_characterisation.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Characterisation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/_sec_characterisation.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Characterisation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -226,43 +226,43 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TOC (only temporary)</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_theoretical_background.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Theoretical Background</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theoretical Background</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_characterisation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Characterisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Characterisation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_finns_part.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_filter-design.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Filter Design</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Filter Design</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_discussion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_conclusion-outlook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -281,11 +281,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#behauvioural-analysis-and-macro-modelling" id="toc-behauvioural-analysis-and-macro-modelling" class="nav-link active" data-scroll-target="#behauvioural-analysis-and-macro-modelling"><span class="header-section-number">2.1</span> Behauvioural Analysis and macro modelling</a>
+  <li><a href="#behauvioural-analysis-and-macro-modelling" id="toc-behauvioural-analysis-and-macro-modelling" class="nav-link active" data-scroll-target="#behauvioural-analysis-and-macro-modelling"><span class="header-section-number">3.1</span> Behauvioural Analysis and macro modelling</a>
   <ul class="collapse">
-  <li><a href="#transfer-functions-and-frequency-response" id="toc-transfer-functions-and-frequency-response" class="nav-link" data-scroll-target="#transfer-functions-and-frequency-response"><span class="header-section-number">2.1.1</span> Transfer Functions and frequency response</a></li>
-  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability"><span class="header-section-number">2.1.2</span> Stability</a></li>
-  <li><a href="#ideal-opamp" id="toc-ideal-opamp" class="nav-link" data-scroll-target="#ideal-opamp"><span class="header-section-number">2.1.3</span> Ideal Opamp</a></li>
+  <li><a href="#transfer-functions-and-frequency-response" id="toc-transfer-functions-and-frequency-response" class="nav-link" data-scroll-target="#transfer-functions-and-frequency-response"><span class="header-section-number">3.1.1</span> Transfer Functions and frequency response</a></li>
+  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability"><span class="header-section-number">3.1.2</span> Stability</a></li>
+  <li><a href="#ideal-opamp" id="toc-ideal-opamp" class="nav-link" data-scroll-target="#ideal-opamp"><span class="header-section-number">3.1.3</span> Ideal Opamp</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -295,7 +295,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Characterisation</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Characterisation</span></h1>
 </div>
 
 
@@ -313,23 +313,23 @@ window.Quarto = {
 
 
 <p>This chapter is about characterising the biquad filter with the help of computational software like python and and comparing that with ideal circuit simulations. The comparison between a mathematical approach and a basic circuit implementation, gives a first impression if the filter is operational.</p>
-<section id="behauvioural-analysis-and-macro-modelling" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="behauvioural-analysis-and-macro-modelling"><span class="header-section-number">2.1</span> Behauvioural Analysis and macro modelling</h2>
+<section id="behauvioural-analysis-and-macro-modelling" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="behauvioural-analysis-and-macro-modelling"><span class="header-section-number">3.1</span> Behauvioural Analysis and macro modelling</h2>
 <p>The behauvioural analysis is done through macro modelling the universal biquad filter as a system. The system can be described with transfer functions and modelled with python.</p>
-<section id="transfer-functions-and-frequency-response" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="transfer-functions-and-frequency-response"><span class="header-section-number">2.1.1</span> Transfer Functions and frequency response</h3>
-<p>The ASLK PRO Manual <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span> provides the transfer functions of the four filter outputs: low pass, high pass, band pass, and band stop. The transfer functions are adaptations of the general second order transfer function as seen in <a href="_sec_theoretical_background.html#eq-TFSecondOrder" class="quarto-xref">Equation&nbsp;<span>1.1</span></a>. <span class="citation" data-cites="razavi2018">(<a href="references.html#ref-razavi2018" role="doc-biblioref">Razavi 2018</a>)</span></p>
-<p>In the following transfer function the input and output voltage are referenced according to <a href="_sec_theoretical_background.html#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>. The sections only contain their specific transfer function and frequency response.</p>
+<section id="transfer-functions-and-frequency-response" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="transfer-functions-and-frequency-response"><span class="header-section-number">3.1.1</span> Transfer Functions and frequency response</h3>
+<p>The ASLK PRO Manual <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span> provides the transfer functions of the four filter outputs: low pass, high pass, band pass, and band stop. The transfer functions are adaptations of the general second order transfer function as seen in <a href="_sec_theoretical_background.html#eq-TFSecondOrder" class="quarto-xref">Equation&nbsp;<span>2.1</span></a>. <span class="citation" data-cites="razavi2018">(<a href="references.html#ref-razavi2018" role="doc-biblioref">Razavi 2018</a>)</span></p>
+<p>In the following transfer function the input and output voltage are referenced according to <a href="_sec_theoretical_background.html#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>. The sections only contain their specific transfer function and frequency response.</p>
 <p><strong>Low pass</strong></p>
-<p>The output if the low pass filter is marked in the circuit (<a href="_sec_theoretical_background.html#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>) as <span class="math inline">\(LPF\)</span> and corresponds to <span class="math inline">\(V_{03}\)</span> in the transfer function <a href="#eq-TFLowpass" class="quarto-xref">Equation&nbsp;<span>2.1</span></a>.</p>
+<p>The output if the low pass filter is marked in the circuit (<a href="_sec_theoretical_background.html#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>) as <span class="math inline">\(LPF\)</span> and corresponds to <span class="math inline">\(V_{03}\)</span> in the transfer function <a href="#eq-TFLowpass" class="quarto-xref">Equation&nbsp;<span>3.1</span></a>.</p>
 <p><span id="eq-TFLowpass"><span class="math display">\[
 \frac{V_{03}}{V_i} = \frac{H_0}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)}
-\tag{2.1}\]</span></span></p>
-<p><a href="#fig-freqResponseLowpass" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows the amplitude and phase response of the low pass filter. The required frequency <span class="math inline">\(f_0 = 1\,kHz\)</span> and quality factor <span class="math inline">\(Q = 10\)</span> recognizable in the bode plot. As the dc-gain was chosen to be <span class="math inline">\(H_0 = 1\)</span>, the low pass filter has a amplitude amplification of 1 in the lower frequencies.</p>
+\tag{3.1}\]</span></span></p>
+<p><a href="#fig-freqResponseLowpass" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> shows the amplitude and phase response of the low pass filter. The required frequency <span class="math inline">\(f_0 = 1\,kHz\)</span> and quality factor <span class="math inline">\(Q = 10\)</span> recognizable in the bode plot. As the dc-gain was chosen to be <span class="math inline">\(H_0 = 1\)</span>, the low pass filter has a amplitude amplification of 1 in the lower frequencies.</p>
 <div id="lst-freqresponselowpass" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="1">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-freqresponselowpass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;2.1
+Listing&nbsp;3.1
 </figcaption>
 <div aria-describedby="lst-freqresponselowpass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
@@ -428,21 +428,21 @@ Listing&nbsp;2.1
 <img src="../images/sec_characterisation/freqResponseLowpass.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freqResponseLowpass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: Frequency response of the low pass filter
+Figure&nbsp;3.1: Frequency response of the low pass filter
 </figcaption>
 </figure>
 </div>
-<p>With knowing the dc gain <span class="math inline">\(H_0 = 1\)</span> and quality factot <span class="math inline">\(Q = 10\)</span>, the amplitude of the peak can be calculated as seen in <a href="_sec_theoretical_background.html#eq-calculatePeak" class="quarto-xref">Equation&nbsp;<span>1.3</span></a>. Expression the value in dB, gives peak amplitude of <span class="math inline">\(A_{peak,dB} = 20.002\,dB\)</span> which corresponds to the peak value seen in <a href="#fig-freqResponseLowpass" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>.</p>
+<p>With knowing the dc gain <span class="math inline">\(H_0 = 1\)</span> and quality factot <span class="math inline">\(Q = 10\)</span>, the amplitude of the peak can be calculated as seen in <a href="_sec_theoretical_background.html#eq-calculatePeak" class="quarto-xref">Equation&nbsp;<span>2.3</span></a>. Expression the value in dB, gives peak amplitude of <span class="math inline">\(A_{peak,dB} = 20.002\,dB\)</span> which corresponds to the peak value seen in <a href="#fig-freqResponseLowpass" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>.</p>
 <p><strong>High pass</strong></p>
-<p>The output if the high pass filter is marked in the circuit (<a href="_sec_theoretical_background.html#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>) as <span class="math inline">\(HPF\)</span> and corresponds to <span class="math inline">\(V_{01}\)</span> in the transfer function <a href="#eq-TFHighpass" class="quarto-xref">Equation&nbsp;<span>2.2</span></a>.</p>
+<p>The output if the high pass filter is marked in the circuit (<a href="_sec_theoretical_background.html#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>) as <span class="math inline">\(HPF\)</span> and corresponds to <span class="math inline">\(V_{01}\)</span> in the transfer function <a href="#eq-TFHighpass" class="quarto-xref">Equation&nbsp;<span>3.2</span></a>.</p>
 <p><span id="eq-TFHighpass"><span class="math display">\[
 \frac{V_{01}}{V_i} = \frac{\left( H_0 \cdot \frac{s^2}{\omega_0^2} \right)}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)}
-\tag{2.2}\]</span></span></p>
-<p><a href="#fig-freqResponseHighpass" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> shows the amplitude and phase response of the high pass filter. The required frequency <span class="math inline">\(f_0 = 1\,kHz\)</span> and quality factor <span class="math inline">\(Q = 10\)</span> recognizable in the bode plot. As the dc-gain was chosen to be <span class="math inline">\(H_0 = 1\)</span>, the low pass filter has a amplitude amplification of 1 in the higher frequencies.</p>
+\tag{3.2}\]</span></span></p>
+<p><a href="#fig-freqResponseHighpass" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> shows the amplitude and phase response of the high pass filter. The required frequency <span class="math inline">\(f_0 = 1\,kHz\)</span> and quality factor <span class="math inline">\(Q = 10\)</span> recognizable in the bode plot. As the dc-gain was chosen to be <span class="math inline">\(H_0 = 1\)</span>, the low pass filter has a amplitude amplification of 1 in the higher frequencies.</p>
 <div id="lst-freqresponsehighpass" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="2">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-freqresponsehighpass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;2.2
+Listing&nbsp;3.2
 </figcaption>
 <div aria-describedby="lst-freqresponsehighpass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
@@ -541,20 +541,20 @@ Listing&nbsp;2.2
 <img src="../images/sec_characterisation/freqResponseHighpass.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freqResponseHighpass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: Frequency response of the high pass filter
+Figure&nbsp;3.2: Frequency response of the high pass filter
 </figcaption>
 </figure>
 </div>
 <p><strong>Band pass</strong></p>
-<p>The output for the band pass filter is marked as <span class="math inline">\(BPF\)</span> in <a href="_sec_theoretical_background.html#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>. This denotes the point that is referenced in <span class="citation" data-cites="eg-TFBandpass">(<a href="references.html#ref-eg-TFBandpass" role="doc-biblioref"><strong>eg-TFBandpass?</strong></a>)</span> as <span class="math inline">\(V_{02}\)</span>.</p>
+<p>The output for the band pass filter is marked as <span class="math inline">\(BPF\)</span> in <a href="_sec_theoretical_background.html#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>. This denotes the point that is referenced in <a href="#eq-TFBandpass" class="quarto-xref">Equation&nbsp;<span>3.3</span></a> as <span class="math inline">\(V_{02}\)</span>.</p>
 <p><span id="eq-TFBandpass"><span class="math display">\[
 \frac{V_{02}}{V_i} = \frac{\left( - H_0 \cdot \frac{s}{\omega_0} \right)}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)}
-\tag{2.3}\]</span></span></p>
-<p>The band pass shown in <a href="#fig-freqResponseBandpass" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> has its center frequency at <span class="math inline">\(1\,kHz\)</span> as set in the requirements. Similarly to the low pass filter in <a href="#fig-freqResponseLowpass" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> and the high pass filter in <a href="#fig-freqResponseHighpass" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> the amplitude response peaks at this frequency, with its peak influenced by the quality factor.</p>
+\tag{3.3}\]</span></span></p>
+<p>The band pass shown in <a href="#fig-freqResponseBandpass" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> has its center frequency at <span class="math inline">\(1\,kHz\)</span> as set in the requirements. Similarly to the low pass filter in <a href="#fig-freqResponseLowpass" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> and the high pass filter in <a href="#fig-freqResponseHighpass" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> the amplitude response peaks at this frequency, with its peak influenced by the quality factor.</p>
 <div id="lst-freqresponsebandpass" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="3">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-freqresponsebandpass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;2.3
+Listing&nbsp;3.3
 </figcaption>
 <div aria-describedby="lst-freqresponsebandpass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
@@ -653,24 +653,24 @@ Listing&nbsp;2.3
 <img src="../images/sec_characterisation/freqResponseBandpass.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freqResponseBandpass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.3: Frequency response of the band pass filter
+Figure&nbsp;3.3: Frequency response of the band pass filter
 </figcaption>
 </figure>
 </div>
 <p><strong>Band stop</strong></p>
-<p>The output for the band stop filter is marked in <a href="_sec_theoretical_background.html#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> as <span class="math inline">\(BSF\)</span> and in the transfer function as <span class="math inline">\(V_{04}\)</span>.</p>
+<p>The output for the band stop filter is marked in <a href="_sec_theoretical_background.html#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> as <span class="math inline">\(BSF\)</span> and in the transfer function as <span class="math inline">\(V_{04}\)</span>.</p>
 <p><span id="eq-TFBandstopFalse"><span class="math display">\[
 \frac{V_{04}}{V_i} = \frac{\left( 1 + \frac{s^2}{\omega_0^2} \right) \cdot H_0}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)}
-\tag{2.4}\]</span></span></p>
-<p><span class="citation" data-cites="renner2025">(<a href="references.html#ref-renner2025" role="doc-biblioref">Renner 2025</a>)</span> argues that <a href="#eq-TFBandstopFalse" class="quarto-xref">Equation&nbsp;<span>2.4</span></a> from the ASLK PRO Manual <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span> is incorrect, as using that equation produces inconsistent results. Using the negated form of <a href="#eq-TFBandstopFalse" class="quarto-xref">Equation&nbsp;<span>2.4</span></a> as seen in <a href="#eq-TFBandstopCorrect" class="quarto-xref">Equation&nbsp;<span>2.5</span></a> seems to produce the correct output. Therefore <a href="#eq-TFBandstopCorrect" class="quarto-xref">Equation&nbsp;<span>2.5</span></a> will be used for further analysis.</p>
+\tag{3.4}\]</span></span></p>
+<p><span class="citation" data-cites="renner2025">(<a href="references.html#ref-renner2025" role="doc-biblioref">Renner 2025</a>)</span> argues that <a href="#eq-TFBandstopFalse" class="quarto-xref">Equation&nbsp;<span>3.4</span></a> from the ASLK PRO Manual <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span> is incorrect, as using that equation produces inconsistent results. Using the negated form of <a href="#eq-TFBandstopFalse" class="quarto-xref">Equation&nbsp;<span>3.4</span></a> as seen in <a href="#eq-TFBandstopCorrect" class="quarto-xref">Equation&nbsp;<span>3.5</span></a> seems to produce the correct output. Therefore <a href="#eq-TFBandstopCorrect" class="quarto-xref">Equation&nbsp;<span>3.5</span></a> will be used for further analysis.</p>
 <p><span id="eq-TFBandstopCorrect"><span class="math display">\[
 \frac{V_{04}}{V_i} = - \frac{\left( 1 + \frac{s^2}{\omega_0^2} \right) \cdot H_0}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)}
-\tag{2.5}\]</span></span></p>
-<p><a href="#fig-freqResponseBandstop" class="quarto-xref">Figure&nbsp;<span>2.4</span></a> shows the frequency response of the band stop, with its center frequency at <span class="math inline">\(1\,kHz\)</span>.</p>
+\tag{3.5}\]</span></span></p>
+<p><a href="#fig-freqResponseBandstop" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> shows the frequency response of the band stop, with its center frequency at <span class="math inline">\(1\,kHz\)</span>.</p>
 <div id="lst-freqresponsebandstop" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="4">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-freqresponsebandstop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;2.4
+Listing&nbsp;3.4
 </figcaption>
 <div aria-describedby="lst-freqresponsebandstop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
@@ -769,16 +769,16 @@ Listing&nbsp;2.4
 <img src="../images/sec_characterisation/freqResponseBandstop.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freqResponseBandstop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.4: Frequency response of the band stop filter
+Figure&nbsp;3.4: Frequency response of the band stop filter
 </figcaption>
 </figure>
 </div>
 <p><strong>Comparison</strong></p>
-<p>some text…</p>
+<p><a href="#fig-freqResponseFilter" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> shows all four frequency responses together in oen graph. It shows nicely that all three pass filters peak at the same freqeuncy and the same height. Comparing this plot with the one from <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span> gives reason to argue that the filter design on a theoretic system level should work.</p>
 <div id="lst-freqresponsefilter" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="5">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-freqresponsefilter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;2.5
+Listing&nbsp;3.5
 </figcaption>
 <div aria-describedby="lst-freqresponsefilter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
@@ -877,25 +877,25 @@ Listing&nbsp;2.5
 <img src="../images/sec_characterisation/freqResponseFilter.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freqResponseFilter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.5: Behauvioural analysis of biquad filter
+Figure&nbsp;3.5: Behauvioural analysis of biquad filter
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="stability" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="stability"><span class="header-section-number">2.1.2</span> Stability</h3>
+<section id="stability" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="stability"><span class="header-section-number">3.1.2</span> Stability</h3>
 <p>The stability of the biquad is checked at different hierarchical levels. The first analysis considers the system from a theorectical standpoint with transfer functions, and checks if conceptual design of the biquad filter is stable. On a component level the stability of the integrators and adders is analyzed, to verify that the chosen values for resistors and capcitors do not induce oscillations through the feedback loop.</p>
 <p>(At last, the general stability of the OTA circuit itself needs to be checked, so that) &lt;- lets see what we can find for this…</p>
-<section id="system-stability" class="level4" data-number="2.1.2.1">
-<h4 data-number="2.1.2.1" class="anchored" data-anchor-id="system-stability"><span class="header-section-number">2.1.2.1</span> System stability</h4>
+<section id="system-stability" class="level4" data-number="3.1.2.1">
+<h4 data-number="3.1.2.1" class="anchored" data-anchor-id="system-stability"><span class="header-section-number">3.1.2.1</span> System stability</h4>
 <p>A system is stable if its impulse response is absolutley integrateable. In case of a given transfer function, this can also be checked by calculating the poles of the transfer function. If all the poles lay in the left half of the s-plane, the system is considered stable. There is a special case where single poles can lay on the <span class="math inline">\(j\omega\)</span>-axis, on their own or in combination with poles in the left half of the s-plane. Systems which fall under that, are called marginally stable. <span class="citation" data-cites="fliege1991">(<a href="references.html#ref-fliege1991" role="doc-biblioref">Fliege 1991</a>)</span></p>
 </section>
-<section id="pole-zero-plot" class="level4" data-number="2.1.2.2">
-<h4 data-number="2.1.2.2" class="anchored" data-anchor-id="pole-zero-plot"><span class="header-section-number">2.1.2.2</span> Pole-zero plot</h4>
+<section id="pole-zero-plot" class="level4" data-number="3.1.2.2">
+<h4 data-number="3.1.2.2" class="anchored" data-anchor-id="pole-zero-plot"><span class="header-section-number">3.1.2.2</span> Pole-zero plot</h4>
 <div id="lst-polezerostability" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="6">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-polezerostability-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;2.6
+Listing&nbsp;3.6
 </figcaption>
 <div aria-describedby="lst-polezerostability-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
@@ -961,15 +961,15 @@ Listing&nbsp;2.6
 <img src="../images/sec_characterisation/poleZeroStability.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poleZeroStability-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.6: Pole-zero plot for all transfer functions
+Figure&nbsp;3.6: Pole-zero plot for all transfer functions
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-poleZeroStability" class="quarto-xref">Figure&nbsp;<span>2.6</span></a> shows the pole-zero plots of all four filters, low pass, high pass, band pass and band stop. In all four plots the poles are located in the left half of the s-plane and the system can therefore theoretically be classified as stable. <span class="citation" data-cites="razavi2018">(<a href="references.html#ref-razavi2018" role="doc-biblioref">Razavi 2018</a>)</span> confirms this, as the article explains that with <span class="math inline">\(Q \rightarrow \infty\)</span> the poles of the system approach the <span class="math inline">\(j\omega\)</span> axis and the system becomes unstable.</p>
+<p><a href="#fig-poleZeroStability" class="quarto-xref">Figure&nbsp;<span>3.6</span></a> shows the pole-zero plots of all four filters, low pass, high pass, band pass and band stop. In all four plots the poles are located in the left half of the s-plane and the system can therefore theoretically be classified as stable. <span class="citation" data-cites="razavi2018">(<a href="references.html#ref-razavi2018" role="doc-biblioref">Razavi 2018</a>)</span> confirms this, as the article explains that with <span class="math inline">\(Q \rightarrow \infty\)</span> the poles of the system approach the <span class="math inline">\(j\omega\)</span> axis and the system becomes unstable.</p>
 <p>This analysis onbly considers the system as a mathematical model and as a whole. Further considerations regarding the stability of the components, integrators and adders, and the stability of the operational amplifiers themselves, have to be done.</p>
 </section>
-<section id="component-stability" class="level4" data-number="2.1.2.3">
-<h4 data-number="2.1.2.3" class="anchored" data-anchor-id="component-stability"><span class="header-section-number">2.1.2.3</span> Component stability</h4>
+<section id="component-stability" class="level4" data-number="3.1.2.3">
+<h4 data-number="3.1.2.3" class="anchored" data-anchor-id="component-stability"><span class="header-section-number">3.1.2.3</span> Component stability</h4>
 <p>Circuits with opamps often have feedback loops, meaning that the output of the operational amplifier is somehow connected to the inverted input of the opamp. These feedback loops become problematic when the feedback signal is in phase with the input signal, as positive feedback is created and the circuit is working as an oscillator. <span class="citation" data-cites="reisch2007">(<a href="references.html#ref-reisch2007" role="doc-biblioref">Reisch 2007</a>)</span></p>
 <p>The stability of the non-inverting amplifier can be verified by calculating the phase reserve <span class="math inline">\(\alpha\)</span> of the circuit. If <span class="math inline">\(f_k\)</span> is the frequency where the feedback gain is equal to 1 and <span class="math inline">\(\varphi_k\)</span> is the corresponding phase to that frequency, then the phase reserve is calculated by:</p>
 <p><span class="math display">\[
@@ -982,42 +982,38 @@ Figure&nbsp;2.6: Pole-zero plot for all transfer functions
 <img src="../images/sec_characterisation/reisch_stability_example_trans.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reischExampleStabilityTransient-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.7: Example of a transcient response of a circuit with a phase reserve of <span class="math inline">\(\alpha = 5.7°\)</span> <span class="citation" data-cites="reisch2007">(taken from <a href="references.html#ref-reisch2007" role="doc-biblioref">Reisch 2007</a>)</span>
+Figure&nbsp;3.7: Example of a transcient response of a circuit with a phase reserve of <span class="math inline">\(\alpha = 5.7°\)</span> <span class="citation" data-cites="reisch2007">(taken from <a href="references.html#ref-reisch2007" role="doc-biblioref">Reisch 2007</a>)</span>
 </figcaption>
 </figure>
 </div>
-<p>Figure <a href="#fig-reischExampleStabilityTransient" class="quarto-xref">Figure&nbsp;<span>2.7</span></a> shows the transient response of a circuit with a phase reserve of $= 5.7°. The overshoots are clearly visible and number of the overshoots per puls are larger then the customary “one over, one under”-rule. As the phase reserve is positive, the figure shows that even though the transient response is not ideal, the oscillations are attenuated and the circuit is can be considered as stable.</p>
-<p>In practical application, the phase reserve can be graphically determined with the help of bode diagrams. The bode diagram of the circuit with an open feedback loop is simulated, so that the frequency <span class="math inline">\(f_k\)</span> can be read out. This is the frequnecy where the feedback gain is 1 or 0 dB. The corresponding frequency to that, is the phase of the feedback gain <span class="math inline">\(\varphi_k\)</span>, the difference between <span class="math inline">\(-180°\)</span> and <span class="math inline">\(\varphi_k\)</span> is the phase reserve <span class="math inline">\(\alpha\)</span>. <span class="citation" data-cites="reisch2007">(<a href="references.html#ref-reisch2007" role="doc-biblioref">Reisch 2007</a>)</span></p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Figure <a href="#fig-reischExampleStabilityTransient" class="quarto-xref">Figure&nbsp;<span>3.7</span></a> shows the transient response of a circuit with a phase reserve of <span class="math inline">\(\alpha = 5.7°\)</span>. The overshoots are clearly visible and number of the overshoots per puls are larger then the customary “one over, one under”-rule. As the phase reserve is positive, the figure shows that even though the transient response is not ideal, the oscillations are attenuated and the circuit is can be considered as stable.</p>
+<p>In practical application, the phase reserve can be graphically determined with the help of bode diagrams. The bode diagram of the circuit with an open feedback loop is simulated, so that the frequency <span class="math inline">\(f_k\)</span> can be read out. This is the frequency where the feedback gain is 1 or 0 dB. The corresponding frequency to that, is the phase of the feedback gain <span class="math inline">\(\varphi_k\)</span>, the difference between <span class="math inline">\(-180°\)</span> and <span class="math inline">\(\varphi_k\)</span> is the phase reserve <span class="math inline">\(\alpha\)</span>. <span class="citation" data-cites="reisch2007">(<a href="references.html#ref-reisch2007" role="doc-biblioref">Reisch 2007</a>)</span></p>
+<p>For the analysis of component stability the 5t-ota design from <span class="citation" data-cites="pretl2025">(<a href="references.html#ref-pretl2025" role="doc-biblioref">Pretl, Koefinger, and Dorrer 2025</a>)</span> was used. <a href="#fig-circuitStabilityAdder" class="quarto-xref">Figure&nbsp;<span>3.8</span></a> and <a href="#fig-circuitStabilityIntegrator" class="quarto-xref">Figure&nbsp;<span>3.9</span></a> show the schematics that simulated the stability analysis for the components. In both cases the AC source was inserted in the open feedback loop and the output of the OTA was used to analyse the stability.</p>
+<div id="fig-circuitStabilityAdder" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-circuitStabilityAdder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_characterisation/stability_adder_circuit.png" class="img-fluid figure-img">
 </div>
-<div class="callout-title-container flex-fill">
-Warning
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-circuitStabilityAdder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.8: Circuit schematic of the stability analysis of the adder
+</figcaption>
+</figure>
 </div>
+<div id="fig-circuitStabilityIntegrator" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-circuitStabilityIntegrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_characterisation/stability_integrator_circuit.png" class="img-fluid figure-img">
 </div>
-<div class="callout-body-container callout-body">
-<p>Talk abut which ota was used for stability analysis</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-circuitStabilityIntegrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.9: Circuit schematic of the stability analysis of the integrator
+</figcaption>
+</figure>
 </div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>insert circuit where the stability analsis was done from, like in ltspice</p>
-</div>
-</div>
+<p>In the following figures <a href="#fig-stabilityAdder" class="quarto-xref">Figure&nbsp;<span>3.10</span></a> and <a href="#fig-stabilityIntegrator" class="quarto-xref">Figure&nbsp;<span>3.11</span></a> this stability analysis method was used to determine the stability over the phase reserve.</p>
 <div id="lst-stabilityadder" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="7">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-stabilityadder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;2.7
+Listing&nbsp;3.7
 </figcaption>
 <div aria-describedby="lst-stabilityadder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
@@ -1064,14 +1060,18 @@ Listing&nbsp;2.7
 <img src="../images/sec_characterisation/stabilityAdder.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stabilityAdder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.8: Stability analysis of the adder
+Figure&nbsp;3.10: Stability analysis of the adder
 </figcaption>
 </figure>
 </div>
+<p>The frequency response of the adder shows a phase <span class="math inline">\(\varphi_k = 83°\)</span>, when the gain is 1. Calculation the phase reserve from that</p>
+<p><span class="math display">\[\alpha_{add} = 180° - \varphi_k = 180° - 83° = 97° &gt; 45°
+\]</span></p>
+<p>gives a phase reserves, that indicates stability for this component.</p>
 <div id="lst-stabilityintegrator" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="8">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-stabilityintegrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;2.8
+Listing&nbsp;3.8
 </figcaption>
 <div aria-describedby="lst-stabilityintegrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
@@ -1117,33 +1117,51 @@ Listing&nbsp;2.8
 <img src="../images/sec_characterisation/stabilityIntegrator.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stabilityIntegrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.9: Stability analysis of the integrator
+Figure&nbsp;3.11: Stability analysis of the integrator
 </figcaption>
 </figure>
 </div>
-<p>In the following figures <a href="#fig-stabilityAdder" class="quarto-xref">Figure&nbsp;<span>2.8</span></a> and <a href="#fig-stabilityIntegrator" class="quarto-xref">Figure&nbsp;<span>2.9</span></a> this method was used to determine the stability over the phase reserve.</p>
-<p>(add here part about whether they are stable…)</p>
-<p>The stability of the integrator circuit, as seen in <a href="#fig-stabilityIntegrator" class="quarto-xref">Figure&nbsp;<span>2.9</span></a>, shows a intersection of the magnitude plot with the <span class="math inline">\(0\,dB\)</span> line at about <span class="math inline">\(f_k = 70\,kHz\)</span>, which corresponds to a phase of <span class="math inline">\(\varphi_k = 68°\)</span>. This would leave a phase reserve of:</p>
+<p>The stability of the integrator circuit, as seen in <a href="#fig-stabilityIntegrator" class="quarto-xref">Figure&nbsp;<span>3.11</span></a>, shows a intersection of the magnitude plot with the <span class="math inline">\(0\,dB\)</span> line at about <span class="math inline">\(f_k = 70\,kHz\)</span>, which corresponds to a phase of <span class="math inline">\(\varphi_k = 68°\)</span>. This would leave a phase reserve of:</p>
 <p><span class="math display">\[
 \alpha_{int} = 180° - \varphi_k = 112° &gt; 45°
 \]</span></p>
 <p>Therefore the integrator would be stable.</p>
 </section>
-<section id="ota-stability" class="level4" data-number="2.1.2.4">
-<h4 data-number="2.1.2.4" class="anchored" data-anchor-id="ota-stability"><span class="header-section-number">2.1.2.4</span> OTA stability</h4>
-<p>i have not found anything in pretl script, but i clearly remember mr. meiners talking about this…</p>
-<p>i have found something in pretls script, but looks not easy… look at chapter about mosfets</p>
+<section id="ota-stability" class="level4" data-number="3.1.2.4">
+<h4 data-number="3.1.2.4" class="anchored" data-anchor-id="ota-stability"><span class="header-section-number">3.1.2.4</span> OTA stability</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>lets come back to this, if I should magically find some more time somewhere…</p>
+</div>
+</div>
 </section>
 </section>
-<section id="ideal-opamp" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="ideal-opamp"><span class="header-section-number">2.1.3</span> Ideal Opamp</h3>
-<p>kinda forgot where I wanted to go with this one… ehhh maybe it will come back</p>
-<p>uhhh i think it was about the ideal circuit and spice analysis etc</p>
-<p>To check the behauviour of the implemented circuit against the modelled behauviour of the transfer function, the universal biquad was built as an ideal circuit with voltage-regulated current sources instead of OTAs.</p>
+<section id="ideal-opamp" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="ideal-opamp"><span class="header-section-number">3.1.3</span> Ideal Opamp</h3>
+<p>To check the behauviour of the implemented circuit against the modelled behauviour of the transfer function, the universal biquad was built as an ideal circuit with voltage-regulated current sources instead of OTAs. This simulation of the circuit verfies that the circuit implementation of the biquadratic filter with OTAs can fulfill the requirements at least in the ideal case.</p>
+<div id="fig-CircuitBiquadIdeal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-CircuitBiquadIdeal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_characterisation/biquad_univ_circuit.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CircuitBiquadIdeal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.12: Schematic of an universal biquad filter with ideal OTAs
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-CircuitBiquadIdeal" class="quarto-xref">Figure&nbsp;<span>3.12</span></a> depicts the schematic of an universal biquad filter, where the OTAs are idealised with voltage controlled current sources. An ac simulation of this circuit can be viewed in <a href="#fig-idealCir" class="quarto-xref">Figure&nbsp;<span>3.13</span></a>.</p>
 <div id="lst-idealcir" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="9">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-idealcir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;2.9
+Listing&nbsp;3.9
 </figcaption>
 <div aria-describedby="lst-idealcir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
@@ -1198,15 +1216,15 @@ Listing&nbsp;2.9
 <img src="../images/sec_characterisation/idealCir.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-idealCir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.10: Simulation of an idealised biquad
+Figure&nbsp;3.13: Simulation of an idealised biquad
 </figcaption>
 </figure>
 </div>
-<p>here plot comp between python and ideal</p>
+<p><a href="#fig-compTfIdealAmplitude" class="quarto-xref">Figure&nbsp;<span>3.14</span></a> and <a href="#fig-compTfIdealPhase" class="quarto-xref">Figure&nbsp;<span>3.15</span></a> compares the system-theoretic analysis with transfer functions with the simulated idealised of the filter design with each other. Both plots show very nicely that the amplitude response as well as the phase response of all four filters match with their simulated and calculated responses.</p>
 <div id="lst-comptfidealamplitude" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="10">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-comptfidealamplitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;2.10
+Listing&nbsp;3.10
 </figcaption>
 <div aria-describedby="lst-comptfidealamplitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
@@ -1234,7 +1252,7 @@ Listing&nbsp;2.10
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>H0 <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Play around with this later</span></span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Logarithmic frequency axis</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>frequencies <span class="op">=</span> np.logspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">1000</span>)  <span class="co"># Frequency from 10^2 to 10^4 Hz</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>frequencies <span class="op">=</span> np.logspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10000</span>)  <span class="co"># Frequency from 10^2 to 10^4 Hz</span></span>
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="ot">1j</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> frequencies  <span class="co"># Laplace-Variable s = jω</span></span>
 <span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">############################################</span></span>
@@ -1281,8 +1299,8 @@ Listing&nbsp;2.10
 <span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>ax1.semilogx(sd.values[nfrequency], <span class="dv">20</span> <span class="op">*</span> np.log10(<span class="bu">abs</span>(sd.values[nvoutLPF])), label<span class="op">=</span><span class="st">'ngspice'</span>)</span>
 <span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"magnitude/dB"</span>)</span>
 <span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"low pass filter"</span>)</span>
-<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim([<span class="dv">10</span>,<span class="fl">10e3</span>])</span>
-<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim([<span class="op">-</span><span class="dv">40</span>,<span class="dv">25</span>])</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim([<span class="dv">10</span>,<span class="fl">10e4</span>])</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim([<span class="op">-</span><span class="dv">60</span>,<span class="dv">25</span>])</span>
 <span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">"both"</span>, ls<span class="op">=</span><span class="st">"--"</span>)</span>
 <span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>ax1.legend()</span>
 <span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a></span>
@@ -1327,14 +1345,14 @@ Listing&nbsp;2.10
 <img src="../images/sec_characterisation/compTfIdealAmplitude.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compTfIdealAmplitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.11: Comparison of the amplitude response between the transfer functions and idealised circuit
+Figure&nbsp;3.14: Comparison of the amplitude response between the transfer functions and idealised circuit
 </figcaption>
 </figure>
 </div>
 <div id="lst-comptfidealphase" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="11">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-comptfidealphase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;2.11
+Listing&nbsp;3.11
 </figcaption>
 <div aria-describedby="lst-comptfidealphase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
@@ -1362,7 +1380,7 @@ Listing&nbsp;2.11
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>H0 <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Play around with this later</span></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Logarithmic frequency axis</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>frequencies <span class="op">=</span> np.logspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">1000</span>)  <span class="co"># Frequency from 10^2 to 10^4 Hz</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>frequencies <span class="op">=</span> np.logspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">10000</span>)  <span class="co"># Frequency from 10^2 to 10^4 Hz</span></span>
 <span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="ot">1j</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> frequencies  <span class="co"># Laplace-Variable s = jω</span></span>
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co">############################################</span></span>
@@ -1455,7 +1473,7 @@ Listing&nbsp;2.11
 <img src="../images/sec_characterisation/compTfIdealPhase.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compTfIdealPhase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.12: Comparison of the phase response between the transfer functions and idealised circuit
+Figure&nbsp;3.15: Comparison of the phase response between the transfer functions and idealised circuit
 </figcaption>
 </figure>
 </div>
@@ -1464,6 +1482,9 @@ Figure&nbsp;2.12: Comparison of the phase response between the transfer function
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-fliege1991" class="csl-entry" role="listitem">
 Fliege, Norbert. 1991. <em>Systhemtheorie</em>. 1st ed. Stuttgart: Teubner.
+</div>
+<div id="ref-pretl2025" class="csl-entry" role="listitem">
+Pretl, Harald, Michael Koefinger, and Simon Dorrer. 2025. <span>“Analog <span>Circuit</span> <span>Design</span>.”</span> <a href="https://doi.org/10.5281/zenodo.14387481">https://doi.org/10.5281/zenodo.14387481</a>.
 </div>
 <div id="ref-aslkpro2012" class="csl-entry" role="listitem">
 Rao, K. R. K., and C. P. Ravikumar. 2012. <em>Analog System Lab Kit PRO MANUAL</em>. Texas Instruments.
@@ -1884,12 +1905,12 @@ Renner, Nils. 2025. <span>“Biquadratic IIR (SOS) Filters.”</span>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../content/_sec_theoretical_background.html" class="pagination-link" aria-label="Theoretical Background">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Theoretical Background</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theoretical Background</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../content/_sec_finns_part.html" class="pagination-link" aria-label="Integrated Layouting">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
