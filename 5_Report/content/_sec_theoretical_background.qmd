@@ -16,15 +16,11 @@ The biquadratic filter, also known as the biquad filter, has its earliest implem
 
 For the filter design in this project, an universal biquad filter is used. The universal biquad filter is biquad filter variant with four operational amplifiers used in its design and the property of being able to be used in four different filter variants. Depending on the output of the universal biquad used, a low pass filter, high pass filter, band pass filter, or band stop filter will be implemented. This can be seen in (ref to figure of biquad fitler design). [@aslkpro2012]
 
-![circuit design of an universal biquad filter](/images/sec_theorectical_background/biquad_circuit.pdf){#fig-BiquadCircuit width=100%}
-
-NOTE: change to png
+![circuit design of an universal biquad filter](/images/sec_theorectical_background/biquad_circuit.png){#fig-BiquadCircuit}
 
 The universal biquad filter consists of two non-inverting amplifiers working as adders in the circuit and two integrators. By setting $R$ and $C$ to specific values, the resonance frequency can be chosen. Other parameters adjustable in the universal biquad filter are the quality factor $Q$ and the low-frequency gain $H_0$. The quality factor and low-frequency gain determine the frequency response peaks of the low pass filter and the band pass filter. [@aslkpro2012]
 
 ### Characteristics
-
-NOTE: no more than 3 subsections!
 
 As the universal biquad filter is a second order filter with the specified outputs low pass, high pass, band pass, and band stop, each filter option can be described with a tranfer function on system level. The general second order transfer function is:
 
@@ -40,12 +36,12 @@ $$
 H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
 $$ {#eq-TFSecondOrderBiquad}
 
-$Q$ determines amoung other things the amount of peaking the transfer function has at the chosen frequency. @lst-lowPassDifferentQ shows this graphically, the amout of peaking increases with increasing quality factor $Q$.
+$Q$ determines amoung other things the amount of peaking the transfer function has at the chosen frequency. @fig-lowPassDifferentQ shows this graphically, the amout of peaking increases with increasing quality factor $Q$.
 
 ```{python}
 #| label: lst-lowPassDifferentQ
-#| fig-cap: "Low pass filter with different quality factors"
 #| code-fold: true
+#| output: false
 
 # Behavioral Analysis Biquad Filter
 
@@ -152,8 +148,12 @@ axs[1].grid(True, which="both", ls="--")
 axs[1].legend()
 
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig('../images/sec_theorectical_background/lowPassDifferentQ.png', format='png', dpi=1000)
 ```
+
+![Low pass filter with different quality factors](../images/sec_theorectical_background/lowPassDifferentQ.png){#fig-lowPassDifferentQ}
 
 The height of the peak can be calculated with:
 
@@ -162,8 +162,6 @@ A_{peak} = \frac{Q}{\sqrt{1 - \frac{1}{4Q^2}}}
 $$ {#eq-calculatePeak}
 
 For $Q = 100$ the peak is $A_{peak} = 100.001$, which converted into dB is $A_{peak,dB} = 40\,dB$, as is shown in @fig-lowPassDifferentQ.
-
-
 
 
 
@@ -215,13 +213,18 @@ In the design process of the biquad only OTAs will be used, so the focus of this
 
 As seen in the figure @fig-otasym the OTA has the two differental inputs and the current output. On top of that it has a biasing current input $I_{bias}$ which controls the transconductance $g_m$ of the OTA.
 
+
 #### Transconductance
 
 Transconductance is a fundamental parameter that describes the relationship between the input voltage and the output current in electronic devices, particularly in transistors. It is defined as the ratio of the change in output current to the change in input voltage, under conditions where all other variables are held constant. Mathematically, it is expressed as:
 
-$g_m = \frac{\Delta I_{out}}{\Delta V_{in}}$
 
-where $g_m$ is the transconductance, $\Delta I_{out}$ is the change in output current, and $\Delta V_{in}$ is the change in input voltage. The unit is the siemens S, which is amperes per volt (I/U). In the past *Mho* was used (which is *Ohm* spelled backwards) and it shows the inverse relationship to resistance.
+$$
+g_m = \frac{\Delta I_{out}}{\Delta V_{in}}
+$$
+
+where $g_m$ is the transconductance, $\Delta I_{out}$ is the change in output current, and $\Delta V_{in}$ is the change in input voltage. The unit of transconductance is the siemens (S), which is equivalent to amperes per volt (A/V). Historically, it was also measured in "mhos," which is "ohm" spelled backwards, reflecting its inverse relationship to resistance.
+
 
 In field-effect transistors (FETs) the transconductance determines the device's ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current. 
 
@@ -269,6 +272,7 @@ maybe like miller opamp or something like that
 
 <!-- This is a Comment-->
 
+
 ## MOSFET (Metal-Oxide-Semiconductor Field-Effect-Transistor )
 
 To dive in one more level, the parts an operational amplifier is build of are transistors. Precisely in this design process they are Metal-Oxide-Semiconductor Field-Effect-Transistors (MOSFETs).
@@ -289,6 +293,7 @@ Besides this in many situations the bulk $B$ is connnected to the source $S$ ter
 ### Small-Signal Representation
 
 By applying different voltages to a MOSFET, different behaviours appear. But there is one thing which is very unliked by engineers and others, all these transfer functions are non linear. So making any calculations by hand calculation is nearly impossible. Thats why in practise the biasing method exists. This is done by appying a dc voltage to the terminals of the MOSFET and during operation only a small signal change appears. With this technique an **Operating Point** is created, which enables to assume a linear behavior in its small signal area (like in @fig-mosfetoppoint).
+
 
 ![MOSFET drain current vs. drain-to-source voltage for several values](../images/sec_theorectical_background/mosfet_oppoint.png){#fig-mosfetoppoint}
 

@@ -22,3 +22,5 @@ site_libs/
 *.log
 *.tex
 *.toc
+
+5_Report/simulation/__pycache__/

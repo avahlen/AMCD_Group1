@@ -111,10 +111,10 @@ C {opin.sym} 700 -270 0 0 {name=p2 lab=BSF sig_type=std_logic}
 C {opin.sym} 800 -730 0 0 {name=p3 lab=LPF sig_type=std_logic
 }
 C {opin.sym} 60 -740 0 0 {name=p4 lab=BPF sig_type=std_logic}
-C {opamp1.sym} -130 -610 0 0 {name=x1}
-C {opamp1.sym} 620 -580 0 0 {name=x2}
-C {opamp1.sym} 1180 -550 0 0 {name=x3}
-C {opamp1.sym} 490 -270 0 0 {name=x4}
+C {ideal_opamp.sym} -130 -610 0 0 {name=x1}
+C {ideal_opamp.sym} 620 -580 0 0 {name=x2}
+C {ideal_opamp.sym} 1180 -550 0 0 {name=x3}
+C {ideal_opamp.sym} 490 -270 0 0 {name=x4}
 C {gnd.sym} 30 -100 0 0 {name=l5 lab=GND sig_type=std_logic}
 C {vsource.sym} 30 -150 0 1 {name=V1 value="PULSE(-0.2 0.2 0 0.1u 0.1u 0.5m 1ms 10) AC 1"}
 C {title.sym} -420 260 0 0 {name=l6 author="Mirco Meiners"}
@@ -129,12 +129,12 @@ value="
 *set filetype=ascii
 option sparse
 save all
-*op
+op
 *write biquad_univ.raw
 set appendwrite
 
 *ac dec 20 10 1G
-ac lin 1000 1 10k
+ac lin 10000 1 100k
 write biquad_univ.raw
 write biquad_univ.csv LPF HPF BPF BSF
 plot db(v(LPF)) db(v(HPF)) db(v(BPF)) db(v(BSF))

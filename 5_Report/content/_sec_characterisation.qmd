@@ -1,14 +1,6 @@
 # Characterisation
 
-this chap is more about our biquad, and how we made it the way it is now
-
-i am failry open to discuss the exact contents of this chapter, as it is the one i am the most unsure about
-
-we also need to excatly decide on where this chapter ends, as Finn will continue with chap 5 and the break between the chapters shall be as smooth as possible
-
-:::{.callout-warning}
-decide on the chapter intro when it is clear where the cut is between this chapter and the next
-:::
+This chapter is about characterising the biquad filter with the help of computational software like python and and comparing that with ideal circuit simulations. The comparison between a mathematical approach and a basic circuit implementation, gives a first impression if the filter is operational.
 
 ## Behauvioural Analysis and macro modelling
 
@@ -16,21 +8,11 @@ The behauvioural analysis is done through macro modelling the universal biquad f
 
 ### Transfer Functions and frequency response
 
-:::{.callout-warning}
-This whole section needs to be reworked, I am not happy with the reading flow right now! -AvA
-
-I am going to shift the theory over to theory and only talk about the implementation...
-:::
-
 The ASLK PRO Manual [@aslkpro2012] provides the transfer functions of the four filter outputs: low pass, high pass, band pass, and band stop. The transfer functions are adaptations of the general second order transfer function as seen in @eq-TFSecondOrder. [@razavi2018]
 
 In the following transfer function the input and output voltage are referenced according to @fig-BiquadCircuit. The sections only contain their specific transfer function and frequency response.
 
-:::{.callout-warning}
-please recheck ALL TFs against manual for corecctness
-:::
-
-#### Low pass
+**Low pass**
 
 The output if the low pass filter is marked in the circuit (@fig-BiquadCircuit) as $LPF$ and corresponds to $V_{03}$ in the transfer function @eq-TFLowpass.
 
@@ -41,9 +23,9 @@ $$ {#eq-TFLowpass}
 @fig-freqResponseLowpass shows the amplitude and phase response of the low pass filter. The required frequency $f_0 = 1\,kHz$ and quality factor $Q = 10$ recognizable in the bode plot. As the dc-gain was chosen to be $H_0 = 1$, the low pass filter has a amplitude amplification of 1 in the lower frequencies.
 
 ```{python}
-#| label: fig-freqResponseLowpass
-#| fig-cap: "Frequency response of the low pass filter"
+#| label: lst-freqResponseLowpass
 #| code-fold: true
+#| output: false
 
 # Behavioral Analysis Biquad Filter
 
@@ -126,12 +108,16 @@ axs[1].grid(True, which="both", ls="--")
 #axs[1].legend()
 
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig("../images/sec_characterisation/freqResponseLowpass.png", format="png",dpi=1000)
 ```
+
+![Frequency response of the low pass filter](../images/sec_characterisation/freqResponseLowpass.png){#fig-freqResponseLowpass}
 
 With knowing the dc gain $H_0 = 1$ and quality factot $Q = 10$, the amplitude of the peak can be calculated as seen in @eq-calculatePeak. Expression the value in dB, gives peak amplitude of $A_{peak,dB} = 20.002\,dB$ which corresponds to the peak value seen in @fig-freqResponseLowpass.
 
-#### High pass
+**High pass**
 
 The output if the high pass filter is marked in the circuit (@fig-BiquadCircuit) as $HPF$ and corresponds to $V_{01}$ in the transfer function @eq-TFHighpass.
 
@@ -139,12 +125,12 @@ $$
 \frac{V_{01}}{V_i} = \frac{\left( H_0 \cdot \frac{s^2}{\omega_0^2} \right)}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)} 
 $$ {#eq-TFHighpass}
 
-@fig-freqResponseLowpass shows the amplitude and phase response of the high pass filter. The required frequency $f_0 = 1\,kHz$ and quality factor $Q = 10$ recognizable in the bode plot. As the dc-gain was chosen to be $H_0 = 1$, the low pass filter has a amplitude amplification of 1 in the higher frequencies.
+@fig-freqResponseHighpass shows the amplitude and phase response of the high pass filter. The required frequency $f_0 = 1\,kHz$ and quality factor $Q = 10$ recognizable in the bode plot. As the dc-gain was chosen to be $H_0 = 1$, the low pass filter has a amplitude amplification of 1 in the higher frequencies.
 
 ```{python}
-#| label: fig-freqResponseHighpass
-#| fig-cap: "Frequency response of the high pass filter"
+#| label: lst-freqResponseHighpass
 #| code-fold: true
+#| output: false
 
 # Behavioral Analysis Biquad Filter
 
@@ -227,12 +213,16 @@ axs[1].grid(True, which="both", ls="--")
 #axs[1].legend()
 
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig("../images/sec_characterisation/freqResponseHighpass.png", format="png", dpi=1000)
 ```
 
-#### Band pass
+![Frequency response of the high pass filter](../images/sec_characterisation/freqResponseHighpass.png){#fig-freqResponseHighpass}
 
-The output for the band pass filter is marked as $BPF$ in @fig-BiquadCircuit. This denotes the point that is referenced in @eg-TFBandpass as $V_{02}$.
+**Band pass**
+
+The output for the band pass filter is marked as $BPF$ in @fig-BiquadCircuit. This denotes the point that is referenced in @eq-TFBandpass as $V_{02}$.
 
 $$
 \frac{V_{02}}{V_i} = \frac{\left( - H_0 \cdot \frac{s}{\omega_0} \right)}{\left( 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} \right)}
@@ -241,9 +231,9 @@ $$ {#eq-TFBandpass}
 The band pass shown in @fig-freqResponseBandpass has its center frequency at $1\,kHz$ as set in the requirements. Similarly to the low pass filter in @fig-freqResponseLowpass and the high pass filter in @fig-freqResponseHighpass the amplitude response peaks at this frequency, with its peak influenced by the quality factor.
 
 ```{python}
-#| label: fig-freqResponseBandpass
-#| fig-cap: "Frequency response of the band pass filter"
+#| label: lst-freqResponseBandpass
 #| code-fold: true
+#| output: false
 
 # Behavioral Analysis Biquad Filter
 
@@ -326,10 +316,14 @@ axs[1].grid(True, which="both", ls="--")
 #axs[1].legend()
 
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig("../images/sec_characterisation/freqResponseBandpass.png", format="png", dpi=1000)
 ```
 
-#### Band stop
+![Frequency response of the band pass filter](../images/sec_characterisation/freqResponseBandpass.png){#fig-freqResponseBandpass}
+
+**Band stop**
 
 The output for the band stop filter is marked in @fig-BiquadCircuit as $BSF$ and in the transfer function as $V_{04}$.
 
@@ -346,9 +340,9 @@ $$ {#eq-TFBandstopCorrect}
 @fig-freqResponseBandstop shows the frequency response of the band stop, with its center frequency at $1\,kHz$.
 
 ```{python}
-#| label: fig-freqResponseBandstop
-#| fig-cap: "Frequency response of the band stop filter"
+#| label: lst-freqResponseBandstop
 #| code-fold: true
+#| output: false
 
 # Behavioral Analysis Biquad Filter
 
@@ -431,18 +425,22 @@ axs[1].grid(True, which="both", ls="--")
 #axs[1].legend()
 
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig("../images/sec_characterisation/freqResponseBandstop.png", format="png", dpi=1000)
 ```
 
-#### Comparison
+![Frequency response of the band stop filter](../images/sec_characterisation/freqResponseBandstop.png){#fig-freqResponseBandstop}
 
-some text...
+**Comparison**
+
+@fig-freqResponseFilter shows all four frequency responses together in oen graph. It shows nicely that all three pass filters peak at the same freqeuncy and the same height. Comparing this plot with the one from [@aslkpro2012] gives reason to argue that the filter design on a theoretic system level should work.
 
 ```{python}
 
-#| label: fig-freqResponseFilter
-#| fig-cap: "Behauvioural analysis of biquad filter"
+#| label: lst-freqResponseFilter
 #| code-fold: true
+#| output: false
 
 # Behavioral Analysis Biquad Filter
 
@@ -525,9 +523,12 @@ axs[1].grid(True, which="both", ls="--")
 axs[1].legend()
 
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig("../images/sec_characterisation/freqResponseFilter.png", format="png", dpi=1000)
 ```
 
+![Behauvioural analysis of biquad filter](../images/sec_characterisation/freqResponseFilter.png){#fig-freqResponseFilter}
 
 ### Stability
 
@@ -541,9 +542,10 @@ A system is stable if its impulse response is absolutley integrateable. In case 
 #### Pole-zero plot
 
 ```{python}
-#| label: fig-poleZeroStability
-#| fig-cap: "Pole-zero plot for all transfer functions"
+#| label: lst-poleZeroStability
 #| code-fold: true
+#| output: false
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import tf2zpk
@@ -592,11 +594,12 @@ for i, (title, (num, den)) in enumerate(systems.items(), 1):
     plot_pzmap(num, den, title, i)
 
 plt.tight_layout()
-plt.show()
+#plt.show()
 
-
-
+plt.savefig("../images/sec_characterisation/poleZeroStability.png", format="png", dpi=1000)
 ```
+
+![Pole-zero plot for all transfer functions](../images/sec_characterisation/poleZeroStability.png){#fig-poleZeroStability}
 
 @fig-poleZeroStability shows the pole-zero plots of all four filters, low pass, high pass, band pass and band stop. In all four plots the poles are located in the left half of the s-plane and the system can therefore theoretically be classified as stable. [@razavi2018] confirms this, as the article explains that with $Q \rightarrow \infty$ the poles of the system approach the $j\omega$ axis and the system becomes unstable.
 
@@ -615,32 +618,24 @@ $$
 
 For circuits to be considered stable, the phase reserve has to be positive. To reduce overshoots during the transient response, it is customary to have a phase reserve of $\alpha > 45°$. [@reisch2007]
 
-![Example of a transcient response of a circuit with a phase reserve of $\alpha = 5.7°$ [@reisch2007]](/images/sec_characterisation/reisch_stability_example_trans.png){#fig-reischExampleStabilityTransient}
+![Example of a transcient response of a circuit with a phase reserve of $\alpha = 5.7°$ [taken from @reisch2007]](/images/sec_characterisation/reisch_stability_example_trans.png){#fig-reischExampleStabilityTransient}
 
-Figure (reisch) shows the transient response of a circuit with a phase reserve of $\alpha = 5.7°. The overshoots are clearly visible and number of the overshoots per puls are larger then the customary "one over, one under"-rule. As the phase reserve is positive, the figure shows that even though the transient response is not ideal, the oscillations are attenuated and the circuit is can be considered as stable.
+Figure @fig-reischExampleStabilityTransient shows the transient response of a circuit with a phase reserve of $\alpha = 5.7°$. The overshoots are clearly visible and number of the overshoots per puls are larger then the customary "one over, one under"-rule. As the phase reserve is positive, the figure shows that even though the transient response is not ideal, the oscillations are attenuated and the circuit is can be considered as stable.
 
-In practical application, the phase reserve can be graphically determined with the help of bode diagrams. The bode diagram of the circuit with an open feedback loop is simulated, so that the frequency $f_k$ can be read out. This is the frequnecy where the feedback gain is 1 or 0 dB. The corresponding frequency to that, is the phase of the feedback gain $\varphi_k$, the difference between $-180°$ and $\varphi_k$ is the phase reserve $\alpha$. [@reisch2007]
+In practical application, the phase reserve can be graphically determined with the help of bode diagrams. The bode diagram of the circuit with an open feedback loop is simulated, so that the frequency $f_k$ can be read out. This is the frequency where the feedback gain is 1 or 0 dB. The corresponding frequency to that, is the phase of the feedback gain $\varphi_k$, the difference between $-180°$ and $\varphi_k$ is the phase reserve $\alpha$. [@reisch2007]
 
-:::{.callout-warning}
-Talk abut which ota was used for stability analysis
-:::
+For the analysis of component stability the 5t-ota design from [@pretl2025] was used. @fig-circuitStabilityAdder and @fig-circuitStabilityIntegrator show the schematics that simulated the stability analysis for the components. In both cases the AC source was inserted in the open feedback loop and the output of the OTA was used to analyse the stability.
 
-:::{.callout-warning}
-insert circuit where the stability analsis was done from, like in ltspice
-:::
+![Circuit schematic of the stability analysis of the adder](../images/sec_characterisation/stability_adder_circuit.png){#fig-circuitStabilityAdder}
 
-:::{.callout-warning}
-insert bode diagram figures (both: integrator and adder)
-:::
+![Circuit schematic of the stability analysis of the integrator](../images/sec_characterisation/stability_integrator_circuit.png){#fig-circuitStabilityIntegrator}
 
-
-:::{#fig-test}
-:::
+In the following figures @fig-stabilityAdder and @fig-stabilityIntegrator this stability analysis method was used to determine the stability over the phase reserve.
 
 ```{python}
-#| label: fig-stabilityAdder
-#| fig-cap: "Stability analysis of the adder"
+#| label: lst-stabilityAdder
 #| code-fold: true
+#| output: false
 
 # Stability analysis adder
 
@@ -671,13 +666,24 @@ ax2.set_xlabel("Frequency/Hz")
 
 plt.grid(True, which="both", ls="--")
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig("../images/sec_characterisation/stabilityAdder.png", format="png", dpi=1000)
 ```
 
+![Stability analysis of the adder](../images/sec_characterisation/stabilityAdder.png){#fig-stabilityAdder}
+
+The frequency response of the adder shows a phase $\varphi_k = 83°$, when the gain is 1. Calculation the phase reserve from that
+
+$$\alpha_{add} = 180° - \varphi_k = 180° - 83° = 97° > 45°
+$$
+
+gives a phase reserves, that indicates stability for this component.
+
 ```{python}
-#| label: fig-stabilityIntegrator
-#| fig-cap: "Stability analysis of the integrator"
+#| label: lst-stabilityIntegrator
 #| code-fold: true
+#| output: false
 
 # Stability analysis integrator
 
@@ -707,14 +713,14 @@ ax2.set_xlabel("Frequency/Hz")
 
 plt.grid(True, which="both", ls="--")
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig("../images/sec_characterisation/stabilityIntegrator.png", format="png", dpi=1000)
 ```
 
-In the following figures (ref) and @fig-stabilityIntegrator this method was used to determine the stability over the phase reserve.
+![Stability analysis of the integrator](../images/sec_characterisation/stabilityIntegrator.png){#fig-stabilityIntegrator}
 
-(add here part about whether they are stable...)
-
-The stability of the integrator circuit, as seen in @fig-stabilityIntegrator, shows a intersection of the magnitude plot with the $0\,dB$ line at about $f_k = 70k\Hz$, which corresponds to a phase of $\varphi_k = 68°$. This would leave a phase reserve of:
+The stability of the integrator circuit, as seen in @fig-stabilityIntegrator, shows a intersection of the magnitude plot with the $0\,dB$ line at about $f_k = 70\,kHz$, which corresponds to a phase of $\varphi_k = 68°$. This would leave a phase reserve of:
 
 $$
 \alpha_{int} = 180° - \varphi_k = 112° > 45°
@@ -724,22 +730,22 @@ Therefore the integrator would be stable.
 
 #### OTA stability
 
-i have not found anything in pretl script, but i clearly remember mr. meiners talking about this...
-
-i have found something in pretls script, but looks not easy... look at chapter about mosfets
+:::{.callout-note}
+lets come back to this, if I should magically find some more time somewhere...
+:::
 
 ### Ideal Opamp
 
-kinda forgot where I wanted to go with this one... ehhh maybe it will come back
+To check the behauviour of the implemented circuit against the modelled behauviour of the transfer function, the universal biquad was built as an ideal circuit with voltage-regulated current sources instead of OTAs. This simulation of the circuit verfies that the circuit implementation of the biquadratic filter with OTAs can fulfill the requirements at least in the ideal case.
 
-uhhh i think it was about the ideal circuit and spice analysis etc
+![Schematic of an universal biquad filter with ideal OTAs](../images/sec_characterisation/biquad_univ_circuit.png){#fig-CircuitBiquadIdeal}
 
-To check the behauviour of the implemented circuit against the modelled behauviour of the transfer function, the universal biquad was built as an ideal circuit with voltage-regulated current sources instead of OTAs.
+@fig-CircuitBiquadIdeal depicts the schematic of an universal biquad filter, where the OTAs are idealised with voltage controlled current sources. An ac simulation of this circuit can be viewed in @fig-idealCir.
 
 ```{python}
-#| label: fig-idealCir
-#| fig-cap: "Simulation of an idealised biquad"
+#| label: lst-idealCir
 #| code-fold: true
+#| output: false
 
 # plot Ideal (voltage controlled current? source) biquad
 import numpy as np
@@ -778,12 +784,20 @@ ax2.legend()
 
 plt.grid(True, which="both", ls="--")
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig("../images/sec_characterisation/idealCir.png", format="png", dpi=1000)
 ```
 
-here plot comp between python and ideal
+![Simulation of an idealised biquad](../images/sec_characterisation/idealCir.png){#fig-idealCir}
+
+@fig-compTfIdealAmplitude and @fig-compTfIdealPhase compares the system-theoretic analysis with transfer functions with the simulated idealised of the filter design with each other. Both plots show very nicely that the amplitude response as well as the phase response of all four filters match with their simulated and calculated responses.
 
 ```{python}
+#| label: lst-compTfIdealAmplitude
+#| code-fold: true
+#| output: false
+
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
@@ -807,7 +821,7 @@ Q = 10  # Quality factor
 H0 = 1  # Play around with this later
 
 # Logarithmic frequency axis
-frequencies = np.logspace(0, 4, 1000)  # Frequency from 10^2 to 10^4 Hz
+frequencies = np.logspace(0, 5, 10000)  # Frequency from 10^2 to 10^4 Hz
 s = 1j * 2 * np.pi * frequencies  # Laplace-Variable s = jω
 
 ############################################
@@ -854,8 +868,8 @@ ax1.semilogx(frequencies, 20 * np.log10(np.abs(Hs_lp)), label='tf')
 ax1.semilogx(sd.values[nfrequency], 20 * np.log10(abs(sd.values[nvoutLPF])), label='ngspice')
 ax1.set_ylabel("magnitude/dB")
 ax1.set_title("low pass filter")
-ax1.set_xlim([10,10e3])
-ax1.set_ylim([-40,25])
+ax1.set_xlim([10,10e4])
+ax1.set_ylim([-60,25])
 ax1.grid(True, which="both", ls="--")
 ax1.legend()
 
@@ -887,10 +901,18 @@ ax4.grid(True, which="both", ls="--")
 ax4.legend()
 
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig("../images/sec_characterisation/compTfIdealAmplitude.png", format="png", dpi=1000)
 ```
 
+![Comparison of the amplitude response between the transfer functions and idealised circuit](../images/sec_characterisation/compTfIdealAmplitude.png){#fig-compTfIdealAmplitude}
+
 ```{python}
+#| label: lst-compTfIdealPhase
+#| code-fold: true
+#| output: false
+
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
@@ -914,7 +936,7 @@ Q = 10  # Quality factor
 H0 = 1  # Play around with this later
 
 # Logarithmic frequency axis
-frequencies = np.logspace(0, 4, 1000)  # Frequency from 10^2 to 10^4 Hz
+frequencies = np.logspace(0, 4, 10000)  # Frequency from 10^2 to 10^4 Hz
 s = 1j * 2 * np.pi * frequencies  # Laplace-Variable s = jω
 
 ############################################
@@ -994,17 +1016,9 @@ ax4.grid(True, which="both", ls="--")
 ax4.legend()
 
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig("../images/sec_characterisation/compTfIdealPhase.png", format="png", dpi=1000)
 ```
 
-## Implementation (or Real Circuit)
-
-this is about the transition from the ideal circuit to real circuit
-
-### used opamp representation
-
-like with opamp did we use specifically (5 ota i think), why, what are special about that
-
-### Sizing
-
-with the script from pretl, if i remember correctly
+![Comparison of the phase response between the transfer functions and idealised circuit](../images/sec_characterisation/compTfIdealPhase.png){#fig-compTfIdealPhase}
