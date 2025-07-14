@@ -170,7 +170,7 @@ For $Q = 100$ the peak is $A_{peak} = 100.001$, which converted into dB is $A_{p
 ## Operational Amplifier
 As seen in @fig-BiquadCircuit a Biquad Filter consists four Operational Amplifiers. To get a better understanding of these, this chaper will discuss the main arguments of OPAMS.
 There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid there exist nine diffrent types of the Opamps, but only four are mainly used [@Approximating_OPAMP]. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output. 
-This results in four basic configurations, as shown in the accompanying table @tbl-opamp_comapre.
+This results in four basic configurations, as shown in the accompanying table @tbl-opamp_comapre. (Images are taken from @wiki_opams)
 
 
 [//]: # Deutsches WIKI https://de.wikipedia.org/wiki/Operationsverst%C3%A4rker#Aufbau_und_Varianten 
@@ -189,15 +189,15 @@ As a general rule, the simplest circuit that can do a job is usually the best ch
 :::
 
 
-### Voltage-Feedback Amplifiers (VFA)
+### Voltage-Feedback Amplifiers (VFA) {#sec-VFA}
 When discussing operational amplifiers (OPAMPs), most sources refer to the Voltage-Feedback Amplifier. These VFAs are **voltage-controlled voltage sources**, essentially acting as voltage boosters. They are characterized by a high-impedance input for both the non-inverting and inverting terminals, and a low-impedance voltage output. To realize various desired circuits, such as amplification, integration, addition/subtraction, etc..., these functions should ideally be achieved only through the surrounding circuitry. To meet this requirement, three main requirements need be satisfied:
 
-- **Extremely High Voltage Gain**: Typically ranging from 60 to 120 dB (or a gain factor of $10^4$ to $10^6$), this gain should be available over a wide frequency range.
+- **Extremely High Voltage Gain**: Typically ranging from 60 to 120 dB (or gain factor of $10^4$ to $10^6$), this gain should be available over a wide frequency range.
 - **High Impedance at Differential Inputs**: Ensuring minimal loading of the signal source.
 - **Low Impedance at the Output**: Allowing the amplifier to drive various loads without significant voltage drop.
 
 
-::: {.callout-important}
+::: {.callout-tip}
 ## Difference between a voltage source and a current source 
 **Voltage source**  
 A voltage source creates a constant voltage output by changing the output. 
@@ -209,64 +209,116 @@ Both of this sources can be explained by Ohms-Law: $R = \frac{U}{I}$. For exampl
 :::
 
 ### Operational Transconductance Amplifier (OTA)
-In the design process of the biquad only OTAs will be used, so the focus of this chapter will be on them. The operational transconductance amplifier puts out out a current proportional to its input voltage, unlike Voltage-Feedback Amplifiers REF:KAPITEL_VFA. In other words an OTA is a **voltage controlled current source**. 
+In the design process of the biquad only OTAs will be used, so the focus of this chapter will be on them. The operational transconductance amplifier puts out out a current proportional to its input voltage, unlike Voltage Feedback Amplifiers @sec-VFA. In other words an OTA is a **voltage controlled current source**. 
 
-![Schematic symbol of an OTA @book-rotaktivefilter](../images/sec_theorectical_background/ota_symbol.png){#fig-otasym}
+![Schematic symbol of an OTA @Wangenheim2007](../images/sec_theorectical_background/ota_symbol.png){#fig-otasym}
 
-As seen in the figure @fig-otasym the OTA has the two differental inputs and the current output. On top of that it has a biasing current input $I_{bias}$ which can control the 
+As seen in the figure @fig-otasym the OTA has the two differental inputs and the current output. On top of that it has a biasing current input $I_{bias}$ which controls the transconductance $g_m$ of the OTA.
 
 #### Transconductance
 
-Transconductance is a fundamental parameter that describes the relationship between the input voltage and the output current in electronic devices, particularly in transistors and vacuum tubes. It is defined as the ratio of the change in output current to the change in input voltage, under conditions where all other variables are held constant. Mathematically, it is expressed as:
+Transconductance is a fundamental parameter that describes the relationship between the input voltage and the output current in electronic devices, particularly in transistors. It is defined as the ratio of the change in output current to the change in input voltage, under conditions where all other variables are held constant. Mathematically, it is expressed as:
 
-\[ g_m = \frac{\Delta I_{out}}{\Delta V_{in}} \]
+$g_m = \frac{\Delta I_{out}}{\Delta V_{in}}$
 
-where \( g_m \) is the transconductance, \( \Delta I_{out} \) is the change in output current, and \( \Delta V_{in} \) is the change in input voltage. The unit of transconductance is the siemens (S), which is equivalent to amperes per volt (A/V). Historically, it was also measured in "mhos," which is "ohm" spelled backwards, reflecting its inverse relationship to resistance.
+where $g_m$ is the transconductance, $\Delta I_{out}$ is the change in output current, and $\Delta V_{in}$ is the change in input voltage. The unit is the siemens S, which is amperes per volt (I/U). In the past *Mho* was used (which is *Ohm* spelled backwards) and it shows the inverse relationship to resistance.
 
-The term "transconductance" originates from the concept of "transfer conductance." It combines the ideas of "transfer," indicating the transfer of a signal from the input to the output, and "conductance," which is the reciprocal of resistance and measures how easily a material conducts electric current. In essence, transconductance quantifies how effectively a device can convert a voltage change at its input into a proportional current change at its output.
+In field-effect transistors (FETs) the transconductance determines the device's ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current. 
 
-Transconductance is a crucial parameter in the design and analysis of electronic circuits, especially in amplifiers. In vacuum tubes and field-effect transistors (FETs), the transconductance determines the device's ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current. This property makes transconductance a key factor in the performance and efficiency of various electronic devices and circuits.
+::: {.callout-note}
+## Origin of the term transconductance
+The term transconductance originates from the concept of **transfer conductance**. It combines the ideas of **transfer**, indicating the transfer of a signal from the input to the output, and **conductance**, which is the inverse of resistance and measures how easily a material conducts electric current. In essence, transconductance describes how effectively a device can convert a voltage change at its input into a proportional current change at its output. @gm_acakids
+:::
 
-####HW 5-Transistor OTA
+
+#### 5-Transistor OTA
+
+@hpretlacd introduces a basic 5-Transistor OTA as a design proposal for a real circuits.
+
+![@hpretlacd 's 5-Transistor OTA](../images/sec_theorectical_background/basic_ota_output.svg){#fig-5tota}
+
+It consists of few elements which are going to be described in the next chapters. The basic function of this OTA can be described with: 
+The transistors $M_1$ and $M_2$ form a differential pair, which is biased by the current source $M_5$. Transistors $M_5$ and $M_6$ create a current mirror, where the input bias current $I_{\text{bias}}$ sets the bias current for the Operational Transconductance Amplifier. To keep the biasing current stable a current mirror is used instead of applying the $I_{\text{bias}}$ directly to $M_5$ The differential pair $M_1$ and $M_2$ is loaded by the current mirror $M_3$ and $M_4$, which mirrors the drain current of $M_1$ to the right side of the circuit. The combined currents from $M_4$ and $M_2$ at the output node result in the generation of an output current. To archieve this desired result, it is important to ensure that $M_{1,2}$ and $M_{3,4}$ are symmetric, meaning they should have identical $W$ (width) and $L$ (length) dimensions. To set the right bias current, $M_{5,6}$ should be choosen accordingly.
 
 
 
+### Current Mirror
+
+A current mirror consists of at least two transistors, one working as the input (reference) source and the other ones as the replicas of it. As the name suggests, the primary function of a current mirror is to copy the input current to the output, ensuring that the output current is an exact duplicate of the input. Importantly, the flow of the input current is unaffected by the size of the mirrored output current or any variations in it.
+
+This behaviour is made possible by two key characteristics of the current mirror: its relatively low input resistance and its relatively high output resistance. The low input resistance ensures the input current remains stable regardless of drive conditions and the high output resistance maintains a constant output current independent of load variations. @analog_university_current_mirror
+
+![MOSFET Current Mirror (taken from @nerdsdostuff_current_mirror)](../images/sec_theorectical_background/current_mirror.png){#fig-current_mirror width=50%}
+
+A current mirror is also capable of copying one current and convert it to multiple different outputs. This is possible by attaching more transistors with their Gate to the $V_{GS}$ of the reference transistor. By scaling the width and length of each output transistor different, multiple scales of the input current can be created. Hereby a big advantage is when using MOSFETS, due to the fact that no current is flowing through the Gate. In case of BJTs a compensation circuit is added. @hpretlacd
+
+### Differential Pair
+
+A differential pair, also referred to as a differential amplifier, is an electronic circuit designed to compare the difference between two input voltages while minimising any voltage that is common to both inputs. It consists of two transistors and can be differential with has two inputs and two outputs, as seen in @fig-diff_pair. 
+
+![A differential pair @hpretlacd](../images/sec_theorectical_background/differential_pair.svg){#fig-diff_pair}
+
+Common-Mode
+
+Differential voltage
 
 ### Variants ?
 
 maybe like miller opamp or something like that
 
 
-
-[//]: # (This may be the most platform independent comment)
+<!-- This is a Comment-->
 
 ## MOSFET (Metal-Oxide-Semiconductor Field-Effect-Transistor )
 
-To get a general insight how an Operational Amplifier works and to uderstand the difference between a "off th shelf" part and a self made IC-Design, its nessesary to understand the main component: The MOSFET.
+To dive in one more level, the parts an operational amplifier is build of are transistors. Precisely in this design process they are Metal-Oxide-Semiconductor Field-Effect-Transistors (MOSFETs).
+In integrated circuit design, where pre-built components are not available, MOSFETs can be designed from scratch. This design flexibility allows for the adjustment of the MOSFET's physical dimensions, specifically its width $W$ and leght $L$. By doing this there is a lot of room for freedom and experimental space. The length $L$ significantly influences MOSFET performance, enabling a trade-off between speed and output conductance. The width $W$ of a MOSFET acts as a scaling factor that adjusts the charge density within the channel, enabling the control of current levels to meet specific design requirements.
 
-To be more precise, its nesessary to understand the behaviour of a MOSFET. Since were designing one from scratch, its possible to change the width W and leght L of the pysical layout. By doing this there is a lot of room for freedom and experimental space. 
+::: {.callout-warning}
+## Circuit symbol of MOSFETs
+In the literature, the circuit symbol of MOSFETs is not uniform. Some denote them with a small arrow between the gate ($G$) and source ($S$), which is not very precise due to the fact that a MOSFET is symmetric. This means that the drain ($D$) and source ($S$) can be interchanged, and the names are only defined to make circuits clearer. Therefore, an accurate symbol for the n-MOS (shown in @fig-nmos) and p-MOS (shown in @fig-pmos) is shown in the following figures taken from @hpretlacd:
 
+![n-MOSFET circuit symbol](../images/sec_theorectical_background/nmos_symbol.svg){#fig-nmos}
 
-BILD N-MOS
+![p-MOSFET circuit symbol](../images/sec_theorectical_background/pmos_symbol.svg){#fig-pmos}
 
-BILD P-MOS
-
+However, in this development report, the symbols are not strictly hold like shown here. But all of the used figures are based on this symmetric model of a MOSFET.
+Besides this in many situations the bulk $B$ is connnected to the source $S$ terminal. Thus the bulk $B$ is not mentioned in the circuit diagramms. 
+:::
 
 ### Small-Signal Representation
 
-### Sizing 
+By applying different voltages to a MOSFET, different behaviours appear. But there is one thing which is very unliked by engineers and others, all these transfer functions are non linear. So making any calculations by hand calculation is nearly impossible. Thats why in practise the biasing method exists. This is done by appying a dc voltage to the terminals of the MOSFET and during operation only a small signal change appears. With this technique an **Operating Point** is created, which enables to assume a linear behavior in its small signal area (like in @fig-mosfetoppoint).
 
-As mentioned earlier we have several degrees of freedom in our design, like $W$, $L$, or the bias current $I_D$. 
-The problem is, that its extremly complex to describe a MOSFET mathmaticly and on top to that of change values to get a desired behaviour. Glady a wide used technique, which was introduced by P. Jespers and B. Murmann, is the g_\mathrm{m}/I_\mathrm{D} approach \ref{Jesper.... Pretl 3).
+![MOSFET drain current vs. drain-to-source voltage for several values](../images/sec_theorectical_background/mosfet_oppoint.png){#fig-mosfetoppoint}
 
-*Saturation* 
-Saturation is a specific operation mode of a transistor. Its also called "ON mode", because a channel between drain and source is created. This state is reached when the voltage $V_DS >= (V_GS - V_th)$. When this happens the drain-source current I_DS gets stable (saturates) and becomes nearly indipendet of V_DS. Still it can be very well controlled via V_GS, due to an effect called "pinch-off" (\ref{https://en.wikipedia.org/wiki/MOSFET}).
+::: {.callout-important}
+## Important variables
+- **$I_D$**: The drain current
+- **$V_{GS}$**: The gate-to-source voltage
+- **$V_{DS}$**: The drain-to-source voltage
+- **$V_{th}$**: The threshold voltage. A critical parameter that defines the minimum gate-to-source voltage $V_{GS}$ required to form a conductive channel between the source and drain
+- **$g_m$**: The transconductance. The ratio between the output current and input voltage
+:::
 
-The g_\mathrm{m}/I_\mathrm{D} method is primarly inteded to be used in saturated MOSFETs. To ensure this we keep the drain-source voltage as V_ds = V_DD / 2.
+### MOSFET regions
 
-### Current Mirror
+A MOSFET can operate in three different modes: Saturation, Linear (or Triode) region or Cutoff. The modes depend on the device's threshold voltage $V_{\text{th}}$, gate-to-source voltage $V_{\text{GS}}$, and drain-to-source voltage $V_{\text{DS}}$.
 
-### Differential Stage
+**Saturation** 
+
+The saturation region is the active mode used for analog amplification , where the MOSFET behaves like a voltage-controlled current source . A conductive channel forms between the source and drain. This state is reached when the condition $V_{\text{DS}} \geq (V_{\text{GS}} - V_{\text{th}})$ is met. In saturation, the drain-source current ($I_{\text{DS}}$) stabilizes or "saturates" and becomes nearly independent of $V_{\text{DS}}$. However, it can still be precisely controlled via $V_{\text{GS}}$ due to the phenomenon known as ["pinch-off"](https://en.wikipedia.org/wiki/Channel_length_modulation )
+
+
+**Linear Region**
+
+The Linear, or Triode, region occurs when a MOSFET is conducting and acts more like a resistor or voltage-controlled device rather than a current source. This region is defined by the condition $V_{\text{DS}} < (V_{\text{GS}} - V_{\text{th}})$ and $V_{\text{GS}} > V_{\text{th}} $. In this mode, both $V_{\text{GS}}$ and $V_{\text{DS}}$ control the $I_{\text{DS}}$, allowing the device to be used effectively for switching and amplification in low-voltage applications. 
+
+
+**Cutoff Region**
+
+In the Cutoff region, the MOSFET is effectively turned off, with no conductive channel formed between the drain and source. This mode is reached when the gate-to-source voltage is less than the threshold voltage ($V_{\text{GS}} < V_{\text{th}}$). In Cutoff, the drain-source current $I_{\text{DS}}$ is nearly zero, which means the MOSFET is not conducting and behaves like an open switch. 
+
 
 
 
