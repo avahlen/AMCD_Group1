@@ -288,16 +288,16 @@ window.Quarto = {
   </ul></li>
   <li><a href="#operational-amplifier" id="toc-operational-amplifier" class="nav-link" data-scroll-target="#operational-amplifier"><span class="header-section-number">2.2</span> Operational Amplifier</a>
   <ul class="collapse">
-  <li><a href="#voltage-feedback-amplifiers-vfa" id="toc-voltage-feedback-amplifiers-vfa" class="nav-link" data-scroll-target="#voltage-feedback-amplifiers-vfa"><span class="header-section-number">2.2.1</span> Voltage-Feedback Amplifiers (VFA)</a></li>
+  <li><a href="#sec-VFA" id="toc-sec-VFA" class="nav-link" data-scroll-target="#sec-VFA"><span class="header-section-number">2.2.1</span> Voltage-Feedback Amplifiers (VFA)</a></li>
   <li><a href="#operational-transconductance-amplifier-ota" id="toc-operational-transconductance-amplifier-ota" class="nav-link" data-scroll-target="#operational-transconductance-amplifier-ota"><span class="header-section-number">2.2.2</span> Operational Transconductance Amplifier (OTA)</a></li>
-  <li><a href="#variants" id="toc-variants" class="nav-link" data-scroll-target="#variants"><span class="header-section-number">2.2.3</span> Variants ?</a></li>
+  <li><a href="#current-mirror" id="toc-current-mirror" class="nav-link" data-scroll-target="#current-mirror"><span class="header-section-number">2.2.3</span> Current Mirror</a></li>
+  <li><a href="#differential-pair" id="toc-differential-pair" class="nav-link" data-scroll-target="#differential-pair"><span class="header-section-number">2.2.4</span> Differential Pair</a></li>
+  <li><a href="#variants" id="toc-variants" class="nav-link" data-scroll-target="#variants"><span class="header-section-number">2.2.5</span> Variants ?</a></li>
   </ul></li>
   <li><a href="#mosfet-metal-oxide-semiconductor-field-effect-transistor" id="toc-mosfet-metal-oxide-semiconductor-field-effect-transistor" class="nav-link" data-scroll-target="#mosfet-metal-oxide-semiconductor-field-effect-transistor"><span class="header-section-number">2.3</span> MOSFET (Metal-Oxide-Semiconductor Field-Effect-Transistor )</a>
   <ul class="collapse">
   <li><a href="#small-signal-representation" id="toc-small-signal-representation" class="nav-link" data-scroll-target="#small-signal-representation"><span class="header-section-number">2.3.1</span> Small-Signal Representation</a></li>
-  <li><a href="#sizing" id="toc-sizing" class="nav-link" data-scroll-target="#sizing"><span class="header-section-number">2.3.2</span> Sizing</a></li>
-  <li><a href="#current-mirror" id="toc-current-mirror" class="nav-link" data-scroll-target="#current-mirror"><span class="header-section-number">2.3.3</span> Current Mirror</a></li>
-  <li><a href="#differential-stage" id="toc-differential-stage" class="nav-link" data-scroll-target="#differential-stage"><span class="header-section-number">2.3.4</span> Differential Stage</a></li>
+  <li><a href="#mosfet-regions" id="toc-mosfet-regions" class="nav-link" data-scroll-target="#mosfet-regions"><span class="header-section-number">2.3.2</span> MOSFET regions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -359,7 +359,6 @@ Figure&nbsp;2.1: circuit design of an universal biquad filter
 </section>
 <section id="characteristics" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="characteristics"><span class="header-section-number">2.1.2</span> Characteristics</h3>
-<p>NOTE: no more than 3 subsections!</p>
 <p>As the universal biquad filter is a second order filter with the specified outputs low pass, high pass, band pass, and band stop, each filter option can be described with a tranfer function on system level. The general second order transfer function is:</p>
 <p><span id="eq-TFSecondOrder"><span class="math display">\[
 H(s) = \frac{a_1 s^2 + b_1 s + c_1}{a_2 s^2 + b_2 s + c_2}
@@ -509,7 +508,7 @@ A_{peak} = \frac{Q}{\sqrt{1 - \frac{1}{4Q^2}}}
 </section>
 <section id="operational-amplifier" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="operational-amplifier"><span class="header-section-number">2.2</span> Operational Amplifier</h2>
-<p>As seen in <a href="#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> a Biquad Filter consists four Operational Amplifiers. To get a better understanding of these, this chaper will discuss the main arguments of OPAMS. There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid there exist nine diffrent types of the Opamps, but only four are mainly used <span class="citation" data-cites="Approximating_OPAMP">(<a href="references.html#ref-Approximating_OPAMP" role="doc-biblioref">Schmid 2000</a>)</span>. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output. This results in four basic configurations, as shown in the accompanying table <a href="#tbl-opamp_comapre" class="quarto-xref">Table&nbsp;<span>2.1</span></a>.</p>
+<p>As seen in <a href="#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> a Biquad Filter consists four Operational Amplifiers. To get a better understanding of these, this chaper will discuss the main arguments of OPAMS. There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid there exist nine diffrent types of the Opamps, but only four are mainly used <span class="citation" data-cites="Approximating_OPAMP">(<a href="references.html#ref-Approximating_OPAMP" role="doc-biblioref">Schmid 2000</a>)</span>. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output. This results in four basic configurations, as shown in the accompanying table <a href="#tbl-opamp_comapre" class="quarto-xref">Table&nbsp;<span>2.1</span></a>. (Images are taken from <span class="citation" data-cites="wiki_opams">Wikipedia (<a href="references.html#ref-wiki_opams" role="doc-biblioref">2025</a>)</span>)</p>
 <div id="tbl-opamp_comapre" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-opamp_comapre-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -568,15 +567,15 @@ Tip
 <p>As a general rule, the simplest circuit that can do a job is usually the best choice. <span class="citation" data-cites="hpretlacd">(<a href="references.html#ref-hpretlacd" role="doc-biblioref">H. Pretl and Michael Koefinger 2025</a>)</span></p>
 </div>
 </div>
-<section id="voltage-feedback-amplifiers-vfa" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="voltage-feedback-amplifiers-vfa"><span class="header-section-number">2.2.1</span> Voltage-Feedback Amplifiers (VFA)</h3>
+<section id="sec-VFA" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="sec-VFA"><span class="header-section-number">2.2.1</span> Voltage-Feedback Amplifiers (VFA)</h3>
 <p>When discussing operational amplifiers (OPAMPs), most sources refer to the Voltage-Feedback Amplifier. These VFAs are <strong>voltage-controlled voltage sources</strong>, essentially acting as voltage boosters. They are characterized by a high-impedance input for both the non-inverting and inverting terminals, and a low-impedance voltage output. To realize various desired circuits, such as amplification, integration, addition/subtraction, etc…, these functions should ideally be achieved only through the surrounding circuitry. To meet this requirement, three main requirements need be satisfied:</p>
 <ul>
-<li><strong>Extremely High Voltage Gain</strong>: Typically ranging from 60 to 120 dB (or a gain factor of <span class="math inline">\(10^4\)</span> to <span class="math inline">\(10^6\)</span>), this gain should be available over a wide frequency range.</li>
+<li><strong>Extremely High Voltage Gain</strong>: Typically ranging from 60 to 120 dB (or gain factor of <span class="math inline">\(10^4\)</span> to <span class="math inline">\(10^6\)</span>), this gain should be available over a wide frequency range.</li>
 <li><strong>High Impedance at Differential Inputs</strong>: Ensuring minimal loading of the signal source.</li>
 <li><strong>Low Impedance at the Output</strong>: Allowing the amplifier to drive various loads without significant voltage drop.</li>
 </ul>
-<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -595,86 +594,187 @@ A voltage source creates a constant voltage output by changing the output.</p>
 </section>
 <section id="operational-transconductance-amplifier-ota" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="operational-transconductance-amplifier-ota"><span class="header-section-number">2.2.2</span> Operational Transconductance Amplifier (OTA)</h3>
-<p>In the design process of the biquad only OTAs will be used, so the focus of this chapter will be on them. The operational transconductance amplifier puts out out a current proportional to its input voltage, unlike Voltage-Feedback Amplifiers REF:KAPITEL_VFA. In other words an OTA is a <strong>voltage controlled current source</strong>.</p>
+<p>In the design process of the biquad only OTAs will be used, so the focus of this chapter will be on them. The operational transconductance amplifier puts out out a current proportional to its input voltage, unlike Voltage Feedback Amplifiers <a href="#sec-VFA" class="quarto-xref"><span>Section 2.2.1</span></a>. In other words an OTA is a <strong>voltage controlled current source</strong>.</p>
 <div id="fig-otasym" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-otasym-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../images/sec_theorectical_background/ota_symbol.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-otasym-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.3: Schematic symbol of an OTA <span class="citation" data-cites="book-rotaktivefilter">(<a href="references.html#ref-book-rotaktivefilter" role="doc-biblioref"><strong>book-rotaktivefilter?</strong></a>)</span>
+Figure&nbsp;2.3: Schematic symbol of an OTA <span class="citation" data-cites="Wangenheim2007">Wangenheim (<a href="references.html#ref-Wangenheim2007" role="doc-biblioref">2007</a>)</span>
 </figcaption>
 </figure>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>den cite findet quarto nicht</p>
-</div>
-</div>
-<p>As seen in the figure <a href="#fig-otasym" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> the OTA has the two differental inputs and the current output. On top of that it has a biasing current input <span class="math inline">\(I_{bias}\)</span> which can control the</p>
+<p>As seen in the figure <a href="#fig-otasym" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> the OTA has the two differental inputs and the current output. On top of that it has a biasing current input <span class="math inline">\(I_{bias}\)</span> which controls the transconductance <span class="math inline">\(g_m\)</span> of the OTA.</p>
 <section id="transconductance" class="level4" data-number="2.2.2.1">
 <h4 data-number="2.2.2.1" class="anchored" data-anchor-id="transconductance"><span class="header-section-number">2.2.2.1</span> Transconductance</h4>
-<p>Transconductance is a fundamental parameter that describes the relationship between the input voltage and the output current in electronic devices, particularly in transistors and vacuum tubes. It is defined as the ratio of the change in output current to the change in input voltage, under conditions where all other variables are held constant. Mathematically, it is expressed as:</p>
+<p>Transconductance is a fundamental parameter that describes the relationship between the input voltage and the output current in electronic devices, particularly in transistors. It is defined as the ratio of the change in output current to the change in input voltage, under conditions where all other variables are held constant. Mathematically, it is expressed as:</p>
 <p><span class="math display">\[
 g_m = \frac{\Delta I_{out}}{\Delta V_{in}}
 \]</span></p>
 <p>where <span class="math inline">\(g_m\)</span> is the transconductance, <span class="math inline">\(\Delta I_{out}\)</span> is the change in output current, and <span class="math inline">\(\Delta V_{in}\)</span> is the change in input voltage. The unit of transconductance is the siemens (S), which is equivalent to amperes per volt (A/V). Historically, it was also measured in “mhos,” which is “ohm” spelled backwards, reflecting its inverse relationship to resistance.</p>
-<p>The term “transconductance” originates from the concept of “transfer conductance.” It combines the ideas of “transfer,” indicating the transfer of a signal from the input to the output, and “conductance,” which is the reciprocal of resistance and measures how easily a material conducts electric current. In essence, transconductance quantifies how effectively a device can convert a voltage change at its input into a proportional current change at its output.</p>
-<p>Transconductance is a crucial parameter in the design and analysis of electronic circuits, especially in amplifiers. In vacuum tubes and field-effect transistors (FETs), the transconductance determines the device’s ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current. This property makes transconductance a key factor in the performance and efficiency of various electronic devices and circuits.</p>
-<p>####HW 5-Transistor OTA</p>
+<p>In field-effect transistors (FETs) the transconductance determines the device’s ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Origin of the term transconductance
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The term transconductance originates from the concept of <strong>transfer conductance</strong>. It combines the ideas of <strong>transfer</strong>, indicating the transfer of a signal from the input to the output, and <strong>conductance</strong>, which is the inverse of resistance and measures how easily a material conducts electric current. In essence, transconductance describes how effectively a device can convert a voltage change at its input into a proportional current change at its output. <span class="citation" data-cites="gm_acakids">Kids (<a href="references.html#ref-gm_acakids" role="doc-biblioref">2025</a>)</span></p>
+</div>
+</div>
+</section>
+<section id="transistor-ota" class="level4" data-number="2.2.2.2">
+<h4 data-number="2.2.2.2" class="anchored" data-anchor-id="transistor-ota"><span class="header-section-number">2.2.2.2</span> 5-Transistor OTA</h4>
+<p><span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span> introduces a basic 5-Transistor OTA as a design proposal for a real circuits.</p>
+<div id="fig-5tota" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5tota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_theorectical_background/basic_ota_output.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5tota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span> ’s 5-Transistor OTA
+</figcaption>
+</figure>
+</div>
+<p>It consists of few elements which are going to be described in the next chapters. The basic function of this OTA can be described with: The transistors <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> form a differential pair, which is biased by the current source <span class="math inline">\(M_5\)</span>. Transistors <span class="math inline">\(M_5\)</span> and <span class="math inline">\(M_6\)</span> create a current mirror, where the input bias current <span class="math inline">\(I_{\text{bias}}\)</span> sets the bias current for the Operational Transconductance Amplifier. To keep the biasing current stable a current mirror is used instead of applying the <span class="math inline">\(I_{\text{bias}}\)</span> directly to <span class="math inline">\(M_5\)</span> The differential pair <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> is loaded by the current mirror <span class="math inline">\(M_3\)</span> and <span class="math inline">\(M_4\)</span>, which mirrors the drain current of <span class="math inline">\(M_1\)</span> to the right side of the circuit. The combined currents from <span class="math inline">\(M_4\)</span> and <span class="math inline">\(M_2\)</span> at the output node result in the generation of an output current. To archieve this desired result, it is important to ensure that <span class="math inline">\(M_{1,2}\)</span> and <span class="math inline">\(M_{3,4}\)</span> are symmetric, meaning they should have identical <span class="math inline">\(W\)</span> (width) and <span class="math inline">\(L\)</span> (length) dimensions. To set the right bias current, <span class="math inline">\(M_{5,6}\)</span> should be choosen accordingly.</p>
 </section>
 </section>
-<section id="variants" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="variants"><span class="header-section-number">2.2.3</span> Variants ?</h3>
+<section id="current-mirror" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="current-mirror"><span class="header-section-number">2.2.3</span> Current Mirror</h3>
+<p>A current mirror consists of at least two transistors, one working as the input (reference) source and the other ones as the replicas of it. As the name suggests, the primary function of a current mirror is to copy the input current to the output, ensuring that the output current is an exact duplicate of the input. Importantly, the flow of the input current is unaffected by the size of the mirrored output current or any variations in it.</p>
+<p>This behaviour is made possible by two key characteristics of the current mirror: its relatively low input resistance and its relatively high output resistance. The low input resistance ensures the input current remains stable regardless of drive conditions and the high output resistance maintains a constant output current independent of load variations. <span class="citation" data-cites="analog_university_current_mirror">Analog University (<a href="references.html#ref-analog_university_current_mirror" role="doc-biblioref">2024</a>)</span></p>
+<div id="fig-current_mirror" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-current_mirror-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_theorectical_background/current_mirror.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-current_mirror-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5: MOSFET Current Mirror (taken from <span class="citation" data-cites="nerdsdostuff_current_mirror">Nerds Do Stuff (<a href="references.html#ref-nerdsdostuff_current_mirror" role="doc-biblioref">2024</a>)</span>)
+</figcaption>
+</figure>
+</div>
+<p>A current mirror is also capable of copying one current and convert it to multiple different outputs. This is possible by attaching more transistors with their Gate to the <span class="math inline">\(V_{GS}\)</span> of the reference transistor. By scaling the width and length of each output transistor different, multiple scales of the input current can be created. Hereby a big advantage is when using MOSFETS, due to the fact that no current is flowing through the Gate. In case of BJTs a compensation circuit is added. <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span></p>
+</section>
+<section id="differential-pair" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="differential-pair"><span class="header-section-number">2.2.4</span> Differential Pair</h3>
+<p>A differential pair, also referred to as a differential amplifier, is an electronic circuit designed to compare the difference between two input voltages while minimising any voltage that is common to both inputs. It consists of two transistors and can be differential with has two inputs and two outputs, as seen in <a href="#fig-diff_pair" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>.</p>
+<div id="fig-diff_pair" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diff_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_theorectical_background/differential_pair.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diff_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.6: A differential pair <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span>
+</figcaption>
+</figure>
+</div>
+<p>Common-Mode</p>
+<p>Differential voltage</p>
+</section>
+<section id="variants" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="variants"><span class="header-section-number">2.2.5</span> Variants ?</h3>
 <p>maybe like miller opamp or something like that</p>
+<!-- This is a Comment-->
+</section>
+</section>
+<section id="mosfet-metal-oxide-semiconductor-field-effect-transistor" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="mosfet-metal-oxide-semiconductor-field-effect-transistor"><span class="header-section-number">2.3</span> MOSFET (Metal-Oxide-Semiconductor Field-Effect-Transistor )</h2>
+<p>To dive in one more level, the parts an operational amplifier is build of are transistors. Precisely in this design process they are Metal-Oxide-Semiconductor Field-Effect-Transistors (MOSFETs). In integrated circuit design, where pre-built components are not available, MOSFETs can be designed from scratch. This design flexibility allows for the adjustment of the MOSFET’s physical dimensions, specifically its width <span class="math inline">\(W\)</span> and leght <span class="math inline">\(L\)</span>. By doing this there is a lot of room for freedom and experimental space. The length <span class="math inline">\(L\)</span> significantly influences MOSFET performance, enabling a trade-off between speed and output conductance. The width <span class="math inline">\(W\)</span> of a MOSFET acts as a scaling factor that adjusts the charge density within the channel, enabling the control of current levels to meet specific design requirements.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Circuit symbol of MOSFETs
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>wegen dem doppel-slash, bekomme ich von quarto beim kompilieren eine warnung</p>
+<p>In the literature, the circuit symbol of MOSFETs is not uniform. Some denote them with a small arrow between the gate (<span class="math inline">\(G\)</span>) and source (<span class="math inline">\(S\)</span>), which is not very precise due to the fact that a MOSFET is symmetric. This means that the drain (<span class="math inline">\(D\)</span>) and source (<span class="math inline">\(S\)</span>) can be interchanged, and the names are only defined to make circuits clearer. Therefore, an accurate symbol for the n-MOS (shown in <a href="#fig-nmos" class="quarto-xref">Figure&nbsp;<span>2.7</span></a>) and p-MOS (shown in <a href="#fig-pmos" class="quarto-xref">Figure&nbsp;<span>2.8</span></a>) is shown in the following figures taken from <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span>:</p>
+<div id="fig-nmos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_theorectical_background/nmos_symbol.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.7: n-MOSFET circuit symbol
+</figcaption>
+</figure>
+</div>
+<div id="fig-pmos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_theorectical_background/pmos_symbol.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.8: p-MOSFET circuit symbol
+</figcaption>
+</figure>
+</div>
+<p>However, in this development report, the symbols are not strictly hold like shown here. But all of the used figures are based on this symmetric model of a MOSFET. Besides this in many situations the bulk <span class="math inline">\(B\)</span> is connnected to the source <span class="math inline">\(S\)</span> terminal. Thus the bulk <span class="math inline">\(B\)</span> is not mentioned in the circuit diagramms.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="mosfet-metal-oxide-semiconductor-field-effect-transistor" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="mosfet-metal-oxide-semiconductor-field-effect-transistor"><span class="header-section-number">2.3</span> MOSFET (Metal-Oxide-Semiconductor Field-Effect-Transistor )</h2>
-<p>To get a general insight how an Operational Amplifier works and to uderstand the difference between a “off th shelf” part and a self made IC-Design, its nessesary to understand the main component: The MOSFET.</p>
-<p>To be more precise, its nesessary to understand the behaviour of a MOSFET. Since were designing one from scratch, its possible to change the width W and leght L of the pysical layout. By doing this there is a lot of room for freedom and experimental space.</p>
-<p>BILD N-MOS</p>
-<p>BILD P-MOS</p>
 <section id="small-signal-representation" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="small-signal-representation"><span class="header-section-number">2.3.1</span> Small-Signal Representation</h3>
+<p>By applying different voltages to a MOSFET, different behaviours appear. But there is one thing which is very unliked by engineers and others, all these transfer functions are non linear. So making any calculations by hand calculation is nearly impossible. Thats why in practise the biasing method exists. This is done by appying a dc voltage to the terminals of the MOSFET and during operation only a small signal change appears. With this technique an <strong>Operating Point</strong> is created, which enables to assume a linear behavior in its small signal area (like in <a href="#fig-mosfetoppoint" class="quarto-xref">Figure&nbsp;<span>2.9</span></a>).</p>
+<div id="fig-mosfetoppoint" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mosfetoppoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_theorectical_background/mosfet_oppoint.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mosfetoppoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.9: MOSFET drain current vs.&nbsp;drain-to-source voltage for several values
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important variables
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong><span class="math inline">\(I_D\)</span></strong>: The drain current</li>
+<li><strong><span class="math inline">\(V_{GS}\)</span></strong>: The gate-to-source voltage</li>
+<li><strong><span class="math inline">\(V_{DS}\)</span></strong>: The drain-to-source voltage</li>
+<li><strong><span class="math inline">\(V_{th}\)</span></strong>: The threshold voltage. A critical parameter that defines the minimum gate-to-source voltage <span class="math inline">\(V_{GS}\)</span> required to form a conductive channel between the source and drain</li>
+<li><strong><span class="math inline">\(g_m\)</span></strong>: The transconductance. The ratio between the output current and input voltage</li>
+</ul>
+</div>
+</div>
 </section>
-<section id="sizing" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="sizing"><span class="header-section-number">2.3.2</span> Sizing</h3>
-<p>As mentioned earlier we have several degrees of freedom in our design, like <span class="math inline">\(W\)</span>, <span class="math inline">\(L\)</span>, or the bias current <span class="math inline">\(I_D\)</span>. The problem is, that its extremly complex to describe a MOSFET mathmaticly and on top to that of change values to get a desired behaviour. Glady a wide used technique, which was introduced by P. Jespers and B. Murmann, is the <span class="math inline">\(g_\mathrm{m}/I_\mathrm{D}\)</span> approach \ref{Jesper…. Pretl 3).</p>
-<p><em>Saturation</em> Saturation is a specific operation mode of a transistor. Its also called “ON mode”, because a channel between drain and source is created. This state is reached when the voltage <span class="math inline">\(V_{DS} &gt;= (V_{GS} - V_{th})\)</span>. When this happens the drain-source current I_DS gets stable (saturates) and becomes nearly indipendet of V_DS. Still it can be very well controlled via V_GS, due to an effect called “pinch-off” (<span class="math inline">\(\ref{https://en.wikipedia.org/wiki/MOSFET}\)</span>).</p>
-<p>The <span class="math inline">\(g_\mathrm{m}/I_\mathrm{D}\)</span> method is primarly inteded to be used in saturated MOSFETs. To ensure this we keep the drain-source voltage as <span class="math inline">\(V_{ds} = V_{DD} / 2\)</span>.</p>
-</section>
-<section id="current-mirror" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="current-mirror"><span class="header-section-number">2.3.3</span> Current Mirror</h3>
-</section>
-<section id="differential-stage" class="level3" data-number="2.3.4">
-<h3 data-number="2.3.4" class="anchored" data-anchor-id="differential-stage"><span class="header-section-number">2.3.4</span> Differential Stage</h3>
+<section id="mosfet-regions" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="mosfet-regions"><span class="header-section-number">2.3.2</span> MOSFET regions</h3>
+<p>A MOSFET can operate in three different modes: Saturation, Linear (or Triode) region or Cutoff. The modes depend on the device’s threshold voltage <span class="math inline">\(V_{\text{th}}\)</span>, gate-to-source voltage <span class="math inline">\(V_{\text{GS}}\)</span>, and drain-to-source voltage <span class="math inline">\(V_{\text{DS}}\)</span>.</p>
+<p><strong>Saturation</strong></p>
+<p>The saturation region is the active mode used for analog amplification , where the MOSFET behaves like a voltage-controlled current source . A conductive channel forms between the source and drain. This state is reached when the condition <span class="math inline">\(V_{\text{DS}} \geq (V_{\text{GS}} - V_{\text{th}})\)</span> is met. In saturation, the drain-source current (<span class="math inline">\(I_{\text{DS}}\)</span>) stabilizes or “saturates” and becomes nearly independent of <span class="math inline">\(V_{\text{DS}}\)</span>. However, it can still be precisely controlled via <span class="math inline">\(V_{\text{GS}}\)</span> due to the phenomenon known as <a href="https://en.wikipedia.org/wiki/Channel_length_modulation">“pinch-off”</a></p>
+<p><strong>Linear Region</strong></p>
+<p>The Linear, or Triode, region occurs when a MOSFET is conducting and acts more like a resistor or voltage-controlled device rather than a current source. This region is defined by the condition <span class="math inline">\(V_{\text{DS}} &lt; (V_{\text{GS}} - V_{\text{th}})\)</span> and $V_{} &gt; V_{} $. In this mode, both <span class="math inline">\(V_{\text{GS}}\)</span> and <span class="math inline">\(V_{\text{DS}}\)</span> control the <span class="math inline">\(I_{\text{DS}}\)</span>, allowing the device to be used effectively for switching and amplification in low-voltage applications.</p>
+<p><strong>Cutoff Region</strong></p>
+<p>In the Cutoff region, the MOSFET is effectively turned off, with no conductive channel formed between the drain and source. This mode is reached when the gate-to-source voltage is less than the threshold voltage (<span class="math inline">\(V_{\text{GS}} &lt; V_{\text{th}}\)</span>). In Cutoff, the drain-source current <span class="math inline">\(I_{\text{DS}}\)</span> is nearly zero, which means the MOSFET is not conducting and behaves like an open switch.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-analog_university_current_mirror" class="csl-entry" role="listitem">
+Analog University. 2024. <span>“Chapter 11: Current Mirror.”</span> <a href="https://wiki.analog.com/university/courses/electronics/text/chapter-11 ">https://wiki.analog.com/university/courses/electronics/text/chapter-11 </a>.
+</div>
 <div id="ref-hpretlacd" class="csl-entry" role="listitem">
 H. Pretl and Michael Koefinger. 2025. <span>“<span>Analog Circuit Design</span>.”</span> <a href="https://iic-jku.github.io/analog-circuit-design/" class="uri">https://iic-jku.github.io/analog-circuit-design/</a>.
+</div>
+<div id="ref-gm_acakids" class="csl-entry" role="listitem">
+Kids, Academic. 2025. <span>“Transconductance.”</span> <a href="https://academickids.com/encyclopedia/index.php/Transconductance">https://academickids.com/encyclopedia/index.php/Transconductance</a>.
+</div>
+<div id="ref-nerdsdostuff_current_mirror" class="csl-entry" role="listitem">
+Nerds Do Stuff. 2024. <span>“Current Mirror: Working and Circuit.”</span> <a href="https://nerdsdostuff.com/electronic_circuits/current-mirror-working-and-circuit/ ">https://nerdsdostuff.com/electronic_circuits/current-mirror-working-and-circuit/ </a>.
 </div>
 <div id="ref-aslkpro2012" class="csl-entry" role="listitem">
 Rao, K. R. K., and C. P. Ravikumar. 2012. <em>Analog System Lab Kit PRO MANUAL</em>. Texas Instruments.
@@ -687,6 +787,12 @@ Razavi, Behzad. 2018. <span>“The Biquadratic Filter.”</span> <em>IEEE Solid-
 </div>
 <div id="ref-Approximating_OPAMP" class="csl-entry" role="listitem">
 Schmid, H. 2000. <span>“Approximating the Universal Active Element.”</span> <em>IEEE Transactions on Circuits and Systems II: Analog and Digital Signal Processing</em> 47 (11): 1160–69. <a href="https://doi.org/10.1109/82.885124">https://doi.org/10.1109/82.885124</a>.
+</div>
+<div id="ref-Wangenheim2007" class="csl-entry" role="listitem">
+Wangenheim, Lutz v. 2007. <em>Aktive Filter Und Oszillatoren: Entwurf Und Schaltungstechnik Mit Integrierten Bausteinen</em>. Berlin: Springer-Verlag.
+</div>
+<div id="ref-wiki_opams" class="csl-entry" role="listitem">
+Wikipedia. 2025. <span>“Operationsverstärker.”</span> <a href="https://de.wikipedia.org/wiki/Operationsverst%C3%A4rker">https://de.wikipedia.org/wiki/Operationsverst%C3%A4rker</a>.
 </div>
 </div>
 </section>
