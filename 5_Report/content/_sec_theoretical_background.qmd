@@ -22,8 +22,6 @@ The universal biquad filter consists of two non-inverting amplifiers working as 
 
 ### Characteristics
 
-NOTE: no more than 3 subsections!
-
 As the universal biquad filter is a second order filter with the specified outputs low pass, high pass, band pass, and band stop, each filter option can be described with a tranfer function on system level. The general second order transfer function is:
 
 $$
