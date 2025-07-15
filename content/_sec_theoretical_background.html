@@ -255,14 +255,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/_sec_discussion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../content/_sec_conclusion-outlook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -324,27 +318,13 @@ window.Quarto = {
 </header>
 
 
-<p>my idea was to group all theoretics into one chapter, like a when the information becomes necessary during the quarto book, people can just jump back to this. we would circumvent having to introduce every little concept seperately whenever it comes up…</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I am thinking about changing the order, so that we are starting with biquads and work through the filter design from big to small…</p>
-</div>
-</div>
 <p>This chapter introduces the theory and core concepts necessary for IC design of a biquad filter. It is structured in a way, that it goes from the big picture to the small components. First, biquad filters are introduced with a focus on the universal biquad filter. After that, operational amplifiers come into the the foreground, as biquad filters make use of them in their circuits. Operational amplifiers are looked upon from an IC design standpoint.</p>
 <section id="biquad-filter" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="biquad-filter"><span class="header-section-number">2.1</span> Biquad filter</h2>
 <p>The biquadratic filter, also known as the biquad filter, has its earliest implementation in the 1960s but is still in use today, most commonly in radio frequency receivers <span class="citation" data-cites="razavi2018">(<a href="references.html#ref-razavi2018" role="doc-biblioref">Razavi 2018</a>)</span>. In its application in RF-technology, it is used to remove unwanted neighboring signals ans noise <span class="citation" data-cites="razavi2024">(<a href="references.html#ref-razavi2024" role="doc-biblioref">Razavi 2024</a>)</span>. As biquad filter are second-order filters, they are also used as building blocks for higher filter implementations, by cascading them and adding first order filters <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span>.</p>
 <section id="universal-biquad-filter" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="universal-biquad-filter"><span class="header-section-number">2.1.1</span> Universal biquad filter</h3>
-<p>For the filter design in this project, an universal biquad filter is used. The universal biquad filter is biquad filter variant with four operational amplifiers used in its design and the property of being able to be used in four different filter variants. Depending on the output of the universal biquad used, a low pass filter, high pass filter, band pass filter, or band stop filter will be implemented. This can be seen in (ref to figure of biquad fitler design). <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span></p>
+<p>For the filter design in this project, an universal biquad filter is used. The universal biquad filter is biquad filter variant with four operational amplifiers used in its design and the property of being able to be used in four different filter variants. Depending on the output of the universal biquad used, a low pass filter, high pass filter, band pass filter, or band stop filter will be implemented. This can be seen in <a href="#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>. <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span></p>
 <div id="fig-BiquadCircuit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-BiquadCircuit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -369,7 +349,7 @@ H(s) = \frac{a_1 s^2 + b_1 s + c_1}{a_2 s^2 + b_2 s + c_2}
 H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
 \tag{2.2}\]</span></span></p>
 <p><span class="math inline">\(Q\)</span> determines amoung other things the amount of peaking the transfer function has at the chosen frequency. <a href="#fig-lowPassDifferentQ" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> shows this graphically, the amout of peaking increases with increasing quality factor <span class="math inline">\(Q\)</span>.</p>
-<div id="lst-lowpassdifferentq" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="1" data-caption="Python code for plotting a low pass with different quality factors">
+<div id="lst-lowpassdifferentq" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-caption="Python code for plotting a low pass with different quality factors" data-execution_count="1">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-lowpassdifferentq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Listing&nbsp;2.1
@@ -508,7 +488,7 @@ A_{peak} = \frac{Q}{\sqrt{1 - \frac{1}{4Q^2}}}
 </section>
 <section id="operational-amplifier" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="operational-amplifier"><span class="header-section-number">2.2</span> Operational Amplifier</h2>
-<p>As seen in <a href="#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> a Biquad Filter consists four Operational Amplifiers. To get a better understanding of these, this chaper will discuss the main arguments of OPAMS. There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid there exist nine diffrent types of the Opamps, but only four are mainly used <span class="citation" data-cites="Approximating_OPAMP">(<a href="references.html#ref-Approximating_OPAMP" role="doc-biblioref">Schmid 2000</a>)</span>. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output. This results in four basic configurations, as shown in the accompanying table <a href="#tbl-opamp_comapre" class="quarto-xref">Table&nbsp;<span>2.1</span></a>. (Images are taken from <span class="citation" data-cites="wiki_opams">Wikipedia (<a href="references.html#ref-wiki_opams" role="doc-biblioref">2025</a>)</span>)</p>
+<p>As seen in <a href="#fig-BiquadCircuit" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> a Biquad Filter consists four Operational Amplifiers. To get a better understanding of these, this chapter will discuss the main arguments of OPAMPS. There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid there exist nine diffrent types of the Opamps, but only four are mainly used <span class="citation" data-cites="Approximating_OPAMP">(<a href="references.html#ref-Approximating_OPAMP" role="doc-biblioref">Schmid 2000</a>)</span>. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output. This results in four basic configurations, as shown in the accompanying table <a href="#tbl-opamp_comapre" class="quarto-xref">Table&nbsp;<span>2.1</span></a>. (Images are taken from <span class="citation" data-cites="wiki_opams">Wikipedia (<a href="references.html#ref-wiki_opams" role="doc-biblioref">2025</a>)</span>)</p>
 <div id="tbl-opamp_comapre" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-opamp_comapre-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -613,7 +593,7 @@ Figure&nbsp;2.3: Schematic symbol of an OTA (taken from <span class="citation" d
 <p><span class="math display">\[
 g_m = \frac{\Delta I_{out}}{\Delta V_{in}}
 \]</span></p>
-<p>where <span class="math inline">\(g_m\)</span> is the transconductance, <span class="math inline">\(\Delta I_{out}\)</span> is the change in output current, and <span class="math inline">\(\Delta V_{in}\)</span> is the change in input voltage. The unit of transconductance is the siemens (<span class="math inline">\(S\)</span>), which is equivalent to amperes per volt (<span class="math inline">\(A\)</span>/<span class="math inline">\(V\)</span>). Historically, it was also measured in “mhos,” which is “ohm” spelled backwards, reflecting its inverse relationship to resistance.</p>
+<p>where <span class="math inline">\(g_m\)</span> is the transconductance, <span class="math inline">\(\Delta I_{out}\)</span> is the change in output current, and <span class="math inline">\(\Delta V_{in}\)</span> is the change in input voltage. The unit of transconductance is the siemens (<span class="math inline">\(S\)</span>), which is equivalent to amperes per volt (<span class="math inline">\(A\)</span>/<span class="math inline">\(V\)</span>). Historically, it was also measured in “mho”, which is “ohm” spelled backwards, reflecting its inverse relationship to resistance.</p>
 <p>In field-effect transistors (FETs) the transconductance determines the device’s ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">

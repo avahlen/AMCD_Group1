@@ -255,14 +255,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/_sec_discussion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../content/_sec_conclusion-outlook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -382,7 +376,7 @@ Users, especially those working on Windows-based systems, need to distinguish cl
 <section id="sec-self-built-ota" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="sec-self-built-ota"><span class="header-section-number">4.3</span> OTA Circuit Integration Self-built Five-Transistor OTA</h2>
 <p>Initially, our group developed our own five-transistor OTA schematic within Xschem to gain practical insights and explore various design parameters.</p>
-<p>Figure <a href="#fig-self-built-ota" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> shows the minimalist OTA designed during the early project phase. The circuit follows the five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly <span class="math display">\[ g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr) \]</span> Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2.</p>
+<p><a href="#fig-self-built-ota" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> shows the minimalist OTA designed during the early project phase. The circuit follows the five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly <span class="math display">\[ g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr) \]</span> Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2.</p>
 <div id="fig-self-built-ota" class="quarto-float quarto-figure quarto-figure-center anchored" alt="schematic of the five-transistor OTA prototype">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-self-built-ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -426,14 +420,14 @@ Figure&nbsp;4.3: Transient waveforms: v_in vs.&nbsp;v_out.
 </figcaption>
 </figure>
 </div>
-<p>Figure <a href="#fig-ota-ug-wave" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> plots the resulting traces. The output (left) mirrors the input (right). The output does respond to the input change, it rises up during the pulse window, indicating the OTA is doing something. V_out lags significantly behind v_in and only reaches 1.1 V, while v_in reaches 1.2 V. The OTA as unity-gain buffer should closely track the input with only minimal offset or delay. This indicates: - Too low gain - Insufficient bandwidth - Or incorrect biasing (e.g., not enough current to drive the output stage).</p>
+<p><a href="#fig-ota-ug-wave" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> plots the resulting traces. The output (left) mirrors the input (right). The output does respond to the input change, it rises up during the pulse window, indicating the OTA is doing something. V_out lags significantly behind v_in and only reaches 1.1 V, while v_in reaches 1.2 V. The OTA as unity-gain buffer should closely track the input with only minimal offset or delay. This indicates: - Too low gain - Insufficient bandwidth - Or incorrect biasing (e.g., not enough current to drive the output stage).</p>
 <p>After conducting simulations and analyses, and discussing our results with the professor, we concluded that the five-transistor OTA provided by Prof.&nbsp;Pretel offered superior performance and reliability for our application. Thus, the decision was made to proceed with Prof.&nbsp;Pretl’s well-established OTA design.</p>
 </section>
 </section>
 <section id="xschem-ota-description-five-transistor-ota-by-prof.-pretl" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="xschem-ota-description-five-transistor-ota-by-prof.-pretl"><span class="header-section-number">4.4</span> Xschem OTA Description (Five-Transistor OTA by Prof.&nbsp;Pretl)</h2>
-<p>Prof.&nbsp;Pretl’s five-transistor OTA is an optimized implementation, specifically tailored for efficient analog circuit integration using the SG13G2 CMOS process. His design, depicted in Figure <a href="#fig-pretl-ota" class="quarto-xref">Figure&nbsp;<span>4.4</span></a>, maintains simplicity while enhancing performance through thoughtful sizing and layout practices. This OTA employs a standard architecture comprising an NMOS differential input pair, a tail current source transistor, and a PMOS current mirror load. The input differential voltage is transformed by the differential pair into two opposite-phase currents, recombined by the PMOS mirror at the single-ended output node.</p>
-<p>A dedicated transistor sets a stable bias current, ensuring predictable and robust OTA performance over varying operating conditions. Channel lengths and widths are carefully chosen to balance between adequate intrinsic gain, bandwidth, and noise characteristics. Particularly, the transistor sizes follow good IC design practices, with lengths exceeding the minimum dimensions to suppress short-channel effects and flicker noise. Bulk connections are properly handled to avoid body effects, typically by tying bulks directly to their corresponding source terminals. The accompanying layout from Prof.&nbsp;Pretl (Figure <a href="#fig-pretl-ota" class="quarto-xref">Figure&nbsp;<span>4.4</span></a>) illustrates thoughtful device placement and symmetry, reducing mismatches and parasitic coupling. Furthermore, multiple finger transistors are employed effectively to optimize layout density and performance, adhering to industry-standard guidelines.</p>
+<p>Prof.&nbsp;Pretl’s five-transistor OTA is an optimized implementation, specifically tailored for efficient analog circuit integration using the SG13G2 CMOS process. His design, depicted in <a href="#fig-pretl-ota" class="quarto-xref">Figure&nbsp;<span>4.4</span></a>, maintains simplicity while enhancing performance through thoughtful sizing and layout practices. This OTA employs a standard architecture comprising an NMOS differential input pair, a tail current source transistor, and a PMOS current mirror load. The input differential voltage is transformed by the differential pair into two opposite-phase currents, recombined by the PMOS mirror at the single-ended output node.</p>
+<p>A dedicated transistor sets a stable bias current, ensuring predictable and robust OTA performance over varying operating conditions. Channel lengths and widths are carefully chosen to balance between adequate intrinsic gain, bandwidth, and noise characteristics. Particularly, the transistor sizes follow good IC design practices, with lengths exceeding the minimum dimensions to suppress short-channel effects and flicker noise. Bulk connections are properly handled to avoid body effects, typically by tying bulks directly to their corresponding source terminals. The accompanying layout from Prof.&nbsp;Pretl ( <a href="#fig-pretl-ota" class="quarto-xref">Figure&nbsp;<span>4.4</span></a>) illustrates thoughtful device placement and symmetry, reducing mismatches and parasitic coupling. Furthermore, multiple finger transistors are employed effectively to optimize layout density and performance, adhering to industry-standard guidelines.</p>
 <p>Simulations and measured data presented by Prof.&nbsp;Pretl validate this design as a stable, efficient, and high-performance option for analog signal processing. It exhibits superior gain and bandwidth compared to simpler OTA configurations, making it suitable for more demanding applications in integrated analog and mixed-signal circuits. Due to these advantages, our group adopted this OTA as the baseline for subsequent design and integration phases in our project.</p>
 <div id="fig-pretl-ota" class="quarto-float quarto-figure quarto-figure-center anchored" alt="schematic of the five-transistor OTA">
 <figure class="quarto-float quarto-float-fig figure">
@@ -454,7 +448,7 @@ Figure&nbsp;4.4: OTA schematic.
 <p>Simulation results based on this sizing show that the OTA achieves an open-loop gain <span class="math inline">\(A_0 &gt; 43\,dB\)</span>, satisfying key performance goals such as bandwidth and linear range for biquad operation. These results confirm that the selected sizing strategy works reliably within the supply voltage limits of the SG13G2 process, and is well-suited for analog signal processing tasks requiring accurate and programmable transconductance.</p>
 <section id="small-signal-frequency-response" class="level3" data-number="4.5.1">
 <h3 data-number="4.5.1" class="anchored" data-anchor-id="small-signal-frequency-response"><span class="header-section-number">4.5.1</span> Small-Signal Frequency Response</h3>
-<p>To evaluate the frequency-domain behavior of the improved OTA, an AC simulation was performed using a differential testbench. The resulting magnitude response, shown in Figure <a href="#fig-ota-improved-ac" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>, displays the classic characteristics of a low-pass amplifier.</p>
+<p>To evaluate the frequency-domain behavior of the improved OTA, an AC simulation was performed using a differential testbench. The resulting magnitude response, shown in <a href="#fig-ota-improved-ac" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>, displays the classic characteristics of a low-pass amplifier.</p>
 <p>The curve remains flat (0 dB) throughout the low-frequency range, indicating that the OTA maintains constant gain for small-signal inputs up to approximately <span class="math inline">\(f_{-3\text{dB}} \approx 80\,\text{MHz}\)</span>. This –3 dB point marks the unity-gain bandwidth of the amplifier in this configuration. Beyond this corner frequency, the magnitude begins to drop at a rate close to –20 dB/decade, indicating a dominant single-pole roll-off.</p>
 <p>The high-frequency attenuation begins smoothly, confirming that the amplifier is well-compensated and free from peaking or signs of instability. The steep slope observed beyond 100 MHz suggests the presence of additional parasitic poles but no indication of underdamped behavior or excessive phase lag. This roll-off behavior is consistent with a cascode-loaded OTA, where the increased output impedance pushes the dominant pole to higher frequencies.</p>
 <p>Overall, the OTA demonstrates a strong small-signal frequency response, offering sufficient gain-bandwidth product for its intended use in biquad filters and other analog signal processing tasks.</p>
@@ -471,7 +465,7 @@ Figure&nbsp;4.5: AC magnitude response of the improved OTA.
 </section>
 <section id="large-signal-transient-response" class="level3" data-number="4.5.2">
 <h3 data-number="4.5.2" class="anchored" data-anchor-id="large-signal-transient-response"><span class="header-section-number">4.5.2</span> Large-Signal Transient Response</h3>
-<p>Figure <a href="#fig-ota-improved-transient" class="quarto-xref">Figure&nbsp;<span>4.6</span></a> shows the transient simulation result of the improved OTA in response to a step input signal.</p>
+<p><a href="#fig-ota-improved-transient" class="quarto-xref">Figure&nbsp;<span>4.6</span></a> shows the transient simulation result of the improved OTA in response to a step input signal.</p>
 <p>The red trace (<span class="math inline">\(v_\text{ena}\)</span>) represents the input voltage. It exhibits a sharp transition from 0 V to approximately 1.5 V at the beginning of the simulation and remains constant for the rest of the time window.</p>
 <p>The blue trace (<span class="math inline">\(v_\text{out}\)</span>) shows the corresponding OTA output voltage. Immediately after the input step, the output rises to approximately 0.8 V and holds steady throughout the entire duration of the simulation (15 µs). There is no visible overshoot, ringing, or delay in the output transition, and the response appears stable and monotonic.</p>
 <p>This result confirms that the OTA produces a constant output voltage in response to a step input under the simulated conditions. The flat and settled output also suggests that the biasing and feedback configuration were correctly established.</p>
@@ -494,7 +488,7 @@ Figure&nbsp;4.6: Transient response of the improved OTA to a step input.
 <p>The following section presents the concept, schematic implementation, and simulation-based validation of this gm‑C biquad prototype. It marks the transition from isolated OTA design toward the realization of a complete analog signal processing block.</p>
 <section id="ota-implementation-for-gmc-biquad" class="level3" data-number="4.6.1">
 <h3 data-number="4.6.1" class="anchored" data-anchor-id="ota-implementation-for-gmc-biquad"><span class="header-section-number">4.6.1</span> OTA Implementation for gm‑C Biquad</h3>
-<p>The OTA used in our gm‑C biquad implementation is structurally inspired by the differential architecture shown in Figure 3.15(c) of <span class="citation" data-cites="baker2010cmos">Baker (<a href="references.html#ref-baker2010cmos" role="doc-biblioref">2010</a>)</span> analog design textbook. As illustrated in Figure <a href="#fig-ota-implemented" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>, the OTA consists of a fully differential input stage, a folded current-mirror load, and a programmable tail current source, making it well-suited for use as a transconductor in gm‑C filters.</p>
+<p>The OTA used in our gm‑C biquad implementation is structurally inspired by the differential architecture shown in Figure 3.15(c) of <span class="citation" data-cites="baker2010cmos">Baker (<a href="references.html#ref-baker2010cmos" role="doc-biblioref">2010</a>)</span> analog design textbook. As illustrated in <a href="#fig-ota-implemented" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>, the OTA consists of a fully differential input stage, a folded current-mirror load, and a programmable tail current source, making it well-suited for use as a transconductor in gm‑C filters.</p>
 <p>The core of the OTA includes a differential NMOS input pair (<span class="math inline">\(M_7\)</span>, <span class="math inline">\(M_8\)</span>), which converts the input voltage difference <span class="math inline">\((v_\text{inp} - v_\text{inn})\)</span> into a differential current. These currents are then mirrored and steered by the PMOS current mirror loads (<span class="math inline">\(M_2\)</span> through <span class="math inline">\(M_6\)</span>) into the output branches (<span class="math inline">\(v_\text{outp}\)</span> and <span class="math inline">\(v_\text{outn}\)</span>). The top mirrors are folded downward into the output stage, creating high output impedance and helping increase gain—similar to the folded-cascode concept seen in the reference OTA.</p>
 <p>The output common-mode voltage is stabilized using a biasing network composed of transistors <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_{11}\)</span>–<span class="math inline">\(M_{12}\)</span>, which fix the gate voltages for proper operation. The tail current is generated through the NMOS branch (<span class="math inline">\(M_9\)</span>, <span class="math inline">\(M_{10}\)</span>), which is set by the external <span class="math inline">\(i_\text{bias}\)</span> node and determines the OTA’s transconductance via:</p>
 <p><span class="math display">\[
@@ -514,7 +508,7 @@ Figure&nbsp;4.7: Implemented OTA schematic used for gm‑C biquad design.
 </section>
 <section id="gmc-biquad-schematic-in-xschem" class="level3" data-number="4.6.2">
 <h3 data-number="4.6.2" class="anchored" data-anchor-id="gmc-biquad-schematic-in-xschem"><span class="header-section-number">4.6.2</span> gm‑C Biquad Schematic in Xschem</h3>
-<p>Figure <a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> shows the complete schematic of the gm‑C biquad filter implemented in Xschem. The design consists of four OTA instances, each configured in a differential topology and biased with a shared tail current of 100 µA via the global <code>ibias</code> net. The power supply is set to 1.5 V, and all OTAs operate with a common-mode input reference of 0.75 V via the <code>vcm</code> node.</p>
+<p><a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> shows the complete schematic of the gm‑C biquad filter implemented in Xschem. The design consists of four OTA instances, each configured in a differential topology and biased with a shared tail current of 100 µA via the global <code>ibias</code> net. The power supply is set to 1.5 V, and all OTAs operate with a common-mode input reference of 0.75 V via the <code>vcm</code> node.</p>
 <p>The circuit follows the classical gm‑C biquad topology introduced earlier. It features two cascaded integrator stages formed by OTA–capacitor pairs, followed by additional OTA blocks for feedforward and feedback terms. All OTAs use the same internal schematic (<code>ota_gm_100u</code>) and are referenced symmetrically.</p>
 <p>Each OTA drives or is loaded by 10 pF metal-insulator-metal (MIM) capacitors (<span class="math inline">\(C_1\)</span>–<span class="math inline">\(C_6\)</span>), arranged in 1:2 ratios where necessary to match the theoretical filter structure (e.g., <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span>). Differential symmetry is preserved throughout the network using mirrored signal paths and balanced layout routing.</p>
 <p>The input signals <code>vinp</code> and <code>vinn</code> are provided by AC voltage sources with 0.5 V DC offset and 0.5 V amplitude. The output is taken differentially as <code>voutp</code> and <code>voutn</code>, and the simulation computes their difference using:</p>
@@ -522,7 +516,7 @@ Figure&nbsp;4.7: Implemented OTA schematic used for gm‑C biquad design.
 plot db(v(vod))</code></pre>
 <p>This differential output is evaluated across a frequency sweep from 1 kHz to 100 MHz using the NGSpice .ac dec command with 100 points per decade:</p>
 <pre class="spice"><code>ac dec 100 1k 100MEG</code></pre>
-<p>The NGSpice block at the top of the schematic (see Figure <a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>4.8</span></a>) includes the device model definitions, the simulation temperature (set to 27°C), and references to the SG13G2 PDK libraries. Parameterized values for transistor dimensions are declared at the beginning to allow flexibility when tuning device behavior:</p>
+<p>The NGSpice block at the top of the schematic (see <a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>4.8</span></a>) includes the device model definitions, the simulation temperature (set to 27°C), and references to the SG13G2 PDK libraries. Parameterized values for transistor dimensions are declared at the beginning to allow flexibility when tuning device behavior:</p>
 <pre class="spice"><code>.param lp="X"u wp="X"u l="X"u w="X"u</code></pre>
 <div id="fig-biquad" class="quarto-float quarto-figure quarto-figure-center anchored" alt="OTA design implemented in Xschem for gm-C filter integration.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -539,7 +533,7 @@ Figure&nbsp;4.8: gm‑C biquad design.
 </section>
 <section id="sec-sizing-baker" class="level3" data-number="4.6.3">
 <h3 data-number="4.6.3" class="anchored" data-anchor-id="sec-sizing-baker"><span class="header-section-number">4.6.3</span> Sizing the 1 kHz Low-Pass gm-C Biquad to the Baker Topology</h3>
-<p>Figure <a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> reproduces the fully differential gm-C biquad proposed by <span class="citation" data-cites="baker2010cmos">Baker (<a href="references.html#ref-baker2010cmos" role="doc-biblioref">2010</a>)</span>. In this architecture, the behavior of the filter is governed by six small-signal parameters:</p>
+<p><a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> reproduces the fully differential gm-C biquad proposed by <span class="citation" data-cites="baker2010cmos">Baker (<a href="references.html#ref-baker2010cmos" role="doc-biblioref">2010</a>)</span>. In this architecture, the behavior of the filter is governed by six small-signal parameters:</p>
 <p><span class="math display">\[
 \begin{aligned}
 G_1 &amp;= \frac{g_{m1}}{C_1 + C_2}, &amp;
@@ -761,7 +755,7 @@ Figure&nbsp;4.13: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span
 <li>Evaluate key performance metrics like slew rate and gain-bandwidth product.</li>
 </ol>
 <p>At the beginning of the notebook, fundamental technology parameters are defined, including supply voltages, threshold voltages, mobility, and channel-length modulation factors for NMOS and PMOS transistors.</p>
-<div id="eb4f9f29" class="cell" data-execution_count="1">
+<div id="5421e50f" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Technology and model parameters</span></span>
@@ -779,7 +773,7 @@ Figure&nbsp;4.13: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span
 I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 \]</span></p>
 <p>The differential pair (M1 and M2) defines the input transconductance of the OTA. Sizing begins by selecting bias current and overdrive voltage (V<span class="math inline">\(_{OV}\)</span>):</p>
-<div id="f86da5d9" class="cell" data-execution_count="2">
+<div id="672be3a4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bias current for each NMOS transistor</span></span>
@@ -798,7 +792,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 </div>
 <p>In this example: - Bias current (ID1) is 100 µA per transistor. - Overdrive voltage (VOV1) is 0.2 V. - Calculated W/L ensures M1 and M2 operate in saturation with desired transconductance.</p>
 <p>The tail current source (M5) provides total bias current to the differential pair:</p>
-<div id="21dc0b82" class="cell" data-execution_count="3">
+<div id="729331bd" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tail current source sizing (M5)</span></span>
@@ -814,7 +808,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 </div>
 <p>M5 carries the combined current of M1 and M2, typically twice ID1.</p>
 <p>PMOS current mirrors (M3 and M4) act as active loads for the differential pair, impacting gain and output resistance:</p>
-<div id="79f74599" class="cell" data-execution_count="4">
+<div id="6b348893" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load transistors sizing (M3 and M4)</span></span>
@@ -830,7 +824,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 </div>
 <p>Lowering overdrive voltage (V<span class="math inline">\(_{OV3}\)</span>) increases output resistance, improving OTA voltage gain.</p>
 <p>Once W/L ratios are calculated, device transconductance (g<span class="math inline">\(_m\)</span>) and output resistance (r<span class="math inline">\(_o\)</span>) are derived:</p>
-<div id="3f3b5118" class="cell" data-execution_count="5">
+<div id="a370c66a" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gm1 <span class="op">=</span> mu_n_Cox <span class="op">*</span> WL1 <span class="op">*</span> VOV1 <span class="op">/</span> <span class="dv">2</span></span>
@@ -852,7 +846,7 @@ ro3: 1.00e+05 Ω</code></pre>
 A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3})
 \]</span></p>
 <p>In Python:</p>
-<div id="026a87e6" class="cell" data-execution_count="6">
+<div id="282d54a1" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Av <span class="op">=</span> gm1 <span class="op">*</span> (ro1 <span class="op">*</span> ro3) <span class="op">/</span> (ro1 <span class="op">+</span> ro3)</span>
@@ -864,7 +858,7 @@ A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3})
 </div>
 <p><strong>Evaluating Performance Metrics - Slew Rate and GBW:</strong></p>
 <p>Slew rate and gain-bandwidth product (GBW) predict OTA dynamic performance:</p>
-<div id="5037264e" class="cell" data-execution_count="7">
+<div id="0bcfb4ab" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>

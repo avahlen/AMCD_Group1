@@ -75,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -175,14 +204,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/_sec_discussion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./content/_sec_conclusion-outlook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -270,37 +293,10 @@ ul.task-list li input[type="checkbox"] {
 <!-- {{< include content/_sec_discussion.qmd >}} -->
 <!-- {{< include content/_sec_conclusion-outlook.qmd >}} -->
 <!-- {{< include content/references.qmd >}} -->
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Get rid of all these TOCs when done…</p>
-</div>
-</div>
 <p><strong>Keywords:</strong> Filter design, Biquadratic filter, IC design, Open Source Toolchain</p>
 <section id="abstract" class="level1 unnumbered">
 <h1 class="unnumbered">Abstract</h1>
-<ul>
-<li>An abstract should provide a self-contained summary of your entire paper or research project.</li>
-<li>It aims to give readers a quick understanding of what you did, why it’s important, and what you found.</li>
-<li>It should be a good starting point for anyone considering reading your full work.</li>
-<li>Introduction: Briefly introduce the topic and its significance.</li>
-<li>Research Question/Aim: State the problem you are addressing and the purpose of your research.</li>
-<li>Methodology: Briefly describe how you conducted your research (e.g., experiments, interviews, analysis).</li>
-<li>Key Findings: Summarize the main results or conclusions of your study.</li>
-<li>Significance/Implications: Explain why your findings are important and what they contribute to the field.</li>
-<li>Be concise: Use short, clear sentences and avoid unnecessary jargon.</li>
-<li>Use keywords: Include relevant keywords that will help readers find your abstract in databases.</li>
-<li>Follow formatting guidelines: Check for any specific requirements or guidelines for your specific journal or conference.</li>
-<li>Revise and edit: Make sure your abstract is clear, accurate, and within the word limit.</li>
-<li>Consider the audience: Tailor your language to your target audience (e.g., other researchers in your field, or a wider audience).</li>
-</ul>
+<p>The project combines theoretical exploration with hands-on circuit design to realise a biquad filter. Fundamental OTA concepts were first examined in mathematical modelling and later in simulation, beginning with a simple five-transistor prototype and progressing through two reference amplifiers by Prof.&nbsp;Pretl. Insights gained from their biasing schemes, cascode loading, and common-mode control informed the development of an advanced, in-house OTA sized via the <span class="math inline">\(g_m/I_D\)</span> methodology for strong-inversion operation. Four identical instances of this custom cell were then assembled into a Baker-style biquad and verified in Xschem and Ngspice for AC behaviour. Additionally, the 5T-OTA was implemented as a physical design with the help of KLayout.</p>
 
 
 </section>

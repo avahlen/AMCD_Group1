@@ -50,7 +50,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../content/_sec_discussion.html" rel="next">
+<link href="../content/_sec_conclusion-outlook.html" rel="next">
 <link href="../content/_sec_xschem.html" rel="prev">
 <link href="../images/hsb-logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -191,14 +191,8 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/_sec_discussion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../content/_sec_conclusion-outlook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -324,8 +318,8 @@ Figure&nbsp;5.5: ayer comparison between IHP and theory
 </section>
 <section id="klayout" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="klayout"><span class="header-section-number">5.2</span> KLayout</h2>
-<p>The previous chapter described the fundamentals of the integrated layout, in this chapter these fundamentals are put into practice to create the layout for the 5T-OTA outlined by the schematic by Haraled Pretel(see <span class="citation" data-cites="pretl2025_ota5t_schematic">Pretl et al. (<a href="references.html#ref-pretl2025_ota5t_schematic" role="doc-biblioref">2025</a>)</span>)</p>
-<p>The schematic outlined by Professor Pretel consists of 13 N- and PMOS devices. These devices are defined within the PDK and are the fundamental blocks, which make up the layout within the technology. Within the layout software these are defined as PCells. As the schematic designer works out the optimal design, one of the main variables to change the behaviour of the MOSFETs, is the w/l ratio. This ratio defines the width and length of the gate over the active area. These w/l ratios are crucial to the layout process, as they define the physical size of the devices. In the layout the w/l values were given by the calculation of Professor Pretel. These w/l ratios will be used to configure the PCells.</p>
+<p>The previous chapter described the fundamentals of the integrated layout, in this chapter these fundamentals are put into practice to create the layout for the 5T-OTA outlined by the schematic by Haraled Pretl(see <span class="citation" data-cites="pretl2025_ota5t_schematic">Pretl et al. (<a href="references.html#ref-pretl2025_ota5t_schematic" role="doc-biblioref">2025</a>)</span>)</p>
+<p>The schematic outlined by Professor Pretl consists of 13 N- and PMOS devices. These devices are defined within the PDK and are the fundamental blocks, which make up the layout within the technology. Within the layout software these are defined as PCells. As the schematic designer works out the optimal design, one of the main variables to change the behaviour of the MOSFETs, is the w/l ratio. This ratio defines the width and length of the gate over the active area. These w/l ratios are crucial to the layout process, as they define the physical size of the devices. In the layout the w/l values were given by the calculation of Professor Pretel. These w/l ratios will be used to configure the PCells.</p>
 <p>The layout program used is called KLayout. Similar to Xschem it works in a strict hierarchical system. As the layout of the 5T-OTA will be used in the Top-Level layout of the Biquad, the 5T-OTA itself is a cell, that can be called multiple times, throughout the layout of the Top-Level. To make it easier for the designer to connect the individual components of the Top-Level together, the 5T-OTA just uses the metal 1 layer. The interface points are the vias stacks. Therefore, making connections on the higher layers easier, as the individual cells for the 5T-OTA only reside on the most bottom layer.</p>
 <p>In the following chapters DRC and LVS will be important concepts. DRC (Desing Rule Check) describes the process of comparing the physical layout to the constrains of the technology. This will throw an error, for example if a “trace” on the Metal1 layer is too thin. LVS (Layout Versus Schematic) describes the process of comparing the schematic to the layout. This will throw an error when two nets are shorted or a device it not correctly connected.</p>
 <section id="the-setup-of-klayout" class="level3" data-number="5.2.1">
@@ -926,8 +920,8 @@ Wikipedia contributors. 2025. <span>“Process Design Kit.”</span> <a href="ht
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../content/_sec_discussion.html" class="pagination-link" aria-label="Discussion">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../content/_sec_conclusion-outlook.html" class="pagination-link" aria-label="Conclusion">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
