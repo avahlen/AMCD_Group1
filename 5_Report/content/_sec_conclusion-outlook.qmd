@@ -1,12 +1,12 @@
 ## Conclusion  
 This project took us from a first five-transistor prototype through two
-reference designs by Prof.&nbsp;Prettl and, finally, to a home-grown
+reference designs by Prof.&nbsp;Pretl and, finally, to a home-grown
 “advanced” OTA driving a gm-C biquad filter. Each stage exposed new
 technical and organisational lessons:
 
 * **Prototype OTA** – The minimalist 5-T cell we drew in Xschem was the first design with a many errors which took us a lot of time but at the same time gained experience, Debugging it forced us to master hierarchical netlisting, ac analysis, and transient smoke tests.
 
-* **Prettl’s 5-T and Improved OTAs** – Simulating well-characterised reference
+* **Pretl’s 5-T and Improved OTAs** – Simulating well-characterised reference
   circuits revealed why proper cascode biasing and common-mode regulation matter.  Working with the lecture notes sharpened our intuition for $g_m/I_D$ trade-offs.
 
 * **Advanced OTA & gm-C biquad** – Armed with that insight we sized a new OTA,
