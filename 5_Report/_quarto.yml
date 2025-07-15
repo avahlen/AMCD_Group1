@@ -17,10 +17,10 @@ book:
       corresponding: true
       roles: "Lead author"
       affiliation:
-        - name: City University of Applied Sciences (HSB)
-          city: Bremen
-          state: Germany
-          url: https://www.hs-bremen.de  
+    - name: City University of Applied Sciences (HSB)
+      city: Bremen
+      state: Germany
+      url: https://www.hs-bremen.de
     - name: Onno Kriens
       orcid: 
       email: okriens@stud.hs-bremen.de
@@ -46,10 +46,7 @@ book:
     - content/_sec_characterisation.qmd
     - content/_sec_xschem.qmd
     - content/_sec_finns_part.qmd
-<<<<<<< HEAD
-    - content/_sec_discussion.qmd
-=======
->>>>>>> 406a34896860556f9aee56d991b062375192ef6d
+    #- content/_sec_discussion.qmd
     - content/_sec_conclusion-outlook.qmd
     - content/references.qmd
 
