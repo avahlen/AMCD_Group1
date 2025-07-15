@@ -6,7 +6,8 @@ reference designs by Prof. Pretl and, finally, to a “advanced” OTA driving a
 
 * **Pretl’s 5T-OTAs** – Using the design for the 5T-OTA provided a good starting point for implementing the universal biquad filter. The width and length of the transistor channels were sized using the $g_m/I_D$ method. Analysing this filter in the frequency domain revealed that the behaviour expected from the filter was not being simulated. The hypothesis here is that the OTAs could not provide enough gain for the circuit to work correctly.
 
-* **Gm-C biquad** – rewrite here...
+* **Gm-C biquad** – With that insight experience the next step was sizing a new OTA, embedded four copies in a Baker-style biquad, and verified low-pass behaviour
+  in Ngspice.  Although the filter has yet to reach textbook performance, the design flow until the AC analysis ran without critical errors.
 
 Armed with that insight we sized a new OTA,
   embedded four copies in a Baker-style biquad, and verified low-pass behaviour

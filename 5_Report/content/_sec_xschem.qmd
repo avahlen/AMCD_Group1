@@ -86,7 +86,7 @@ This indicates:
 	-	Insufficient bandwidth
 	-	Or incorrect biasing (e.g., not enough current to drive the output stage).
 
-After conducting simulations and analyses, and discussing our results with the professor, we concluded that the five-transistor OTA provided by Prof. Pretel offered superior performance and reliability for our application. Thus, the decision was made to proceed with Prof. Pretl's well-established OTA design.  
+After conducting simulations and analyses, and discussing the results with the professor, the conclusion was that the five-transistor OTA provided by Prof. Pretel offered superior performance and reliability for our application. Thus, the decision was made to proceed with Prof. Pretl's well-established OTA design.  
 
 ## Xschem OTA Description (Five-Transistor OTA by Prof. Pretl)
 
@@ -100,9 +100,9 @@ Simulations and measured data presented by Prof. Pretl validate this design as a
 
 ## Sizing and Simulation {#sec-sizing-simulation}
 
-Proper transistor sizing is critical when designing an OTA for use in a biquad filter, where gain, linearity, and bandwidth all depend heavily on MOSFET dimensions. To guide the sizing process, we adopt the $g_m / I_D$ methodology, which provides a systematic trade-off between speed, power efficiency, and voltage headroom.
+Proper transistor sizing is critical when designing an OTA for use in a biquad filter, where gain, linearity, and bandwidth all depend heavily on MOSFET dimensions. To guide the sizing process, The $g_m / I_D$ methodology is adopted.
 
-After experimenting with various combinations of transistor widths and lengths in simulation, we found that many trade-offs emerged between gain, speed, and voltage headroom—particularly for the cascode devices. Ultimately, we followed Prof. Pretl’s recommendations, assigning a reduced channel length of $L = 0.5u$ to the input differential pair and cascode devices ($M_{1/1C}$, $M_{2/2C}$, $M_{3/3C}$, $M_{4/4C}$) to maximize speed and transconductance. Meanwhile, the tail current source transistors ($M_5$, $M_6$) were given a longer channel length of $L = 5u$ to improve matching, suppress flicker noise, and ensure robust common-mode rejection.
+After experimenting with various combinations of transistor widths and lengths in simulation, we found that many trade-offs emerged between gain, speed, and voltage headroom—particularly for the cascode devices. Following Prof. Pretl’s recommendations, assigning a reduced channel length of $L = 0.5u$ to the input differential pair and cascode devices ($M_{1/1C}$, $M_{2/2C}$, $M_{3/3C}$, $M_{4/4C}$) to maximize speed and transconductance. Meanwhile, the tail current source transistors ($M_5$, $M_6$) were given a longer channel length of $L = 5u$ to improve matching, suppress flicker noise, and ensure robust common-mode rejection.
 
 A constant sizing point of $g_m / I_D = 13$ was applied across all devices, which offered a good balance between transconductance efficiency and voltage headroom. This choice ensured that even with stacked transistors, all devices remained in saturation across the intended signal swing and supply range.
 
@@ -134,9 +134,9 @@ This result confirms that the OTA produces a constant output voltage in response
 
 ## gm‑C Biquad Prototype – Concept and Implementation {#sec-gm-biquad}
 
-After initially developing our own basic five-transistor OTA to explore the design flow and simulation process in Xschem, we proceeded to study and simulate several OTA topologies provided by Prof. Pretl. This included hands-on experimentation with his differential architectures and cascode-enhanced designs, allowing us to deepen our understanding of performance trade-offs and layout considerations in analog IC design.
+After initially developing our own basic five-transistor OTA to explore the design flow and simulation process in Xschem, the next step was, to study and simulate several OTA topologies provided by Prof. Pretl. This included hands-on experimentation with his differential architectures and cascode-enhanced designs, allowing us to deepen our understanding of performance trade-offs and layout considerations in analog IC design.
 
-In this final design step, we returned to building our own OTA, this time using an improved architecture specifically tailored for integration into a gm‑C biquad filter. The goal was to implement a fully differential, tunable low-pass filter using transconductors and capacitors only. By controlling the OTA bias current, we aimed to achieve continuous tuning of the filter's cut-off frequency without modifying passive components.
+In this final design step, the goal was to building our own OTA, this time using an improved architecture specifically tailored for integration into a gm‑C biquad filter. The goal was to implement a fully differential, tunable low-pass filter using transconductors and capacitors only. By controlling the OTA bias current, we aimed to achieve continuous tuning of the filter's cut-off frequency without modifying passive components.
 
 The following section presents the concept, schematic implementation, and simulation-based validation of this gm‑C biquad prototype. It marks the transition from isolated OTA design toward the realization of a complete analog signal processing block.
 
@@ -257,23 +257,23 @@ The final device sizing is summarised below:
 In summary, this sizing strategy realises a 1 kHz low-pass response while respecting the 100 µA tail bias in theory. The chosen transistor dimensions enable consistent $g_m$ across all OTA branches. Although the large on-chip capacitors pose layout challenges, they can be addressed using multilayer MIM stacks or external capacitors during prototyping. The unified NMOS/PMOS geometries also facilitate efficient common-centroid layout across the four OTAs that form the biquad filter. 
 
 ## GM/ID Methodology
-One of the first questions we have to ask in IC design is how small or how large we can design the MOSFETs we're using in the circuits. MOSFETs can be used in saturation mode or in the triode state (as well as in cut-off but this is not relevant for us). When the FET is in saturation the drain current $I_{D}$ is controlled primarily by the gate-source voltage $V_{GS}$. In this case the drain-source voltage has a smaller impact on the drain current. For the Transistor to work in saturation the drain-source terminals need to be driven with a voltage high enough so this "saturates" the FET and the highest drain-current is achieved. 
+One of the first questions to ask in IC design is how small or how large are the MOSFETs used in the circuits. MOSFETs can be used in saturation mode or in the triode state (as well as in cut-off but this is not relevant for us). When the FET is in saturation the drain current $I_{D}$ is controlled primarily by the gate-source voltage $V_{GS}$. In this case the drain-source voltage has a smaller impact on the drain current. For the Transistor to work in saturation the drain-source terminals need to be driven with a voltage high enough so this "saturates" the FET and the highest drain-current is achieved. 
 
 On the other hand if the voltage applied across the drain-source contacts (on a NMOS for example) is relatively low (compared to the voltage for saturation), the FET will operate in the so called triode mode. In triode mode the drain-source voltage $V_{DS}$ has a fundamentally larger impact on the drain current then in the saturation mode. [@hpretlacd] 
 
- One Methodology to solve the question we asked at the beginning of this chapter is the $\frac{gm}{I_{D}}$ methodology which we will introduce in a moment. There are basically three MOSFET characteristics directly describing the behaviour of it:
+ The Methodology to solve the question, asked at the beginning of this chapter is the $\frac{gm}{I_{D}}$ methodology which will introduce in a moment. There are basically three MOSFET characteristics directly describing the behaviour of it:
 
 - $\frac{g_m}{I_D}$ : Transconductance Efficiency 
 - $\frac{\omega_{T}}{f_T}$  : Transit frequency
 - $\frac{g_m}{g_{ds}}$ : Intrinsic Gain
 
-To understand the first characteristic for our FETs we have to take a look at the different operating points which depend on the applied voltages. Whenever we apply voltages to a FET in order to control a specific drain current $I_{D}$, we can operate the FET in either weak inversion, strong inversion or moderate inversion. This behaviour is controlled by the Overdrive Voltage $V_{OV}$ which is defined as the difference between the gate-source voltage and the threshold voltage. To note this small point the drain-current is controlled by the voltage between gate and source. Whenever an nmos is not being used as a low-side switch or amplifier or the pmos is being used as a low-side component problems can arise. Since we are using FETs in our switched capacitor integrator for example this is quite important. 
+To understand the first characteristic for FETs, take a look at the different operating points which depend on the applied voltages. Whenever applying voltages to a FET in order to control a specific drain current $I_{D}$, the operattion in the FET in either weak inversion, strong inversion or moderate inversion. This behaviour is controlled by the Overdrive Voltage $V_{OV}$ which is defined as the difference between the gate-source voltage and the threshold voltage. To note this small point the drain-current is controlled by the voltage between gate and source. Whenever an nmos is not being used as a low-side switch or amplifier or the pmos is being used as a low-side component problems can arise.
 
 $$
     V_{OV} = V_{GS} - V_{TH}
 $$
 
-We have to keep in mind that the threshold voltage isn't a magical number that can be applied to every MOSFET, it rather depends on the geometry (with W and L for example) and other factors. For the example nmos given in the Analog Circuit Design IHP SG13G2 Devices Table by Professor Pretl, the threshold voltage is 0.5V. Therefore the overdrive voltage describes how "much" the gate-source voltage is above the threshold of the FET. Depending on this overdrive voltage the circuit/ic designer can apply different $\frac{g_{M}}{I_{D}}$ values with the unit [$\frac{1}{V}$]. This unit is derived in the following way:
+Important to keep in mind that the threshold voltage isn't a magical number that can be applied to every MOSFET, it rather depends on the geometry (with W and L for example) and other factors. For the example nmos given in the Analog Circuit Design IHP SG13G2 Devices Table by Professor Pretl, the threshold voltage is 0.5V. Therefore the overdrive voltage describes how "much" the gate-source voltage is above the threshold of the FET. Depending on this overdrive voltage the circuit/ic designer can apply different $\frac{g_{M}}{I_{D}}$ values with the unit [$\frac{1}{V}$]. This unit is derived in the following way:
 
 With $g_{M}$ defined by:
 
@@ -281,13 +281,13 @@ $$
 g_{M} = \frac{\partial I_D}{\partial V_{GS}}
 $$
 
-and $I_{D}$ having the unit Ampere [A] and the voltage $V_{GS}$ we get:
+and $I_{D}$ having the unit Ampere [A] and the voltage $V_{GS}$:
 
 $$
 \frac{\frac{A}{V}}{A} = \frac{1}{V}
 $$
 
-Before we continue with the $\frac{g_{M}}{I_{D}}$ method we want to note that there also is the *square-law* model with which circuit designers can design MOSFET circuits. This model is usually applicable for PCB circuits and takes the situation into account where the MOSFET is driven in the stong inversion state. The square-law model is being applied assuming that the FET is operating in the "linear" or "triode" mode, however on nanometer scale FETs (down to 130 nm with the IHP-SG13G2 PDK) this model doesn't give us precise solutions anymore. Many effects like parasitic capacitances alter the operational behaviour of the FET and lead to the square-law model deviating afar from the real-world behaviour in many situations [@SQRLaw].
+Before continueing with the $\frac{g_{M}}{I_{D}}$ methode, note that there also is the *square-law* model with which circuit designers can design MOSFET circuits. This model is usually applicable for PCB circuits and takes the situation into account where the MOSFET is driven in the stong inversion state. The square-law model is being applied assuming that the FET is operating in the "linear" or "triode" mode, however on nanometer scale FETs (down to 130 nm with the IHP-SG13G2 PDK) this model doesn't give us precise solutions anymore. Many effects like parasitic capacitances alter the operational behaviour of the FET and lead to the square-law model deviating afar from the real-world behaviour in many situations [@SQRLaw].
 
 The square-model drain-current behavior is being described by the following formula:
 
@@ -326,7 +326,7 @@ The term 2 $\phi_F$ corresponds to the surface potential required to achieve str
 
 For more details the reader can consult [@SQRLaw],[@MurmannGmId] or [@gmId].
 
-To illustrate the problems of the square-law model when designing MOSFET circuits at nanometer scale we will look at some graphs visualizing it's limitation. First of all let's look at the formulas for the square-law when we want to achieve more performance with our FETs:
+To illustrate the problems of the square-law model when designing MOSFET circuits at nanometer scale will look at somwe e graphs visualizing it's limitation. First of all let's look at the formulas for the square-law when we want to achieve more performance with our FETs:
 
 Transconductance Efficiency:
 $$
