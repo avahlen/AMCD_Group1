@@ -1,7 +1,34 @@
-# Conclusion
+## Conclusion  
+This project took us from a theorectical modelling of the filter with transfer functions, to the first five-transistor prototype through two
+reference designs by Prof.&nbsp;Pretl and, finally, to a home-grown
+“advanced” OTA driving a gm-C biquad filter. Each stage exposed new
+technical and organisational lessons:
 
-bla bla reflection
+* **Prototype OTA** – The minimalist 5-T cell we drew in Xschem was the first design with a many errors which took us a lot of time but at the same time gained experience, Debugging it forced us to master hierarchical netlisting, ac analysis, and transient smoke tests.
+
+* **Pretl’s 5-T and Improved OTAs** – Simulating well-characterised reference
+  circuits revealed why proper cascode biasing and common-mode regulation matter.  Working with the lecture notes sharpened our intuition for $g_m/I_D$ trade-offs.
+
+* **Advanced OTA & gm-C biquad** – Armed with that insight we sized a new OTA,
+  embedded four copies in a Baker-style biquad, and verified low-pass behaviour
+  in Ngspice. Although the filter has yet to reach textbook performance
+  (excess capacitor area and modest accuracy), the core transconductor
+  operated as intended and the full design flow—from Docker setup to AC, DC,
+  and transient sweeps—ran without critical errors.
+
+Beyond the circuits themselves we tackled practical IC-flow hurdles:
+absolute path handling inside Docker, strict symbol classification,
+plain-text netlist debugging, and (just as important) team communication.
+Working through those issues was as valuable as the schematics we produced.
 
 ## Outlook
+The current prototype still relies on 20–40 nF capacitor plates, far too large.
+Once the schematic is frozen, a full Monte-Carlo corner run is required to quantify flicker-noise density, device mismatch, and the benefits of common-centroid placement. Replacing the external Ibias source with a compact current-reference DAC would move all frequency control on-chip and simplifying future integrator arrays.
 
-what else could be done 'n stuff
+The final stretch for the gm-C biquad, will be physical-verification work: schematic-versus-layout (SVL) checks, DRC/LVS closure, and migration of the Docker flow to the PDK’s official calibre or klayout rule decks. With only modest additional simulation and layout effort, the design can mature into a fabrication-ready 1 kHz low-pass gm-C biquad—a useful test vehicle for our newly-acquired analog-IC skills and a solid springboard for more ambitious mixed-signal projects.
+
+As the layout of the 5T-OTA is finished, the next steps are the import of the 5T-OTA Cell into the top-level layout. This can easily be achieved, as KLayout provides and import function, that was already tested. 
+The design of the top-level should include the resistors and capacitors needed for the biquad. In addition, bonding pads need to be placed to connect the layout to a pin of the chosen package. 
+LVS in the top-level will be a challenge, as the exported netlist must account for the hierarchy of the schematic. This will also extend the time needed to run the LVS-script. 
+When the top-level is layouted, the remaining density DRC-violations need to be addressed. As the layout should be complete at this point this can be done by the fill tool provided in KLayout. 
+In total only a little more work needs to be done on the layout, to get ready for an eventual tape out.

@@ -46,7 +46,10 @@ book:
     - content/_sec_characterisation.qmd
     - content/_sec_xschem.qmd
     - content/_sec_finns_part.qmd
+<<<<<<< HEAD
     - content/_sec_discussion.qmd
+=======
+>>>>>>> 406a34896860556f9aee56d991b062375192ef6d
     - content/_sec_conclusion-outlook.qmd
     - content/references.qmd
 

@@ -21,7 +21,7 @@ Within the Docker container environment used for simulations, specific variables
   The root directory within the Docker environment differs from that of the host operating system, specifically being located at `root/headless`. This distinction requires careful handling when navigating or setting paths within Docker terminals.
 
 - **Terminal and Directory Awareness**:  
-  Users, especially those working on Windows-based systems, need to distinguish clearly between terminal environments (native Windows, Windows Subsystem for Linux, Docker) as each has fundamentally different root directories and file path conventions. Maintaining clear and explicit awareness of these distinctions prevents file referencing errors during simulations.
+  Users, especially those working on Windows-based systems, need to distinguish clearly between terminal environments (native Windows, Windows Subsystem for Linux, Docker) as each has fundamentally different root directories and file path conventions. Maintaining clear awareness of these distinctions prevents file referencing errors during simulations.
 
 These explicit configurations and considerations ensure that the Xschem simulation environment operates smoothly, predictably, and accurately throughout the project's lifecycle.
 
@@ -52,14 +52,14 @@ Adopting this debugging approach significantly enhanced the efficiency and accur
 ## OTA Circuit Integration Self-built Five-Transistor OTA  {#sec-self-built-ota}
 Initially, our group developed our own five-transistor OTA schematic within Xschem to gain practical insights and explore various design parameters.
 
-Figure \@fig-self-built-ota shows the minimalist OTA designed during the early project phase. The circuit follows the five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly $$ g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr) $$
+@fig-self-built-ota shows the minimalist OTA designed during the early project phase. The circuit follows the five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly $$ g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr) $$
 Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2.
 
 ![Self-built five-transistor OTA schematic.](../images/sec_xschem/self_build_ota.png){#fig-self-built-ota width=80% fig-alt="schematic of the five-transistor OTA prototype"}
 
 ### Validation of Self-built OTA – unity-gain buffer  {#sec-ota-ug}
 
-To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (Fig. \@fig-ota-ug-tb): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.  
+To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (Fig. @fig-ota-ug-tb): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.  
 The long two-second period guarantees only one transition inside the 100 ms simulation window.  
 A 20 µA current source on i_bias establishes the tail current, with supplies at V<sub>DD</sub> = 1.5 V and V<sub>SS</sub> = 0 V.
 
@@ -77,9 +77,10 @@ set wr_singlescale
 .endc
 ```
 
+
 ![Transient waveforms: v_in vs. v_out.](../images/sec_xschem/self_tran_vin_vout.png){#fig-ota-ug-wave width=80% fig-alt="Ngspice transient plot of the unity-gain follower."}
 
-Figure @fig-ota-ug-wave plots the resulting traces. The output (left) mirrors the input (right). The output does respond to the input change, it rises up during the pulse window, indicating the OTA is doing something. V_out lags significantly behind v_in and only reaches 1.1 V, while v_in reaches 1.2 V. The OTA as unity-gain buffer should closely track the input with only minimal offset or delay.
+@fig-ota-ug-wave plots the resulting traces. The output (left) mirrors the input (right). The output does respond to the input change, it rises up during the pulse window, indicating the OTA is doing something. V_out lags significantly behind v_in and only reaches 1.1 V, while v_in reaches 1.2 V. The OTA as unity-gain buffer should closely track the input with only minimal offset or delay.
 This indicates:
 	-	Too low gain
 	-	Insufficient bandwidth
@@ -89,14 +90,13 @@ After conducting simulations and analyses, and discussing our results with the p
 
 ## Xschem OTA Description (Five-Transistor OTA by Prof. Pretl)
 
-Prof. Pretl’s five-transistor OTA is an optimized implementation, specifically tailored for efficient analog circuit integration using the SG13G2 CMOS process. His design, depicted in Figure @fig-pretl-ota, maintains simplicity while enhancing performance through thoughtful sizing and layout practices. This OTA employs a standard architecture comprising an NMOS differential input pair, a tail current source transistor, and a PMOS current mirror load. The input differential voltage is transformed by the differential pair into two opposite-phase currents, recombined by the PMOS mirror at the single-ended output node. 
+Prof. Pretl’s five-transistor OTA is an optimized implementation, specifically tailored for efficient analog circuit integration using the SG13G2 CMOS process. His design, depicted in @fig-pretl-ota, maintains simplicity while enhancing performance through thoughtful sizing and layout practices. This OTA employs a standard architecture comprising an NMOS differential input pair, a tail current source transistor, and a PMOS current mirror load. The input differential voltage is transformed by the differential pair into two opposite-phase currents, recombined by the PMOS mirror at the single-ended output node. 
 
-A dedicated transistor sets a stable bias current, ensuring predictable and robust OTA performance over varying operating conditions. Channel lengths and widths are carefully chosen to balance between adequate intrinsic gain, bandwidth, and noise characteristics. Particularly, the transistor sizes follow good IC design practices, with lengths exceeding the minimum dimensions to suppress short-channel effects and flicker noise. Bulk connections are properly handled to avoid body effects, typically by tying bulks directly to their corresponding source terminals. The accompanying layout from Prof. Pretl (Figure @fig-pretl-ota) illustrates thoughtful device placement and symmetry, reducing mismatches and parasitic coupling. Furthermore, multiple finger transistors are employed effectively to optimize layout density and performance, adhering to industry-standard guidelines.
+A dedicated transistor sets a stable bias current, ensuring predictable and robust OTA performance over varying operating conditions. Channel lengths and widths are carefully chosen to balance between adequate intrinsic gain, bandwidth, and noise characteristics. Particularly, the transistor sizes follow good IC design practices, with lengths exceeding the minimum dimensions to suppress short-channel effects and flicker noise. Bulk connections are properly handled to avoid body effects, typically by tying bulks directly to their corresponding source terminals. The accompanying layout from Prof. Pretl ( @fig-pretl-ota) illustrates thoughtful device placement and symmetry, reducing mismatches and parasitic coupling. Furthermore, multiple finger transistors are employed effectively to optimize layout density and performance, adhering to industry-standard guidelines.
 
 Simulations and measured data presented by Prof. Pretl validate this design as a stable, efficient, and high-performance option for analog signal processing. It exhibits superior gain and bandwidth compared to simpler OTA configurations, making it suitable for more demanding applications in integrated analog and mixed-signal circuits. Due to these advantages, our group adopted this OTA as the baseline for subsequent design and integration phases in our project.
 
 ![OTA schematic.](../images/sec_xschem/ota-improved.png){#fig-pretl-ota width=80% fig-alt="schematic of the five-transistor OTA"}
-
 
 ## Sizing and Simulation {#sec-sizing-simulation}
 
@@ -106,11 +106,11 @@ After experimenting with various combinations of transistor widths and lengths i
 
 A constant sizing point of $g_m / I_D = 13$ was applied across all devices, which offered a good balance between transconductance efficiency and voltage headroom. This choice ensured that even with stacked transistors, all devices remained in saturation across the intended signal swing and supply range.
 
-Simulation results based on this sizing show that the OTA achieves an open-loop gain $A_0 > 43\\,\\{dB}$, satisfying key performance goals such as bandwidth and linear range for biquad operation. These results confirm that the selected sizing strategy works reliably within the supply voltage limits of the SG13G2 process, and is well-suited for analog signal processing tasks requiring accurate and programmable transconductance.
+Simulation results based on this sizing show that the OTA achieves an open-loop gain $A_0 > 43\,dB$, satisfying key performance goals such as bandwidth and linear range for biquad operation. These results confirm that the selected sizing strategy works reliably within the supply voltage limits of the SG13G2 process, and is well-suited for analog signal processing tasks requiring accurate and programmable transconductance.
 
 ### Small-Signal Frequency Response
 
-To evaluate the frequency-domain behavior of the improved OTA, an AC simulation was performed using a differential testbench. The resulting magnitude response, shown in Figure @fig-ota-improved-ac, displays the classic characteristics of a low-pass amplifier.
+To evaluate the frequency-domain behavior of the improved OTA, an AC simulation was performed using a differential testbench. The resulting magnitude response, shown in @fig-ota-improved-ac, displays the classic characteristics of a low-pass amplifier.
 
 The curve remains flat (0 dB) throughout the low-frequency range, indicating that the OTA maintains constant gain for small-signal inputs up to approximately $f_{-3\text{dB}} \approx 80\,\text{MHz}$. This –3 dB point marks the unity-gain bandwidth of the amplifier in this configuration. Beyond this corner frequency, the magnitude begins to drop at a rate close to –20 dB/decade, indicating a dominant single-pole roll-off.
 
@@ -122,7 +122,7 @@ Overall, the OTA demonstrates a strong small-signal frequency response, offering
 
 ### Large-Signal Transient Response
 
-Figure @fig-ota-improved-transient shows the transient simulation result of the improved OTA in response to a step input signal.
+@fig-ota-improved-transient shows the transient simulation result of the improved OTA in response to a step input signal.
 
 The red trace ($v_\text{ena}$) represents the input voltage. It exhibits a sharp transition from 0 V to approximately 1.5 V at the beginning of the simulation and remains constant for the rest of the time window.
 
@@ -134,7 +134,7 @@ This result confirms that the OTA produces a constant output voltage in response
 
 ## gm‑C Biquad Prototype – Concept and Implementation {#sec-gm-biquad}
 
-After initially developing our own basic five-transistor OTA to explore the design flow and simulation process in Xschem, we proceeded to study and simulate several OTA topologies provided by Prof. Pretel. This included hands-on experimentation with his differential architectures and cascode-enhanced designs, allowing us to deepen our understanding of performance trade-offs and layout considerations in analog IC design.
+After initially developing our own basic five-transistor OTA to explore the design flow and simulation process in Xschem, we proceeded to study and simulate several OTA topologies provided by Prof. Pretl. This included hands-on experimentation with his differential architectures and cascode-enhanced designs, allowing us to deepen our understanding of performance trade-offs and layout considerations in analog IC design.
 
 In this final design step, we returned to building our own OTA, this time using an improved architecture specifically tailored for integration into a gm‑C biquad filter. The goal was to implement a fully differential, tunable low-pass filter using transconductors and capacitors only. By controlling the OTA bias current, we aimed to achieve continuous tuning of the filter's cut-off frequency without modifying passive components.
 
@@ -142,7 +142,7 @@ The following section presents the concept, schematic implementation, and simula
 
 ### OTA Implementation for gm‑C Biquad
 
-The OTA used in our gm‑C biquad implementation is structurally inspired by the differential architecture shown in Figure 3.15(c) of Baker’s CMOS analog design textbook. As illustrated in Figure @fig-ota-implemented, the OTA consists of a fully differential input stage, a folded current-mirror load, and a programmable tail current source, making it well-suited for use as a transconductor in gm‑C filters.
+The OTA used in our gm‑C biquad implementation is structurally inspired by the differential architecture shown in Figure 3.15(c) of @baker2010cmos analog design textbook. As illustrated in @fig-ota-implemented, the OTA consists of a fully differential input stage, a folded current-mirror load, and a programmable tail current source, making it well-suited for use as a transconductor in gm‑C filters.
 
 The core of the OTA includes a differential NMOS input pair ($M_7$, $M_8$), which converts the input voltage difference $(v_\text{inp} - v_\text{inn})$ into a differential current. These currents are then mirrored and steered by the PMOS current mirror loads ($M_2$ through $M_6$) into the output branches ($v_\text{outp}$ and $v_\text{outn}$). The top mirrors are folded downward into the output stage, creating high output impedance and helping increase gain—similar to the folded-cascode concept seen in the reference OTA.
 
@@ -159,7 +159,7 @@ The structure is deliberately symmetric to preserve linearity and minimize even-
 
 ### gm‑C Biquad Schematic in Xschem
 
-Figure @fig-biquad-xschem shows the complete schematic of the gm‑C biquad filter implemented in Xschem. The design consists of four OTA instances, each configured in a differential topology and biased with a shared tail current of 100 µA via the global `ibias` net. The power supply is set to 1.5 V, and all OTAs operate with a common-mode input reference of 0.75 V via the `vcm` node.
+@fig-biquad shows the complete schematic of the gm‑C biquad filter implemented in Xschem. The design consists of four OTA instances, each configured in a differential topology and biased with a shared tail current of 100 µA via the global `ibias` net. The power supply is set to 1.5 V, and all OTAs operate with a common-mode input reference of 0.75 V via the `vcm` node.
 
 The circuit follows the classical gm‑C biquad topology introduced earlier. It features two cascaded integrator stages formed by OTA–capacitor pairs, followed by additional OTA blocks for feedforward and feedback terms. All OTAs use the same internal schematic (`ota_gm_100u`) and are referenced symmetrically.
 
@@ -177,7 +177,7 @@ This differential output is evaluated across a frequency sweep from 1 kHz to 1
 ```spice
 ac dec 100 1k 100MEG
 ```
-The NGSpice block at the top of the schematic (see Figure @fig-biquad) includes the device model definitions, the simulation temperature (set to 27°C), and references to the SG13G2 PDK libraries. Parameterized values for transistor dimensions are declared at the beginning to allow flexibility when tuning device behavior:
+The NGSpice block at the top of the schematic (see @fig-biquad) includes the device model definitions, the simulation temperature (set to 27°C), and references to the SG13G2 PDK libraries. Parameterized values for transistor dimensions are declared at the beginning to allow flexibility when tuning device behavior:
 ```spice
 .param lp="X"u wp="X"u l="X"u w="X"u
 ```
@@ -190,8 +190,9 @@ Overall, this gm‑C biquad schematic represents a practical and scalable implem
 
 ### Sizing the 1 kHz Low-Pass gm-C Biquad to the Baker Topology {#sec-sizing-baker}
 
-Figure @fig-biquad reproduces the fully differential gm-C biquad proposed by @baker2010cmos. In this architecture, the behavior of the filter is governed by six small-signal parameters:
+@fig-biquad reproduces the fully differential gm-C biquad proposed by @baker2010cmos. In this architecture, the behavior of the filter is governed by six small-signal parameters:
 
+$$
 \begin{aligned}
 G_1 &= \frac{g_{m1}}{C_1 + C_2}, &
 G_2 &= \frac{g_{m2}}{g_{m1}}, &
@@ -200,6 +201,7 @@ G_4 &= \frac{g_{m3}}{C_3 + C_4}, &
 G_5 &= \frac{g_{m4}}{g_{m1}}, &
 G_6 &= \frac{C_3}{g_{m3}}.
 \end{aligned}
+$$
 
 These expressions relate the two integrator stages $\bigl(g_{m1}, C_{1,2}\bigr)$ and $\bigl(g_{m3}, C_{3,4}\bigr)$ to the feed-forward transconductors $g_{m2}$ and $g_{m4}$. For a **low-pass** realisation, we adopt the convenient symmetry:
 
@@ -237,7 +239,7 @@ As each integrator output is loaded with $2C$, the effective capacitance at each
 
 > **Area note:** At a typical SG13G2 MIM density of $2\,\text{fF}/\mu\text{m}^2$, a 20 nF capacitor requires roughly 10 mm² of silicon area. This is large for an on-chip design and motivates the use of stacked MIM structures or off-chip MLCCs for prototyping.
 
-To realise this $g_m$ in a compact layout, we choose a MOSFET overdrive voltage of $V_{\text{OV}} = 0.40\,$V and assume a mobility-capacitance product of $\mu_n C_{\text{ox}} \approx 200\,\mu\text{A}/\text{V}^2$. The required transistor aspect ratio then becomes:
+To realise this $g_m$ in a compact layout, we choose a MOSFET overdrive voltage of $V_{\text{OV}} = 0.40\,V$ and assume a mobility-capacitance product of $\mu_n C_{\text{ox}} \approx 200\,\mu\text{A}/\text{V}^2$. The required transistor aspect ratio then becomes:
 
 $$
 \frac{W}{L} = \frac{2I_D}{\mu_n C_{\text{ox}} V_{\text{OV}}^2}
@@ -261,16 +263,14 @@ On the other hand if the voltage applied across the drain-source contacts (on a 
 
  One Methodology to solve the question we asked at the beginning of this chapter is the $\frac{gm}{I_{D}}$ methodology which we will introduce in a moment. There are basically three MOSFET characteristics directly describing the behaviour of it:
 
-
 - $\frac{g_m}{I_D}$ : Transconductance Efficiency 
 - $\frac{\omega_{T}}{f_T}$  : Transit frequency
 - $\frac{g_m}{g_{ds}}$ : Intrinsic Gain
 
-
 To understand the first characteristic for our FETs we have to take a look at the different operating points which depend on the applied voltages. Whenever we apply voltages to a FET in order to control a specific drain current $I_{D}$, we can operate the FET in either weak inversion, strong inversion or moderate inversion. This behaviour is controlled by the Overdrive Voltage $V_{OV}$ which is defined as the difference between the gate-source voltage and the threshold voltage. To note this small point the drain-current is controlled by the voltage between gate and source. Whenever an nmos is not being used as a low-side switch or amplifier or the pmos is being used as a low-side component problems can arise. Since we are using FETs in our switched capacitor integrator for example this is quite important. 
 
 $$
-    V_{OV} = V_{GS} - V_{TH} \tag{27}
+    V_{OV} = V_{GS} - V_{TH}
 $$
 
 We have to keep in mind that the threshold voltage isn't a magical number that can be applied to every MOSFET, it rather depends on the geometry (with W and L for example) and other factors. For the example nmos given in the Analog Circuit Design IHP SG13G2 Devices Table by Professor Pretl, the threshold voltage is 0.5V. Therefore the overdrive voltage describes how "much" the gate-source voltage is above the threshold of the FET. Depending on this overdrive voltage the circuit/ic designer can apply different $\frac{g_{M}}{I_{D}}$ values with the unit [$\frac{1}{V}$]. This unit is derived in the following way:
@@ -278,13 +278,13 @@ We have to keep in mind that the threshold voltage isn't a magical number that c
 With $g_{M}$ defined by:
 
 $$
-g_{M} = \frac{\partial I_D}{\partial V_{GS}}  \tag{28}
+g_{M} = \frac{\partial I_D}{\partial V_{GS}}
 $$
 
 and $I_{D}$ having the unit Ampere [A] and the voltage $V_{GS}$ we get:
 
 $$
-\frac{\frac{A}{V}}{A} = \frac{1}{V} \tag{29}
+\frac{\frac{A}{V}}{A} = \frac{1}{V}
 $$
 
 Before we continue with the $\frac{g_{M}}{I_{D}}$ method we want to note that there also is the *square-law* model with which circuit designers can design MOSFET circuits. This model is usually applicable for PCB circuits and takes the situation into account where the MOSFET is driven in the stong inversion state. The square-law model is being applied assuming that the FET is operating in the "linear" or "triode" mode, however on nanometer scale FETs (down to 130 nm with the IHP-SG13G2 PDK) this model doesn't give us precise solutions anymore. Many effects like parasitic capacitances alter the operational behaviour of the FET and lead to the square-law model deviating afar from the real-world behaviour in many situations [@SQRLaw].
@@ -292,7 +292,7 @@ Before we continue with the $\frac{g_{M}}{I_{D}}$ method we want to note that th
 The square-model drain-current behavior is being described by the following formula:
 
 $$
-I_{D} = \frac{Z \cdot \overline{\mu_n} \cdot C_{OX}}{L} [(V_{GS} - V_{T}) \cdot V_{DS} - \frac{V_{DS}^2}{2}]  \tag{30}
+I_{D} = \frac{Z \cdot \overline{\mu_n} \cdot C_{OX}}{L} [(V_{GS} - V_{T}) \cdot V_{DS} - \frac{V_{DS}^2}{2}]
 $$
 
 with the two conditions:
@@ -310,7 +310,7 @@ with following definitions:
 The threshold voltage is defined as:
 
 $$
-V_T = 2 \phi_F + \frac{\epsilon_s}{C_{OX}} \sqrt{\frac{2q N_{A}}{\epsilon} (2\phi_F)} \tag{31}
+V_T = 2 \phi_F + \frac{\epsilon_s}{C_{OX}} \sqrt{\frac{2q N_{A}}{\epsilon} (2\phi_F)}
 $$
 
 with:
@@ -318,12 +318,11 @@ with:
 $\phi_F$ being the Fermi Potential (surface potential) defined by:
 
 $$
-\phi_F = \frac{kT}{q} \cdot ln (\frac{N_A}{n_i}) \tag{32}
+\phi_F = \frac{kT}{q} \cdot ln (\frac{N_A}{n_i})
 $$
 
 with $N_A$ being the acceptor doping concentration and $n_i$ being the intrinsic carrier concentration. 
 The term 2 $\phi_F$ corresponds to the surface potential required to achieve strong inversion. 
-
 
 For more details the reader can consult [@SQRLaw],[@MurmannGmId] or [@gmId].
 
@@ -331,7 +330,7 @@ To illustrate the problems of the square-law model when designing MOSFET circuit
 
 Transconductance Efficiency:
 $$
-\frac{g_m}{I_D} \cong \frac{2}{V_{OV}} \tag{33}
+\frac{g_m}{I_D} \cong \frac{2}{V_{OV}}
 $$
 
 higher efficiencs here means more transconductance for the same drain current.
@@ -339,7 +338,7 @@ higher efficiencs here means more transconductance for the same drain current.
 Transit Frequency: 
 
 $$
-\frac{g_M}{C_{gg}} \cong \frac{3}{2}\frac{\mu V_{OV}}{L^2} \tag{34}
+\frac{g_M}{C_{gg}} \cong \frac{3}{2}\frac{\mu V_{OV}}{L^2}
 $$
 
 higher transit frequency for the same gate-capacitance.
@@ -348,7 +347,7 @@ higher transit frequency for the same gate-capacitance.
 Intrinsic Gain:
 
 $$
-\frac{g_m}{g_{ds}} \cong \frac{2}{\lambda V_{OV}} \tag{35}
+\frac{g_m}{g_{ds}} \cong \frac{2}{\lambda V_{OV}}
 $$
 
 high transconductance (at same drain-current $I_D$) without higher output conductance. 
@@ -373,7 +372,7 @@ This simulation is done for a n-channel MOSFET with a drain-source voltage of 1.
 The drain-current behaviour at sub-threshold gate voltages is completely inaccurate for the square-law too, and the following graph visualizes the limitation of the square-law at this point again:
 
 
-![Drain Current over Gate-Source Voltage, comparison between an nmos, a bjt and the square-law [@RWalker]](/images/sec_xschem/ac_gmid_vs_gs.png){#fig-gmid_vs_gs width=90%}
+![Drain Current over Gate-Source Voltage, comparison between an nmos, a bjt and the square-law [@RWalker]](../images/sec_xschem/ac_gmid_vs_gs.png){#fig-gmid_vs_gs width=90%}
 
 
 These three examples show that the approach using square-law to size MOSFETs is not sufficient when the transistor is operating in weak or moderate inversion and when driving the FET (nmos for example) with a low gate-source (or overdrive-) voltage. To cite Mr. Walker on this topic:
@@ -388,12 +387,11 @@ The lenght of the MOSFET channel also has a large influence on it's frequency ch
 
 ![transit frequency vs. channel length L [@hpretlacd]](/images/sec_xschem/ac_eaa_ft_vs_L.png){#fig-ft_vs_L width=80%}
 
-
 The operating areas of interest for us are the saturation region (when using the FET as an amplifier for example) and the region when the FET is being used to "just" work as a switch. With setting $V_{DS}$ to $\frac{V_{DD}}{2}$ we keep the FET in saturation. Reminding ourselves again that with larger $g_M$ we have more "gain" and with a smaller $I_D$ we have higher efficiency we try to hit the sweetspot between size (as every square milimeter has it's cost) and current consumption (if we have wearable battery powered devices for example). Keeping also in mind that temperature has a large effect we cannot use arbitratily large drain currents. 
 
 Following plot visualizes the dependancy of $\frac{g_M}{I_D}$ to the gate-source voltage and shows the transit frequency behaviour too:
 
-![$\frac{g_M}{I_D}$ and $f_T$ over the gate-source voltage [@hpretlacd]](images/sec_xschem/ac_ft_vs_gm_vgs.png){#fig-gm_vs_gs_vs_ft width=80%}
+![$\frac{g_M}{I_D}$ and $f_T$ over the gate-source voltage [@hpretlacd]](/images/sec_xschem/ac_ft_vs_gm_vgs.png){#fig-gm_vs_gs_vs_ft width=80%}
 
 ### GM/ID Overview
 
@@ -427,7 +425,7 @@ lambda_p = 0.1     # Channel length modulation PMOS [1/V]
 These parameters are critical for calculating transistor drain current in saturation:
 
 $$
-I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 \tag{24}
+I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 
 $$
 
 The differential pair (M1 and M2) defines the input transconductance of the OTA. Sizing begins by selecting bias current and overdrive voltage (V$_{OV}$):
@@ -490,7 +488,7 @@ print(f"ro3: {ro3:.2e} Ω")
 The OTA's DC gain is:
 
 $$
-A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3}) \tag{25}
+A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3})
 $$
 
 In Python:

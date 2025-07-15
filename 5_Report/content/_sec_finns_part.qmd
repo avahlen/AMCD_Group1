@@ -129,9 +129,9 @@ height="1.4267399387576554in"}
 The previous chapter described the fundamentals of the integrated
 layout, in this chapter these fundamentals are put into practice to
 create the layout for the 5T-OTA outlined by the schematic by Haraled
-Pretel(see @pretl2025_ota5t_schematic)
+Pretl(see @pretl2025_ota5t_schematic)
 
-The schematic outlined by Professor Pretel consists of 13 N- and PMOS
+The schematic outlined by Professor Pretl consists of 13 N- and PMOS
 devices. These devices are defined within the PDK and are the
 fundamental blocks, which make up the layout within the technology.
 Within the layout software these are defined as PCells. As the schematic
