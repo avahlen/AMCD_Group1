@@ -7,7 +7,7 @@ software.
 
 ## Introduction into the fundamentals of integrated layouting. 
 
-Before designing a on the wafer, the basics of the design process must
+Before designing on the wafer, the basics of the design process must
 be understood. To that end an explanation of the software as well as the
 physical layers is necessary to comprehend the design challenges.
 
