@@ -75,35 +75,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -296,7 +267,7 @@ window.Quarto = {
 <p><strong>Keywords:</strong> Filter design, Biquadratic filter, IC design, Open Source Toolchain</p>
 <section id="abstract" class="level1 unnumbered">
 <h1 class="unnumbered">Abstract</h1>
-<p>The project combines theoretical exploration with hands-on circuit design to realise a biquad filter. Fundamental OTA concepts were first examined in mathematical modelling and later in simulation, beginning with a simple five-transistor prototype and progressing through two reference amplifiers by Prof.&nbsp;Pretl. Insights gained from their biasing schemes, cascode loading, and common-mode control informed the development of an advanced, in-house OTA sized via the <span class="math inline">\(g_m/I_D\)</span> methodology for strong-inversion operation. Four identical instances of this custom cell were then assembled into a Baker-style biquad and verified in Xschem and Ngspice for AC behaviour. Additionally, the 5T-OTA was implemented as a physical design with the help of KLayout.</p>
+<p>This project explores the IC design of a biquad filter from mathematical modelling over ideal circuit implementations to sizing and using several differnet OTAs and a concluding physical implementation of an OTA. Two different OTA models were incorporated into implementing the universal biquad filter and compared with simulations to the theoretical model. Additionally, a low pass filter was designed with a Gm-C filter to try to realise the required behauviour that way. To experience the the actual physical layouting of an IC chip, the 5T-OTA was implemented as a physical design with the help of KLayout.</p>
 
 
 </section>
