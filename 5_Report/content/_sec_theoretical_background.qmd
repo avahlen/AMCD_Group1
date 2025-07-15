@@ -160,18 +160,12 @@ For $Q = 100$ the peak is $A_{peak} = 100.001$, which converted into dB is $A_{p
 
 
 ## Operational Amplifier
-<<<<<<< HEAD
-As seen in @fig-BiquadCircuit, a Biquad Filter consists of four Operational Amplifiers. To get a better understanding of these, this chapter will discuss the main aspects of OPAMPs.
-There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid, there exist nine different types of the Opamps, but only four are mainly used [@Approximating_OPAMP]. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output.
-This results in four basic configurations, as shown in the accompanying table @tbl-opamp_compare. (Images are taken from @wiki_opamps)
-=======
 As seen in @fig-BiquadCircuit a Biquad Filter consists four Operational Amplifiers. To get a better understanding of these, this chapter will discuss the main arguments of OPAMPS.
 There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid there exist nine diffrent types of the Opamps, but only four are mainly used [@Approximating_OPAMP]. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output. 
-This results in four basic configurations, as shown in the accompanying table @tbl-opamp_comapre. (Images are taken from @wiki_opams)
+This results in four basic configurations, as shown in the accompanying table @tbl-opamp_compare. (Images are taken from @wiki_opamps)
 
 
 [//]: # Deutsches WIKI https://de.wikipedia.org/wiki/Operationsverst%C3%A4rker#Aufbau_und_Varianten 
->>>>>>> 406a34896860556f9aee56d991b062375192ef6d
 
 |                     | Voltage output                                      | Current output                                           |
 |---------------------|---------------------------------------------------------|---------------------------------------------------------|
@@ -225,12 +219,8 @@ $$
 g_m = \frac{\Delta I_{out}}{\Delta V_{in}}
 $$
 
-<<<<<<< HEAD
-where $g_m$ is the transconductance, $\Delta I_{out}$ is the change in output current, and $\Delta V_{in}$ is the change in input voltage. The unit of transconductance is the siemens ($S$), which is equivalent to amperes per volt ($A/V$). Historically, it was also measured in "mho", which is "ohm" spelled backwards, reflecting its inverse relationship to resistance.
-=======
 where $g_m$ is the transconductance, $\Delta I_{out}$ is the change in output current, and $\Delta V_{in}$ is the change in input voltage. The unit of transconductance is the siemens ($S$), which is equivalent to amperes per volt ($A$/$V$). Historically, it was also measured in "mho", which is "ohm" spelled backwards, reflecting its inverse relationship to resistance.
 
->>>>>>> 406a34896860556f9aee56d991b062375192ef6d
 
 In field-effect transistors (FETs) the transconductance determines the device's ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current. 
 
