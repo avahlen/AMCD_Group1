@@ -191,6 +191,7 @@ Overall, this gm‑C biquad schematic represents a practical and scalable implem
 
 Figure @fig-biquad reproduces the fully differential gm-C biquad proposed by @baker2010cmos. In this architecture, the behavior of the filter is governed by six small-signal parameters:
 
+$$
 \begin{aligned}
 G_1 &= \frac{g_{m1}}{C_1 + C_2}, &
 G_2 &= \frac{g_{m2}}{g_{m1}}, &
@@ -199,6 +200,7 @@ G_4 &= \frac{g_{m3}}{C_3 + C_4}, &
 G_5 &= \frac{g_{m4}}{g_{m1}}, &
 G_6 &= \frac{C_3}{g_{m3}}.
 \end{aligned}
+$$
 
 These expressions relate the two integrator stages $\bigl(g_{m1}, C_{1,2}\bigr)$ and $\bigl(g_{m3}, C_{3,4}\bigr)$ to the feed-forward transconductors $g_{m2}$ and $g_{m4}$. For a **low-pass** realisation, we adopt the convenient symmetry:
 

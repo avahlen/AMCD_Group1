@@ -34,3 +34,4 @@ Get rid of all these TOCs when done...
 - Follow formatting guidelines: Check for any specific requirements or guidelines for your specific journal or conference. 
 - Revise and edit: Make sure your abstract is clear, accurate, and within the word limit. 
 - Consider the audience: Tailor your language to your target audience (e.g., other researchers in your field, or a wider audience).
+
