@@ -139,7 +139,7 @@ set appendwrite
 *write biquad_univ.csv LPF HPF BPF BSF
 *plot db(v(LPF)) db(v(HPF)) db(v(BPF)) db(v(BSF))
 *plot 180/PI*vp(LPF) 180/PI*vp(HPF) 180/PI*vp(BPF) 180/PI*vp(BSF)
-tran 10 0.01
+tran 10 0.1
 plot v(v_in) v(LPF)
 
 .endc
