@@ -165,14 +165,10 @@ $$ {#eq-calculatePeak}
 For $Q = 100$ the peak is $A_{peak} = 100.001$, which converted into dB is $A_{peak,dB} = 40\,dB$, as is shown in @fig-lowPassDifferentQ.
 
 
-
 ## Operational Amplifier
-As seen in @fig-BiquadCircuit a Biquad Filter consists four Operational Amplifiers. To get a better understanding of these, this chaper will discuss the main arguments of OPAMS.
-There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid there exist nine diffrent types of the Opamps, but only four are mainly used [@Approximating_OPAMP]. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output. 
-This results in four basic configurations, as shown in the accompanying table @tbl-opamp_comapre. (Images are taken from @wiki_opams)
-
-
-[//]: # Deutsches WIKI https://de.wikipedia.org/wiki/Operationsverst%C3%A4rker#Aufbau_und_Varianten 
+As seen in @fig-BiquadCircuit, a Biquad Filter consists of four Operational Amplifiers. To get a better understanding of these, this chapter will discuss the main aspects of OPAMPs.
+There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid, there exist nine different types of the Opamps, but only four are mainly used [@Approximating_OPAMP]. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output.
+This results in four basic configurations, as shown in the accompanying table @tbl-opamp_compare. (Images are taken from @wiki_opamps)
 
 |                     | Voltage output                                      | Current output                                           |
 |---------------------|---------------------------------------------------------|---------------------------------------------------------|
@@ -181,7 +177,7 @@ This results in four basic configurations, as shown in the accompanying table @t
 | **Current input**   | Current-Feedback Amplifiers          									| Current Amplifier         |
 |                      | ![OpV_CV](../images/sec_theorectical_background/OpV_CV.png)			| ![OpV_CC](../images/sec_theorectical_background/OpV_CC.png)|
 
-: Four typicall Operational Amplifiers {#tbl-opamp_comapre}
+: Four typicall Operational Amplifiers {#tbl-opamp_compare}
 
 ::: {.callout-tip}
 As a general rule, the simplest circuit that can do a job is usually the best choice. [@hpretlacd]
@@ -204,31 +200,29 @@ A voltage source creates a constant voltage output by changing the current.
 **Current source** 
 A current source creates a constant current by changing the voltage.
 
-Both of this sources can be explained by Ohms-Law: $R = \frac{U}{I}$. 
+Both of this sources can be explained by Ohm's Law: $R = \frac{U}{I}$. 
 
 For example the voltage source: There is no influence of the load, so $R$ may change and its value is unknown to the source. So to keep the voltage stable we can only change the current.
 :::
 
 ### Operational Transconductance Amplifier (OTA)
 
-In the design process of the biquad only OTAs will be used, so the focus of this chapter will be on them. The operational transconductance amplifier puts out out a current proportional to its input voltage, unlike Voltage Feedback Amplifiers @sec-VFA. In other words an OTA is a **voltage controlled current source**. 
+In the design process of the biquad only OTAs will be used, so the focus of this chapter will be on them. The operational transconductance amplifier puts out out a current proportional to its input voltage, unlike Voltage Feedback Amplifiers @sec-VFA. In other words, an OTA is a **voltage controlled current source**. 
 
 ![Schematic symbol of an OTA (taken from @Wangenheim2007)](../images/sec_theorectical_background/ota_symbol.png){#fig-otasym}
 
-As seen in the figure @fig-otasym the OTA has the two differental inputs and a current output. On top of that it has a biasing current input $I_{bias}$ which controls the transconductance $g_m$ of the OTA.
+As seen in the figure @fig-otasym, the OTA has the two differental inputs and a current output. On top of that it has a biasing current input $I_{bias}$ which controls the transconductance $g_m$ of the OTA.
 
 
 #### Transconductance
 
 Transconductance is a fundamental parameter that describes the relationship between the input voltage and the output current in electronic devices, particularly in transistors. It is defined as the ratio of the change in output current to the change in input voltage, under conditions where all other variables are held constant. Mathematically, it is expressed as:
 
-
 $$
 g_m = \frac{\Delta I_{out}}{\Delta V_{in}}
 $$
 
-where $g_m$ is the transconductance, $\Delta I_{out}$ is the change in output current, and $\Delta V_{in}$ is the change in input voltage. The unit of transconductance is the siemens ($S$), which is equivalent to amperes per volt ($A$/$V$). Historically, it was also measured in "mhos," which is "ohm" spelled backwards, reflecting its inverse relationship to resistance.
-
+where $g_m$ is the transconductance, $\Delta I_{out}$ is the change in output current, and $\Delta V_{in}$ is the change in input voltage. The unit of transconductance is the siemens ($S$), which is equivalent to amperes per volt ($A/V$). Historically, it was also measured in "mho", which is "ohm" spelled backwards, reflecting its inverse relationship to resistance.
 
 In field-effect transistors (FETs) the transconductance determines the device's ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current. 
 
@@ -245,19 +239,17 @@ The term transconductance originates from the concept of **transfer conductance*
 ![@hpretlacd 's 5-Transistor OTA](../images/sec_theorectical_background/basic_ota_output.png){#fig-5tota}
 
 It consists of few elements which are going to be described in the next chapters. The basic function of this OTA can be described with: 
-The transistors $M_1$ and $M_2$ form a differential pair, which is biased by the current source $M_5$. Transistors $M_5$ and $M_6$ create a current mirror, where the input bias current $I_{\text{bias}}$ sets the bias current for the Operational Transconductance Amplifier. To keep the biasing current stable a current mirror (@sec-current_mirror is used instead of applying the $I_{\text{bias}}$ directly to $M_5$. The differential pair (@sec-diff_pair) $M_1$ and $M_2$ is loaded by the current mirror $M_3$ and $M_4$, which mirrors the drain current of $M_1$ to the right side of the circuit. The combined currents from $M_4$ and $M_2$ at the output node result in the generation of an output current. To archieve this desired result, it is important to ensure that $M_{1,2}$ and $M_{3,4}$ are symmetric, meaning they should have identical $W$ (width) and $L$ (length) dimensions. To set the right bias current, $M_{5,6}$ should be choosen accordingly.
-
+The transistors $M_1$ and $M_2$ form a differential pair, which is biased by the current source $M_5$. Transistors $M_5$ and $M_6$ create a current mirror, where the input bias current $I_{\text{bias}}$ sets the bias current for the Operational Transconductance Amplifier. To keep the biasing current stable, a current mirror (@sec-current_mirror) is used instead of applying the $I_{\text{bias}}$ directly to $M_5$. The differential pair (@sec-diff_pair) $M_1$ and $M_2$ is loaded by the current mirror $M_3$ and $M_4$, which mirrors the drain current of $M_1$ to the right side of the circuit. The combined currents from $M_4$ and $M_2$ at the output node result in the generation of an output current. To achieve this desired result, it is important to ensure that $M_{1,2}$ and $M_{3,4}$ are symmetric, meaning they should have identical $W$ (width) and $L$ (length) dimensions. To set the right bias current, $M_{5,6}$ should be chosen accordingly.
 
 
 ### Current Mirror {#sec-current_mirror}
 
 A current mirror consists of at least two transistors, one working as the input (reference) source and the other ones as copies of it. As the name suggests, the primary function of a current mirror is to copy the input current to the output, ensuring that the output current is an exact duplicate of the input. Importantly, the flow of the input current is unaffected by the size of the mirrored output current or any variations in it.
 
-This behaviour is made possible by two key characteristics of the current mirror: its relatively low input resistance and its relatively high output resistance. The low input resistance ensures the input current remains stable regardless of drive conditions and the high output resistance maintains a constant output current independent of load variations. @analog_university_current_mirror
+This behavior is made possible by two key characteristics of the current mirror: its relatively low input resistance and its relatively high output resistance. The low input resistance ensures the input current remains stable regardless of drive conditions, and the high output resistance maintains a constant output current independent of load variations. (@analog_university_current_mirror)
 
-![MOSFET Current Mirror (taken from @nerdsdostuff_current_mirror)](../images/sec_theorectical_background/current_mirror.png){#fig-current_mirror width=50%}
+A current mirror is also capable of copying one current and converting it to multiple different outputs. This is possible by attaching more transistors with their gate $G$ to the drain $D$ of the reference transistor. By scaling the width and length of each output transistor differently, multiple scales of the input current can be created. Hereby, a big advantage is when using MOSFETs, due to the fact that no current is flowing through the gate. In the case of BJTs, a compensation circuit is added. (@hpretlacd)
 
-A current mirror is also capable of copying one current and convert it to multiple different outputs. This is possible by attaching more transistors with their gate $G$ to the drain $D$ of the reference transistor. By scaling the width and length of each output transistor different, multiple scales of the input current can be created. Hereby a big advantage is when using MOSFETS, due to the fact that no current is flowing through the Gate. In case of BJTs a compensation circuit is added. @hpretlacd
 
 
 ### Differential Pair {#sec-diff_pair}
@@ -268,7 +260,7 @@ A differential pair, also referred to as a differential amplifier, is an electro
 
 Its primary function is to amplify the difference between two input signals while rejecting any common-mode signals, which are identical in both amplitude and phase at the two inputs. This property makes the differential pair highly effective in noise reduction and signal processing applications. In a typical differential pair using MOSFETs, the two transistors are matched in terms of their electrical characteristics, such as threshold voltage $V_{th}$ and transconductance $g_m$. The inputs are applied to the gates $G$ of the MOSFETs, while the outputs are taken from the drains $D$. A current source is usually connected to the sources $S$ of the MOSFETs to provide a constant bias current, here noted as $g_{\text{tail}}$ or like in @fig-5tota as $I_{\text{bias}}$.
 
-The differential gain of the pair is determined by the transconductance $g_m$ of the MOSFETs. The common-mode rejection ratio (CMRR) is a measure of the differential pair's ability to reject common-mode signals. It is defined as the ratio of the differential gain to the common-mode gain and is typically expressed in decibels (dB). The performance of the differential pair is also influenced by the tail current source, represented by $g_{\text{tail}}$. The tail current source provides a constant bias current $I_{\text{bias}}$ that flows through both transistors, ensuring that the total current through the differential pair remains constant regardless of the input voltages.  @razavi2024
+The differential gain of the pair is determined by the transconductance $g_m$ of the MOSFETs. The common-mode rejection ratio (CMRR) is a measure of the differential pair's ability to reject common-mode signals. It is defined as the ratio of the differential gain to the common-mode gain and is typically expressed in decibels (dB). The performance of the differential pair is also influenced by the tail current source, represented by $g_{\text{tail}}$. The tail current source provides a constant bias current $I_{\text{bias}}$ that flows through both transistors, ensuring that the total current through the differential pair remains constant regardless of the input voltages.  (@razavi2024)
 
 ::: {.callout-important}
 ## Role in an OTA
@@ -279,9 +271,7 @@ When used in OTAs, the differential pair serves as the input stage, where the di
 
 ## MOSFET (Metal-Oxide-Semiconductor Field-Effect-Transistor )
 
-To dive in one more level, the parts an operational amplifier is build of are transistors. Precisely in this design process they are (MOSFETs). In integrated circuit design, where pre-built components are not available, MOSFETs can be designed from scratch. This design flexibility allows for the adjustment of the MOSFET's physical dimensions, specifically its width $W$ and leght $L$. By doing this there is a lot of room for freedom and experimental space. The length $L$ significantly influences MOSFET performance, enabling a trade-off between speed and output conductance. The width $W$ of a MOSFET acts as a scaling factor that adjusts the charge density within the channel, enabling the control of current levels to meet specific design requirements.
-
-
+To dive in one more level, the parts an operational amplifier is build of are transistors. Precisely in this design process they are (MOSFETs). In integrated circuit design, where pre-built components are not available, MOSFETs can be designed from scratch. This design flexibility allows for the adjustment of the MOSFET's physical dimensions, specifically its width $W$ and length $L$. By doing this there is a lot of room for freedom and experimental space. The length $L$ significantly influences MOSFET performance, enabling a trade-off between speed and output conductance. The width $W$ of a MOSFET acts as a scaling factor that adjusts the charge density within the channel, enabling the control of current levels to meet specific design requirements.
 
 ::: {.callout-warning}
 ## Circuit symbol of MOSFETs
@@ -296,27 +286,27 @@ However, in this development report, the symbols are not strictly used like show
 Besides, in many situations the bulk $B$ is connected to the source $S$ terminal. Thus the bulk $B$ is not mentioned in the circuit diagrams. 
 :::
 
-### MOSFET Large-Signal regions
+### MOSFET Large-Signal Regions
 
-A MOSFET can operate in three different modes: Saturation, Linear (or Triode) region or Cutoff. The modes depend on the device's threshold voltage $V_{\text{th}}$, gate-to-source voltage $V_{\text{GS}}$, and drain-to-source voltage $V_{\text{DS}}$.
+A MOSFET can operate in three different modes: Saturation, Linear (or Triode) region, or Cutoff. The modes depend on the device's threshold voltage $V_{\text{th}}$, gate-to-source voltage $V_{\text{GS}}$, and drain-to-source voltage $V_{\text{DS}}$.
 
 **Saturation**  
-The saturation region is the active mode used for analog amplification , where the MOSFET behaves like a voltage-controlled current source . A conductive channel forms between the source and drain. This state is reached when the condition $V_{\text{DS}} \geq (V_{\text{GS}} - V_{\text{th}})$ is met. In saturation, the drain-source current ($I_D$) stabilizes or "saturates" and becomes nearly independent of $V_{\text{DS}}$. However, it can still be precisely controlled via $V_{\text{GS}}$ due to the phenomenon known as ["pinch-off"](https://en.wikipedia.org/wiki/Channel_length_modulation)
+The saturation region is the active mode used for analog amplification, where the MOSFET behaves like a voltage-controlled current source. A conductive channel forms between the source and drain. This state is reached when the condition $V_{\text{DS}} \geq (V_{\text{GS}} - V_{\text{th}})$ is met. In saturation, the drain-source current ($I_D$) stabilizes or "saturates" and becomes nearly independent of $V_{\text{DS}}$. However, it can still be precisely controlled via $V_{\text{GS}}$ due to the phenomenon known as ["pinch-off"](https://en.wikipedia.org/wiki/Channel_length_modulation).
 
 **Linear Region**  
-The Linear, or Triode, region occurs when a MOSFET is conducting and acts more like a resistor or voltage-controlled device rather than a current source. This region is defined by the condition $V_{\text{DS}} < (V_{\text{GS}} - V_{\text{th}})$ and $V_{\text{GS}} > V_{\text{th}}$. In this mode, both $V_{\text{GS}}$ and $V_{\text{DS}}$ control the $I_D$, allowing the device to be used effectively for switching and amplification in low-voltage applications. 
+The Linear, or Triode, region occurs when a MOSFET is conducting and acts more like a resistor or voltage-controlled device rather than a current source. This region is defined by the condition $V_{\text{DS}} < (V_{\text{GS}} - V_{\text{th}})$ and $V_{\text{GS}} > V_{\text{th}}$.  In this mode, both $V_{\text{GS}}$ and $V_{\text{DS}}$ control the $I_D$, allowing the device to be used effectively for switching and amplification in low-voltage applications. 
 
 **Cutoff Region**  
-In the cutoff region, the MOSFET is effectively turned off, with no conductive channel formed between the drain and source. This mode is reached when the gate-to-source voltage is less than the threshold voltage ($V_{\text{GS}} < V_{\text{th}}$). In cutoff, the drain-source current $I_D$ is nearly zero, which means the MOSFET is not conducting and behaves like an open switch. 
+In the cutoff region, the MOSFET is effectively turned off, with no conductive channel formed between the drain and source. This mode is reached when the gate-to-source voltage is less than the threshold voltage ($V_{\text{GS}} < V_{\text{th}}$). In cutoff, the drain-source current $I_D$ is nearly zero, which means the MOSFET is not conducting and behaves like an open switch.
 
 ::: {.callout-warning}
 In the large-signal analysis, the transitions between operating modes occur gradually, making it challenging to pinpoint an exact moment when one mode shifts to another. Consequently, the modes are used in a more approximate manner, reflecting the continuous nature of these transitions rather than distinct, sharply defined states.
 :::
 
-
 ### Small-Signal Representation
 
-By applying different voltages to a MOSFET, different behaviours appear. But there is one thing which is very unliked by engineers and others, all these transfer functions are non linear. So making any calculations by hand is nearly impossible. That's why in practise the biasing method exists. This is done by appying a dc voltage to the terminals of the MOSFET and during operation only a small signal change appears. With this technique an **Operating Point** is created, which enables to assume a linear behavior in its small signal area (like in @fig-mosfetoppoint). Because the MOSFET is put into an small operation point and all the changes applied are very small, this linearisation area is called *Small-signal model*.
+By applying different voltages to a MOSFET, different behaviours appear. But there is one thing which is very unliked by engineers and others, all these transfer functions are non linear. So making any calculations by hand is nearly impossible. That's why in practise the biasing method exists. This is done by applying a dc voltage to the terminals of the MOSFET and during operation only a small signal change appears. With this technique an **Operating Point** is created, which enables to assume a linear behaviour in its small signal area (like in @fig-mosfetoppoint). Because the MOSFET is put into an small operation point and all the changes applied are very small, this linearisation area is called *Small-signal model*.
+
 
 ![MOSFET drain current vs. drain-to-source voltage for several values](../images/sec_theorectical_background/mosfet_oppoint.png){#fig-mosfetoppoint}
 
@@ -352,19 +342,19 @@ $g_{ds}$ represents the small-signal conductance between the drain and source te
 
 $g_{ds}=\frac{\partial I_D}{\partial V_{ds}}\bigg|_{V_{gs}=\text{constant}}$
 
-$g_{ds}$ affects the output impedance of the MOSFET. A higher $g_{ds}$ results in a lower output impedance.In saturation region, $g_{ds}$ is typically small, which helps maintain the linearity of the device. However, in the triode region, $g_{ds}$ can be larger, leading to non-linear behavior.
+$g_{ds}$ affects the output impedance of the MOSFET. A higher $g_{ds}$ results in a lower output impedance.In saturation region, $g_{ds}$ is typically small, which helps maintain the linearity of the device. However, in the triode region, $g_{ds}$ can be larger, leading to non-linear behaviour.
 
 **Mutual Transconductance - Gate-Source Voltage ($g_mv_{gs}$)**  
-The transconductance $g_m$ of a MOSFET quantifies how the drain current $I_D$ varies in response to changes in the gate-source voltage $V_{gs}$, while keeping the drain-source voltage $V_{ds}$ constant.
+The transconductance $g_m$ of a MOSFET quantifies how the drain current $I_D$ varies in response to changes in the gate-source voltage $V_{gs}$, while keeping the drain-source voltage $V_{ds}$ constant:
 
 $g_m=\frac{\partial I_D}{\partial V_{gs}}\bigg|_{V_{ds}=\text{constant}}$
 
 The term $g_mv_{gs}$ represents the small-signal current generated by the transconductance $g_m$ in response to a small change in the gate-source voltage $v_{gs}$. A higher $g_m$ results in a higher voltage gain.
 
 
-::: {.callout-info}
+::: {.callout-note}
 ## Summary of $g_mv_{gs}$
-In the saturation region, the output conductance $g_{ds}$ is generally much smaller then the transconductance $g_m$. This characteristic enables the MOSFET to function effectively as a voltage-controlled current source. However, as the MOSFET moves into the triode region, $g_{ds}$ increases, causing the device to behave more like to a resistor. The output conductance $g_{ds}$ influences the output impedance and linearity of the device, while the product $g_mv_{gs}$ controls the gain and frequency response of the circuit.
+In the saturation region, the output conductance $g_{ds}$ is generally much smaller than the transconductance $g_m$. This characteristic enables the MOSFET to function effectively as a voltage-controlled current source. However, as the MOSFET moves into the triode region, $g_{ds}$ increases, causing the device to behave more like a resistor. The output conductance $g_{ds}$ influences the output impedance and linearity of the device, while the product $g_mv_{gs}$ controls the gain and frequency response of the circuit.
 :::
 
 

@@ -145,11 +145,8 @@ This documentation provides a development report, which documents the design pro
 
 ## Open-Source
 
-All the results of this report and development approach to design a Biquad are publicly available on GitHub (LINK...). Everyone is invited and should feel free to use, change, and share this work. 
-This whole course and project wouldn't be possible without the great Open-Source-Tools provided by the amazing community of layout designers, enthusiasts, and developers. 
-Here a list with just a few of this programs: `IC-OSIC-TOOLS`, `IHP Open PDK`, `Linux`, `Docker`, `Xschem`, `ngspice`, `KLayout`, `Quarto`, `Vim`, `Pandoc`, `TexLive`, `Python`, `Git`, `CoCalc`, `LibreOffice`, 
-
-
+All the results of this report and development approach to design a Biquad will be publicly available on GitHub. Everyone is invited and should feel free to use, change, and share this work. This whole course and project wouldn't be possible without the great Open-Source tools provided by the amazing community of layout designers, enthusiasts, and developers.
+Here is a list with just a few of these programs: `IC-OSIC-TOOLS`, `IHP Open PDK`, `Linux`, `Docker`, `Xschem`, `ngspice`, `KLayout`, `Quarto`, `Vim`, `Pandoc`, `LaTeX`, `TeXLive`, `Python`, `Git`, `CoCalc`, `LibreOffice`.
 
 ### Anthem
 
@@ -162,3 +159,7 @@ So sing the joy, the thrill, the spark, <br>
 In open source, we find our arc. <br>
 Together strong, we rise, explore— <br>
 In lines of code, forevermore. <br>
+
+
+
+
