@@ -583,6 +583,8 @@ def plot_pzmap(num, den, title, subplot_pos):
     plt.axhline(0, color='gray', lw=0.5)
     plt.axvline(0, color='gray', lw=0.5)
     plt.title(title)
+    plt.xlabel('$\sigma$')
+    plt.ylabel('$j\omega$')
     plt.xlim([-1500, 1500])
     plt.ylim([-10000, 10000])
     plt.grid(True)
