@@ -59,7 +59,7 @@ Biasing is supplied by the tail branch (M4→M2), where the external i_bias curr
 
 ### Validation of Self-built OTA – unity-gain buffer  {#sec-ota-ug}
 
-To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (Fig. @fig-ota-ug-tb): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.  
+To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (@fig-ota-ug-tb): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.  
 The long two-second period guarantees only one transition inside the 100 ms simulation window.  
 A 20 µA current source on i_bias establishes the tail current, with supplies at V<sub>DD</sub> = 1.5 V and V<sub>SS</sub> = 0 V.
 
