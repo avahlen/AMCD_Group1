@@ -12,11 +12,6 @@
 
 <!-- {{< include content/references.qmd >}} -->
 
-
-::: {.callout-important}
-Get rid of all these TOCs when done...
-:::
-
 **Keywords:** Filter design, Biquadratic filter, IC design, Open Source Toolchain
 
 # Abstract {.unnumbered}
