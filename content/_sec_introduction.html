@@ -202,8 +202,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/_sec_characterisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Characterisation</span></span></a>
+  <a href="../content/_sec_xschem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -214,20 +214,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/_sec_filter-design.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Filter Design</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../content/_sec_discussion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_conclusion-outlook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -252,10 +246,9 @@ window.Quarto = {
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation"><span class="header-section-number">1.4</span> Motivation</a></li>
   <li><a href="#scope-of-the-project" id="toc-scope-of-the-project" class="nav-link" data-scroll-target="#scope-of-the-project"><span class="header-section-number">1.5</span> Scope of the project</a></li>
   <li><a href="#specifications" id="toc-specifications" class="nav-link" data-scroll-target="#specifications"><span class="header-section-number">1.6</span> Specifications</a></li>
-  <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test"><span class="header-section-number">1.7</span> Test</a></li>
-  <li><a href="#open-source" id="toc-open-source" class="nav-link" data-scroll-target="#open-source"><span class="header-section-number">1.8</span> Open-Source</a>
+  <li><a href="#open-source" id="toc-open-source" class="nav-link" data-scroll-target="#open-source"><span class="header-section-number">1.7</span> Open-Source</a>
   <ul class="collapse">
-  <li><a href="#hymne" id="toc-hymne" class="nav-link" data-scroll-target="#hymne"><span class="header-section-number">1.8.1</span> Hymne</a></li>
+  <li><a href="#anthem" id="toc-anthem" class="nav-link" data-scroll-target="#anthem"><span class="header-section-number">1.7.1</span> Anthem</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -363,8 +356,8 @@ Warning
 </section>
 <section id="scope-of-the-project" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="scope-of-the-project"><span class="header-section-number">1.5</span> Scope of the project</h2>
-<p>The scope of this project is supposed to follow a real-world design flow, starting at a theorectical analysis of the specified filter and - in the best case - end in a tap-out of a prototype. If that stage is reached the prototype can be compared to the theorectical and simulation results obtained during the design process and checked for functionality.</p>
-<p>As a tap-out of a prototype is fairly unrealistic in the time given, the goal is to simulate the specified filter with templates for operational amplifiers and base the IC layout on these templates.</p>
+<p>The scope of this project is supposed to follow a real-world design flow, starting at a theorectical analysis of the specified filter and - in the best case - end in a tape-out of a prototype. If that stage is reached the prototype can be compared to the theorectical and simulation results obtained during the design process and checked for functionality.</p>
+<p>As a tape-out of a prototype is fairly unrealistic in the time given, the goal is to simulate the specified filter with templates for operational amplifiers and base the IC layout on these templates.</p>
 <p>All in all, this project includes a systems analysis if the specified filter, simulation results with ideal components and real components, taken from provided templates, and a physical layout prototype.</p>
 </section>
 <section id="specifications" class="level2" data-number="1.6">
@@ -382,7 +375,7 @@ Warning
 <p>Not sure if this is written in the correct time!?!</p>
 </div>
 </div>
-<p>The main onjective is to design a universal biquad filter, based on the filter design proposed in the ASLK PRO Board Manual from Texas Instruments <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span>. The biquad filter shall have the following specifications:</p>
+<p>The main objective is to design a universal biquad filter, based on the filter design proposed in the ASLK PRO Board Manual from Texas Instruments <span class="citation" data-cites="aslkpro2012">(<a href="references.html#ref-aslkpro2012" role="doc-biblioref">Rao and Ravikumar 2012</a>)</span>. The biquad filter shall have the following specifications:</p>
 <p><span class="math display">\[
 f_0 = 1\,kHz
 \]</span></p>
@@ -392,14 +385,11 @@ Q = 10
 <p>The circuit design is done in <strong>Xschem</strong> and the simulation in <strong>ngspice</strong>. For the design on transistor level the 130nm CMOS technology <strong>SG13G2</strong> is used. All these tools and PDk are integrated into a docker image <strong>IIC-OSIC-TOOLS</strong> <span class="citation" data-cites="pretl_git2025">(<a href="references.html#ref-pretl_git2025" role="doc-biblioref">Pretl and Zachl 2025</a>)</span> provided by Prof.&nbsp;Dr.&nbsp;Harald Pretl from Johannes Keplar University.</p>
 <p>This documentation provides a development report, which documents the design process with the taken steps and decisions made.</p>
 </section>
-<section id="test" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="test"><span class="header-section-number">1.7</span> Test</h2>
-</section>
-<section id="open-source" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="open-source"><span class="header-section-number">1.8</span> Open-Source</h2>
+<section id="open-source" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="open-source"><span class="header-section-number">1.7</span> Open-Source</h2>
 <p>All the results of this report and development approach to design a Biquad are publicly available on GitHub (LINK…). Everyone is invited and should feel free to use, change, and share this work. This whole course and project wouldn’t be possible without the great Open-Source-Tools provided by the amazing community of layout designers, enthusiasts, and developers. Here a list with just a few of this programs: <code>IC-OSIC-TOOLS</code>, <code>IHP Open PDK</code>, <code>Linux</code>, <code>Docker</code>, <code>Xschem</code>, <code>ngspice</code>, <code>KLayout</code>, <code>Quarto</code>, <code>Vim</code>, <code>Pandoc</code>, <code>TexLive</code>, <code>Python</code>, <code>Git</code>, <code>CoCalc</code>, <code>LibreOffice</code>,</p>
-<section id="hymne" class="level3" data-number="1.8.1">
-<h3 data-number="1.8.1" class="anchored" data-anchor-id="hymne"><span class="header-section-number">1.8.1</span> Hymne</h3>
+<section id="anthem" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="anthem"><span class="header-section-number">1.7.1</span> Anthem</h3>
 <p>In realms where code is free to fly,<br> We build and share, our hearts reach high. <br> No walls, no locks, our wisdom streams, <br> In open light, we chase our dreams. <br></p>
 <p>So sing the joy, the thrill, the spark, <br> In open source, we find our arc. <br> Together strong, we rise, explore— <br> In lines of code, forevermore. <br></p>
 

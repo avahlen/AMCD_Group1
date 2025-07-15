@@ -85,7 +85,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../content/_sec_characterisation.html" rel="next">
+<link href="../content/_sec_xschem.html" rel="next">
 <link href="../content/_sec_introduction.html" rel="prev">
 <link href="../images/hsb-logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -237,8 +237,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/_sec_characterisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Characterisation</span></span></a>
+  <a href="../content/_sec_xschem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -249,20 +249,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/_sec_filter-design.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Filter Design</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../content/_sec_discussion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_conclusion-outlook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -290,15 +284,15 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#sec-VFA" id="toc-sec-VFA" class="nav-link" data-scroll-target="#sec-VFA"><span class="header-section-number">2.2.1</span> Voltage-Feedback Amplifiers (VFA)</a></li>
   <li><a href="#operational-transconductance-amplifier-ota" id="toc-operational-transconductance-amplifier-ota" class="nav-link" data-scroll-target="#operational-transconductance-amplifier-ota"><span class="header-section-number">2.2.2</span> Operational Transconductance Amplifier (OTA)</a></li>
-  <li><a href="#current-mirror" id="toc-current-mirror" class="nav-link" data-scroll-target="#current-mirror"><span class="header-section-number">2.2.3</span> Current Mirror</a></li>
-  <li><a href="#differential-pair" id="toc-differential-pair" class="nav-link" data-scroll-target="#differential-pair"><span class="header-section-number">2.2.4</span> Differential Pair</a></li>
-  <li><a href="#variants" id="toc-variants" class="nav-link" data-scroll-target="#variants"><span class="header-section-number">2.2.5</span> Variants ?</a></li>
+  <li><a href="#sec-current_mirror" id="toc-sec-current_mirror" class="nav-link" data-scroll-target="#sec-current_mirror"><span class="header-section-number">2.2.3</span> Current Mirror</a></li>
+  <li><a href="#sec-diff_pair" id="toc-sec-diff_pair" class="nav-link" data-scroll-target="#sec-diff_pair"><span class="header-section-number">2.2.4</span> Differential Pair</a></li>
   </ul></li>
   <li><a href="#mosfet-metal-oxide-semiconductor-field-effect-transistor" id="toc-mosfet-metal-oxide-semiconductor-field-effect-transistor" class="nav-link" data-scroll-target="#mosfet-metal-oxide-semiconductor-field-effect-transistor"><span class="header-section-number">2.3</span> MOSFET (Metal-Oxide-Semiconductor Field-Effect-Transistor )</a>
   <ul class="collapse">
-  <li><a href="#small-signal-representation" id="toc-small-signal-representation" class="nav-link" data-scroll-target="#small-signal-representation"><span class="header-section-number">2.3.1</span> Small-Signal Representation</a></li>
-  <li><a href="#mosfet-regions" id="toc-mosfet-regions" class="nav-link" data-scroll-target="#mosfet-regions"><span class="header-section-number">2.3.2</span> MOSFET regions</a></li>
+  <li><a href="#mosfet-large-signal-regions" id="toc-mosfet-large-signal-regions" class="nav-link" data-scroll-target="#mosfet-large-signal-regions"><span class="header-section-number">2.3.1</span> MOSFET Large-Signal regions</a></li>
+  <li><a href="#small-signal-representation" id="toc-small-signal-representation" class="nav-link" data-scroll-target="#small-signal-representation"><span class="header-section-number">2.3.2</span> Small-Signal Representation</a></li>
   </ul></li>
+  <li><a href="#summary-of-g_mv_gs" id="toc-summary-of-g_mv_gs" class="nav-link" data-scroll-target="#summary-of-g_mv_gs"><span class="header-section-number">2.4</span> Summary of <span class="math inline">\(g_mv_{gs}\)</span></a></li>
   </ul>
 </nav>
     </div>
@@ -369,7 +363,7 @@ H(s) = \frac{a_1 s^2 + b_1 s + c_1}{a_2 s^2 + b_2 s + c_2}
 H(s) = \frac{\omega_n^2}{s^2 + \frac{\omega_n}{Q} s + \omega_n^2}
 \tag{2.2}\]</span></span></p>
 <p><span class="math inline">\(Q\)</span> determines amoung other things the amount of peaking the transfer function has at the chosen frequency. <a href="#fig-lowPassDifferentQ" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> shows this graphically, the amout of peaking increases with increasing quality factor <span class="math inline">\(Q\)</span>.</p>
-<div id="lst-lowpassdifferentq" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-execution_count="1">
+<div id="lst-lowpassdifferentq" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-caption="Python code for plotting a low pass with different quality factors" data-execution_count="1">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-lowpassdifferentq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Listing&nbsp;2.1
@@ -586,9 +580,10 @@ Difference between a voltage source and a current source
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Voltage source</strong><br>
-A voltage source creates a constant voltage output by changing the output.</p>
-<p><strong>Current source</strong> A current source creates a constant current by changing the voltage</p>
-<p>Both of this sources can be explained by Ohms-Law: <span class="math inline">\(R = \frac{U}{I}\)</span>. For example the voltage source: There is no influence of the load, so <span class="math inline">\(R\)</span> may change and its value is unknown to the source. So to keep the voltage stable we can only change the current.</p>
+A voltage source creates a constant voltage output by changing the current.</p>
+<p><strong>Current source</strong> A current source creates a constant current by changing the voltage.</p>
+<p>Both of this sources can be explained by Ohms-Law: <span class="math inline">\(R = \frac{U}{I}\)</span>.</p>
+<p>For example the voltage source: There is no influence of the load, so <span class="math inline">\(R\)</span> may change and its value is unknown to the source. So to keep the voltage stable we can only change the current.</p>
 </div>
 </div>
 </section>
@@ -601,18 +596,18 @@ A voltage source creates a constant voltage output by changing the output.</p>
 <img src="../images/sec_theorectical_background/ota_symbol.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-otasym-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.3: Schematic symbol of an OTA <span class="citation" data-cites="Wangenheim2007">Wangenheim (<a href="references.html#ref-Wangenheim2007" role="doc-biblioref">2007</a>)</span>
+Figure&nbsp;2.3: Schematic symbol of an OTA (taken from <span class="citation" data-cites="Wangenheim2007">Wangenheim (<a href="references.html#ref-Wangenheim2007" role="doc-biblioref">2007</a>)</span>)
 </figcaption>
 </figure>
 </div>
-<p>As seen in the figure <a href="#fig-otasym" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> the OTA has the two differental inputs and the current output. On top of that it has a biasing current input <span class="math inline">\(I_{bias}\)</span> which controls the transconductance <span class="math inline">\(g_m\)</span> of the OTA.</p>
+<p>As seen in the figure <a href="#fig-otasym" class="quarto-xref">Figure&nbsp;<span>2.3</span></a> the OTA has the two differental inputs and a current output. On top of that it has a biasing current input <span class="math inline">\(I_{bias}\)</span> which controls the transconductance <span class="math inline">\(g_m\)</span> of the OTA.</p>
 <section id="transconductance" class="level4" data-number="2.2.2.1">
 <h4 data-number="2.2.2.1" class="anchored" data-anchor-id="transconductance"><span class="header-section-number">2.2.2.1</span> Transconductance</h4>
 <p>Transconductance is a fundamental parameter that describes the relationship between the input voltage and the output current in electronic devices, particularly in transistors. It is defined as the ratio of the change in output current to the change in input voltage, under conditions where all other variables are held constant. Mathematically, it is expressed as:</p>
 <p><span class="math display">\[
 g_m = \frac{\Delta I_{out}}{\Delta V_{in}}
 \]</span></p>
-<p>where <span class="math inline">\(g_m\)</span> is the transconductance, <span class="math inline">\(\Delta I_{out}\)</span> is the change in output current, and <span class="math inline">\(\Delta V_{in}\)</span> is the change in input voltage. The unit of transconductance is the siemens (S), which is equivalent to amperes per volt (A/V). Historically, it was also measured in “mhos,” which is “ohm” spelled backwards, reflecting its inverse relationship to resistance.</p>
+<p>where <span class="math inline">\(g_m\)</span> is the transconductance, <span class="math inline">\(\Delta I_{out}\)</span> is the change in output current, and <span class="math inline">\(\Delta V_{in}\)</span> is the change in input voltage. The unit of transconductance is the siemens (<span class="math inline">\(S\)</span>), which is equivalent to amperes per volt (<span class="math inline">\(A\)</span>/<span class="math inline">\(V\)</span>). Historically, it was also measured in “mhos,” which is “ohm” spelled backwards, reflecting its inverse relationship to resistance.</p>
 <p>In field-effect transistors (FETs) the transconductance determines the device’s ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -641,12 +636,12 @@ Figure&nbsp;2.4: <span class="citation" data-cites="hpretlacd">H. Pretl and Mich
 </figcaption>
 </figure>
 </div>
-<p>It consists of few elements which are going to be described in the next chapters. The basic function of this OTA can be described with: The transistors <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> form a differential pair, which is biased by the current source <span class="math inline">\(M_5\)</span>. Transistors <span class="math inline">\(M_5\)</span> and <span class="math inline">\(M_6\)</span> create a current mirror, where the input bias current <span class="math inline">\(I_{\text{bias}}\)</span> sets the bias current for the Operational Transconductance Amplifier. To keep the biasing current stable a current mirror is used instead of applying the <span class="math inline">\(I_{\text{bias}}\)</span> directly to <span class="math inline">\(M_5\)</span> The differential pair <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> is loaded by the current mirror <span class="math inline">\(M_3\)</span> and <span class="math inline">\(M_4\)</span>, which mirrors the drain current of <span class="math inline">\(M_1\)</span> to the right side of the circuit. The combined currents from <span class="math inline">\(M_4\)</span> and <span class="math inline">\(M_2\)</span> at the output node result in the generation of an output current. To archieve this desired result, it is important to ensure that <span class="math inline">\(M_{1,2}\)</span> and <span class="math inline">\(M_{3,4}\)</span> are symmetric, meaning they should have identical <span class="math inline">\(W\)</span> (width) and <span class="math inline">\(L\)</span> (length) dimensions. To set the right bias current, <span class="math inline">\(M_{5,6}\)</span> should be choosen accordingly.</p>
+<p>It consists of few elements which are going to be described in the next chapters. The basic function of this OTA can be described with: The transistors <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> form a differential pair, which is biased by the current source <span class="math inline">\(M_5\)</span>. Transistors <span class="math inline">\(M_5\)</span> and <span class="math inline">\(M_6\)</span> create a current mirror, where the input bias current <span class="math inline">\(I_{\text{bias}}\)</span> sets the bias current for the Operational Transconductance Amplifier. To keep the biasing current stable a current mirror (<a href="#sec-current_mirror" class="quarto-xref"><span>Section 2.2.3</span></a> is used instead of applying the <span class="math inline">\(I_{\text{bias}}\)</span> directly to <span class="math inline">\(M_5\)</span>. The differential pair (<a href="#sec-diff_pair" class="quarto-xref"><span>Section 2.2.4</span></a>) <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> is loaded by the current mirror <span class="math inline">\(M_3\)</span> and <span class="math inline">\(M_4\)</span>, which mirrors the drain current of <span class="math inline">\(M_1\)</span> to the right side of the circuit. The combined currents from <span class="math inline">\(M_4\)</span> and <span class="math inline">\(M_2\)</span> at the output node result in the generation of an output current. To archieve this desired result, it is important to ensure that <span class="math inline">\(M_{1,2}\)</span> and <span class="math inline">\(M_{3,4}\)</span> are symmetric, meaning they should have identical <span class="math inline">\(W\)</span> (width) and <span class="math inline">\(L\)</span> (length) dimensions. To set the right bias current, <span class="math inline">\(M_{5,6}\)</span> should be choosen accordingly.</p>
 </section>
 </section>
-<section id="current-mirror" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="current-mirror"><span class="header-section-number">2.2.3</span> Current Mirror</h3>
-<p>A current mirror consists of at least two transistors, one working as the input (reference) source and the other ones as the replicas of it. As the name suggests, the primary function of a current mirror is to copy the input current to the output, ensuring that the output current is an exact duplicate of the input. Importantly, the flow of the input current is unaffected by the size of the mirrored output current or any variations in it.</p>
+<section id="sec-current_mirror" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="sec-current_mirror"><span class="header-section-number">2.2.3</span> Current Mirror</h3>
+<p>A current mirror consists of at least two transistors, one working as the input (reference) source and the other ones as copies of it. As the name suggests, the primary function of a current mirror is to copy the input current to the output, ensuring that the output current is an exact duplicate of the input. Importantly, the flow of the input current is unaffected by the size of the mirrored output current or any variations in it.</p>
 <p>This behaviour is made possible by two key characteristics of the current mirror: its relatively low input resistance and its relatively high output resistance. The low input resistance ensures the input current remains stable regardless of drive conditions and the high output resistance maintains a constant output current independent of load variations. <span class="citation" data-cites="analog_university_current_mirror">Analog University (<a href="references.html#ref-analog_university_current_mirror" role="doc-biblioref">2024</a>)</span></p>
 <div id="fig-current_mirror" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -658,11 +653,11 @@ Figure&nbsp;2.5: MOSFET Current Mirror (taken from <span class="citation" data-c
 </figcaption>
 </figure>
 </div>
-<p>A current mirror is also capable of copying one current and convert it to multiple different outputs. This is possible by attaching more transistors with their Gate to the <span class="math inline">\(V_{GS}\)</span> of the reference transistor. By scaling the width and length of each output transistor different, multiple scales of the input current can be created. Hereby a big advantage is when using MOSFETS, due to the fact that no current is flowing through the Gate. In case of BJTs a compensation circuit is added. <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span></p>
+<p>A current mirror is also capable of copying one current and convert it to multiple different outputs. This is possible by attaching more transistors with their gate <span class="math inline">\(G\)</span> to the drain <span class="math inline">\(D\)</span> of the reference transistor. By scaling the width and length of each output transistor different, multiple scales of the input current can be created. Hereby a big advantage is when using MOSFETS, due to the fact that no current is flowing through the Gate. In case of BJTs a compensation circuit is added. <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span></p>
 </section>
-<section id="differential-pair" class="level3" data-number="2.2.4">
-<h3 data-number="2.2.4" class="anchored" data-anchor-id="differential-pair"><span class="header-section-number">2.2.4</span> Differential Pair</h3>
-<p>A differential pair, also referred to as a differential amplifier, is an electronic circuit designed to compare the difference between two input voltages while minimising any voltage that is common to both inputs. It consists of two transistors and can be differential with has two inputs and two outputs, as seen in <a href="#fig-diff_pair" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>.</p>
+<section id="sec-diff_pair" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="sec-diff_pair"><span class="header-section-number">2.2.4</span> Differential Pair</h3>
+<p>A differential pair, also referred to as a differential amplifier, is an electronic circuit designed to compare the difference between two input voltages while minimizing any voltage that is common to both inputs. It consists of two transistors and can have two inputs and two outputs, as seen in <a href="#fig-diff_pair" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>.</p>
 <div id="fig-diff_pair" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diff_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -673,18 +668,27 @@ Figure&nbsp;2.6: A differential pair <span class="citation" data-cites="hpretlac
 </figcaption>
 </figure>
 </div>
-<p>Common-Mode</p>
-<p>Differential voltage</p>
-</section>
-<section id="variants" class="level3" data-number="2.2.5">
-<h3 data-number="2.2.5" class="anchored" data-anchor-id="variants"><span class="header-section-number">2.2.5</span> Variants ?</h3>
-<p>maybe like miller opamp or something like that</p>
+<p>Its primary function is to amplify the difference between two input signals while rejecting any common-mode signals, which are identical in both amplitude and phase at the two inputs. This property makes the differential pair highly effective in noise reduction and signal processing applications. In a typical differential pair using MOSFETs, the two transistors are matched in terms of their electrical characteristics, such as threshold voltage <span class="math inline">\(V_{th}\)</span> and transconductance <span class="math inline">\(g_m\)</span>. The inputs are applied to the gates <span class="math inline">\(G\)</span> of the MOSFETs, while the outputs are taken from the drains <span class="math inline">\(D\)</span>. A current source is usually connected to the sources <span class="math inline">\(S\)</span> of the MOSFETs to provide a constant bias current, here noted as <span class="math inline">\(g_{\text{tail}}\)</span> or like in <a href="#fig-5tota" class="quarto-xref">Figure&nbsp;<span>2.4</span></a> as <span class="math inline">\(I_{\text{bias}}\)</span>.</p>
+<p>The differential gain of the pair is determined by the transconductance <span class="math inline">\(g_m\)</span> of the MOSFETs. The common-mode rejection ratio (CMRR) is a measure of the differential pair’s ability to reject common-mode signals. It is defined as the ratio of the differential gain to the common-mode gain and is typically expressed in decibels (dB). The performance of the differential pair is also influenced by the tail current source, represented by <span class="math inline">\(g_{\text{tail}}\)</span>. The tail current source provides a constant bias current <span class="math inline">\(I_{\text{bias}}\)</span> that flows through both transistors, ensuring that the total current through the differential pair remains constant regardless of the input voltages. <span class="citation" data-cites="razavi2024">Razavi (<a href="references.html#ref-razavi2024" role="doc-biblioref">2024</a>)</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Role in an OTA
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When used in OTAs, the differential pair serves as the input stage, where the differential input voltage is converted into a differential current.</p>
+</div>
+</div>
 <!-- This is a Comment-->
 </section>
 </section>
 <section id="mosfet-metal-oxide-semiconductor-field-effect-transistor" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="mosfet-metal-oxide-semiconductor-field-effect-transistor"><span class="header-section-number">2.3</span> MOSFET (Metal-Oxide-Semiconductor Field-Effect-Transistor )</h2>
-<p>To dive in one more level, the parts an operational amplifier is build of are transistors. Precisely in this design process they are Metal-Oxide-Semiconductor Field-Effect-Transistors (MOSFETs). In integrated circuit design, where pre-built components are not available, MOSFETs can be designed from scratch. This design flexibility allows for the adjustment of the MOSFET’s physical dimensions, specifically its width <span class="math inline">\(W\)</span> and leght <span class="math inline">\(L\)</span>. By doing this there is a lot of room for freedom and experimental space. The length <span class="math inline">\(L\)</span> significantly influences MOSFET performance, enabling a trade-off between speed and output conductance. The width <span class="math inline">\(W\)</span> of a MOSFET acts as a scaling factor that adjusts the charge density within the channel, enabling the control of current levels to meet specific design requirements.</p>
+<p>To dive in one more level, the parts an operational amplifier is build of are transistors. Precisely in this design process they are (MOSFETs). In integrated circuit design, where pre-built components are not available, MOSFETs can be designed from scratch. This design flexibility allows for the adjustment of the MOSFET’s physical dimensions, specifically its width <span class="math inline">\(W\)</span> and leght <span class="math inline">\(L\)</span>. By doing this there is a lot of room for freedom and experimental space. The length <span class="math inline">\(L\)</span> significantly influences MOSFET performance, enabling a trade-off between speed and output conductance. The width <span class="math inline">\(W\)</span> of a MOSFET acts as a scaling factor that adjusts the charge density within the channel, enabling the control of current levels to meet specific design requirements.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -695,7 +699,7 @@ Circuit symbol of MOSFETs
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In the literature, the circuit symbol of MOSFETs is not uniform. Some denote them with a small arrow between the gate (<span class="math inline">\(G\)</span>) and source (<span class="math inline">\(S\)</span>), which is not very precise due to the fact that a MOSFET is symmetric. This means that the drain (<span class="math inline">\(D\)</span>) and source (<span class="math inline">\(S\)</span>) can be interchanged, and the names are only defined to make circuits clearer. Therefore, an accurate symbol for the n-MOS (shown in <a href="#fig-nmos" class="quarto-xref">Figure&nbsp;<span>2.7</span></a>) and p-MOS (shown in <a href="#fig-pmos" class="quarto-xref">Figure&nbsp;<span>2.8</span></a>) is shown in the following figures taken from <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span>:</p>
+<p>In the literature, the circuit symbol of MOSFETs is not uniform. Some denote them with a small arrow between the gate (<span class="math inline">\(G\)</span>) and source (<span class="math inline">\(S\)</span>), which is not very precise due to the fact MOSFETs are symmetric. This means that the drain (<span class="math inline">\(D\)</span>) and source (<span class="math inline">\(S\)</span>) can be interchanged, and the names are only defined to make circuits clearer. Therefore, an accurate symbol for the n-MOS (shown in <a href="#fig-nmos" class="quarto-xref">Figure&nbsp;<span>2.7</span></a>) and p-MOS (shown in <a href="#fig-pmos" class="quarto-xref">Figure&nbsp;<span>2.8</span></a>) is shown in the following figures taken from <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span>:</p>
 <div id="fig-nmos" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -716,12 +720,36 @@ Figure&nbsp;2.8: p-MOSFET circuit symbol
 </figcaption>
 </figure>
 </div>
-<p>However, in this development report, the symbols are not strictly hold like shown here. But all of the used figures are based on this symmetric model of a MOSFET. Besides this in many situations the bulk <span class="math inline">\(B\)</span> is connnected to the source <span class="math inline">\(S\)</span> terminal. Thus the bulk <span class="math inline">\(B\)</span> is not mentioned in the circuit diagramms.</p>
+<p>However, in this development report, the symbols are not strictly used like shown here. But all of the used figures are based on this symmetric model of a MOSFET.</p>
+<p>Besides, in many situations the bulk <span class="math inline">\(B\)</span> is connected to the source <span class="math inline">\(S\)</span> terminal. Thus the bulk <span class="math inline">\(B\)</span> is not mentioned in the circuit diagrams.</p>
 </div>
 </div>
-<section id="small-signal-representation" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="small-signal-representation"><span class="header-section-number">2.3.1</span> Small-Signal Representation</h3>
-<p>By applying different voltages to a MOSFET, different behaviours appear. But there is one thing which is very unliked by engineers and others, all these transfer functions are non linear. So making any calculations by hand calculation is nearly impossible. Thats why in practise the biasing method exists. This is done by appying a dc voltage to the terminals of the MOSFET and during operation only a small signal change appears. With this technique an <strong>Operating Point</strong> is created, which enables to assume a linear behavior in its small signal area (like in <a href="#fig-mosfetoppoint" class="quarto-xref">Figure&nbsp;<span>2.9</span></a>).</p>
+<section id="mosfet-large-signal-regions" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="mosfet-large-signal-regions"><span class="header-section-number">2.3.1</span> MOSFET Large-Signal regions</h3>
+<p>A MOSFET can operate in three different modes: Saturation, Linear (or Triode) region or Cutoff. The modes depend on the device’s threshold voltage <span class="math inline">\(V_{\text{th}}\)</span>, gate-to-source voltage <span class="math inline">\(V_{\text{GS}}\)</span>, and drain-to-source voltage <span class="math inline">\(V_{\text{DS}}\)</span>.</p>
+<p><strong>Saturation</strong><br>
+The saturation region is the active mode used for analog amplification , where the MOSFET behaves like a voltage-controlled current source . A conductive channel forms between the source and drain. This state is reached when the condition <span class="math inline">\(V_{\text{DS}} \geq (V_{\text{GS}} - V_{\text{th}})\)</span> is met. In saturation, the drain-source current (<span class="math inline">\(I_D\)</span>) stabilizes or “saturates” and becomes nearly independent of <span class="math inline">\(V_{\text{DS}}\)</span>. However, it can still be precisely controlled via <span class="math inline">\(V_{\text{GS}}\)</span> due to the phenomenon known as <a href="https://en.wikipedia.org/wiki/Channel_length_modulation">“pinch-off”</a></p>
+<p><strong>Linear Region</strong><br>
+The Linear, or Triode, region occurs when a MOSFET is conducting and acts more like a resistor or voltage-controlled device rather than a current source. This region is defined by the condition <span class="math inline">\(V_{\text{DS}} &lt; (V_{\text{GS}} - V_{\text{th}})\)</span> and <span class="math inline">\(V_{\text{GS}} &gt; V_{\text{th}}\)</span>. In this mode, both <span class="math inline">\(V_{\text{GS}}\)</span> and <span class="math inline">\(V_{\text{DS}}\)</span> control the <span class="math inline">\(I_D\)</span>, allowing the device to be used effectively for switching and amplification in low-voltage applications.</p>
+<p><strong>Cutoff Region</strong><br>
+In the cutoff region, the MOSFET is effectively turned off, with no conductive channel formed between the drain and source. This mode is reached when the gate-to-source voltage is less than the threshold voltage (<span class="math inline">\(V_{\text{GS}} &lt; V_{\text{th}}\)</span>). In cutoff, the drain-source current <span class="math inline">\(I_D\)</span> is nearly zero, which means the MOSFET is not conducting and behaves like an open switch.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the large-signal analysis, the transitions between operating modes occur gradually, making it challenging to pinpoint an exact moment when one mode shifts to another. Consequently, the modes are used in a more approximate manner, reflecting the continuous nature of these transitions rather than distinct, sharply defined states.</p>
+</div>
+</div>
+</section>
+<section id="small-signal-representation" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="small-signal-representation"><span class="header-section-number">2.3.2</span> Small-Signal Representation</h3>
+<p>By applying different voltages to a MOSFET, different behaviours appear. But there is one thing which is very unliked by engineers and others, all these transfer functions are non linear. So making any calculations by hand is nearly impossible. That’s why in practise the biasing method exists. This is done by appying a dc voltage to the terminals of the MOSFET and during operation only a small signal change appears. With this technique an <strong>Operating Point</strong> is created, which enables to assume a linear behavior in its small signal area (like in <a href="#fig-mosfetoppoint" class="quarto-xref">Figure&nbsp;<span>2.9</span></a>). Because the MOSFET is put into an small operation point and all the changes applied are very small, this linearisation area is called <em>Small-signal model</em>.</p>
 <div id="fig-mosfetoppoint" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mosfetoppoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -744,23 +772,51 @@ Important variables
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong><span class="math inline">\(I_D\)</span></strong>: The drain current</li>
+<li><strong><span class="math inline">\(I_{\text{bias}}\)</span></strong>: The biasing current. The current to adjust the operating point</li>
 <li><strong><span class="math inline">\(V_{GS}\)</span></strong>: The gate-to-source voltage</li>
 <li><strong><span class="math inline">\(V_{DS}\)</span></strong>: The drain-to-source voltage</li>
 <li><strong><span class="math inline">\(V_{th}\)</span></strong>: The threshold voltage. A critical parameter that defines the minimum gate-to-source voltage <span class="math inline">\(V_{GS}\)</span> required to form a conductive channel between the source and drain</li>
+<li><strong><span class="math inline">\(V_{OV}\)</span></strong>: The overdrive voltage. the difference between the gate-to-sourcevoltage <span class="math inline">\(V_{GS}\)</span> and the threshold voltage <span class="math inline">\(V_{th}\)</span>.</li>
 <li><strong><span class="math inline">\(g_m\)</span></strong>: The transconductance. The ratio between the output current and input voltage</li>
 </ul>
 </div>
 </div>
+<div id="fig-mosfetsmsi" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mosfetsmsi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_theorectical_background/mosfet_smsi.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mosfetsmsi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.10: MOSFET-Small Signal Model
+</figcaption>
+</figure>
+</div>
+<section id="capacitances-in-mosfets" class="level4" data-number="2.3.2.1">
+<h4 data-number="2.3.2.1" class="anchored" data-anchor-id="capacitances-in-mosfets"><span class="header-section-number">2.3.2.1</span> Capacitances in MOSFETs</h4>
+<p><strong>Gate-Source Capacitance (<span class="math inline">\(C_{gs}\)</span>):</strong><br>
+<span class="math inline">\(C_{gs}\)</span> is the capacitance between the gate and source terminals. This arises due to the physical overlap of the gate and source regions, as well as the insulating oxide layer between them. <span class="math inline">\(C_{gs}\)</span> affects both the input impedance and the switching speed. Higher <span class="math inline">\(C_{gs}\)</span> values can slow down the switching process because more charge needs to be moved to change the gate voltage.</p>
+<p><strong>Gate-Drain Capacitance (<span class="math inline">\(C_{gd}\)</span>):</strong><br>
+<span class="math inline">\(C_{gd}\)</span> is the capacitance between the gate and drain terminals. People also know it as the Miller capacitance because of its significant impact on the Miller effect. The <a href="https://en.wikipedia.org/wiki/Miller_effect">Miller effect</a> amplifies the effective value of <span class="math inline">\(C_{gd}\)</span>, making it a critical factor in determining the high-frequency behaviour of the MOSFET. This capacitance can cause phase shifts and affect the stability of the circuit, particularly in amplifiers.</p>
+<p><strong>Drain-Source Capacitance (<span class="math inline">\(C_{ds}\)</span>):</strong><br>
+<span class="math inline">\(C_{ds}\)</span> is the capacitance between the drain and source terminals. It arises due to the depletion region between the drain and source regions. <span class="math inline">\(C_{ds}\)</span> affects the output impedance and frequency response of the circuit. Higher drain-source capacitance can lead to increased output capacitance, affecting the switching speed and introducing additional losses.</p>
 </section>
-<section id="mosfet-regions" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="mosfet-regions"><span class="header-section-number">2.3.2</span> MOSFET regions</h3>
-<p>A MOSFET can operate in three different modes: Saturation, Linear (or Triode) region or Cutoff. The modes depend on the device’s threshold voltage <span class="math inline">\(V_{\text{th}}\)</span>, gate-to-source voltage <span class="math inline">\(V_{\text{GS}}\)</span>, and drain-to-source voltage <span class="math inline">\(V_{\text{DS}}\)</span>.</p>
-<p><strong>Saturation</strong></p>
-<p>The saturation region is the active mode used for analog amplification , where the MOSFET behaves like a voltage-controlled current source . A conductive channel forms between the source and drain. This state is reached when the condition <span class="math inline">\(V_{\text{DS}} \geq (V_{\text{GS}} - V_{\text{th}})\)</span> is met. In saturation, the drain-source current (<span class="math inline">\(I_{\text{DS}}\)</span>) stabilizes or “saturates” and becomes nearly independent of <span class="math inline">\(V_{\text{DS}}\)</span>. However, it can still be precisely controlled via <span class="math inline">\(V_{\text{GS}}\)</span> due to the phenomenon known as <a href="https://en.wikipedia.org/wiki/Channel_length_modulation">“pinch-off”</a></p>
-<p><strong>Linear Region</strong></p>
-<p>The Linear, or Triode, region occurs when a MOSFET is conducting and acts more like a resistor or voltage-controlled device rather than a current source. This region is defined by the condition <span class="math inline">\(V_{\text{DS}} &lt; (V_{\text{GS}} - V_{\text{th}})\)</span> and $V_{} &gt; V_{} $. In this mode, both <span class="math inline">\(V_{\text{GS}}\)</span> and <span class="math inline">\(V_{\text{DS}}\)</span> control the <span class="math inline">\(I_{\text{DS}}\)</span>, allowing the device to be used effectively for switching and amplification in low-voltage applications.</p>
-<p><strong>Cutoff Region</strong></p>
-<p>In the Cutoff region, the MOSFET is effectively turned off, with no conductive channel formed between the drain and source. This mode is reached when the gate-to-source voltage is less than the threshold voltage (<span class="math inline">\(V_{\text{GS}} &lt; V_{\text{th}}\)</span>). In Cutoff, the drain-source current <span class="math inline">\(I_{\text{DS}}\)</span> is nearly zero, which means the MOSFET is not conducting and behaves like an open switch.</p>
+<section id="transconductances-in-mosfet" class="level4" data-number="2.3.2.2">
+<h4 data-number="2.3.2.2" class="anchored" data-anchor-id="transconductances-in-mosfet"><span class="header-section-number">2.3.2.2</span> Transconductances in MOSFET</h4>
+<p><strong>Output Conductance (<span class="math inline">\(g_{ds})\)</span></strong><br>
+<span class="math inline">\(g_{ds}\)</span> represents the small-signal conductance between the drain and source terminals of the MOSFET. It expresses how the drain current <span class="math inline">\(I_D\)</span> changes with respect to the drain-source voltage <span class="math inline">\(V_{ds}\)</span> when the gate-source voltage <span class="math inline">\(V_{gs}\)</span> is held constant. Mathematically, it is defined as follows:</p>
+<p><span class="math inline">\(g_{ds}=\frac{\partial I_D}{\partial V_{ds}}\bigg|_{V_{gs}=\text{constant}}\)</span></p>
+<p><span class="math inline">\(g_{ds}\)</span> affects the output impedance of the MOSFET. A higher <span class="math inline">\(g_{ds}\)</span> results in a lower output impedance.In saturation region, <span class="math inline">\(g_{ds}\)</span> is typically small, which helps maintain the linearity of the device. However, in the triode region, <span class="math inline">\(g_{ds}\)</span> can be larger, leading to non-linear behavior.</p>
+<p><strong>Mutual Transconductance - Gate-Source Voltage (<span class="math inline">\(g_mv_{gs}\)</span>)</strong><br>
+The transconductance <span class="math inline">\(g_m\)</span> of a MOSFET quantifies how the drain current <span class="math inline">\(I_D\)</span> varies in response to changes in the gate-source voltage <span class="math inline">\(V_{gs}\)</span>, while keeping the drain-source voltage <span class="math inline">\(V_{ds}\)</span> constant.</p>
+<p><span class="math inline">\(g_m=\frac{\partial I_D}{\partial V_{gs}}\bigg|_{V_{ds}=\text{constant}}\)</span></p>
+<p>The term <span class="math inline">\(g_mv_{gs}\)</span> represents the small-signal current generated by the transconductance <span class="math inline">\(g_m\)</span> in response to a small change in the gate-source voltage <span class="math inline">\(v_{gs}\)</span>. A higher <span class="math inline">\(g_m\)</span> results in a higher voltage gain.</p>
+</section>
+</section>
+</section>
+<section id="summary-of-g_mv_gs" class="level2 callout-info" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="summary-of-g_mv_gs"><span class="header-section-number">2.4</span> Summary of <span class="math inline">\(g_mv_{gs}\)</span></h2>
+<p>In the saturation region, the output conductance <span class="math inline">\(g_{ds}\)</span> is generally much smaller then the transconductance <span class="math inline">\(g_m\)</span>. This characteristic enables the MOSFET to function effectively as a voltage-controlled current source. However, as the MOSFET moves into the triode region, <span class="math inline">\(g_{ds}\)</span> increases, causing the device to behave more like to a resistor. The output conductance <span class="math inline">\(g_{ds}\)</span> influences the output impedance and linearity of the device, while the product <span class="math inline">\(g_mv_{gs}\)</span> controls the gain and frequency response of the circuit.</p>
+</section>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -795,8 +851,6 @@ Wangenheim, Lutz v. 2007. <em>Aktive Filter Und Oszillatoren: Entwurf Und Schalt
 Wikipedia. 2025. <span>“Operationsverstärker.”</span> <a href="https://de.wikipedia.org/wiki/Operationsverst%C3%A4rker">https://de.wikipedia.org/wiki/Operationsverst%C3%A4rker</a>.
 </div>
 </div>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1205,8 +1259,8 @@ Wikipedia. 2025. <span>“Operationsverstärker.”</span> <a href="https://de.w
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../content/_sec_characterisation.html" class="pagination-link" aria-label="Characterisation">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Characterisation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../content/_sec_xschem.html" class="pagination-link" aria-label="Xschem Simulation">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Xschem Simulation – IC Design of a Universal Biquad Filter</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../content/_sec_finns_part.html" rel="next">
+<link href="../content/_sec_theoretical_background.html" rel="prev">
+<link href="../images/hsb-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e22fbe6e69edb8577f7b7bd0719516f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/_sec_xschem.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">IC Design of a Universal Biquad Filter</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/avahlen/AMCD_Group1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../IC-Design-of-a-Universal-Biquad-Filter.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../IC-Design-of-a-Universal-Biquad-Filter.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abstract</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_theoretical_background.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theoretical Background</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_xschem.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_finns_part.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/_sec_conclusion-outlook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bibliography</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#environment-setup" id="toc-environment-setup" class="nav-link active" data-scroll-target="#environment-setup"><span class="header-section-number">3.1</span> Environment Setup</a>
+  <ul class="collapse">
+  <li><a href="#absolute-vs.-relative-path-handling" id="toc-absolute-vs.-relative-path-handling" class="nav-link" data-scroll-target="#absolute-vs.-relative-path-handling"><span class="header-section-number">3.1.1</span> Absolute vs.&nbsp;Relative Path Handling</a></li>
+  <li><a href="#docker-environment-variables-configuration" id="toc-docker-environment-variables-configuration" class="nav-link" data-scroll-target="#docker-environment-variables-configuration"><span class="header-section-number">3.1.2</span> Docker Environment Variables Configuration</a></li>
+  </ul></li>
+  <li><a href="#symbol-and-netlist-preparation" id="toc-symbol-and-netlist-preparation" class="nav-link" data-scroll-target="#symbol-and-netlist-preparation"><span class="header-section-number">3.2</span> Symbol and Netlist Preparation</a>
+  <ul class="collapse">
+  <li><a href="#symbol-definitions-and-classification-analog-pins" id="toc-symbol-definitions-and-classification-analog-pins" class="nav-link" data-scroll-target="#symbol-definitions-and-classification-analog-pins"><span class="header-section-number">3.2.1</span> Symbol Definitions and Classification (Analog Pins)</a></li>
+  <li><a href="#netlist-generation-and-validation" id="toc-netlist-generation-and-validation" class="nav-link" data-scroll-target="#netlist-generation-and-validation"><span class="header-section-number">3.2.2</span> Netlist Generation and Validation</a></li>
+  </ul></li>
+  <li><a href="#sec-self-built-ota" id="toc-sec-self-built-ota" class="nav-link" data-scroll-target="#sec-self-built-ota"><span class="header-section-number">3.3</span> OTA Circuit Integration Self-built Five-Transistor OTA</a>
+  <ul class="collapse">
+  <li><a href="#sec-ota-ug" id="toc-sec-ota-ug" class="nav-link" data-scroll-target="#sec-ota-ug"><span class="header-section-number">3.3.1</span> Validation of Self-built OTA – unity-gain buffer</a></li>
+  </ul></li>
+  <li><a href="#xschem-ota-description-five-transistor-ota-by-prof.-pretl" id="toc-xschem-ota-description-five-transistor-ota-by-prof.-pretl" class="nav-link" data-scroll-target="#xschem-ota-description-five-transistor-ota-by-prof.-pretl"><span class="header-section-number">3.4</span> Xschem OTA Description (Five-Transistor OTA by Prof.&nbsp;Pretl)</a></li>
+  <li><a href="#sec-sizing-simulation" id="toc-sec-sizing-simulation" class="nav-link" data-scroll-target="#sec-sizing-simulation"><span class="header-section-number">3.5</span> Sizing and Simulation</a>
+  <ul class="collapse">
+  <li><a href="#small-signal-frequency-response" id="toc-small-signal-frequency-response" class="nav-link" data-scroll-target="#small-signal-frequency-response"><span class="header-section-number">3.5.1</span> Small-Signal Frequency Response</a></li>
+  <li><a href="#large-signal-transient-response" id="toc-large-signal-transient-response" class="nav-link" data-scroll-target="#large-signal-transient-response"><span class="header-section-number">3.5.2</span> Large-Signal Transient Response</a></li>
+  </ul></li>
+  <li><a href="#sec-gm-biquad" id="toc-sec-gm-biquad" class="nav-link" data-scroll-target="#sec-gm-biquad"><span class="header-section-number">3.6</span> gm‑C Biquad Prototype – Concept and Implementation</a>
+  <ul class="collapse">
+  <li><a href="#ota-implementation-for-gmc-biquad" id="toc-ota-implementation-for-gmc-biquad" class="nav-link" data-scroll-target="#ota-implementation-for-gmc-biquad"><span class="header-section-number">3.6.1</span> OTA Implementation for gm‑C Biquad</a></li>
+  <li><a href="#gmc-biquad-schematic-in-xschem" id="toc-gmc-biquad-schematic-in-xschem" class="nav-link" data-scroll-target="#gmc-biquad-schematic-in-xschem"><span class="header-section-number">3.6.2</span> gm‑C Biquad Schematic in Xschem</a></li>
+  <li><a href="#sec-sizing-baker" id="toc-sec-sizing-baker" class="nav-link" data-scroll-target="#sec-sizing-baker"><span class="header-section-number">3.6.3</span> Sizing the 1 kHz Low-Pass gm-C Biquad to the Baker Topology</a></li>
+  </ul></li>
+  <li><a href="#gmid-methodology" id="toc-gmid-methodology" class="nav-link" data-scroll-target="#gmid-methodology"><span class="header-section-number">3.7</span> GM/ID Methodology</a>
+  <ul class="collapse">
+  <li><a href="#gmid-overview" id="toc-gmid-overview" class="nav-link" data-scroll-target="#gmid-overview"><span class="header-section-number">3.7.1</span> GM/ID Overview</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="environment-setup" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="environment-setup"><span class="header-section-number">3.1</span> Environment Setup</h2>
+<p>Proper configuration of the simulation environment is crucial for accurate and reliable simulation results using Xschem within a Docker container. This section details the necessary considerations regarding path handling and Docker environment variables for a robust simulation process.</p>
+<section id="absolute-vs.-relative-path-handling" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="absolute-vs.-relative-path-handling"><span class="header-section-number">3.1.1</span> Absolute vs.&nbsp;Relative Path Handling</h3>
+<p>In integrated circuit simulations, particularly involving hierarchical netlisting used by Xschem, careful management of file paths is essential. Absolute paths were chosen to ensure consistency and reliability, as hierarchical structures in netlisting frequently generate new subdirectories during simulation processes. Using absolute paths prevents issues arising from relative paths becoming invalid when directory structures change. Relative paths, although theoretically functional, add complexity and increase the likelihood of path errors during simulations.</p>
+<p>Therefore, all simulation paths have been consistently defined using absolute references, guaranteeing stable and predictable netlisting and simulation behavior throughout the project.</p>
+</section>
+<section id="docker-environment-variables-configuration" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="docker-environment-variables-configuration"><span class="header-section-number">3.1.2</span> Docker Environment Variables Configuration</h3>
+<p>Within the Docker container environment used for simulations, specific variables require explicit and careful configuration. Key points regarding Docker environment setup include:</p>
+<ul>
+<li><p><strong>DESIGNS Variable</strong>:<br>
+The core Docker environment variable, <code>$DESIGNS</code>, is configured to reference the directory <code>root/FOSS/designs</code>. Local project paths and symbols are added explicitly to this variable to ensure accurate referencing and inclusion during netlisting.</p></li>
+<li><p><strong>Docker Root Directory</strong>:<br>
+The root directory within the Docker environment differs from that of the host operating system, specifically being located at <code>root/headless</code>. This distinction requires careful handling when navigating or setting paths within Docker terminals.</p></li>
+<li><p><strong>Terminal and Directory Awareness</strong>:<br>
+Users, especially those working on Windows-based systems, need to distinguish clearly between terminal environments (native Windows, Windows Subsystem for Linux, Docker) as each has fundamentally different root directories and file path conventions. Maintaining clear awareness of these distinctions prevents file referencing errors during simulations.</p></li>
+</ul>
+<p>These explicit configurations and considerations ensure that the Xschem simulation environment operates smoothly, predictably, and accurately throughout the project’s lifecycle.</p>
+</section>
+</section>
+<section id="symbol-and-netlist-preparation" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="symbol-and-netlist-preparation"><span class="header-section-number">3.2</span> Symbol and Netlist Preparation</h2>
+<p>Accurate preparation of symbols and netlists is fundamental for reliable integrated circuit simulations using Xschem. This section outlines the critical aspects regarding symbol definitions, classifications, netlist generation, and debugging practices to ensure proper functionality and error-free simulations.</p>
+<section id="symbol-definitions-and-classification-analog-pins" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="symbol-definitions-and-classification-analog-pins"><span class="header-section-number">3.2.1</span> Symbol Definitions and Classification (Analog Pins)</h3>
+<p>All symbols used within this simulation framework must be explicitly classified as analog components. Digital pins or incorrectly labeled pins lead to simulation failures because they are incompatible with the analog circuit simulation environment. Furthermore, each symbol must be explicitly marked as a sub-circuit rather than a primitive component. Mislabeling symbols as primitives can cause errors during hierarchical netlist processing, as the netlister expects defined sub-circuit symbols to correctly navigate the circuit hierarchy.</p>
+<p>In this project, all symbols were thoroughly reviewed to confirm they were analog and properly labeled as sub-circuits.</p>
+</section>
+<section id="netlist-generation-and-validation" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="netlist-generation-and-validation"><span class="header-section-number">3.2.2</span> Netlist Generation and Validation</h3>
+<p>Netlist generation in Xschem follows a hierarchical methodology. Starting from the top schematic, the netlister recursively searches for defined symbols globally. It is essential that symbol paths and local variables are correctly configured and matched explicitly in each hierarchy level. If paths or symbols are misconfigured or missing, the netlister fails to locate necessary components, leading to simulation errors.</p>
+<p>Therefore, explicit steps were taken to ensure:</p>
+<ul>
+<li>Proper global variable definitions for symbol paths.</li>
+<li>Accurate symbol descriptions that match netlist entries.</li>
+<li>Verification of netlists after every significant schematic modification.</li>
+</ul>
+<p>Effective debugging practices strongly emphasize using plain-text editors to inspect and modify symbol (<code>.sym</code>) and schematic (<code>.scm</code>) files. The files (<code>.spice</code>) making direct text inspection both possible and advisable.</p>
+<p>Adopting this debugging approach significantly enhanced the efficiency and accuracy of symbol and netlist preparation processes throughout the simulation.</p>
+</section>
+</section>
+<section id="sec-self-built-ota" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sec-self-built-ota"><span class="header-section-number">3.3</span> OTA Circuit Integration Self-built Five-Transistor OTA</h2>
+<p>Initially, our group developed our own five-transistor OTA schematic within Xschem to gain practical insights and explore various design parameters.</p>
+<p>Figure <a href="#fig-self-built-ota" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> shows the minimalist OTA designed during the early project phase. The circuit follows the five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly <span class="math display">\[ g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr) \]</span> Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2.</p>
+<div id="fig-self-built-ota" class="quarto-float quarto-figure quarto-figure-center anchored" alt="schematic of the five-transistor OTA prototype">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-self-built-ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/self_build_ota.png" class="img-fluid figure-img" style="width:80.0%" alt="schematic of the five-transistor OTA prototype">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-self-built-ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Self-built five-transistor OTA schematic.
+</figcaption>
+</figure>
+</div>
+<section id="sec-ota-ug" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="sec-ota-ug"><span class="header-section-number">3.3.1</span> Validation of Self-built OTA – unity-gain buffer</h3>
+<p>To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (Fig. <a href="#fig-ota-ug-tb" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.<br>
+The long two-second period guarantees only one transition inside the 100 ms simulation window.<br>
+A 20 µA current source on i_bias establishes the tail current, with supplies at V<sub>DD</sub> = 1.5 V and V<sub>SS</sub> = 0 V.</p>
+<div id="fig-ota-ug-tb" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Unity-gain follower.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ota-ug-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/tb_self_tran.png" class="img-fluid figure-img" style="width:80.0%" alt="Unity-gain follower.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ota-ug-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Unity-gain test-bench schematic.
+</figcaption>
+</figure>
+</div>
+<p>The essential NGSpice control block is</p>
+<pre class="spice"><code>.control
+save all
+tran 100u 100m
+*set filetype=ascii
+set wr_singlescale
+*wrdata tb_ota_tran_UGbuffer.txt v(v_out) v(v_in)
+.endc</code></pre>
+<div id="fig-ota-ug-wave" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Ngspice transient plot of the unity-gain follower.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ota-ug-wave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/self_tran_vin_vout.png" class="img-fluid figure-img" style="width:80.0%" alt="Ngspice transient plot of the unity-gain follower.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ota-ug-wave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: Transient waveforms: v_in vs.&nbsp;v_out.
+</figcaption>
+</figure>
+</div>
+<p>Figure <a href="#fig-ota-ug-wave" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> plots the resulting traces. The output (left) mirrors the input (right). The output does respond to the input change, it rises up during the pulse window, indicating the OTA is doing something. V_out lags significantly behind v_in and only reaches 1.1 V, while v_in reaches 1.2 V. The OTA as unity-gain buffer should closely track the input with only minimal offset or delay. This indicates: - Too low gain - Insufficient bandwidth - Or incorrect biasing (e.g., not enough current to drive the output stage).</p>
+<p>After conducting simulations and analyses, and discussing our results with the professor, we concluded that the five-transistor OTA provided by Prof.&nbsp;Pretel offered superior performance and reliability for our application. Thus, the decision was made to proceed with Prof.&nbsp;Pretl’s well-established OTA design.</p>
+</section>
+</section>
+<section id="xschem-ota-description-five-transistor-ota-by-prof.-pretl" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="xschem-ota-description-five-transistor-ota-by-prof.-pretl"><span class="header-section-number">3.4</span> Xschem OTA Description (Five-Transistor OTA by Prof.&nbsp;Pretl)</h2>
+<p>Prof.&nbsp;Pretl’s five-transistor OTA is an optimized implementation, specifically tailored for efficient analog circuit integration using the SG13G2 CMOS process. His design, depicted in Figure <a href="#fig-pretl-ota" class="quarto-xref">Figure&nbsp;<span>3.4</span></a>, maintains simplicity while enhancing performance through thoughtful sizing and layout practices. This OTA employs a standard architecture comprising an NMOS differential input pair, a tail current source transistor, and a PMOS current mirror load. The input differential voltage is transformed by the differential pair into two opposite-phase currents, recombined by the PMOS mirror at the single-ended output node.</p>
+<p>A dedicated transistor sets a stable bias current, ensuring predictable and robust OTA performance over varying operating conditions. Channel lengths and widths are carefully chosen to balance between adequate intrinsic gain, bandwidth, and noise characteristics. Particularly, the transistor sizes follow good IC design practices, with lengths exceeding the minimum dimensions to suppress short-channel effects and flicker noise. Bulk connections are properly handled to avoid body effects, typically by tying bulks directly to their corresponding source terminals. The accompanying layout from Prof.&nbsp;Pretl (Figure <a href="#fig-pretl-ota" class="quarto-xref">Figure&nbsp;<span>3.4</span></a>) illustrates thoughtful device placement and symmetry, reducing mismatches and parasitic coupling. Furthermore, multiple finger transistors are employed effectively to optimize layout density and performance, adhering to industry-standard guidelines.</p>
+<p>Simulations and measured data presented by Prof.&nbsp;Pretl validate this design as a stable, efficient, and high-performance option for analog signal processing. It exhibits superior gain and bandwidth compared to simpler OTA configurations, making it suitable for more demanding applications in integrated analog and mixed-signal circuits. Due to these advantages, our group adopted this OTA as the baseline for subsequent design and integration phases in our project.</p>
+<div id="fig-pretl-ota" class="quarto-float quarto-figure quarto-figure-center anchored" alt="schematic of the five-transistor OTA">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pretl-ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/ota-improved.png" class="img-fluid figure-img" style="width:80.0%" alt="schematic of the five-transistor OTA">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pretl-ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: OTA schematic.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-sizing-simulation" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="sec-sizing-simulation"><span class="header-section-number">3.5</span> Sizing and Simulation</h2>
+<p>Proper transistor sizing is critical when designing an OTA for use in a biquad filter, where gain, linearity, and bandwidth all depend heavily on MOSFET dimensions. To guide the sizing process, we adopt the <span class="math inline">\(g_m / I_D\)</span> methodology, which provides a systematic trade-off between speed, power efficiency, and voltage headroom.</p>
+<p>After experimenting with various combinations of transistor widths and lengths in simulation, we found that many trade-offs emerged between gain, speed, and voltage headroom—particularly for the cascode devices. Ultimately, we followed Prof.&nbsp;Pretl’s recommendations, assigning a reduced channel length of <span class="math inline">\(L = 0.5u\)</span> to the input differential pair and cascode devices (<span class="math inline">\(M_{1/1C}\)</span>, <span class="math inline">\(M_{2/2C}\)</span>, <span class="math inline">\(M_{3/3C}\)</span>, <span class="math inline">\(M_{4/4C}\)</span>) to maximize speed and transconductance. Meanwhile, the tail current source transistors (<span class="math inline">\(M_5\)</span>, <span class="math inline">\(M_6\)</span>) were given a longer channel length of <span class="math inline">\(L = 5u\)</span> to improve matching, suppress flicker noise, and ensure robust common-mode rejection.</p>
+<p>A constant sizing point of <span class="math inline">\(g_m / I_D = 13\)</span> was applied across all devices, which offered a good balance between transconductance efficiency and voltage headroom. This choice ensured that even with stacked transistors, all devices remained in saturation across the intended signal swing and supply range.</p>
+<p>Simulation results based on this sizing show that the OTA achieves an open-loop gain <span class="math inline">\(A_0 &gt; 43\,dB\)</span>, satisfying key performance goals such as bandwidth and linear range for biquad operation. These results confirm that the selected sizing strategy works reliably within the supply voltage limits of the SG13G2 process, and is well-suited for analog signal processing tasks requiring accurate and programmable transconductance.</p>
+<section id="small-signal-frequency-response" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="small-signal-frequency-response"><span class="header-section-number">3.5.1</span> Small-Signal Frequency Response</h3>
+<p>To evaluate the frequency-domain behavior of the improved OTA, an AC simulation was performed using a differential testbench. The resulting magnitude response, shown in Figure <a href="#fig-ota-improved-ac" class="quarto-xref">Figure&nbsp;<span>3.5</span></a>, displays the classic characteristics of a low-pass amplifier.</p>
+<p>The curve remains flat (0 dB) throughout the low-frequency range, indicating that the OTA maintains constant gain for small-signal inputs up to approximately <span class="math inline">\(f_{-3\text{dB}} \approx 80\,\text{MHz}\)</span>. This –3 dB point marks the unity-gain bandwidth of the amplifier in this configuration. Beyond this corner frequency, the magnitude begins to drop at a rate close to –20 dB/decade, indicating a dominant single-pole roll-off.</p>
+<p>The high-frequency attenuation begins smoothly, confirming that the amplifier is well-compensated and free from peaking or signs of instability. The steep slope observed beyond 100 MHz suggests the presence of additional parasitic poles but no indication of underdamped behavior or excessive phase lag. This roll-off behavior is consistent with a cascode-loaded OTA, where the increased output impedance pushes the dominant pole to higher frequencies.</p>
+<p>Overall, the OTA demonstrates a strong small-signal frequency response, offering sufficient gain-bandwidth product for its intended use in biquad filters and other analog signal processing tasks.</p>
+<div id="fig-ota-improved-ac" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Simulated frequency response of the improved OTA (|V_out| in dB vs. frequency).">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ota-improved-ac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/ota-improved_tb-ac.png" class="img-fluid figure-img" style="width:80.0%" alt="Simulated frequency response of the improved OTA (|V_out| in dB vs. frequency).">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ota-improved-ac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.5: AC magnitude response of the improved OTA.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="large-signal-transient-response" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="large-signal-transient-response"><span class="header-section-number">3.5.2</span> Large-Signal Transient Response</h3>
+<p>Figure <a href="#fig-ota-improved-transient" class="quarto-xref">Figure&nbsp;<span>3.6</span></a> shows the transient simulation result of the improved OTA in response to a step input signal.</p>
+<p>The red trace (<span class="math inline">\(v_\text{ena}\)</span>) represents the input voltage. It exhibits a sharp transition from 0 V to approximately 1.5 V at the beginning of the simulation and remains constant for the rest of the time window.</p>
+<p>The blue trace (<span class="math inline">\(v_\text{out}\)</span>) shows the corresponding OTA output voltage. Immediately after the input step, the output rises to approximately 0.8 V and holds steady throughout the entire duration of the simulation (15 µs). There is no visible overshoot, ringing, or delay in the output transition, and the response appears stable and monotonic.</p>
+<p>This result confirms that the OTA produces a constant output voltage in response to a step input under the simulated conditions. The flat and settled output also suggests that the biasing and feedback configuration were correctly established.</p>
+<div id="fig-ota-improved-transient" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Transient simulation: OTA output response (v_out) to input step (v_ena).">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ota-improved-transient-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/ota-improved_ota_tran.png" class="img-fluid figure-img" style="width:80.0%" alt="Transient simulation: OTA output response (v_out) to input step (v_ena).">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ota-improved-transient-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.6: Transient response of the improved OTA to a step input.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="sec-gm-biquad" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="sec-gm-biquad"><span class="header-section-number">3.6</span> gm‑C Biquad Prototype – Concept and Implementation</h2>
+<p>After initially developing our own basic five-transistor OTA to explore the design flow and simulation process in Xschem, we proceeded to study and simulate several OTA topologies provided by Prof.&nbsp;Pretl. This included hands-on experimentation with his differential architectures and cascode-enhanced designs, allowing us to deepen our understanding of performance trade-offs and layout considerations in analog IC design.</p>
+<p>In this final design step, we returned to building our own OTA, this time using an improved architecture specifically tailored for integration into a gm‑C biquad filter. The goal was to implement a fully differential, tunable low-pass filter using transconductors and capacitors only. By controlling the OTA bias current, we aimed to achieve continuous tuning of the filter’s cut-off frequency without modifying passive components.</p>
+<p>The following section presents the concept, schematic implementation, and simulation-based validation of this gm‑C biquad prototype. It marks the transition from isolated OTA design toward the realization of a complete analog signal processing block.</p>
+<section id="ota-implementation-for-gmc-biquad" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="ota-implementation-for-gmc-biquad"><span class="header-section-number">3.6.1</span> OTA Implementation for gm‑C Biquad</h3>
+<p>The OTA used in our gm‑C biquad implementation is structurally inspired by the differential architecture shown in Figure 3.15(c) of <span class="citation" data-cites="baker2010cmos">Baker (<a href="references.html#ref-baker2010cmos" role="doc-biblioref">2010</a>)</span> analog design textbook. As illustrated in Figure <a href="#fig-ota-implemented" class="quarto-xref">Figure&nbsp;<span>3.7</span></a>, the OTA consists of a fully differential input stage, a folded current-mirror load, and a programmable tail current source, making it well-suited for use as a transconductor in gm‑C filters.</p>
+<p>The core of the OTA includes a differential NMOS input pair (<span class="math inline">\(M_7\)</span>, <span class="math inline">\(M_8\)</span>), which converts the input voltage difference <span class="math inline">\((v_\text{inp} - v_\text{inn})\)</span> into a differential current. These currents are then mirrored and steered by the PMOS current mirror loads (<span class="math inline">\(M_2\)</span> through <span class="math inline">\(M_6\)</span>) into the output branches (<span class="math inline">\(v_\text{outp}\)</span> and <span class="math inline">\(v_\text{outn}\)</span>). The top mirrors are folded downward into the output stage, creating high output impedance and helping increase gain—similar to the folded-cascode concept seen in the reference OTA.</p>
+<p>The output common-mode voltage is stabilized using a biasing network composed of transistors <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_{11}\)</span>–<span class="math inline">\(M_{12}\)</span>, which fix the gate voltages for proper operation. The tail current is generated through the NMOS branch (<span class="math inline">\(M_9\)</span>, <span class="math inline">\(M_{10}\)</span>), which is set by the external <span class="math inline">\(i_\text{bias}\)</span> node and determines the OTA’s transconductance via:</p>
+<p><span class="math display">\[
+g_m \approx \frac{2 I_\text{bias}}{V_\text{ov}}
+\]</span></p>
+<p>The structure is deliberately symmetric to preserve linearity and minimize even-order distortion, and the design reflects the need for balanced performance across process corners in gm‑C filter applications. Unlike the simplified example in <span class="citation" data-cites="baker2010cmos">Baker (<a href="references.html#ref-baker2010cmos" role="doc-biblioref">2010</a>)</span>, which omits layout- and bias-stabilizing elements for clarity, our implementation explicitly includes bias regulation to improve practical robustness and simulation convergence.</p>
+<div id="fig-ota-implemented" class="quarto-float quarto-figure quarto-figure-center anchored" alt="OTA design implemented in Xschem for gm-C filter integration.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ota-implemented-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/ota_gm_100u.png" class="img-fluid figure-img" style="width:80.0%" alt="OTA design implemented in Xschem for gm-C filter integration.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ota-implemented-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.7: Implemented OTA schematic used for gm‑C biquad design.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="gmc-biquad-schematic-in-xschem" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="gmc-biquad-schematic-in-xschem"><span class="header-section-number">3.6.2</span> gm‑C Biquad Schematic in Xschem</h3>
+<p>Figure <span class="quarto-unresolved-ref">?fig-biquad-xschem</span> shows the complete schematic of the gm‑C biquad filter implemented in Xschem. The design consists of four OTA instances, each configured in a differential topology and biased with a shared tail current of 100 µA via the global <code>ibias</code> net. The power supply is set to 1.5 V, and all OTAs operate with a common-mode input reference of 0.75 V via the <code>vcm</code> node.</p>
+<p>The circuit follows the classical gm‑C biquad topology introduced earlier. It features two cascaded integrator stages formed by OTA–capacitor pairs, followed by additional OTA blocks for feedforward and feedback terms. All OTAs use the same internal schematic (<code>ota_gm_100u</code>) and are referenced symmetrically.</p>
+<p>Each OTA drives or is loaded by 10 pF metal-insulator-metal (MIM) capacitors (<span class="math inline">\(C_1\)</span>–<span class="math inline">\(C_6\)</span>), arranged in 1:2 ratios where necessary to match the theoretical filter structure (e.g., <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span>). Differential symmetry is preserved throughout the network using mirrored signal paths and balanced layout routing.</p>
+<p>The input signals <code>vinp</code> and <code>vinn</code> are provided by AC voltage sources with 0.5 V DC offset and 0.5 V amplitude. The output is taken differentially as <code>voutp</code> and <code>voutn</code>, and the simulation computes their difference using:</p>
+<pre class="spice"><code>let vod = v(outp) - v(outn)
+plot db(v(vod))</code></pre>
+<p>This differential output is evaluated across a frequency sweep from 1 kHz to 100 MHz using the NGSpice .ac dec command with 100 points per decade:</p>
+<pre class="spice"><code>ac dec 100 1k 100MEG</code></pre>
+<p>The NGSpice block at the top of the schematic (see Figure <a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>3.8</span></a>) includes the device model definitions, the simulation temperature (set to 27°C), and references to the SG13G2 PDK libraries. Parameterized values for transistor dimensions are declared at the beginning to allow flexibility when tuning device behavior:</p>
+<pre class="spice"><code>.param lp="X"u wp="X"u l="X"u w="X"u</code></pre>
+<div id="fig-biquad" class="quarto-float quarto-figure quarto-figure-center anchored" alt="OTA design implemented in Xschem for gm-C filter integration.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-biquad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/biquad_gm_c.png" class="img-fluid figure-img" style="width:80.0%" alt="OTA design implemented in Xschem for gm-C filter integration.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-biquad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.8: gm‑C biquad design.
+</figcaption>
+</figure>
+</div>
+<p>This modular approach to simulation setup enhances reproducibility and simplifies design iterations. The OTA instances are invoked via their corresponding symbol files, ensuring consistency between simulation and schematic representation.</p>
+<p>Overall, this gm‑C biquad schematic represents a practical and scalable implementation of a continuous-time filter using custom OTA blocks. The approach aligns well with standard analog IC design methodology and is suitable for integration in high-speed signal processing chains.</p>
+</section>
+<section id="sec-sizing-baker" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="sec-sizing-baker"><span class="header-section-number">3.6.3</span> Sizing the 1 kHz Low-Pass gm-C Biquad to the Baker Topology</h3>
+<p>Figure <a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>3.8</span></a> reproduces the fully differential gm-C biquad proposed by <span class="citation" data-cites="baker2010cmos">Baker (<a href="references.html#ref-baker2010cmos" role="doc-biblioref">2010</a>)</span>. In this architecture, the behavior of the filter is governed by six small-signal parameters:</p>
+<p><span class="math display">\[
+\begin{aligned}
+G_1 &amp;= \frac{g_{m1}}{C_1 + C_2}, &amp;
+G_2 &amp;= \frac{g_{m2}}{g_{m1}}, &amp;
+G_3 &amp;= \frac{C_1}{g_{m1}}, \\
+G_4 &amp;= \frac{g_{m3}}{C_3 + C_4}, &amp;
+G_5 &amp;= \frac{g_{m4}}{g_{m1}}, &amp;
+G_6 &amp;= \frac{C_3}{g_{m3}}.
+\end{aligned}
+\]</span></p>
+<p>These expressions relate the two integrator stages <span class="math inline">\(\bigl(g_{m1}, C_{1,2}\bigr)\)</span> and <span class="math inline">\(\bigl(g_{m3}, C_{3,4}\bigr)\)</span> to the feed-forward transconductors <span class="math inline">\(g_{m2}\)</span> and <span class="math inline">\(g_{m4}\)</span>. For a <strong>low-pass</strong> realisation, we adopt the convenient symmetry:</p>
+<p><span class="math display">\[
+g_{m1} = g_{m3} = g_m, \quad C_1 = C_2 = C_3 = C_4 = C,
+\]</span></p>
+<p>so that both integrator poles coincide. Under this symmetry, the pole frequency reduces to</p>
+<p><span class="math display">\[
+f_0 = \frac{g_m}{4\pi C},
+\]</span></p>
+<p>where the factor of 4 arises from the doubled <span class="math inline">\(2C\)</span> plates used at each integrator output in the schematic.</p>
+<p>To meet the low-frequency target of 1 kHz, we must carefully select appropriate values for <span class="math inline">\(g_m\)</span> and <span class="math inline">\(C\)</span>, while respecting the OTA bias constraint. Each OTA operates with a fixed tail current of <span class="math inline">\(I_{\text{tail}} = 100\;\mu\text{A}\)</span>, resulting in <span class="math inline">\(I_D = 50\;\mu\text{A}\)</span> per branch. To ensure good noise performance and strong inversion operation, we target a transconductance efficiency of approximately</p>
+<p><span class="math display">\[
+\left( \frac{g_m}{I_D} \right)_{\text{target}} \approx 5\;\text{V}^{-1}.
+\]</span></p>
+<p>This yields a branch transconductance of</p>
+<p><span class="math display">\[
+g_m = \left(\frac{g_m}{I_D}\right) I_D = 5 \cdot 50\;\mu\text{A} = 0.25\;\text{mS}.
+\]</span></p>
+<p>Substituting this into the expression for <span class="math inline">\(f_0\)</span>, we determine the required capacitor value for a 1 kHz pole:</p>
+<p><span class="math display">\[
+C = \frac{g_m}{4\pi f_0} = \frac{0.25\;\text{mS}}{4\pi \cdot 1\;\text{kHz}} \approx 20\;\text{nF}.
+\]</span></p>
+<p>As each integrator output is loaded with <span class="math inline">\(2C\)</span>, the effective capacitance at each output node is approximately 40 nF.</p>
+<blockquote class="blockquote">
+<p><strong>Area note:</strong> At a typical SG13G2 MIM density of <span class="math inline">\(2\,\text{fF}/\mu\text{m}^2\)</span>, a 20 nF capacitor requires roughly 10 mm² of silicon area. This is large for an on-chip design and motivates the use of stacked MIM structures or off-chip MLCCs for prototyping.</p>
+</blockquote>
+<p>To realise this <span class="math inline">\(g_m\)</span> in a compact layout, we choose a MOSFET overdrive voltage of <span class="math inline">\(V_{\text{OV}} = 0.40\,V\)</span> and assume a mobility-capacitance product of <span class="math inline">\(\mu_n C_{\text{ox}} \approx 200\,\mu\text{A}/\text{V}^2\)</span>. The required transistor aspect ratio then becomes:</p>
+<p><span class="math display">\[
+\frac{W}{L} = \frac{2I_D}{\mu_n C_{\text{ox}} V_{\text{OV}}^2}
+= \frac{100\;\mu\text{A}}{200\;\mu\text{A}/\text{V}^2 \cdot 0.16} \approx 3.1.
+\]</span></p>
+<p>The final device sizing is summarised below:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Device set</th>
+<th style="text-align: right;"><span class="math inline">\(L\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(W\)</span></th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NMOS (all)</td>
+<td style="text-align: right;">1 µm</td>
+<td style="text-align: right;">3.2 µm</td>
+<td><span class="math inline">\(W/L \approx 3\)</span>, yielding <span class="math inline">\(g_m \approx 0.25\)</span> mS</td>
+</tr>
+<tr class="even">
+<td>PMOS (all)</td>
+<td style="text-align: right;">1 µm</td>
+<td style="text-align: right;">8 µm</td>
+<td>Width ×2.5 for hole mobility compensation</td>
+</tr>
+<tr class="odd">
+<td>Tail pair</td>
+<td style="text-align: right;">5 µm</td>
+<td style="text-align: right;">3.2 µm</td>
+<td>Long <span class="math inline">\(L\)</span> increases <span class="math inline">\(r_o\)</span> and suppresses <span class="math inline">\(1/f\)</span> noise</td>
+</tr>
+</tbody>
+</table>
+<p>In summary, this sizing strategy realises a 1 kHz low-pass response while respecting the 100 µA tail bias in theory. The chosen transistor dimensions enable consistent <span class="math inline">\(g_m\)</span> across all OTA branches. Although the large on-chip capacitors pose layout challenges, they can be addressed using multilayer MIM stacks or external capacitors during prototyping. The unified NMOS/PMOS geometries also facilitate efficient common-centroid layout across the four OTAs that form the biquad filter.</p>
+</section>
+</section>
+<section id="gmid-methodology" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="gmid-methodology"><span class="header-section-number">3.7</span> GM/ID Methodology</h2>
+<p>One of the first questions we have to ask in IC design is how small or how large we can design the MOSFETs we’re using in the circuits. MOSFETs can be used in saturation mode or in the triode state (as well as in cut-off but this is not relevant for us). When the FET is in saturation the drain current <span class="math inline">\(I_{D}\)</span> is controlled primarily by the gate-source voltage <span class="math inline">\(V_{GS}\)</span>. In this case the drain-source voltage has a smaller impact on the drain current. For the Transistor to work in saturation the drain-source terminals need to be driven with a voltage high enough so this “saturates” the FET and the highest drain-current is achieved.</p>
+<p>On the other hand if the voltage applied across the drain-source contacts (on a NMOS for example) is relatively low (compared to the voltage for saturation), the FET will operate in the so called triode mode. In triode mode the drain-source voltage <span class="math inline">\(V_{DS}\)</span> has a fundamentally larger impact on the drain current then in the saturation mode. <span class="citation" data-cites="hpretlacd">(<a href="references.html#ref-hpretlacd" role="doc-biblioref">H. Pretl and Michael Koefinger 2025</a>)</span></p>
+<p>One Methodology to solve the question we asked at the beginning of this chapter is the <span class="math inline">\(\frac{gm}{I_{D}}\)</span> methodology which we will introduce in a moment. There are basically three MOSFET characteristics directly describing the behaviour of it:</p>
+<ul>
+<li><span class="math inline">\(\frac{g_m}{I_D}\)</span> : Transconductance Efficiency</li>
+<li><span class="math inline">\(\frac{\omega_{T}}{f_T}\)</span> : Transit frequency</li>
+<li><span class="math inline">\(\frac{g_m}{g_{ds}}\)</span> : Intrinsic Gain</li>
+</ul>
+<p>To understand the first characteristic for our FETs we have to take a look at the different operating points which depend on the applied voltages. Whenever we apply voltages to a FET in order to control a specific drain current <span class="math inline">\(I_{D}\)</span>, we can operate the FET in either weak inversion, strong inversion or moderate inversion. This behaviour is controlled by the Overdrive Voltage <span class="math inline">\(V_{OV}\)</span> which is defined as the difference between the gate-source voltage and the threshold voltage. To note this small point the drain-current is controlled by the voltage between gate and source. Whenever an nmos is not being used as a low-side switch or amplifier or the pmos is being used as a low-side component problems can arise. Since we are using FETs in our switched capacitor integrator for example this is quite important.</p>
+<p><span class="math display">\[
+    V_{OV} = V_{GS} - V_{TH}
+\]</span></p>
+<p>We have to keep in mind that the threshold voltage isn’t a magical number that can be applied to every MOSFET, it rather depends on the geometry (with W and L for example) and other factors. For the example nmos given in the Analog Circuit Design IHP SG13G2 Devices Table by Professor Pretl, the threshold voltage is 0.5V. Therefore the overdrive voltage describes how “much” the gate-source voltage is above the threshold of the FET. Depending on this overdrive voltage the circuit/ic designer can apply different <span class="math inline">\(\frac{g_{M}}{I_{D}}\)</span> values with the unit [<span class="math inline">\(\frac{1}{V}\)</span>]. This unit is derived in the following way:</p>
+<p>With <span class="math inline">\(g_{M}\)</span> defined by:</p>
+<p><span class="math display">\[
+g_{M} = \frac{\partial I_D}{\partial V_{GS}}
+\]</span></p>
+<p>and <span class="math inline">\(I_{D}\)</span> having the unit Ampere [A] and the voltage <span class="math inline">\(V_{GS}\)</span> we get:</p>
+<p><span class="math display">\[
+\frac{\frac{A}{V}}{A} = \frac{1}{V}
+\]</span></p>
+<p>Before we continue with the <span class="math inline">\(\frac{g_{M}}{I_{D}}\)</span> method we want to note that there also is the <em>square-law</em> model with which circuit designers can design MOSFET circuits. This model is usually applicable for PCB circuits and takes the situation into account where the MOSFET is driven in the stong inversion state. The square-law model is being applied assuming that the FET is operating in the “linear” or “triode” mode, however on nanometer scale FETs (down to 130 nm with the IHP-SG13G2 PDK) this model doesn’t give us precise solutions anymore. Many effects like parasitic capacitances alter the operational behaviour of the FET and lead to the square-law model deviating afar from the real-world behaviour in many situations <span class="citation" data-cites="SQRLaw">(<a href="references.html#ref-SQRLaw" role="doc-biblioref">Alan Doolittle 2025</a>)</span>.</p>
+<p>The square-model drain-current behavior is being described by the following formula:</p>
+<p><span class="math display">\[
+I_{D} = \frac{Z \cdot \overline{\mu_n} \cdot C_{OX}}{L} [(V_{GS} - V_{T}) \cdot V_{DS} - \frac{V_{DS}^2}{2}]
+\]</span></p>
+<p>with the two conditions:</p>
+<p><span class="math inline">\(0 \leq V_{DS} \leq V_{D_{SAT}}\)</span> and <span class="math inline">\(V_{GS} \geq V_T\)</span></p>
+<p>with following definitions:</p>
+<ul>
+<li><span class="math inline">\(C_{OX} = \frac{\epsilon_{ox}}{x_{ox}}\)</span></li>
+<li>Z = MOSFET width</li>
+<li>L = MOSFET Channel length</li>
+<li><span class="math inline">\(V_T\)</span> = Threshold voltage</li>
+<li><span class="math inline">\(\overline{\mu_n}\)</span> = effective electron mobility</li>
+</ul>
+<p>The threshold voltage is defined as:</p>
+<p><span class="math display">\[
+V_T = 2 \phi_F + \frac{\epsilon_s}{C_{OX}} \sqrt{\frac{2q N_{A}}{\epsilon} (2\phi_F)}
+\]</span></p>
+<p>with:</p>
+<p><span class="math inline">\(\phi_F\)</span> being the Fermi Potential (surface potential) defined by:</p>
+<p><span class="math display">\[
+\phi_F = \frac{kT}{q} \cdot ln (\frac{N_A}{n_i})
+\]</span></p>
+<p>with <span class="math inline">\(N_A\)</span> being the acceptor doping concentration and <span class="math inline">\(n_i\)</span> being the intrinsic carrier concentration. The term 2 <span class="math inline">\(\phi_F\)</span> corresponds to the surface potential required to achieve strong inversion.</p>
+<p>For more details the reader can consult <span class="citation" data-cites="SQRLaw">(<a href="references.html#ref-SQRLaw" role="doc-biblioref">Alan Doolittle 2025</a>)</span>,<span class="citation" data-cites="MurmannGmId">(<a href="references.html#ref-MurmannGmId" role="doc-biblioref">Boris Murmann 2016</a>)</span> or <span class="citation" data-cites="gmId">(<a href="references.html#ref-gmId" role="doc-biblioref">Silveira, Flandre, and Jespers 1996</a>)</span>.</p>
+<p>To illustrate the problems of the square-law model when designing MOSFET circuits at nanometer scale we will look at some graphs visualizing it’s limitation. First of all let’s look at the formulas for the square-law when we want to achieve more performance with our FETs:</p>
+<p>Transconductance Efficiency: <span class="math display">\[
+\frac{g_m}{I_D} \cong \frac{2}{V_{OV}}
+\]</span></p>
+<p>higher efficiencs here means more transconductance for the same drain current.</p>
+<p>Transit Frequency:</p>
+<p><span class="math display">\[
+\frac{g_M}{C_{gg}} \cong \frac{3}{2}\frac{\mu V_{OV}}{L^2}
+\]</span></p>
+<p>higher transit frequency for the same gate-capacitance.</p>
+<p>Intrinsic Gain:</p>
+<p><span class="math display">\[
+\frac{g_m}{g_{ds}} \cong \frac{2}{\lambda V_{OV}}
+\]</span></p>
+<p>high transconductance (at same drain-current <span class="math inline">\(I_D\)</span>) without higher output conductance.</p>
+<p>The square-law model completely fails in these cases when the MOSFET is not operation in strong inversion. In moderate and weak inversion we are forced to use a different mathmatical model , and the <span class="math inline">\(\frac{g_M}{I_D}\)</span> method is a really good starting point <span class="citation" data-cites="RWalker">(<a href="references.html#ref-RWalker" role="doc-biblioref">Ross Walker 2017</a>)</span>.</p>
+<p>The following figures will show the deviation between square-law and measurements as well as the <span class="math inline">\(\frac{g_M}{I_D}\)</span> methodology:</p>
+<p>So first of all when we use <span class="math inline">\(g_M\)</span> and <span class="math inline">\(I_D\)</span> we specify that for a specific drain-current we get a specific transconductance, for example with a <span class="math inline">\(\frac{g_M}{I_D}\)</span> of 10 S/A we get 10 <span class="math inline">\(\mu\)</span> S per 1 <span class="math inline">\(\mu\)</span> A of bias current. And depending on how “much” the transistor is operating above it’s threshold voltage <span class="math inline">\(V_{th}\)</span> (basically the Overdrive Voltage <span class="math inline">\(V_{OV}\)</span> ) you get different inversion levels. From weak inveresions for low overdrive voltages to moderate inversion when operating at approximately <span class="math inline">\(V_{OV}\)</span> = <span class="math inline">\(V_{th}\)</span> to high inversion when <span class="math inline">\(V_{OV}\)</span> &gt; <span class="math inline">\(V_{th}\)</span>.</p>
+<p>With the square-law value for transconductance efficiency we completely deviate with that approximation in weak and moderate inversion:</p>
+<div id="fig-inversion-vs-vov" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inversion-vs-vov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/ac_inversion_vs_vov.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inversion-vs-vov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.9: Inversion level vs.&nbsp;Overdrive Voltage <span class="citation" data-cites="RWalker">(<a href="references.html#ref-RWalker" role="doc-biblioref">Ross Walker 2017</a>)</span>
+</figcaption>
+</figure>
+</div>
+<p>Another deviation from square-law to real MOSFET behaviour can be seen when we increase the gate-source voltage of the FET and measure the drain-current. According to square-law formual for the drain-current the current should just increase to the square with increasing gate-source voltage. But by taking the square of the drain-current and increasing <span class="math inline">\(V_{GS}\)</span> we can see that the drain-current does not magically start flowing above the threshold-voltage and also the behaviour is also not linear (quadratically when not taking the square of the current):</p>
+<div id="fig-id_vs_gs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-id_vs_gs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/ac_id_vs_gs.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-id_vs_gs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.10: Drain Current over Gate-Source Voltage, Simulation vs.&nbsp;square-law <span class="citation" data-cites="RWalker">(<a href="references.html#ref-RWalker" role="doc-biblioref">Ross Walker 2017</a>)</span>
+</figcaption>
+</figure>
+</div>
+<p>This simulation is done for a n-channel MOSFET with a drain-source voltage of 1.8 V and a size of L = 180 nm and W = 5 <span class="math inline">\(\mu\)</span>m.</p>
+<p>The drain-current behaviour at sub-threshold gate voltages is completely inaccurate for the square-law too, and the following graph visualizes the limitation of the square-law at this point again:</p>
+<div id="fig-gmid_vs_gs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gmid_vs_gs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/ac_gmid_vs_gs.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gmid_vs_gs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.11: Drain Current over Gate-Source Voltage, comparison between an nmos, a bjt and the square-law <span class="citation" data-cites="RWalker">(<a href="references.html#ref-RWalker" role="doc-biblioref">Ross Walker 2017</a>)</span>
+</figcaption>
+</figure>
+</div>
+<p>These three examples show that the approach using square-law to size MOSFETs is not sufficient when the transistor is operating in weak or moderate inversion and when driving the FET (nmos for example) with a low gate-source (or overdrive-) voltage. To cite Mr.&nbsp;Walker on this topic: “This means that the square law equation (which assumes 100% drift current) does not work unless the gate overdrive is several <span class="math inline">\(\frac{kT}{q}\)</span>, <span class="citation" data-cites="RWalker">(<a href="references.html#ref-RWalker" role="doc-biblioref">Ross Walker 2017</a>)</span>”.</p>
+<p>To conclude this, we can keep in mind that there is no simple formula that can describe the drain-current behaviour in all situations and be universally used. So using the <span class="math inline">\(\frac{g_m}{I_D}\)</span> methodology is the way to go in our project.</p>
+<p>Now with that out of the way we can design our circuits using the <span class="math inline">\(\frac{g_m}{I_D}\)</span> methodology. The main properties of our MOSFETs we can manipulate in xschem are the lenght of the channel L, the width W and the bias current <span class="math inline">\(I_D\)</span>. The common way to use this method is to first characterize nmos and pmos field effect transistors and then use this data to design the circuits. In the chapter “MOSFET characterization Testbench” chapter in <span class="citation" data-cites="hpretlacd">(<a href="references.html#ref-hpretlacd" role="doc-biblioref">H. Pretl and Michael Koefinger 2025</a>)</span> we can see how the values for the <span class="math inline">\(\frac{g_m}{I_D}\)</span> methodology are being simulated for later use.</p>
+<p>The lenght of the MOSFET channel also has a large influence on it’s frequency characteristic as it can be seen in this simulation:</p>
+<div id="fig-ft_vs_L" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ft_vs_L-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/ac_eaa_ft_vs_L.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ft_vs_L-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.12: transit frequency vs.&nbsp;channel length L <span class="citation" data-cites="hpretlacd">(<a href="references.html#ref-hpretlacd" role="doc-biblioref">H. Pretl and Michael Koefinger 2025</a>)</span>
+</figcaption>
+</figure>
+</div>
+<p>The operating areas of interest for us are the saturation region (when using the FET as an amplifier for example) and the region when the FET is being used to “just” work as a switch. With setting <span class="math inline">\(V_{DS}\)</span> to <span class="math inline">\(\frac{V_{DD}}{2}\)</span> we keep the FET in saturation. Reminding ourselves again that with larger <span class="math inline">\(g_M\)</span> we have more “gain” and with a smaller <span class="math inline">\(I_D\)</span> we have higher efficiency we try to hit the sweetspot between size (as every square milimeter has it’s cost) and current consumption (if we have wearable battery powered devices for example). Keeping also in mind that temperature has a large effect we cannot use arbitratily large drain currents.</p>
+<p>Following plot visualizes the dependancy of <span class="math inline">\(\frac{g_M}{I_D}\)</span> to the gate-source voltage and shows the transit frequency behaviour too:</p>
+<div id="fig-gm_vs_gs_vs_ft" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gm_vs_gs_vs_ft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_xschem/ac_ft_vs_gm_vgs.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gm_vs_gs_vs_ft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.13: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span class="math inline">\(f_T\)</span> over the gate-source voltage <span class="citation" data-cites="hpretlacd">(<a href="references.html#ref-hpretlacd" role="doc-biblioref">H. Pretl and Michael Koefinger 2025</a>)</span>
+</figcaption>
+</figure>
+</div>
+<section id="gmid-overview" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="gmid-overview"><span class="header-section-number">3.7.1</span> GM/ID Overview</h3>
+<p>Device sizing is a fundamental step in analog circuit design.Proper sizing ensures the desired trade-off between gain, bandwidth, power consumption, and linearity. A structured approach to sizing guarantees that the transistors operate in their optimal region—typically strong inversion and saturation for analog applications.</p>
+<p>This section presents a basic OTA sizing methodology based on the work of Prepl, whose notebook is publicly available at <a href="https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/sizing_basic_ota.ipynb">GitHub: analog-circuit-design</a>.</p>
+<p>The notebook demonstrates a Python-based framework for calculating initial transistor dimensions in a basic OTA. Below is an explanation of the key steps, equations, and important code snippets from the sizing method, along with visual aids to clarify the process.</p>
+<p>The sizing workflow follows these general steps:</p>
+<ol type="1">
+<li>Define process parameters.</li>
+<li>Specify bias currents and overdrive voltages.</li>
+<li>Calculate width-to-length ratios (W/L) for each transistor.</li>
+<li>Determine transconductance, output resistance, and gain.</li>
+<li>Evaluate key performance metrics like slew rate and gain-bandwidth product.</li>
+</ol>
+<p>At the beginning of the notebook, fundamental technology parameters are defined, including supply voltages, threshold voltages, mobility, and channel-length modulation factors for NMOS and PMOS transistors.</p>
+<div id="c830fe22" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Technology and model parameters</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>VDD <span class="op">=</span> <span class="fl">1.8</span>     <span class="co"># Supply voltage [V]</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>VTHN <span class="op">=</span> <span class="fl">0.4</span>    <span class="co"># NMOS threshold voltage [V]</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>VTHP <span class="op">=</span> <span class="op">-</span><span class="fl">0.4</span>   <span class="co"># PMOS threshold voltage [V]</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>mu_n_Cox <span class="op">=</span> <span class="fl">200e-6</span>  <span class="co"># NMOS process transconductance parameter [A/V^2]</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>mu_p_Cox <span class="op">=</span> <span class="fl">100e-6</span>  <span class="co"># PMOS process transconductance parameter [A/V^2]</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>lambda_n <span class="op">=</span> <span class="fl">0.1</span>     <span class="co"># Channel length modulation NMOS [1/V]</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>lambda_p <span class="op">=</span> <span class="fl">0.1</span>     <span class="co"># Channel length modulation PMOS [1/V]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>These parameters are critical for calculating transistor drain current in saturation:</p>
+<p><span class="math display">\[
+I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
+\]</span></p>
+<p>The differential pair (M1 and M2) defines the input transconductance of the OTA. Sizing begins by selecting bias current and overdrive voltage (V<span class="math inline">\(_{OV}\)</span>):</p>
+<div id="4a710b74" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bias current for each NMOS transistor</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ID1 <span class="op">=</span> <span class="fl">100e-6</span>   <span class="co"># [A]</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Overdrive voltage for M1 and M2</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>VOV1 <span class="op">=</span> <span class="fl">0.2</span>     <span class="co"># [V]</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate W/L ratio for M1 and M2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>WL1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> ID1 <span class="op">/</span> (mu_n_Cox <span class="op">*</span> VOV1<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"W/L for M1 and M2: </span><span class="sc">{</span>WL1<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>W/L for M1 and M2: 25.00</code></pre>
+</div>
+</div>
+<p>In this example: - Bias current (ID1) is 100 µA per transistor. - Overdrive voltage (VOV1) is 0.2 V. - Calculated W/L ensures M1 and M2 operate in saturation with desired transconductance.</p>
+<p>The tail current source (M5) provides total bias current to the differential pair:</p>
+<div id="f7e2d8e6" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tail current source sizing (M5)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ID5 <span class="op">=</span> <span class="fl">200e-6</span>   <span class="co"># Total bias current [A]</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>VOV5 <span class="op">=</span> <span class="fl">0.2</span>     <span class="co"># Overdrive voltage [V]</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>WL5 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> ID5 <span class="op">/</span> (mu_n_Cox <span class="op">*</span> VOV5<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"W/L for M5: </span><span class="sc">{</span>WL5<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>W/L for M5: 50.00</code></pre>
+</div>
+</div>
+<p>M5 carries the combined current of M1 and M2, typically twice ID1.</p>
+<p>PMOS current mirrors (M3 and M4) act as active loads for the differential pair, impacting gain and output resistance:</p>
+<div id="6debd55f" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load transistors sizing (M3 and M4)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ID3 <span class="op">=</span> <span class="fl">100e-6</span>   <span class="co"># [A]</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>VOV3 <span class="op">=</span> <span class="fl">0.2</span>     <span class="co"># [V]</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>WL3 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> ID3 <span class="op">/</span> (mu_p_Cox <span class="op">*</span> VOV3<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"W/L for M3 and M4: </span><span class="sc">{</span>WL3<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>W/L for M3 and M4: 50.00</code></pre>
+</div>
+</div>
+<p>Lowering overdrive voltage (V<span class="math inline">\(_{OV3}\)</span>) increases output resistance, improving OTA voltage gain.</p>
+<p>Once W/L ratios are calculated, device transconductance (g<span class="math inline">\(_m\)</span>) and output resistance (r<span class="math inline">\(_o\)</span>) are derived:</p>
+<div id="41a01194" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gm1 <span class="op">=</span> mu_n_Cox <span class="op">*</span> WL1 <span class="op">*</span> VOV1 <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ro1 <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (lambda_n <span class="op">*</span> ID1)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>ro3 <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (lambda_p <span class="op">*</span> ID3)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"gm1: </span><span class="sc">{</span>gm1<span class="sc">:.2e}</span><span class="ss"> S"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ro1: </span><span class="sc">{</span>ro1<span class="sc">:.2e}</span><span class="ss"> Ω"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ro3: </span><span class="sc">{</span>ro3<span class="sc">:.2e}</span><span class="ss"> Ω"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>gm1: 5.00e-04 S
+ro1: 1.00e+05 Ω
+ro3: 1.00e+05 Ω</code></pre>
+</div>
+</div>
+<p>The OTA’s DC gain is:</p>
+<p><span class="math display">\[
+A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3})
+\]</span></p>
+<p>In Python:</p>
+<div id="cdfe2939" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Av <span class="op">=</span> gm1 <span class="op">*</span> (ro1 <span class="op">*</span> ro3) <span class="op">/</span> (ro1 <span class="op">+</span> ro3)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Voltage gain A_v: </span><span class="sc">{</span>Av<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Voltage gain A_v: 25.00</code></pre>
+</div>
+</div>
+<p><strong>Evaluating Performance Metrics - Slew Rate and GBW:</strong></p>
+<p>Slew rate and gain-bandwidth product (GBW) predict OTA dynamic performance:</p>
+<div id="1796921d" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>CL <span class="op">=</span> <span class="fl">1e-12</span>   <span class="co"># Load capacitance [F]</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Slew rate calculation</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>SR <span class="op">=</span> ID5 <span class="op">/</span> CL</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Slew Rate: </span><span class="sc">{</span>SR<span class="sc">:.2e}</span><span class="ss"> V/s"</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Gain Bandwidth Product (GBW)</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>GBW <span class="op">=</span> gm1 <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> CL)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gain Bandwidth Product: </span><span class="sc">{</span>GBW<span class="sc">:.2e}</span><span class="ss"> Hz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Slew Rate: 2.00e+08 V/s
+Gain Bandwidth Product: 7.96e+07 Hz</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Slew Rate (SR)</strong>: OTA’s ability to respond to large signals.</li>
+<li><strong>Gain Bandwidth Product (GBW)</strong>: Small-signal frequency response.</li>
+</ul>
+<p>The presented methodology offers a systematic, reproducible approach to OTA design. Starting with hand calculations and validating through simulation helps designers optimize OTA performance while balancing speed, power, and gain. This lays groundwork for addressing noise, mismatch, and layout parasitics. Further information is publicly available at <a href="https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/sizing_basic_ota.ipynb">GitHub: analog-circuit-design</a>.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-SQRLaw" class="csl-entry" role="listitem">
+Alan Doolittle. 2025. <span>“<span class="nocase">Lecture 25 - MOSFET Basics (Understanding with Math</span>.”</span> <a href="https://alan.ece.gatech.edu/ECE3040/Lectures/Lecture25-MOSTransQuantitativeId-Vd-Vg.pdf" class="uri">https://alan.ece.gatech.edu/ECE3040/Lectures/Lecture25-MOSTransQuantitativeId-Vd-Vg.pdf</a>.
+</div>
+<div id="ref-baker2010cmos" class="csl-entry" role="listitem">
+Baker, R. Jacob. 2010. <em>CMOS: Circuit Design, Layout, and Simulation</em>. 3rd ed. IEEE Press / Wiley.
+</div>
+<div id="ref-MurmannGmId" class="csl-entry" role="listitem">
+Boris Murmann. 2016. <span>“<span class="nocase">Systematic Design of Analog Circuits Using Pre-Computed Lookup Tables</span>.”</span> <a href="https://www.ieeetoronto.ca/wp-content/uploads/2020/06/20160226toronto_sscs.pdf" class="uri">https://www.ieeetoronto.ca/wp-content/uploads/2020/06/20160226toronto_sscs.pdf</a>.
+</div>
+<div id="ref-hpretlacd" class="csl-entry" role="listitem">
+H. Pretl and Michael Koefinger. 2025. <span>“<span>Analog Circuit Design</span>.”</span> <a href="https://iic-jku.github.io/analog-circuit-design/" class="uri">https://iic-jku.github.io/analog-circuit-design/</a>.
+</div>
+<div id="ref-RWalker" class="csl-entry" role="listitem">
+Ross Walker. 2017. <span>“<span class="nocase">Chapter 5, gm/ID - Based Design</span>.”</span> <a href="https://web02.gonzaga.edu/faculty/talarico/EE406/documents/gmid.pdf" class="uri">https://web02.gonzaga.edu/faculty/talarico/EE406/documents/gmid.pdf</a>.
+</div>
+<div id="ref-gmId" class="csl-entry" role="listitem">
+Silveira, F., D. Flandre, and P. G. A. Jespers. 1996. <span>“A Gm/Id Based Methodology for the Design of CMOS Analog Circuits and Its Application to the Synthesis of a Silicon-on-Insulator Micropower OTA.”</span> <em>IEEE Journal of Solid-State Circuits</em> 31 (9): 1314–19. <a href="https://doi.org/10.1109/4.535416">https://doi.org/10.1109/4.535416</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/avahlen\.github\.io\/AMCD_Group1\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../content/_sec_theoretical_background.html" class="pagination-link" aria-label="Theoretical Background">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theoretical Background</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../content/_sec_finns_part.html" class="pagination-link" aria-label="Integrated Layouting">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
