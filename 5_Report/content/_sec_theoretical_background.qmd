@@ -42,6 +42,7 @@ $Q$ determines amoung other things the amount of peaking the transfer function h
 #| label: lst-lowPassDifferentQ
 #| code-fold: true
 #| output: false
+#| caption: Python code for plotting a low pass with different quality factors
 
 # Behavioral Analysis Biquad Filter
 
