@@ -38,8 +38,8 @@ N -490 -840 -490 -640 {lab=HPF}
 N 640 -420 640 -270 {lab=BSF}
 N 640 -420 880 -420 {lab=BSF}
 N 770 -580 870 -580 {lab=LPF}
-N 30 -210 30 -180 {lab=#net5}
-N 30 -210 100 -210 {lab=#net5}
+N 30 -210 30 -180 {lab=v_in}
+N 30 -210 100 -210 {lab=v_in}
 N 30 -120 30 -100 {lab=GND}
 N 10 -740 60 -740 {lab=BPF}
 N 1220 -690 1320 -690 {lab=HPF}
@@ -116,15 +116,15 @@ C {ideal_opamp.sym} 620 -580 0 0 {name=x2}
 C {ideal_opamp.sym} 1180 -550 0 0 {name=x3}
 C {ideal_opamp.sym} 490 -270 0 0 {name=x4}
 C {gnd.sym} 30 -100 0 0 {name=l5 lab=GND sig_type=std_logic}
-C {vsource.sym} 30 -150 0 1 {name=V1 value="PULSE(-0.2 0.2 0 0.1u 0.1u 0.5m 1ms 10) AC 1"}
+C {vsource.sym} 30 -150 0 1 {name=V1 value="PULSE(0 0.2 0 0.1u 0.1u 50m 100ms 10)"}
 C {title.sym} -420 260 0 0 {name=l6 author="Mirco Meiners"}
 C {gnd.sym} 1100 -520 0 1 {name=l1 lab=GND sig_type=std_logic}
 C {gnd.sym} -210 -580 0 1 {name=l4 lab=GND sig_type=std_logic}
 C {gnd.sym} 410 -240 0 1 {name=l2 lab=GND sig_type=std_logic}
-C {devices/code_shown.sym} 1190 -410 0 0 {name=NGSPICE only_toplevel=true 
+C {devices/code_shown.sym} 1180 -400 0 0 {name=NGSPICE only_toplevel=true 
 value="
 .temp 27
-.param R=1k C=159n RQ=R*10 RH=R/1
+.param R=1k C=159n RQ=R*1 RH=R/1
 .control
 *set filetype=ascii
 option sparse
@@ -134,11 +134,13 @@ op
 set appendwrite
 
 *ac dec 20 10 1G
-ac lin 10000 1 100k
-write biquad_univ.raw
-write biquad_univ.csv LPF HPF BPF BSF
-plot db(v(LPF)) db(v(HPF)) db(v(BPF)) db(v(BSF))
-plot 180/PI*vp(LPF) 180/PI*vp(HPF) 180/PI*vp(BPF) 180/PI*vp(BSF)
+*ac lin 10000 1 100k
+*write biquad_univ.raw
+*write biquad_univ.csv LPF HPF BPF BSF
+*plot db(v(LPF)) db(v(HPF)) db(v(BPF)) db(v(BSF))
+*plot 180/PI*vp(LPF) 180/PI*vp(HPF) 180/PI*vp(BPF) 180/PI*vp(BSF)
+tran 10 0.01
+plot v(v_in) v(LPF)
 
 .endc
 "}
@@ -149,3 +151,4 @@ C {devices/launcher.sym} 900 -130 0 0 {name=h3
 descr="annotate OP" 
 tclcommand="set show_hidden_texts 1; xschem annotate_op"
 }
+C {opin.sym} 30 -210 2 0 {name=p5 lab=v_in sig_type=std_logic}

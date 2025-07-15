@@ -105,7 +105,7 @@ After experimenting with various combinations of transistor widths and lengths i
 
 A constant sizing point of $g_m / I_D = 13$ was applied across all devices, which offered a good balance between transconductance efficiency and voltage headroom. This choice ensured that even with stacked transistors, all devices remained in saturation across the intended signal swing and supply range.
 
-Simulation results based on this sizing show that the OTA achieves an open-loop gain $A_0 > 43\\,\\{dB}$, satisfying key performance goals such as bandwidth and linear range for biquad operation. These results confirm that the selected sizing strategy works reliably within the supply voltage limits of the SG13G2 process, and is well-suited for analog signal processing tasks requiring accurate and programmable transconductance.
+Simulation results based on this sizing show that the OTA achieves an open-loop gain $A_0 > 43\,dB$, satisfying key performance goals such as bandwidth and linear range for biquad operation. These results confirm that the selected sizing strategy works reliably within the supply voltage limits of the SG13G2 process, and is well-suited for analog signal processing tasks requiring accurate and programmable transconductance.
 
 ### Small-Signal Frequency Response
 
@@ -158,7 +158,7 @@ The structure is deliberately symmetric to preserve linearity and minimize even-
 
 ### gm‑C Biquad Schematic in Xschem
 
-Figure @fig-biquad-xschem shows the complete schematic of the gm‑C biquad filter implemented in Xschem. The design consists of four OTA instances, each configured in a differential topology and biased with a shared tail current of 100 µA via the global `ibias` net. The power supply is set to 1.5 V, and all OTAs operate with a common-mode input reference of 0.75 V via the `vcm` node.
+Figure @fig-biquad shows the complete schematic of the gm‑C biquad filter implemented in Xschem. The design consists of four OTA instances, each configured in a differential topology and biased with a shared tail current of 100 µA via the global `ibias` net. The power supply is set to 1.5 V, and all OTAs operate with a common-mode input reference of 0.75 V via the `vcm` node.
 
 The circuit follows the classical gm‑C biquad topology introduced earlier. It features two cascaded integrator stages formed by OTA–capacitor pairs, followed by additional OTA blocks for feedforward and feedback terms. All OTAs use the same internal schematic (`ota_gm_100u`) and are referenced symmetrically.
 
@@ -191,6 +191,7 @@ Overall, this gm‑C biquad schematic represents a practical and scalable implem
 
 Figure @fig-biquad reproduces the fully differential gm-C biquad proposed by @baker2010cmos. In this architecture, the behavior of the filter is governed by six small-signal parameters:
 
+$$
 \begin{aligned}
 G_1 &= \frac{g_{m1}}{C_1 + C_2}, &
 G_2 &= \frac{g_{m2}}{g_{m1}}, &
@@ -199,6 +200,7 @@ G_4 &= \frac{g_{m3}}{C_3 + C_4}, &
 G_5 &= \frac{g_{m4}}{g_{m1}}, &
 G_6 &= \frac{C_3}{g_{m3}}.
 \end{aligned}
+$$
 
 These expressions relate the two integrator stages $\bigl(g_{m1}, C_{1,2}\bigr)$ and $\bigl(g_{m3}, C_{3,4}\bigr)$ to the feed-forward transconductors $g_{m2}$ and $g_{m4}$. For a **low-pass** realisation, we adopt the convenient symmetry:
 
@@ -236,7 +238,7 @@ As each integrator output is loaded with $2C$, the effective capacitance at each
 
 > **Area note:** At a typical SG13G2 MIM density of $2\,\text{fF}/\mu\text{m}^2$, a 20 nF capacitor requires roughly 10 mm² of silicon area. This is large for an on-chip design and motivates the use of stacked MIM structures or off-chip MLCCs for prototyping.
 
-To realise this $g_m$ in a compact layout, we choose a MOSFET overdrive voltage of $V_{\text{OV}} = 0.40\,$V and assume a mobility-capacitance product of $\mu_n C_{\text{ox}} \approx 200\,\mu\text{A}/\text{V}^2$. The required transistor aspect ratio then becomes:
+To realise this $g_m$ in a compact layout, we choose a MOSFET overdrive voltage of $V_{\text{OV}} = 0.40\,V$ and assume a mobility-capacitance product of $\mu_n C_{\text{ox}} \approx 200\,\mu\text{A}/\text{V}^2$. The required transistor aspect ratio then becomes:
 
 $$
 \frac{W}{L} = \frac{2I_D}{\mu_n C_{\text{ox}} V_{\text{OV}}^2}
