@@ -92,7 +92,7 @@ C {2_Ideal_Cir/ota_gm_100u.sym} 170 140 0 0 {name=x1}
 C {ota_gm_100u.sym} 440 140 0 0 {name=x2}
 C {capa.sym} 570 200 0 0 {name=C1
 m=1
-value=10p
+value=\{c\}
 footprint=1206
 device="ceramic capacitor"}
 C {vsource.sym} 30 -200 0 0 {name=Vinp value="DC 0.5 AC 0.5"}
@@ -108,7 +108,7 @@ C {vsource.sym} 280 -200 0 0 {name=Vcm value=0.5 savecurrent=false}
 C {gnd.sym} 280 -170 0 0 {name=l6 lab=GND}
 C {devices/code_shown.sym} 560 -420 0 0 {name=NGSPICE only_toplevel=true 
 value="
-.param lp=5u wp=0.30u l=5u w=0.15u
+.param lp=1u wp=8u l=1u w=3.2u c=20n
 .temp 27
 .control
 option sparse
@@ -137,25 +137,25 @@ C {opin.sym} 280 -250 0 0 {name=p6 lab=vcm}
 C {gnd.sym} 570 230 0 0 {name=l1 lab=GND}
 C {capa.sym} 570 80 2 1 {name=C2
 m=1
-value=10p
+value=\{c\}
 footprint=1206
 device="ceramic capacitor"}
 C {gnd.sym} 570 50 2 1 {name=l3 lab=GND}
 C {capa.sym} 150 220 3 1 {name=C3
 m=1
-value=10p
+value=\{c\}
 footprint=1206
 device="ceramic capacitor"}
 C {capa.sym} 150 60 3 0 {name=C4
 m=1
-value=10p
+value=\{c\}
 footprint=1206
 device="ceramic capacitor"}
 C {ota_gm_100u.sym} 710 140 0 0 {name=x3}
 C {ota_gm_100u.sym} 980 140 0 0 {name=x4}
 C {capa.sym} 870 250 0 0 {name=C5
 m=1
-value=10p
+value=\{c\}
 footprint=1206
 device="ceramic capacitor"}
 C {lab_pin.sym} 960 60 0 1 {name=p8 sig_type=std_logic lab=outp}
@@ -165,7 +165,7 @@ C {lab_wire.sym} 1110 140 0 1 {name=p15 sig_type=std_logic lab=vcm}
 C {gnd.sym} 870 280 0 0 {name=l5 lab=GND}
 C {capa.sym} 870 30 2 1 {name=C6
 m=1
-value=10p
+value=\{c\}
 footprint=1206
 device="ceramic capacitor"}
 C {gnd.sym} 870 0 2 1 {name=l7 lab=GND}
@@ -176,7 +176,7 @@ footprint=1206
 device="ceramic capacitor"}
 C {capa.sym} 690 60 3 0 {name=C8
 m=1
-value=10p
+value=\{c\}
 footprint=1206
 device="ceramic capacitor"}
 C {gnd.sym} 420 -140 0 0 {name=l8 lab=GND sig_type=std_logic}

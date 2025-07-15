@@ -52,8 +52,6 @@ Adopting this debugging approach significantly enhanced the efficiency and accur
 ## OTA Circuit Integration Self-built Five-Transistor OTA  {#sec-self-built-ota}
 Initially, our group developed our own five-transistor OTA schematic within Xschem to gain practical insights and explore various design parameters.
 
-Figure \@fig-self-built-ota shows the minimalist OTA we designed during the early project phase.  The circuit follows the five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain. Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2 and thus fixes the OTA’s quiescent current—and with it both transconductance and bandwidth.
-
 Figure \@fig-self-built-ota shows the minimalist OTA designed during the early project phase. The circuit follows the five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly $$ g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr) $$
 Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2.
 
@@ -87,24 +85,24 @@ This indicates:
 	-	Insufficient bandwidth
 	-	Or incorrect biasing (e.g., not enough current to drive the output stage).
 
-After conducting simulations and analyses, and discussing our results with the professor, we concluded that the five-transistor OTA provided by Prof. Prettel offered superior performance and reliability for our application. Thus, the decision was made to proceed with Prof. Prettel's well-established OTA design.  
+After conducting simulations and analyses, and discussing our results with the professor, we concluded that the five-transistor OTA provided by Prof. Pretel offered superior performance and reliability for our application. Thus, the decision was made to proceed with Prof. Pretl's well-established OTA design.  
 
-## Xschem OTA Description (Five-Transistor OTA by Prof. Prettel)
+## Xschem OTA Description (Five-Transistor OTA by Prof. Pretl)
 
-Prof. Prettel’s five-transistor OTA is an optimized implementation, specifically tailored for efficient analog circuit integration using the SG13G2 CMOS process. His design, depicted in Figure @fig-prettel-ota, maintains simplicity while enhancing performance through thoughtful sizing and layout practices. This OTA employs a standard architecture comprising an NMOS differential input pair, a tail current source transistor, and a PMOS current mirror load. The input differential voltage is transformed by the differential pair into two opposite-phase currents, recombined by the PMOS mirror at the single-ended output node. 
+Prof. Pretl’s five-transistor OTA is an optimized implementation, specifically tailored for efficient analog circuit integration using the SG13G2 CMOS process. His design, depicted in Figure @fig-pretl-ota, maintains simplicity while enhancing performance through thoughtful sizing and layout practices. This OTA employs a standard architecture comprising an NMOS differential input pair, a tail current source transistor, and a PMOS current mirror load. The input differential voltage is transformed by the differential pair into two opposite-phase currents, recombined by the PMOS mirror at the single-ended output node. 
 
-A dedicated transistor sets a stable bias current, ensuring predictable and robust OTA performance over varying operating conditions. Channel lengths and widths are carefully chosen to balance between adequate intrinsic gain, bandwidth, and noise characteristics. Particularly, the transistor sizes follow good IC design practices, with lengths exceeding the minimum dimensions to suppress short-channel effects and flicker noise. Bulk connections are properly handled to avoid body effects, typically by tying bulks directly to their corresponding source terminals. The accompanying layout from Prof. Prettel (Figure @fig-prettel-ota-layout) illustrates thoughtful device placement and symmetry, reducing mismatches and parasitic coupling. Furthermore, multiple finger transistors are employed effectively to optimize layout density and performance, adhering to industry-standard guidelines.
+A dedicated transistor sets a stable bias current, ensuring predictable and robust OTA performance over varying operating conditions. Channel lengths and widths are carefully chosen to balance between adequate intrinsic gain, bandwidth, and noise characteristics. Particularly, the transistor sizes follow good IC design practices, with lengths exceeding the minimum dimensions to suppress short-channel effects and flicker noise. Bulk connections are properly handled to avoid body effects, typically by tying bulks directly to their corresponding source terminals. The accompanying layout from Prof. Pretl (Figure @fig-pretl-ota) illustrates thoughtful device placement and symmetry, reducing mismatches and parasitic coupling. Furthermore, multiple finger transistors are employed effectively to optimize layout density and performance, adhering to industry-standard guidelines.
 
-Simulations and measured data presented by Prof. Prettel validate this design as a stable, efficient, and high-performance option for analog signal processing. It exhibits superior gain and bandwidth compared to simpler OTA configurations, making it suitable for more demanding applications in integrated analog and mixed-signal circuits. Due to these advantages, our group adopted Prof. Prettel’s OTA as the baseline for subsequent design and integration phases in our project.
+Simulations and measured data presented by Prof. Pretl validate this design as a stable, efficient, and high-performance option for analog signal processing. It exhibits superior gain and bandwidth compared to simpler OTA configurations, making it suitable for more demanding applications in integrated analog and mixed-signal circuits. Due to these advantages, our group adopted this OTA as the baseline for subsequent design and integration phases in our project.
 
-![OTA schematic.](../images/sec_xschem/ota-omproved.png){#fig-self-built-ota width=80% fig-alt="schematic of the five-transistor OTA"}
-ota-improved.png
+![OTA schematic.](../images/sec_xschem/ota-improved.png){#fig-pretl-ota width=80% fig-alt="schematic of the five-transistor OTA"}
+
 
 ## Sizing and Simulation {#sec-sizing-simulation}
 
 Proper transistor sizing is critical when designing an OTA for use in a biquad filter, where gain, linearity, and bandwidth all depend heavily on MOSFET dimensions. To guide the sizing process, we adopt the $g_m / I_D$ methodology, which provides a systematic trade-off between speed, power efficiency, and voltage headroom.
 
-After experimenting with various combinations of transistor widths and lengths in simulation, we found that many trade-offs emerged between gain, speed, and voltage headroom—particularly for the cascode devices. Ultimately, we followed Prof. Prettel’s recommendations, assigning a reduced channel length of $L = 0.5\\,\\mu\\text{m}$ to the input differential pair and cascode devices ($M_{1/1C}$, $M_{2/2C}$, $M_{3/3C}$, $M_{4/4C}$) to maximize speed and transconductance. Meanwhile, the tail current source transistors ($M_5$, $M_6$) were given a longer channel length of $L = 5\\,\\mu\\text{m}$ to improve matching, suppress flicker noise, and ensure robust common-mode rejection.
+After experimenting with various combinations of transistor widths and lengths in simulation, we found that many trade-offs emerged between gain, speed, and voltage headroom—particularly for the cascode devices. Ultimately, we followed Prof. Pretl’s recommendations, assigning a reduced channel length of $L = 0.5u$ to the input differential pair and cascode devices ($M_{1/1C}$, $M_{2/2C}$, $M_{3/3C}$, $M_{4/4C}$) to maximize speed and transconductance. Meanwhile, the tail current source transistors ($M_5$, $M_6$) were given a longer channel length of $L = 5u$ to improve matching, suppress flicker noise, and ensure robust common-mode rejection.
 
 A constant sizing point of $g_m / I_D = 13$ was applied across all devices, which offered a good balance between transconductance efficiency and voltage headroom. This choice ensured that even with stacked transistors, all devices remained in saturation across the intended signal swing and supply range.
 
@@ -136,7 +134,7 @@ This result confirms that the OTA produces a constant output voltage in response
 
 ## gm‑C Biquad Prototype – Concept and Implementation {#sec-gm-biquad}
 
-After initially developing our own basic five-transistor OTA to explore the design flow and simulation process in Xschem, we proceeded to study and simulate several OTA topologies provided by Prof. Prettel. This included hands-on experimentation with his differential architectures and cascode-enhanced designs, allowing us to deepen our understanding of performance trade-offs and layout considerations in analog IC design.
+After initially developing our own basic five-transistor OTA to explore the design flow and simulation process in Xschem, we proceeded to study and simulate several OTA topologies provided by Prof. Pretel. This included hands-on experimentation with his differential architectures and cascode-enhanced designs, allowing us to deepen our understanding of performance trade-offs and layout considerations in analog IC design.
 
 In this final design step, we returned to building our own OTA, this time using an improved architecture specifically tailored for integration into a gm‑C biquad filter. The goal was to implement a fully differential, tunable low-pass filter using transconductors and capacitors only. By controlling the OTA bias current, we aimed to achieve continuous tuning of the filter's cut-off frequency without modifying passive components.
 
@@ -179,163 +177,82 @@ This differential output is evaluated across a frequency sweep from 1 kHz to 1
 ```spice
 ac dec 100 1k 100MEG
 ```
-The NGSpice block at the top of the schematic (see Figure @fig-biquad-xschem) includes the device model definitions, the simulation temperature (set to 27°C), and references to the SG13G2 PDK libraries. Parameterized values for transistor dimensions are declared at the beginning to allow flexibility when tuning device behavior:
+The NGSpice block at the top of the schematic (see Figure @fig-biquad) includes the device model definitions, the simulation temperature (set to 27°C), and references to the SG13G2 PDK libraries. Parameterized values for transistor dimensions are declared at the beginning to allow flexibility when tuning device behavior:
 ```spice
 .param lp="X"u wp="X"u l="X"u w="X"u
 ```
 
-![gm‑C biquad design.](../images/sec_xschem/ota_gm_100u.png){#fig-biquad-xschem width=80% fig-alt="OTA design implemented in Xschem for gm-C filter integration."}
+![gm‑C biquad design.](../images/sec_xschem/biquad_gm_c.png){#fig-biquad width=80% fig-alt="OTA design implemented in Xschem for gm-C filter integration."}
 
 This modular approach to simulation setup enhances reproducibility and simplifies design iterations. The OTA instances are invoked via their corresponding symbol files, ensuring consistency between simulation and schematic representation.
 
 Overall, this gm‑C biquad schematic represents a practical and scalable implementation of a continuous-time filter using custom OTA blocks. The approach aligns well with standard analog IC design methodology and is suitable for integration in high-speed signal processing chains.
 
+### Sizing the 1 kHz Low-Pass gm-C Biquad to the Baker Topology {#sec-sizing-baker}
 
+Figure @fig-biquad reproduces the fully differential gm-C biquad proposed by @baker2010cmos. In this architecture, the behavior of the filter is governed by six small-signal parameters:
 
+\begin{aligned}
+G_1 &= \frac{g_{m1}}{C_1 + C_2}, &
+G_2 &= \frac{g_{m2}}{g_{m1}}, &
+G_3 &= \frac{C_1}{g_{m1}}, \\
+G_4 &= \frac{g_{m3}}{C_3 + C_4}, &
+G_5 &= \frac{g_{m4}}{g_{m1}}, &
+G_6 &= \frac{C_3}{g_{m3}}.
+\end{aligned}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Calculations for device Dimensions for a 1 kHz gm-C Biquad (100 µA bias) {#sec-sizing-100u}
-
-For the final gm‑C biquad implementation, the tail-bias current of every OTA is fixed at 100 µA a constraint imposed by the design. At the same time, the natural frequency of the biquad must be 1 kHz, which sets a fundamental challenge. The pole of a gm‑C integrator is defined by the equation
+These expressions relate the two integrator stages $\bigl(g_{m1}, C_{1,2}\bigr)$ and $\bigl(g_{m3}, C_{3,4}\bigr)$ to the feed-forward transconductors $g_{m2}$ and $g_{m4}$. For a **low-pass** realisation, we adopt the convenient symmetry:
 
 $$
-f_{0} = \frac{g_{m}}{2\pi C}
+g_{m1} = g_{m3} = g_m, \quad C_1 = C_2 = C_3 = C_4 = C,
 $$
 
-which shows that for a given bias current, either the transconductance must be reduced, or the capacitance must be increased in order to reach low frequencies. Because reducing g_m further would push the transistors into *extremely weak inversion*, degrading noise and matching performance, the decision was made to accept larger-than-usual on-chip capacitors while keeping the MOSFETs operating in moderate to strong inversion. This approach helps preserve dynamic range and reduces flicker noise.
-
-To determine the necessary transconductance for the OTA, previous measurements on the existing OTAs yielded an efficiency of approximately
+so that both integrator poles coincide. Under this symmetry, the pole frequency reduces to
 
 $$
-\frac{g_m}{I_D} \approx 10\;\text{V}^{-1}
-\quad\text{at}\quad V_{\text{OV}} \approx 0.20\,\text{V}
+f_0 = \frac{g_m}{4\pi C},
 $$
 
-indicating moderate inversion. With a tail current of 100 µA, each side of the differential pair carries 50 µA, resulting in a transconductance of
+where the factor of 4 arises from the doubled $2C$ plates used at each integrator output in the schematic.
+
+To meet the low-frequency target of 1 kHz, we must carefully select appropriate values for $g_m$ and $C$, while respecting the OTA bias constraint. Each OTA operates with a fixed tail current of $I_{\text{tail}} = 100\;\mu\text{A}$, resulting in $I_D = 50\;\mu\text{A}$ per branch. To ensure good noise performance and strong inversion operation, we target a transconductance efficiency of approximately
 
 $$
-g_{m} = \left( \frac{g_m}{I_D} \right) I_D = 10\;\frac{1}{\text{V}} \cdot 50\;\mu\text{A} = 0.50\;\text{mS}
+\left( \frac{g_m}{I_D} \right)_{\text{target}} \approx 5\;\text{V}^{-1}.
 $$
 
-Using this transconductance value, the required capacitance to reach a natural frequency of 1 kHz can be calculated from
+This yields a branch transconductance of
 
 $$
-C = \frac{g_m}{2\pi f_0} = \frac{0.50\ \text{mS}}{2\pi \cdot 1\ \text{kHz}} \approx 80\ \text{nF}
+g_m = \left(\frac{g_m}{I_D}\right) I_D = 5 \cdot 50\;\mu\text{A} = 0.25\;\text{mS}.
 $$
 
-> **Area check** (SG13G2 MIM ≈ 2 fF/µm²):  
-> 80 nF ≈ 40 mm² — too large for a single metal layer, so the capacitor bank must be distributed across multiple layers or placed off-chip during lab validation. OTA sizing remains valid.
-
-To confirm the selected operating point, we verify the overdrive voltage using the standard saturation-region relation:
+Substituting this into the expression for $f_0$, we determine the required capacitor value for a 1 kHz pole:
 
 $$
-V_{\text{OV}} = \frac{2I_D}{g_m} = \frac{2 \cdot 50\ \mu\text{A}}{0.50\ \text{mS}} = 0.20\ \text{V}
+C = \frac{g_m}{4\pi f_0} = \frac{0.25\;\text{mS}}{4\pi \cdot 1\;\text{kHz}} \approx 20\;\text{nF}.
 $$
 
-This matches the earlier assumption. Now, assuming a mobility-capacitance product of \( \mu_n C_{\text{ox}} \approx 200\ \mu\text{A/V}^2 \), the required width-to-length ratio becomes
+As each integrator output is loaded with $2C$, the effective capacitance at each output node is approximately 40 nF.
+
+> **Area note:** At a typical SG13G2 MIM density of $2\,\text{fF}/\mu\text{m}^2$, a 20 nF capacitor requires roughly 10 mm² of silicon area. This is large for an on-chip design and motivates the use of stacked MIM structures or off-chip MLCCs for prototyping.
+
+To realise this $g_m$ in a compact layout, we choose a MOSFET overdrive voltage of $V_{\text{OV}} = 0.40\,$V and assume a mobility-capacitance product of $\mu_n C_{\text{ox}} \approx 200\,\mu\text{A}/\text{V}^2$. The required transistor aspect ratio then becomes:
 
 $$
-\frac{W}{L} = \frac{2I_D}{\mu_n C_{\text{ox}} V_{\text{OV}}^2} = \frac{100\ \mu\text{A}}{200\ \mu\text{A/V}^2 \cdot 0.04} = 12.5
+\frac{W}{L} = \frac{2I_D}{\mu_n C_{\text{ox}} V_{\text{OV}}^2}
+= \frac{100\;\mu\text{A}}{200\;\mu\text{A}/\text{V}^2 \cdot 0.16} \approx 3.1.
 $$
 
-To simplify the layout and ensure symmetry and good matching, a unified transistor geometry is chosen, meaning all NMOS devices share the same dimensions, and likewise for all PMOS devices. The final device dimensions are summarised in the following table:
+The final device sizing is summarised below:
 
-| Device set      | \(L\) | \(W\)  | Comment                                                                 |
-|------------------|-----:|------:|-------------------------------------------------------------------------|
-| **NMOS (all)**   | 1 µm | 12 µm | \(W/L \approx 12\) yields \(g_m \approx 0.50\ \text{mS}\) per OTA branch |
-| **PMOS (all)**   | 1 µm | 30 µm | Width scaled ×2.5 to compensate lower hole mobility for accurate mirroring |
-| **Tail devices** | 5 µm | 12 µm | Long channel boosts \(r_o\) and reduces flicker noise                   |
+| Device set  | $L$   | $W$   | Comment                                                  |
+|-------------|------:|------:|----------------------------------------------------------|
+| NMOS (all)  | 1 µm  | 3.2 µm | $W/L \approx 3$, yielding $g_m \approx 0.25$ mS         |
+| PMOS (all)  | 1 µm  | 8 µm   | Width ×2.5 for hole mobility compensation               |
+| Tail pair   | 5 µm  | 3.2 µm | Long $L$ increases $r_o$ and suppresses $1/f$ noise     |
 
-A common \( L = 1\ \mu\text{m} \) is used for all core devices to keep layout clean and compact, while the tail pair uses a longer length \( L = 5\ \mu\text{m} \) to achieve higher output resistance and suppress noise.
-
----
-
-**Summary**
-
-- **Bias current:** \( I_{\text{tail}} = 100\ \mu\text{A} \) (fixed)  
-- **Transconductance per branch:** \( g_m \approx 0.50\ \text{mS} \)  
-- **Capacitance per integrator:** \( C \approx 80\ \text{nF} \) → \( f_0 \approx 1\ \text{kHz} \)  
-- **Unified transistor geometry:** NMOS 12 µm / 1 µm, PMOS 30 µm / 1 µm
-
-This configuration achieves the desired 1 kHz pole with a fixed 100 µA bias in Theory. Although the required capacitors are large, they can be realised using stacked MIM layers or temporarily implemented off-chip during prototyping. Unified dimensions for NMOS and PMOS devices simplify common-centroid layout, ensuring excellent matching and layout efficiency across the four OTA blocks used in the gm‑C biquad filter.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+In summary, this sizing strategy realises a 1 kHz low-pass response while respecting the 100 µA tail bias in theory. The chosen transistor dimensions enable consistent $g_m$ across all OTA branches. Although the large on-chip capacitors pose layout challenges, they can be addressed using multilayer MIM stacks or external capacitors during prototyping. The unified NMOS/PMOS geometries also facilitate efficient common-centroid layout across the four OTAs that form the biquad filter. 
 
 ## GM/ID Methodology
 One of the first questions we have to ask in IC design is how small or how large we can design the MOSFETs we're using in the circuits. MOSFETs can be used in saturation mode or in the triode state (as well as in cut-off but this is not relevant for us). When the FET is in saturation the drain current $I_{D}$ is controlled primarily by the gate-source voltage $V_{GS}$. In this case the drain-source voltage has a smaller impact on the drain current. For the Transistor to work in saturation the drain-source terminals need to be driven with a voltage high enough so this "saturates" the FET and the highest drain-current is achieved. 
@@ -605,34 +522,3 @@ print(f"Gain Bandwidth Product: {GBW:.2e} Hz")
 - **Gain Bandwidth Product (GBW)**: Small-signal frequency response.
 
 The presented methodology offers a systematic, reproducible approach to OTA design. Starting with hand calculations and validating through simulation helps designers optimize OTA performance while balancing speed, power, and gain. This lays groundwork for addressing noise, mismatch, and layout parasitics. Further information is publicly available at [GitHub: analog-circuit-design](https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/sizing_basic_ota.ipynb).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
