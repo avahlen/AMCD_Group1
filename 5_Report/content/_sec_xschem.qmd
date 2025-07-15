@@ -373,7 +373,7 @@ This simulation is done for a n-channel MOSFET with a drain-source voltage of 1.
 The drain-current behaviour at sub-threshold gate voltages is completely inaccurate for the square-law too, and the following graph visualizes the limitation of the square-law at this point again:
 
 
-![Drain Current over Gate-Source Voltage, comparison between an nmos, a bjt and the square-law [@RWalker]](/images/sec_xschem/ac_gmid_vs_gs.png){#fig-gmid_vs_gs width=90%}
+![Drain Current over Gate-Source Voltage, comparison between an nmos, a bjt and the square-law [@RWalker]](../images/sec_xschem/ac_gmid_vs_gs.png){#fig-gmid_vs_gs width=90%}
 
 
 These three examples show that the approach using square-law to size MOSFETs is not sufficient when the transistor is operating in weak or moderate inversion and when driving the FET (nmos for example) with a low gate-source (or overdrive-) voltage. To cite Mr. Walker on this topic:
@@ -393,7 +393,7 @@ The operating areas of interest for us are the saturation region (when using the
 
 Following plot visualizes the dependancy of $\frac{g_M}{I_D}$ to the gate-source voltage and shows the transit frequency behaviour too:
 
-![$\frac{g_M}{I_D}$ and $f_T$ over the gate-source voltage [@hpretlacd]](images/sec_xschem/ac_ft_vs_gm_vgs.png){#fig-gm_vs_gs_vs_ft width=80%}
+![$\frac{g_M}{I_D}$ and $f_T$ over the gate-source voltage [@hpretlacd]](/images/sec_xschem/ac_ft_vs_gm_vgs.png){#fig-gm_vs_gs_vs_ft width=80%}
 
 ### GM/ID Overview
 

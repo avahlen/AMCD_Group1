@@ -28,7 +28,7 @@
         "\n",
         "@fig-freqResponseLowpass shows the amplitude and phase response of the low pass filter. The required frequency $f_0 = 1\\,kHz$ and quality factor $Q = 10$ recognizable in the bode plot. As the dc-gain was chosen to be $H_0 = 1$, the low pass filter has a amplitude amplification of 1 in the lower frequencies.\n"
       ],
-      "id": "3580877c"
+      "id": "6714917c"
     },
     {
       "cell_type": "code",
@@ -145,7 +145,7 @@
         "\n",
         "@fig-freqResponseHighpass shows the amplitude and phase response of the high pass filter. The required frequency $f_0 = 1\\,kHz$ and quality factor $Q = 10$ recognizable in the bode plot. As the dc-gain was chosen to be $H_0 = 1$, the low pass filter has a amplitude amplification of 1 in the higher frequencies.\n"
       ],
-      "id": "78535ba2"
+      "id": "214a7872"
     },
     {
       "cell_type": "code",
@@ -260,7 +260,7 @@
         "\n",
         "The band pass shown in @fig-freqResponseBandpass has its center frequency at $1\\,kHz$ as set in the requirements. Similarly to the low pass filter in @fig-freqResponseLowpass and the high pass filter in @fig-freqResponseHighpass the amplitude response peaks at this frequency, with its peak influenced by the quality factor.\n"
       ],
-      "id": "c9d5bc24"
+      "id": "67b86490"
     },
     {
       "cell_type": "code",
@@ -381,7 +381,7 @@
         "\n",
         "@fig-freqResponseBandstop shows the frequency response of the band stop, with its center frequency at $1\\,kHz$.\n"
       ],
-      "id": "aa6ea2ab"
+      "id": "6a501477"
     },
     {
       "cell_type": "code",
@@ -490,7 +490,7 @@
         "\n",
         "@fig-freqResponseFilter shows all four frequency responses together in oen graph. It shows nicely that all three pass filters peak at the same freqeuncy and the same height. Comparing this plot with the one from [@aslkpro2012] gives reason to argue that the filter design on a theoretic system level should work.\n"
       ],
-      "id": "3615c251"
+      "id": "1482e6c4"
     },
     {
       "cell_type": "code",
@@ -606,7 +606,7 @@
         "\n",
         "#### Pole-zero plot\n"
       ],
-      "id": "22300ad7"
+      "id": "a3582b09"
     },
     {
       "cell_type": "code",
@@ -709,7 +709,7 @@
         "\n",
         "In the following figures @fig-stabilityAdder and @fig-stabilityIntegrator this stability analysis method was used to determine the stability over the phase reserve.\n"
       ],
-      "id": "c04d41e7"
+      "id": "cdda128c"
     },
     {
       "cell_type": "code",
@@ -769,7 +769,7 @@
         "\n",
         "gives a phase reserves, that indicates stability for this component.\n"
       ],
-      "id": "bc138a98"
+      "id": "86db6d06"
     },
     {
       "cell_type": "code",
@@ -843,7 +843,7 @@
         "\n",
         "@fig-CircuitBiquadIdeal depicts the schematic of an universal biquad filter, where the OTAs are idealised with voltage controlled current sources. An ac simulation of this circuit can be viewed in @fig-idealCir.\n"
       ],
-      "id": "dd158fa3"
+      "id": "fc526ab6"
     },
     {
       "cell_type": "code",
@@ -906,7 +906,7 @@
         "\n",
         "@fig-compTfIdealAmplitude and @fig-compTfIdealPhase compares the system-theoretic analysis with transfer functions with the simulated idealised of the filter design with each other. Both plots show very nicely that the amplitude response as well as the phase response of all four filters match with their simulated and calculated responses.\n"
       ],
-      "id": "4b4b5564"
+      "id": "e2b7c07d"
     },
     {
       "cell_type": "code",
@@ -1033,7 +1033,7 @@
       "source": [
         "![Comparison of the amplitude response between the transfer functions and idealised circuit](../images/sec_characterisation/compTfIdealAmplitude.png){#fig-compTfIdealAmplitude}\n"
       ],
-      "id": "9f7bea0a"
+      "id": "dd1065c3"
     },
     {
       "cell_type": "code",
@@ -1160,7 +1160,7 @@
       "source": [
         "![Comparison of the phase response between the transfer functions and idealised circuit](../images/sec_characterisation/compTfIdealPhase.png){#fig-compTfIdealPhase}"
       ],
-      "id": "0e1d93c9"
+      "id": "e1f22d6f"
     }
   ],
   "metadata": {
