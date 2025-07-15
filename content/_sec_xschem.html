@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Xschem Simulation – IC Design of a Universal Biquad Filter</title>
+<title>4&nbsp; Xschem Simulation – IC Design of a Universal Biquad Filter</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,7 +86,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../content/_sec_finns_part.html" rel="next">
-<link href="../content/_sec_theoretical_background.html" rel="prev">
+<link href="../content/_sec_characterisation.html" rel="prev">
 <link href="../images/hsb-logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -167,7 +167,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/_sec_xschem.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/_sec_xschem.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -237,26 +237,32 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../content/_sec_characterisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Characterisation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../content/_sec_xschem.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_finns_part.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_discussion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_conclusion-outlook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -275,35 +281,35 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#environment-setup" id="toc-environment-setup" class="nav-link active" data-scroll-target="#environment-setup"><span class="header-section-number">3.1</span> Environment Setup</a>
+  <li><a href="#environment-setup" id="toc-environment-setup" class="nav-link active" data-scroll-target="#environment-setup"><span class="header-section-number">4.1</span> Environment Setup</a>
   <ul class="collapse">
-  <li><a href="#absolute-vs.-relative-path-handling" id="toc-absolute-vs.-relative-path-handling" class="nav-link" data-scroll-target="#absolute-vs.-relative-path-handling"><span class="header-section-number">3.1.1</span> Absolute vs.&nbsp;Relative Path Handling</a></li>
-  <li><a href="#docker-environment-variables-configuration" id="toc-docker-environment-variables-configuration" class="nav-link" data-scroll-target="#docker-environment-variables-configuration"><span class="header-section-number">3.1.2</span> Docker Environment Variables Configuration</a></li>
+  <li><a href="#absolute-vs.-relative-path-handling" id="toc-absolute-vs.-relative-path-handling" class="nav-link" data-scroll-target="#absolute-vs.-relative-path-handling"><span class="header-section-number">4.1.1</span> Absolute vs.&nbsp;Relative Path Handling</a></li>
+  <li><a href="#docker-environment-variables-configuration" id="toc-docker-environment-variables-configuration" class="nav-link" data-scroll-target="#docker-environment-variables-configuration"><span class="header-section-number">4.1.2</span> Docker Environment Variables Configuration</a></li>
   </ul></li>
-  <li><a href="#symbol-and-netlist-preparation" id="toc-symbol-and-netlist-preparation" class="nav-link" data-scroll-target="#symbol-and-netlist-preparation"><span class="header-section-number">3.2</span> Symbol and Netlist Preparation</a>
+  <li><a href="#symbol-and-netlist-preparation" id="toc-symbol-and-netlist-preparation" class="nav-link" data-scroll-target="#symbol-and-netlist-preparation"><span class="header-section-number">4.2</span> Symbol and Netlist Preparation</a>
   <ul class="collapse">
-  <li><a href="#symbol-definitions-and-classification-analog-pins" id="toc-symbol-definitions-and-classification-analog-pins" class="nav-link" data-scroll-target="#symbol-definitions-and-classification-analog-pins"><span class="header-section-number">3.2.1</span> Symbol Definitions and Classification (Analog Pins)</a></li>
-  <li><a href="#netlist-generation-and-validation" id="toc-netlist-generation-and-validation" class="nav-link" data-scroll-target="#netlist-generation-and-validation"><span class="header-section-number">3.2.2</span> Netlist Generation and Validation</a></li>
+  <li><a href="#symbol-definitions-and-classification-analog-pins" id="toc-symbol-definitions-and-classification-analog-pins" class="nav-link" data-scroll-target="#symbol-definitions-and-classification-analog-pins"><span class="header-section-number">4.2.1</span> Symbol Definitions and Classification (Analog Pins)</a></li>
+  <li><a href="#netlist-generation-and-validation" id="toc-netlist-generation-and-validation" class="nav-link" data-scroll-target="#netlist-generation-and-validation"><span class="header-section-number">4.2.2</span> Netlist Generation and Validation</a></li>
   </ul></li>
-  <li><a href="#sec-self-built-ota" id="toc-sec-self-built-ota" class="nav-link" data-scroll-target="#sec-self-built-ota"><span class="header-section-number">3.3</span> OTA Circuit Integration Self-built Five-Transistor OTA</a>
+  <li><a href="#sec-self-built-ota" id="toc-sec-self-built-ota" class="nav-link" data-scroll-target="#sec-self-built-ota"><span class="header-section-number">4.3</span> OTA Circuit Integration Self-built Five-Transistor OTA</a>
   <ul class="collapse">
-  <li><a href="#sec-ota-ug" id="toc-sec-ota-ug" class="nav-link" data-scroll-target="#sec-ota-ug"><span class="header-section-number">3.3.1</span> Validation of Self-built OTA – unity-gain buffer</a></li>
+  <li><a href="#sec-ota-ug" id="toc-sec-ota-ug" class="nav-link" data-scroll-target="#sec-ota-ug"><span class="header-section-number">4.3.1</span> Validation of Self-built OTA – unity-gain buffer</a></li>
   </ul></li>
-  <li><a href="#xschem-ota-description-five-transistor-ota-by-prof.-pretl" id="toc-xschem-ota-description-five-transistor-ota-by-prof.-pretl" class="nav-link" data-scroll-target="#xschem-ota-description-five-transistor-ota-by-prof.-pretl"><span class="header-section-number">3.4</span> Xschem OTA Description (Five-Transistor OTA by Prof.&nbsp;Pretl)</a></li>
-  <li><a href="#sec-sizing-simulation" id="toc-sec-sizing-simulation" class="nav-link" data-scroll-target="#sec-sizing-simulation"><span class="header-section-number">3.5</span> Sizing and Simulation</a>
+  <li><a href="#xschem-ota-description-five-transistor-ota-by-prof.-pretl" id="toc-xschem-ota-description-five-transistor-ota-by-prof.-pretl" class="nav-link" data-scroll-target="#xschem-ota-description-five-transistor-ota-by-prof.-pretl"><span class="header-section-number">4.4</span> Xschem OTA Description (Five-Transistor OTA by Prof.&nbsp;Pretl)</a></li>
+  <li><a href="#sec-sizing-simulation" id="toc-sec-sizing-simulation" class="nav-link" data-scroll-target="#sec-sizing-simulation"><span class="header-section-number">4.5</span> Sizing and Simulation</a>
   <ul class="collapse">
-  <li><a href="#small-signal-frequency-response" id="toc-small-signal-frequency-response" class="nav-link" data-scroll-target="#small-signal-frequency-response"><span class="header-section-number">3.5.1</span> Small-Signal Frequency Response</a></li>
-  <li><a href="#large-signal-transient-response" id="toc-large-signal-transient-response" class="nav-link" data-scroll-target="#large-signal-transient-response"><span class="header-section-number">3.5.2</span> Large-Signal Transient Response</a></li>
+  <li><a href="#small-signal-frequency-response" id="toc-small-signal-frequency-response" class="nav-link" data-scroll-target="#small-signal-frequency-response"><span class="header-section-number">4.5.1</span> Small-Signal Frequency Response</a></li>
+  <li><a href="#large-signal-transient-response" id="toc-large-signal-transient-response" class="nav-link" data-scroll-target="#large-signal-transient-response"><span class="header-section-number">4.5.2</span> Large-Signal Transient Response</a></li>
   </ul></li>
-  <li><a href="#sec-gm-biquad" id="toc-sec-gm-biquad" class="nav-link" data-scroll-target="#sec-gm-biquad"><span class="header-section-number">3.6</span> gm‑C Biquad Prototype – Concept and Implementation</a>
+  <li><a href="#sec-gm-biquad" id="toc-sec-gm-biquad" class="nav-link" data-scroll-target="#sec-gm-biquad"><span class="header-section-number">4.6</span> gm‑C Biquad Prototype – Concept and Implementation</a>
   <ul class="collapse">
-  <li><a href="#ota-implementation-for-gmc-biquad" id="toc-ota-implementation-for-gmc-biquad" class="nav-link" data-scroll-target="#ota-implementation-for-gmc-biquad"><span class="header-section-number">3.6.1</span> OTA Implementation for gm‑C Biquad</a></li>
-  <li><a href="#gmc-biquad-schematic-in-xschem" id="toc-gmc-biquad-schematic-in-xschem" class="nav-link" data-scroll-target="#gmc-biquad-schematic-in-xschem"><span class="header-section-number">3.6.2</span> gm‑C Biquad Schematic in Xschem</a></li>
-  <li><a href="#sec-sizing-baker" id="toc-sec-sizing-baker" class="nav-link" data-scroll-target="#sec-sizing-baker"><span class="header-section-number">3.6.3</span> Sizing the 1 kHz Low-Pass gm-C Biquad to the Baker Topology</a></li>
+  <li><a href="#ota-implementation-for-gmc-biquad" id="toc-ota-implementation-for-gmc-biquad" class="nav-link" data-scroll-target="#ota-implementation-for-gmc-biquad"><span class="header-section-number">4.6.1</span> OTA Implementation for gm‑C Biquad</a></li>
+  <li><a href="#gmc-biquad-schematic-in-xschem" id="toc-gmc-biquad-schematic-in-xschem" class="nav-link" data-scroll-target="#gmc-biquad-schematic-in-xschem"><span class="header-section-number">4.6.2</span> gm‑C Biquad Schematic in Xschem</a></li>
+  <li><a href="#sec-sizing-baker" id="toc-sec-sizing-baker" class="nav-link" data-scroll-target="#sec-sizing-baker"><span class="header-section-number">4.6.3</span> Sizing the 1 kHz Low-Pass gm-C Biquad to the Baker Topology</a></li>
   </ul></li>
-  <li><a href="#gmid-methodology" id="toc-gmid-methodology" class="nav-link" data-scroll-target="#gmid-methodology"><span class="header-section-number">3.7</span> GM/ID Methodology</a>
+  <li><a href="#gmid-methodology" id="toc-gmid-methodology" class="nav-link" data-scroll-target="#gmid-methodology"><span class="header-section-number">4.7</span> GM/ID Methodology</a>
   <ul class="collapse">
-  <li><a href="#gmid-overview" id="toc-gmid-overview" class="nav-link" data-scroll-target="#gmid-overview"><span class="header-section-number">3.7.1</span> GM/ID Overview</a></li>
+  <li><a href="#gmid-overview" id="toc-gmid-overview" class="nav-link" data-scroll-target="#gmid-overview"><span class="header-section-number">4.7.1</span> GM/ID Overview</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -313,7 +319,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></h1>
 </div>
 
 
@@ -330,16 +336,16 @@ window.Quarto = {
 </header>
 
 
-<section id="environment-setup" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="environment-setup"><span class="header-section-number">3.1</span> Environment Setup</h2>
+<section id="environment-setup" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="environment-setup"><span class="header-section-number">4.1</span> Environment Setup</h2>
 <p>Proper configuration of the simulation environment is crucial for accurate and reliable simulation results using Xschem within a Docker container. This section details the necessary considerations regarding path handling and Docker environment variables for a robust simulation process.</p>
-<section id="absolute-vs.-relative-path-handling" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="absolute-vs.-relative-path-handling"><span class="header-section-number">3.1.1</span> Absolute vs.&nbsp;Relative Path Handling</h3>
+<section id="absolute-vs.-relative-path-handling" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="absolute-vs.-relative-path-handling"><span class="header-section-number">4.1.1</span> Absolute vs.&nbsp;Relative Path Handling</h3>
 <p>In integrated circuit simulations, particularly involving hierarchical netlisting used by Xschem, careful management of file paths is essential. Absolute paths were chosen to ensure consistency and reliability, as hierarchical structures in netlisting frequently generate new subdirectories during simulation processes. Using absolute paths prevents issues arising from relative paths becoming invalid when directory structures change. Relative paths, although theoretically functional, add complexity and increase the likelihood of path errors during simulations.</p>
 <p>Therefore, all simulation paths have been consistently defined using absolute references, guaranteeing stable and predictable netlisting and simulation behavior throughout the project.</p>
 </section>
-<section id="docker-environment-variables-configuration" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="docker-environment-variables-configuration"><span class="header-section-number">3.1.2</span> Docker Environment Variables Configuration</h3>
+<section id="docker-environment-variables-configuration" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="docker-environment-variables-configuration"><span class="header-section-number">4.1.2</span> Docker Environment Variables Configuration</h3>
 <p>Within the Docker container environment used for simulations, specific variables require explicit and careful configuration. Key points regarding Docker environment setup include:</p>
 <ul>
 <li><p><strong>DESIGNS Variable</strong>:<br>
@@ -352,16 +358,16 @@ Users, especially those working on Windows-based systems, need to distinguish cl
 <p>These explicit configurations and considerations ensure that the Xschem simulation environment operates smoothly, predictably, and accurately throughout the project’s lifecycle.</p>
 </section>
 </section>
-<section id="symbol-and-netlist-preparation" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="symbol-and-netlist-preparation"><span class="header-section-number">3.2</span> Symbol and Netlist Preparation</h2>
+<section id="symbol-and-netlist-preparation" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="symbol-and-netlist-preparation"><span class="header-section-number">4.2</span> Symbol and Netlist Preparation</h2>
 <p>Accurate preparation of symbols and netlists is fundamental for reliable integrated circuit simulations using Xschem. This section outlines the critical aspects regarding symbol definitions, classifications, netlist generation, and debugging practices to ensure proper functionality and error-free simulations.</p>
-<section id="symbol-definitions-and-classification-analog-pins" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="symbol-definitions-and-classification-analog-pins"><span class="header-section-number">3.2.1</span> Symbol Definitions and Classification (Analog Pins)</h3>
+<section id="symbol-definitions-and-classification-analog-pins" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="symbol-definitions-and-classification-analog-pins"><span class="header-section-number">4.2.1</span> Symbol Definitions and Classification (Analog Pins)</h3>
 <p>All symbols used within this simulation framework must be explicitly classified as analog components. Digital pins or incorrectly labeled pins lead to simulation failures because they are incompatible with the analog circuit simulation environment. Furthermore, each symbol must be explicitly marked as a sub-circuit rather than a primitive component. Mislabeling symbols as primitives can cause errors during hierarchical netlist processing, as the netlister expects defined sub-circuit symbols to correctly navigate the circuit hierarchy.</p>
 <p>In this project, all symbols were thoroughly reviewed to confirm they were analog and properly labeled as sub-circuits.</p>
 </section>
-<section id="netlist-generation-and-validation" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="netlist-generation-and-validation"><span class="header-section-number">3.2.2</span> Netlist Generation and Validation</h3>
+<section id="netlist-generation-and-validation" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="netlist-generation-and-validation"><span class="header-section-number">4.2.2</span> Netlist Generation and Validation</h3>
 <p>Netlist generation in Xschem follows a hierarchical methodology. Starting from the top schematic, the netlister recursively searches for defined symbols globally. It is essential that symbol paths and local variables are correctly configured and matched explicitly in each hierarchy level. If paths or symbols are misconfigured or missing, the netlister fails to locate necessary components, leading to simulation errors.</p>
 <p>Therefore, explicit steps were taken to ensure:</p>
 <ul>
@@ -373,23 +379,23 @@ Users, especially those working on Windows-based systems, need to distinguish cl
 <p>Adopting this debugging approach significantly enhanced the efficiency and accuracy of symbol and netlist preparation processes throughout the simulation.</p>
 </section>
 </section>
-<section id="sec-self-built-ota" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="sec-self-built-ota"><span class="header-section-number">3.3</span> OTA Circuit Integration Self-built Five-Transistor OTA</h2>
+<section id="sec-self-built-ota" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="sec-self-built-ota"><span class="header-section-number">4.3</span> OTA Circuit Integration Self-built Five-Transistor OTA</h2>
 <p>Initially, our group developed our own five-transistor OTA schematic within Xschem to gain practical insights and explore various design parameters.</p>
-<p>Figure <a href="#fig-self-built-ota" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> shows the minimalist OTA designed during the early project phase. The circuit follows the five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly <span class="math display">\[ g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr) \]</span> Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2.</p>
+<p>Figure <a href="#fig-self-built-ota" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> shows the minimalist OTA designed during the early project phase. The circuit follows the five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly <span class="math display">\[ g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr) \]</span> Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2.</p>
 <div id="fig-self-built-ota" class="quarto-float quarto-figure quarto-figure-center anchored" alt="schematic of the five-transistor OTA prototype">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-self-built-ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../images/sec_xschem/self_build_ota.png" class="img-fluid figure-img" style="width:80.0%" alt="schematic of the five-transistor OTA prototype">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-self-built-ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: Self-built five-transistor OTA schematic.
+Figure&nbsp;4.1: Self-built five-transistor OTA schematic.
 </figcaption>
 </figure>
 </div>
-<section id="sec-ota-ug" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="sec-ota-ug"><span class="header-section-number">3.3.1</span> Validation of Self-built OTA – unity-gain buffer</h3>
-<p>To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (Fig. <a href="#fig-ota-ug-tb" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.<br>
+<section id="sec-ota-ug" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="sec-ota-ug"><span class="header-section-number">4.3.1</span> Validation of Self-built OTA – unity-gain buffer</h3>
+<p>To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (Fig. <a href="#fig-ota-ug-tb" class="quarto-xref">Figure&nbsp;<span>4.2</span></a>): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.<br>
 The long two-second period guarantees only one transition inside the 100 ms simulation window.<br>
 A 20 µA current source on i_bias establishes the tail current, with supplies at V<sub>DD</sub> = 1.5 V and V<sub>SS</sub> = 0 V.</p>
 <div id="fig-ota-ug-tb" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Unity-gain follower.">
@@ -398,7 +404,7 @@ A 20 µA current source on i_bias establishes the tail current, with supplies at
 <img src="../images/sec_xschem/tb_self_tran.png" class="img-fluid figure-img" style="width:80.0%" alt="Unity-gain follower.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ota-ug-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2: Unity-gain test-bench schematic.
+Figure&nbsp;4.2: Unity-gain test-bench schematic.
 </figcaption>
 </figure>
 </div>
@@ -416,18 +422,18 @@ set wr_singlescale
 <img src="../images/sec_xschem/self_tran_vin_vout.png" class="img-fluid figure-img" style="width:80.0%" alt="Ngspice transient plot of the unity-gain follower.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ota-ug-wave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.3: Transient waveforms: v_in vs.&nbsp;v_out.
+Figure&nbsp;4.3: Transient waveforms: v_in vs.&nbsp;v_out.
 </figcaption>
 </figure>
 </div>
-<p>Figure <a href="#fig-ota-ug-wave" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> plots the resulting traces. The output (left) mirrors the input (right). The output does respond to the input change, it rises up during the pulse window, indicating the OTA is doing something. V_out lags significantly behind v_in and only reaches 1.1 V, while v_in reaches 1.2 V. The OTA as unity-gain buffer should closely track the input with only minimal offset or delay. This indicates: - Too low gain - Insufficient bandwidth - Or incorrect biasing (e.g., not enough current to drive the output stage).</p>
+<p>Figure <a href="#fig-ota-ug-wave" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> plots the resulting traces. The output (left) mirrors the input (right). The output does respond to the input change, it rises up during the pulse window, indicating the OTA is doing something. V_out lags significantly behind v_in and only reaches 1.1 V, while v_in reaches 1.2 V. The OTA as unity-gain buffer should closely track the input with only minimal offset or delay. This indicates: - Too low gain - Insufficient bandwidth - Or incorrect biasing (e.g., not enough current to drive the output stage).</p>
 <p>After conducting simulations and analyses, and discussing our results with the professor, we concluded that the five-transistor OTA provided by Prof.&nbsp;Pretel offered superior performance and reliability for our application. Thus, the decision was made to proceed with Prof.&nbsp;Pretl’s well-established OTA design.</p>
 </section>
 </section>
-<section id="xschem-ota-description-five-transistor-ota-by-prof.-pretl" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="xschem-ota-description-five-transistor-ota-by-prof.-pretl"><span class="header-section-number">3.4</span> Xschem OTA Description (Five-Transistor OTA by Prof.&nbsp;Pretl)</h2>
-<p>Prof.&nbsp;Pretl’s five-transistor OTA is an optimized implementation, specifically tailored for efficient analog circuit integration using the SG13G2 CMOS process. His design, depicted in Figure <a href="#fig-pretl-ota" class="quarto-xref">Figure&nbsp;<span>3.4</span></a>, maintains simplicity while enhancing performance through thoughtful sizing and layout practices. This OTA employs a standard architecture comprising an NMOS differential input pair, a tail current source transistor, and a PMOS current mirror load. The input differential voltage is transformed by the differential pair into two opposite-phase currents, recombined by the PMOS mirror at the single-ended output node.</p>
-<p>A dedicated transistor sets a stable bias current, ensuring predictable and robust OTA performance over varying operating conditions. Channel lengths and widths are carefully chosen to balance between adequate intrinsic gain, bandwidth, and noise characteristics. Particularly, the transistor sizes follow good IC design practices, with lengths exceeding the minimum dimensions to suppress short-channel effects and flicker noise. Bulk connections are properly handled to avoid body effects, typically by tying bulks directly to their corresponding source terminals. The accompanying layout from Prof.&nbsp;Pretl (Figure <a href="#fig-pretl-ota" class="quarto-xref">Figure&nbsp;<span>3.4</span></a>) illustrates thoughtful device placement and symmetry, reducing mismatches and parasitic coupling. Furthermore, multiple finger transistors are employed effectively to optimize layout density and performance, adhering to industry-standard guidelines.</p>
+<section id="xschem-ota-description-five-transistor-ota-by-prof.-pretl" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="xschem-ota-description-five-transistor-ota-by-prof.-pretl"><span class="header-section-number">4.4</span> Xschem OTA Description (Five-Transistor OTA by Prof.&nbsp;Pretl)</h2>
+<p>Prof.&nbsp;Pretl’s five-transistor OTA is an optimized implementation, specifically tailored for efficient analog circuit integration using the SG13G2 CMOS process. His design, depicted in Figure <a href="#fig-pretl-ota" class="quarto-xref">Figure&nbsp;<span>4.4</span></a>, maintains simplicity while enhancing performance through thoughtful sizing and layout practices. This OTA employs a standard architecture comprising an NMOS differential input pair, a tail current source transistor, and a PMOS current mirror load. The input differential voltage is transformed by the differential pair into two opposite-phase currents, recombined by the PMOS mirror at the single-ended output node.</p>
+<p>A dedicated transistor sets a stable bias current, ensuring predictable and robust OTA performance over varying operating conditions. Channel lengths and widths are carefully chosen to balance between adequate intrinsic gain, bandwidth, and noise characteristics. Particularly, the transistor sizes follow good IC design practices, with lengths exceeding the minimum dimensions to suppress short-channel effects and flicker noise. Bulk connections are properly handled to avoid body effects, typically by tying bulks directly to their corresponding source terminals. The accompanying layout from Prof.&nbsp;Pretl (Figure <a href="#fig-pretl-ota" class="quarto-xref">Figure&nbsp;<span>4.4</span></a>) illustrates thoughtful device placement and symmetry, reducing mismatches and parasitic coupling. Furthermore, multiple finger transistors are employed effectively to optimize layout density and performance, adhering to industry-standard guidelines.</p>
 <p>Simulations and measured data presented by Prof.&nbsp;Pretl validate this design as a stable, efficient, and high-performance option for analog signal processing. It exhibits superior gain and bandwidth compared to simpler OTA configurations, making it suitable for more demanding applications in integrated analog and mixed-signal circuits. Due to these advantages, our group adopted this OTA as the baseline for subsequent design and integration phases in our project.</p>
 <div id="fig-pretl-ota" class="quarto-float quarto-figure quarto-figure-center anchored" alt="schematic of the five-transistor OTA">
 <figure class="quarto-float quarto-float-fig figure">
@@ -435,20 +441,20 @@ Figure&nbsp;3.3: Transient waveforms: v_in vs.&nbsp;v_out.
 <img src="../images/sec_xschem/ota-improved.png" class="img-fluid figure-img" style="width:80.0%" alt="schematic of the five-transistor OTA">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pretl-ota-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.4: OTA schematic.
+Figure&nbsp;4.4: OTA schematic.
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="sec-sizing-simulation" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="sec-sizing-simulation"><span class="header-section-number">3.5</span> Sizing and Simulation</h2>
+<section id="sec-sizing-simulation" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="sec-sizing-simulation"><span class="header-section-number">4.5</span> Sizing and Simulation</h2>
 <p>Proper transistor sizing is critical when designing an OTA for use in a biquad filter, where gain, linearity, and bandwidth all depend heavily on MOSFET dimensions. To guide the sizing process, we adopt the <span class="math inline">\(g_m / I_D\)</span> methodology, which provides a systematic trade-off between speed, power efficiency, and voltage headroom.</p>
 <p>After experimenting with various combinations of transistor widths and lengths in simulation, we found that many trade-offs emerged between gain, speed, and voltage headroom—particularly for the cascode devices. Ultimately, we followed Prof.&nbsp;Pretl’s recommendations, assigning a reduced channel length of <span class="math inline">\(L = 0.5u\)</span> to the input differential pair and cascode devices (<span class="math inline">\(M_{1/1C}\)</span>, <span class="math inline">\(M_{2/2C}\)</span>, <span class="math inline">\(M_{3/3C}\)</span>, <span class="math inline">\(M_{4/4C}\)</span>) to maximize speed and transconductance. Meanwhile, the tail current source transistors (<span class="math inline">\(M_5\)</span>, <span class="math inline">\(M_6\)</span>) were given a longer channel length of <span class="math inline">\(L = 5u\)</span> to improve matching, suppress flicker noise, and ensure robust common-mode rejection.</p>
 <p>A constant sizing point of <span class="math inline">\(g_m / I_D = 13\)</span> was applied across all devices, which offered a good balance between transconductance efficiency and voltage headroom. This choice ensured that even with stacked transistors, all devices remained in saturation across the intended signal swing and supply range.</p>
 <p>Simulation results based on this sizing show that the OTA achieves an open-loop gain <span class="math inline">\(A_0 &gt; 43\,dB\)</span>, satisfying key performance goals such as bandwidth and linear range for biquad operation. These results confirm that the selected sizing strategy works reliably within the supply voltage limits of the SG13G2 process, and is well-suited for analog signal processing tasks requiring accurate and programmable transconductance.</p>
-<section id="small-signal-frequency-response" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="small-signal-frequency-response"><span class="header-section-number">3.5.1</span> Small-Signal Frequency Response</h3>
-<p>To evaluate the frequency-domain behavior of the improved OTA, an AC simulation was performed using a differential testbench. The resulting magnitude response, shown in Figure <a href="#fig-ota-improved-ac" class="quarto-xref">Figure&nbsp;<span>3.5</span></a>, displays the classic characteristics of a low-pass amplifier.</p>
+<section id="small-signal-frequency-response" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="small-signal-frequency-response"><span class="header-section-number">4.5.1</span> Small-Signal Frequency Response</h3>
+<p>To evaluate the frequency-domain behavior of the improved OTA, an AC simulation was performed using a differential testbench. The resulting magnitude response, shown in Figure <a href="#fig-ota-improved-ac" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>, displays the classic characteristics of a low-pass amplifier.</p>
 <p>The curve remains flat (0 dB) throughout the low-frequency range, indicating that the OTA maintains constant gain for small-signal inputs up to approximately <span class="math inline">\(f_{-3\text{dB}} \approx 80\,\text{MHz}\)</span>. This –3 dB point marks the unity-gain bandwidth of the amplifier in this configuration. Beyond this corner frequency, the magnitude begins to drop at a rate close to –20 dB/decade, indicating a dominant single-pole roll-off.</p>
 <p>The high-frequency attenuation begins smoothly, confirming that the amplifier is well-compensated and free from peaking or signs of instability. The steep slope observed beyond 100 MHz suggests the presence of additional parasitic poles but no indication of underdamped behavior or excessive phase lag. This roll-off behavior is consistent with a cascode-loaded OTA, where the increased output impedance pushes the dominant pole to higher frequencies.</p>
 <p>Overall, the OTA demonstrates a strong small-signal frequency response, offering sufficient gain-bandwidth product for its intended use in biquad filters and other analog signal processing tasks.</p>
@@ -458,14 +464,14 @@ Figure&nbsp;3.4: OTA schematic.
 <img src="../images/sec_xschem/ota-improved_tb-ac.png" class="img-fluid figure-img" style="width:80.0%" alt="Simulated frequency response of the improved OTA (|V_out| in dB vs. frequency).">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ota-improved-ac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.5: AC magnitude response of the improved OTA.
+Figure&nbsp;4.5: AC magnitude response of the improved OTA.
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="large-signal-transient-response" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="large-signal-transient-response"><span class="header-section-number">3.5.2</span> Large-Signal Transient Response</h3>
-<p>Figure <a href="#fig-ota-improved-transient" class="quarto-xref">Figure&nbsp;<span>3.6</span></a> shows the transient simulation result of the improved OTA in response to a step input signal.</p>
+<section id="large-signal-transient-response" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="large-signal-transient-response"><span class="header-section-number">4.5.2</span> Large-Signal Transient Response</h3>
+<p>Figure <a href="#fig-ota-improved-transient" class="quarto-xref">Figure&nbsp;<span>4.6</span></a> shows the transient simulation result of the improved OTA in response to a step input signal.</p>
 <p>The red trace (<span class="math inline">\(v_\text{ena}\)</span>) represents the input voltage. It exhibits a sharp transition from 0 V to approximately 1.5 V at the beginning of the simulation and remains constant for the rest of the time window.</p>
 <p>The blue trace (<span class="math inline">\(v_\text{out}\)</span>) shows the corresponding OTA output voltage. Immediately after the input step, the output rises to approximately 0.8 V and holds steady throughout the entire duration of the simulation (15 µs). There is no visible overshoot, ringing, or delay in the output transition, and the response appears stable and monotonic.</p>
 <p>This result confirms that the OTA produces a constant output voltage in response to a step input under the simulated conditions. The flat and settled output also suggests that the biasing and feedback configuration were correctly established.</p>
@@ -475,20 +481,20 @@ Figure&nbsp;3.5: AC magnitude response of the improved OTA.
 <img src="../images/sec_xschem/ota-improved_ota_tran.png" class="img-fluid figure-img" style="width:80.0%" alt="Transient simulation: OTA output response (v_out) to input step (v_ena).">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ota-improved-transient-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.6: Transient response of the improved OTA to a step input.
+Figure&nbsp;4.6: Transient response of the improved OTA to a step input.
 </figcaption>
 </figure>
 </div>
 </section>
 </section>
-<section id="sec-gm-biquad" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="sec-gm-biquad"><span class="header-section-number">3.6</span> gm‑C Biquad Prototype – Concept and Implementation</h2>
+<section id="sec-gm-biquad" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="sec-gm-biquad"><span class="header-section-number">4.6</span> gm‑C Biquad Prototype – Concept and Implementation</h2>
 <p>After initially developing our own basic five-transistor OTA to explore the design flow and simulation process in Xschem, we proceeded to study and simulate several OTA topologies provided by Prof.&nbsp;Pretl. This included hands-on experimentation with his differential architectures and cascode-enhanced designs, allowing us to deepen our understanding of performance trade-offs and layout considerations in analog IC design.</p>
 <p>In this final design step, we returned to building our own OTA, this time using an improved architecture specifically tailored for integration into a gm‑C biquad filter. The goal was to implement a fully differential, tunable low-pass filter using transconductors and capacitors only. By controlling the OTA bias current, we aimed to achieve continuous tuning of the filter’s cut-off frequency without modifying passive components.</p>
 <p>The following section presents the concept, schematic implementation, and simulation-based validation of this gm‑C biquad prototype. It marks the transition from isolated OTA design toward the realization of a complete analog signal processing block.</p>
-<section id="ota-implementation-for-gmc-biquad" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="ota-implementation-for-gmc-biquad"><span class="header-section-number">3.6.1</span> OTA Implementation for gm‑C Biquad</h3>
-<p>The OTA used in our gm‑C biquad implementation is structurally inspired by the differential architecture shown in Figure 3.15(c) of <span class="citation" data-cites="baker2010cmos">Baker (<a href="references.html#ref-baker2010cmos" role="doc-biblioref">2010</a>)</span> analog design textbook. As illustrated in Figure <a href="#fig-ota-implemented" class="quarto-xref">Figure&nbsp;<span>3.7</span></a>, the OTA consists of a fully differential input stage, a folded current-mirror load, and a programmable tail current source, making it well-suited for use as a transconductor in gm‑C filters.</p>
+<section id="ota-implementation-for-gmc-biquad" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="ota-implementation-for-gmc-biquad"><span class="header-section-number">4.6.1</span> OTA Implementation for gm‑C Biquad</h3>
+<p>The OTA used in our gm‑C biquad implementation is structurally inspired by the differential architecture shown in Figure 3.15(c) of <span class="citation" data-cites="baker2010cmos">Baker (<a href="references.html#ref-baker2010cmos" role="doc-biblioref">2010</a>)</span> analog design textbook. As illustrated in Figure <a href="#fig-ota-implemented" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>, the OTA consists of a fully differential input stage, a folded current-mirror load, and a programmable tail current source, making it well-suited for use as a transconductor in gm‑C filters.</p>
 <p>The core of the OTA includes a differential NMOS input pair (<span class="math inline">\(M_7\)</span>, <span class="math inline">\(M_8\)</span>), which converts the input voltage difference <span class="math inline">\((v_\text{inp} - v_\text{inn})\)</span> into a differential current. These currents are then mirrored and steered by the PMOS current mirror loads (<span class="math inline">\(M_2\)</span> through <span class="math inline">\(M_6\)</span>) into the output branches (<span class="math inline">\(v_\text{outp}\)</span> and <span class="math inline">\(v_\text{outn}\)</span>). The top mirrors are folded downward into the output stage, creating high output impedance and helping increase gain—similar to the folded-cascode concept seen in the reference OTA.</p>
 <p>The output common-mode voltage is stabilized using a biasing network composed of transistors <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_{11}\)</span>–<span class="math inline">\(M_{12}\)</span>, which fix the gate voltages for proper operation. The tail current is generated through the NMOS branch (<span class="math inline">\(M_9\)</span>, <span class="math inline">\(M_{10}\)</span>), which is set by the external <span class="math inline">\(i_\text{bias}\)</span> node and determines the OTA’s transconductance via:</p>
 <p><span class="math display">\[
@@ -501,14 +507,14 @@ g_m \approx \frac{2 I_\text{bias}}{V_\text{ov}}
 <img src="../images/sec_xschem/ota_gm_100u.png" class="img-fluid figure-img" style="width:80.0%" alt="OTA design implemented in Xschem for gm-C filter integration.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ota-implemented-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.7: Implemented OTA schematic used for gm‑C biquad design.
+Figure&nbsp;4.7: Implemented OTA schematic used for gm‑C biquad design.
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="gmc-biquad-schematic-in-xschem" class="level3" data-number="3.6.2">
-<h3 data-number="3.6.2" class="anchored" data-anchor-id="gmc-biquad-schematic-in-xschem"><span class="header-section-number">3.6.2</span> gm‑C Biquad Schematic in Xschem</h3>
-<p>Figure <span class="quarto-unresolved-ref">?fig-biquad-xschem</span> shows the complete schematic of the gm‑C biquad filter implemented in Xschem. The design consists of four OTA instances, each configured in a differential topology and biased with a shared tail current of 100 µA via the global <code>ibias</code> net. The power supply is set to 1.5 V, and all OTAs operate with a common-mode input reference of 0.75 V via the <code>vcm</code> node.</p>
+<section id="gmc-biquad-schematic-in-xschem" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="gmc-biquad-schematic-in-xschem"><span class="header-section-number">4.6.2</span> gm‑C Biquad Schematic in Xschem</h3>
+<p>Figure <a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> shows the complete schematic of the gm‑C biquad filter implemented in Xschem. The design consists of four OTA instances, each configured in a differential topology and biased with a shared tail current of 100 µA via the global <code>ibias</code> net. The power supply is set to 1.5 V, and all OTAs operate with a common-mode input reference of 0.75 V via the <code>vcm</code> node.</p>
 <p>The circuit follows the classical gm‑C biquad topology introduced earlier. It features two cascaded integrator stages formed by OTA–capacitor pairs, followed by additional OTA blocks for feedforward and feedback terms. All OTAs use the same internal schematic (<code>ota_gm_100u</code>) and are referenced symmetrically.</p>
 <p>Each OTA drives or is loaded by 10 pF metal-insulator-metal (MIM) capacitors (<span class="math inline">\(C_1\)</span>–<span class="math inline">\(C_6\)</span>), arranged in 1:2 ratios where necessary to match the theoretical filter structure (e.g., <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span>). Differential symmetry is preserved throughout the network using mirrored signal paths and balanced layout routing.</p>
 <p>The input signals <code>vinp</code> and <code>vinn</code> are provided by AC voltage sources with 0.5 V DC offset and 0.5 V amplitude. The output is taken differentially as <code>voutp</code> and <code>voutn</code>, and the simulation computes their difference using:</p>
@@ -516,7 +522,7 @@ Figure&nbsp;3.7: Implemented OTA schematic used for gm‑C biquad design.
 plot db(v(vod))</code></pre>
 <p>This differential output is evaluated across a frequency sweep from 1 kHz to 100 MHz using the NGSpice .ac dec command with 100 points per decade:</p>
 <pre class="spice"><code>ac dec 100 1k 100MEG</code></pre>
-<p>The NGSpice block at the top of the schematic (see Figure <a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>3.8</span></a>) includes the device model definitions, the simulation temperature (set to 27°C), and references to the SG13G2 PDK libraries. Parameterized values for transistor dimensions are declared at the beginning to allow flexibility when tuning device behavior:</p>
+<p>The NGSpice block at the top of the schematic (see Figure <a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>4.8</span></a>) includes the device model definitions, the simulation temperature (set to 27°C), and references to the SG13G2 PDK libraries. Parameterized values for transistor dimensions are declared at the beginning to allow flexibility when tuning device behavior:</p>
 <pre class="spice"><code>.param lp="X"u wp="X"u l="X"u w="X"u</code></pre>
 <div id="fig-biquad" class="quarto-float quarto-figure quarto-figure-center anchored" alt="OTA design implemented in Xschem for gm-C filter integration.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -524,16 +530,16 @@ plot db(v(vod))</code></pre>
 <img src="../images/sec_xschem/biquad_gm_c.png" class="img-fluid figure-img" style="width:80.0%" alt="OTA design implemented in Xschem for gm-C filter integration.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-biquad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.8: gm‑C biquad design.
+Figure&nbsp;4.8: gm‑C biquad design.
 </figcaption>
 </figure>
 </div>
 <p>This modular approach to simulation setup enhances reproducibility and simplifies design iterations. The OTA instances are invoked via their corresponding symbol files, ensuring consistency between simulation and schematic representation.</p>
 <p>Overall, this gm‑C biquad schematic represents a practical and scalable implementation of a continuous-time filter using custom OTA blocks. The approach aligns well with standard analog IC design methodology and is suitable for integration in high-speed signal processing chains.</p>
 </section>
-<section id="sec-sizing-baker" class="level3" data-number="3.6.3">
-<h3 data-number="3.6.3" class="anchored" data-anchor-id="sec-sizing-baker"><span class="header-section-number">3.6.3</span> Sizing the 1 kHz Low-Pass gm-C Biquad to the Baker Topology</h3>
-<p>Figure <a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>3.8</span></a> reproduces the fully differential gm-C biquad proposed by <span class="citation" data-cites="baker2010cmos">Baker (<a href="references.html#ref-baker2010cmos" role="doc-biblioref">2010</a>)</span>. In this architecture, the behavior of the filter is governed by six small-signal parameters:</p>
+<section id="sec-sizing-baker" class="level3" data-number="4.6.3">
+<h3 data-number="4.6.3" class="anchored" data-anchor-id="sec-sizing-baker"><span class="header-section-number">4.6.3</span> Sizing the 1 kHz Low-Pass gm-C Biquad to the Baker Topology</h3>
+<p>Figure <a href="#fig-biquad" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> reproduces the fully differential gm-C biquad proposed by <span class="citation" data-cites="baker2010cmos">Baker (<a href="references.html#ref-baker2010cmos" role="doc-biblioref">2010</a>)</span>. In this architecture, the behavior of the filter is governed by six small-signal parameters:</p>
 <p><span class="math display">\[
 \begin{aligned}
 G_1 &amp;= \frac{g_{m1}}{C_1 + C_2}, &amp;
@@ -614,8 +620,8 @@ C = \frac{g_m}{4\pi f_0} = \frac{0.25\;\text{mS}}{4\pi \cdot 1\;\text{kHz}} \app
 <p>In summary, this sizing strategy realises a 1 kHz low-pass response while respecting the 100 µA tail bias in theory. The chosen transistor dimensions enable consistent <span class="math inline">\(g_m\)</span> across all OTA branches. Although the large on-chip capacitors pose layout challenges, they can be addressed using multilayer MIM stacks or external capacitors during prototyping. The unified NMOS/PMOS geometries also facilitate efficient common-centroid layout across the four OTAs that form the biquad filter.</p>
 </section>
 </section>
-<section id="gmid-methodology" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="gmid-methodology"><span class="header-section-number">3.7</span> GM/ID Methodology</h2>
+<section id="gmid-methodology" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="gmid-methodology"><span class="header-section-number">4.7</span> GM/ID Methodology</h2>
 <p>One of the first questions we have to ask in IC design is how small or how large we can design the MOSFETs we’re using in the circuits. MOSFETs can be used in saturation mode or in the triode state (as well as in cut-off but this is not relevant for us). When the FET is in saturation the drain current <span class="math inline">\(I_{D}\)</span> is controlled primarily by the gate-source voltage <span class="math inline">\(V_{GS}\)</span>. In this case the drain-source voltage has a smaller impact on the drain current. For the Transistor to work in saturation the drain-source terminals need to be driven with a voltage high enough so this “saturates” the FET and the highest drain-current is achieved.</p>
 <p>On the other hand if the voltage applied across the drain-source contacts (on a NMOS for example) is relatively low (compared to the voltage for saturation), the FET will operate in the so called triode mode. In triode mode the drain-source voltage <span class="math inline">\(V_{DS}\)</span> has a fundamentally larger impact on the drain current then in the saturation mode. <span class="citation" data-cites="hpretlacd">(<a href="references.html#ref-hpretlacd" role="doc-biblioref">H. Pretl and Michael Koefinger 2025</a>)</span></p>
 <p>One Methodology to solve the question we asked at the beginning of this chapter is the <span class="math inline">\(\frac{gm}{I_{D}}\)</span> methodology which we will introduce in a moment. There are basically three MOSFET characteristics directly describing the behaviour of it:</p>
@@ -688,7 +694,7 @@ V_T = 2 \phi_F + \frac{\epsilon_s}{C_{OX}} \sqrt{\frac{2q N_{A}}{\epsilon} (2\ph
 <img src="../images/sec_xschem/ac_inversion_vs_vov.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inversion-vs-vov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.9: Inversion level vs.&nbsp;Overdrive Voltage <span class="citation" data-cites="RWalker">(<a href="references.html#ref-RWalker" role="doc-biblioref">Ross Walker 2017</a>)</span>
+Figure&nbsp;4.9: Inversion level vs.&nbsp;Overdrive Voltage <span class="citation" data-cites="RWalker">(<a href="references.html#ref-RWalker" role="doc-biblioref">Ross Walker 2017</a>)</span>
 </figcaption>
 </figure>
 </div>
@@ -699,7 +705,7 @@ Figure&nbsp;3.9: Inversion level vs.&nbsp;Overdrive Voltage <span class="citatio
 <img src="../images/sec_xschem/ac_id_vs_gs.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-id_vs_gs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.10: Drain Current over Gate-Source Voltage, Simulation vs.&nbsp;square-law <span class="citation" data-cites="RWalker">(<a href="references.html#ref-RWalker" role="doc-biblioref">Ross Walker 2017</a>)</span>
+Figure&nbsp;4.10: Drain Current over Gate-Source Voltage, Simulation vs.&nbsp;square-law <span class="citation" data-cites="RWalker">(<a href="references.html#ref-RWalker" role="doc-biblioref">Ross Walker 2017</a>)</span>
 </figcaption>
 </figure>
 </div>
@@ -711,7 +717,7 @@ Figure&nbsp;3.10: Drain Current over Gate-Source Voltage, Simulation vs.&nbsp;sq
 <img src="../images/sec_xschem/ac_gmid_vs_gs.png" class="img-fluid figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gmid_vs_gs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.11: Drain Current over Gate-Source Voltage, comparison between an nmos, a bjt and the square-law <span class="citation" data-cites="RWalker">(<a href="references.html#ref-RWalker" role="doc-biblioref">Ross Walker 2017</a>)</span>
+Figure&nbsp;4.11: Drain Current over Gate-Source Voltage, comparison between an nmos, a bjt and the square-law <span class="citation" data-cites="RWalker">(<a href="references.html#ref-RWalker" role="doc-biblioref">Ross Walker 2017</a>)</span>
 </figcaption>
 </figure>
 </div>
@@ -725,7 +731,7 @@ Figure&nbsp;3.11: Drain Current over Gate-Source Voltage, comparison between an 
 <img src="../images/sec_xschem/ac_eaa_ft_vs_L.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ft_vs_L-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.12: transit frequency vs.&nbsp;channel length L <span class="citation" data-cites="hpretlacd">(<a href="references.html#ref-hpretlacd" role="doc-biblioref">H. Pretl and Michael Koefinger 2025</a>)</span>
+Figure&nbsp;4.12: transit frequency vs.&nbsp;channel length L <span class="citation" data-cites="hpretlacd">(<a href="references.html#ref-hpretlacd" role="doc-biblioref">H. Pretl and Michael Koefinger 2025</a>)</span>
 </figcaption>
 </figure>
 </div>
@@ -737,12 +743,12 @@ Figure&nbsp;3.12: transit frequency vs.&nbsp;channel length L <span class="citat
 <img src="../images/sec_xschem/ac_ft_vs_gm_vgs.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gm_vs_gs_vs_ft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.13: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span class="math inline">\(f_T\)</span> over the gate-source voltage <span class="citation" data-cites="hpretlacd">(<a href="references.html#ref-hpretlacd" role="doc-biblioref">H. Pretl and Michael Koefinger 2025</a>)</span>
+Figure&nbsp;4.13: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span class="math inline">\(f_T\)</span> over the gate-source voltage <span class="citation" data-cites="hpretlacd">(<a href="references.html#ref-hpretlacd" role="doc-biblioref">H. Pretl and Michael Koefinger 2025</a>)</span>
 </figcaption>
 </figure>
 </div>
-<section id="gmid-overview" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="gmid-overview"><span class="header-section-number">3.7.1</span> GM/ID Overview</h3>
+<section id="gmid-overview" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="gmid-overview"><span class="header-section-number">4.7.1</span> GM/ID Overview</h3>
 <p>Device sizing is a fundamental step in analog circuit design.Proper sizing ensures the desired trade-off between gain, bandwidth, power consumption, and linearity. A structured approach to sizing guarantees that the transistors operate in their optimal region—typically strong inversion and saturation for analog applications.</p>
 <p>This section presents a basic OTA sizing methodology based on the work of Prepl, whose notebook is publicly available at <a href="https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/sizing_basic_ota.ipynb">GitHub: analog-circuit-design</a>.</p>
 <p>The notebook demonstrates a Python-based framework for calculating initial transistor dimensions in a basic OTA. Below is an explanation of the key steps, equations, and important code snippets from the sizing method, along with visual aids to clarify the process.</p>
@@ -755,7 +761,7 @@ Figure&nbsp;3.13: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span
 <li>Evaluate key performance metrics like slew rate and gain-bandwidth product.</li>
 </ol>
 <p>At the beginning of the notebook, fundamental technology parameters are defined, including supply voltages, threshold voltages, mobility, and channel-length modulation factors for NMOS and PMOS transistors.</p>
-<div id="c830fe22" class="cell" data-execution_count="1">
+<div id="eb4f9f29" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Technology and model parameters</span></span>
@@ -773,7 +779,7 @@ Figure&nbsp;3.13: <span class="math inline">\(\frac{g_M}{I_D}\)</span> and <span
 I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 \]</span></p>
 <p>The differential pair (M1 and M2) defines the input transconductance of the OTA. Sizing begins by selecting bias current and overdrive voltage (V<span class="math inline">\(_{OV}\)</span>):</p>
-<div id="4a710b74" class="cell" data-execution_count="2">
+<div id="f86da5d9" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bias current for each NMOS transistor</span></span>
@@ -792,7 +798,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 </div>
 <p>In this example: - Bias current (ID1) is 100 µA per transistor. - Overdrive voltage (VOV1) is 0.2 V. - Calculated W/L ensures M1 and M2 operate in saturation with desired transconductance.</p>
 <p>The tail current source (M5) provides total bias current to the differential pair:</p>
-<div id="f7e2d8e6" class="cell" data-execution_count="3">
+<div id="21dc0b82" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tail current source sizing (M5)</span></span>
@@ -808,7 +814,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 </div>
 <p>M5 carries the combined current of M1 and M2, typically twice ID1.</p>
 <p>PMOS current mirrors (M3 and M4) act as active loads for the differential pair, impacting gain and output resistance:</p>
-<div id="6debd55f" class="cell" data-execution_count="4">
+<div id="79f74599" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load transistors sizing (M3 and M4)</span></span>
@@ -824,7 +830,7 @@ I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2
 </div>
 <p>Lowering overdrive voltage (V<span class="math inline">\(_{OV3}\)</span>) increases output resistance, improving OTA voltage gain.</p>
 <p>Once W/L ratios are calculated, device transconductance (g<span class="math inline">\(_m\)</span>) and output resistance (r<span class="math inline">\(_o\)</span>) are derived:</p>
-<div id="41a01194" class="cell" data-execution_count="5">
+<div id="3f3b5118" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gm1 <span class="op">=</span> mu_n_Cox <span class="op">*</span> WL1 <span class="op">*</span> VOV1 <span class="op">/</span> <span class="dv">2</span></span>
@@ -846,7 +852,7 @@ ro3: 1.00e+05 Ω</code></pre>
 A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3})
 \]</span></p>
 <p>In Python:</p>
-<div id="cdfe2939" class="cell" data-execution_count="6">
+<div id="026a87e6" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Av <span class="op">=</span> gm1 <span class="op">*</span> (ro1 <span class="op">*</span> ro3) <span class="op">/</span> (ro1 <span class="op">+</span> ro3)</span>
@@ -858,7 +864,7 @@ A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3})
 </div>
 <p><strong>Evaluating Performance Metrics - Slew Rate and GBW:</strong></p>
 <p>Slew rate and gain-bandwidth product (GBW) predict OTA dynamic performance:</p>
-<div id="1796921d" class="cell" data-execution_count="7">
+<div id="5037264e" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1310,13 +1316,13 @@ Silveira, F., D. Flandre, and P. G. A. Jespers. 1996. <span>“A Gm/Id Based Met
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../content/_sec_theoretical_background.html" class="pagination-link" aria-label="Theoretical Background">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Theoretical Background</span></span>
+      <a href="../content/_sec_characterisation.html" class="pagination-link" aria-label="Characterisation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Characterisation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../content/_sec_finns_part.html" class="pagination-link" aria-label="Integrated Layouting">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

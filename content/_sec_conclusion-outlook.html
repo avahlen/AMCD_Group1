@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Conclusion – IC Design of a Universal Biquad Filter</title>
+<title>7&nbsp; Conclusion – IC Design of a Universal Biquad Filter</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,7 +112,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/_sec_conclusion-outlook.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/_sec_conclusion-outlook.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -182,26 +182,32 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../content/_sec_characterisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Characterisation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../content/_sec_xschem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Xschem Simulation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_finns_part.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Integrated Layouting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_discussion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/_sec_conclusion-outlook.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -220,7 +226,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#outlook" id="toc-outlook" class="nav-link active" data-scroll-target="#outlook"><span class="header-section-number">6.1</span> Outlook</a></li>
+  <li><a href="#outlook" id="toc-outlook" class="nav-link active" data-scroll-target="#outlook"><span class="header-section-number">7.1</span> Outlook</a></li>
   </ul>
 </nav>
     </div>
@@ -229,7 +235,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></h1>
 </div>
 
 
@@ -253,8 +259,8 @@ window.Quarto = {
 <li><p><strong>Advanced OTA &amp; gm-C biquad</strong> – Armed with that insight we sized a new OTA, embedded four copies in a Baker-style biquad, and verified low-pass behaviour in Ngspice. Although the filter has yet to reach textbook performance (excess capacitor area and modest accuracy), the core transconductor operated as intended and the full design flow—from Docker setup to AC, DC, and transient sweeps—ran without critical errors.</p></li>
 </ul>
 <p>Beyond the circuits themselves we tackled practical IC-flow hurdles: absolute path handling inside Docker, strict symbol classification, plain-text netlist debugging, and (just as important) team communication. Working through those issues was as valuable as the schematics we produced.</p>
-<section id="outlook" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="outlook"><span class="header-section-number">6.1</span> Outlook</h2>
+<section id="outlook" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="outlook"><span class="header-section-number">7.1</span> Outlook</h2>
 <p>The current prototype still relies on 20–40 nF capacitor plates, far too large. Once the schematic is frozen, a full Monte-Carlo corner run is required to quantify flicker-noise density, device mismatch, and the benefits of common-centroid placement. Replacing the external Ibias source with a compact current-reference DAC would move all frequency control on-chip and simplifying future integrator arrays.</p>
 <p>The final stretch for the gm-C biquad, will be physical-verification work: schematic-versus-layout (SVL) checks, DRC/LVS closure, and migration of the Docker flow to the PDK’s official calibre or klayout rule decks. With only modest additional simulation and layout effort, the design can mature into a fabrication-ready 1 kHz low-pass gm-C biquad—a useful test vehicle for our newly-acquired analog-IC skills and a solid springboard for more ambitious mixed-signal projects.</p>
 
@@ -664,7 +670,7 @@ window.Quarto = {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../content/_sec_discussion.html" class="pagination-link" aria-label="Discussion">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Discussion</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
