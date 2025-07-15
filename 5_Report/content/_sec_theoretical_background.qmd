@@ -1,11 +1,5 @@
 # Theoretical Background
 
-my idea was to group all theoretics into one chapter, like a when the information becomes necessary during the quarto book, people can just jump back to this. we would circumvent having to introduce every little concept seperately whenever it comes up...
-
-:::{.callout-warning}
-I am thinking about changing the order, so that we are starting with biquads and work through the filter design from big to small...
-:::
-
 This chapter introduces the theory and core concepts necessary for IC design of a biquad filter. It is structured in a way, that it goes from the big picture to the small components. First, biquad filters are introduced with a focus on the universal biquad filter. After that, operational amplifiers come into the the foreground, as biquad filters make use of them in their circuits. Operational amplifiers are looked upon from an IC design standpoint.
 
 ## Biquad filter
@@ -14,7 +8,7 @@ The biquadratic filter, also known as the biquad filter, has its earliest implem
 
 ### Universal biquad filter
 
-For the filter design in this project, an universal biquad filter is used. The universal biquad filter is biquad filter variant with four operational amplifiers used in its design and the property of being able to be used in four different filter variants. Depending on the output of the universal biquad used, a low pass filter, high pass filter, band pass filter, or band stop filter will be implemented. This can be seen in (ref to figure of biquad fitler design). [@aslkpro2012]
+For the filter design in this project, an universal biquad filter is used. The universal biquad filter is biquad filter variant with four operational amplifiers used in its design and the property of being able to be used in four different filter variants. Depending on the output of the universal biquad used, a low pass filter, high pass filter, band pass filter, or band stop filter will be implemented. This can be seen in @fig-BiquadCircuit. [@aslkpro2012]
 
 ![circuit design of an universal biquad filter](/images/sec_theorectical_background/biquad_circuit.png){#fig-BiquadCircuit}
 
@@ -167,7 +161,7 @@ For $Q = 100$ the peak is $A_{peak} = 100.001$, which converted into dB is $A_{p
 
 
 ## Operational Amplifier
-As seen in @fig-BiquadCircuit a Biquad Filter consists four Operational Amplifiers. To get a better understanding of these, this chaper will discuss the main arguments of OPAMS.
+As seen in @fig-BiquadCircuit a Biquad Filter consists four Operational Amplifiers. To get a better understanding of these, this chapter will discuss the main arguments of OPAMPS.
 There are different types of operational amplifiers that differ, for example, by their low- or high-impedance inputs and outputs. According to Schmid there exist nine diffrent types of the Opamps, but only four are mainly used [@Approximating_OPAMP]. This is because almost always, the non-inverting (positive) input is designed as a high-impedance voltage input. The inverting (negative) input can either be a high-impedance voltage input or a low-impedance current input, depending on the type. Accordingly, the output can be either a low-impedance voltage output or a high-impedance current output. 
 This results in four basic configurations, as shown in the accompanying table @tbl-opamp_comapre. (Images are taken from @wiki_opams)
 
@@ -227,7 +221,7 @@ $$
 g_m = \frac{\Delta I_{out}}{\Delta V_{in}}
 $$
 
-where $g_m$ is the transconductance, $\Delta I_{out}$ is the change in output current, and $\Delta V_{in}$ is the change in input voltage. The unit of transconductance is the siemens ($S$), which is equivalent to amperes per volt ($A$/$V$). Historically, it was also measured in "mhos," which is "ohm" spelled backwards, reflecting its inverse relationship to resistance.
+where $g_m$ is the transconductance, $\Delta I_{out}$ is the change in output current, and $\Delta V_{in}$ is the change in input voltage. The unit of transconductance is the siemens ($S$), which is equivalent to amperes per volt ($A$/$V$). Historically, it was also measured in "mho", which is "ohm" spelled backwards, reflecting its inverse relationship to resistance.
 
 
 In field-effect transistors (FETs) the transconductance determines the device's ability to amplify signals. A higher transconductance value indicates a stronger amplification capability, as a small change in input voltage can result in a significant change in output current. 

@@ -603,7 +603,7 @@ plt.savefig("../images/sec_characterisation/poleZeroStability.png", format="png"
 
 @fig-poleZeroStability shows the pole-zero plots of all four filters, low pass, high pass, band pass and band stop. In all four plots the poles are located in the left half of the s-plane and the system can therefore theoretically be classified as stable. [@razavi2018] confirms this, as the article explains that with $Q \rightarrow \infty$ the poles of the system approach the $j\omega$ axis and the system becomes unstable.
 
-This analysis onbly considers the system as a mathematical model and as a whole. Further considerations regarding the stability of the components, integrators and adders, have to be done.
+This analysis only considers the system as a mathematical model and as a whole. Further considerations regarding the stability of the components, integrators and adders, have to be done.
 
 #### Component stability
 
@@ -727,12 +727,6 @@ $$
 $$
 
 Therefore the integrator would be stable.
-
-#### OTA stability
-
-:::{.callout-note}
-lets come back to this, if I should magically find some more time somewhere...
-:::
 
 ### Ideal Opamp
 
