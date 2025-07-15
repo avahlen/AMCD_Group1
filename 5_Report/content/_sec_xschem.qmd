@@ -21,7 +21,7 @@ Within the Docker container environment used for simulations, specific variables
   The root directory within the Docker environment differs from that of the host operating system, specifically being located at `root/headless`. This distinction requires careful handling when navigating or setting paths within Docker terminals.
 
 - **Terminal and Directory Awareness**:  
-  Users, especially those working on Windows-based systems, need to distinguish clearly between terminal environments (native Windows, Windows Subsystem for Linux, Docker) as each has fundamentally different root directories and file path conventions. Maintaining clear and explicit awareness of these distinctions prevents file referencing errors during simulations.
+  Users, especially those working on Windows-based systems, need to distinguish clearly between terminal environments (native Windows, Windows Subsystem for Linux, Docker) as each has fundamentally different root directories and file path conventions. Maintaining clear awareness of these distinctions prevents file referencing errors during simulations.
 
 These explicit configurations and considerations ensure that the Xschem simulation environment operates smoothly, predictably, and accurately throughout the project's lifecycle.
 
@@ -96,7 +96,6 @@ A dedicated transistor sets a stable bias current, ensuring predictable and robu
 Simulations and measured data presented by Prof. Pretl validate this design as a stable, efficient, and high-performance option for analog signal processing. It exhibits superior gain and bandwidth compared to simpler OTA configurations, making it suitable for more demanding applications in integrated analog and mixed-signal circuits. Due to these advantages, our group adopted this OTA as the baseline for subsequent design and integration phases in our project.
 
 ![OTA schematic.](../images/sec_xschem/ota-improved.png){#fig-pretl-ota width=80% fig-alt="schematic of the five-transistor OTA"}
-
 
 ## Sizing and Simulation {#sec-sizing-simulation}
 
@@ -261,16 +260,14 @@ On the other hand if the voltage applied across the drain-source contacts (on a 
 
  One Methodology to solve the question we asked at the beginning of this chapter is the $\frac{gm}{I_{D}}$ methodology which we will introduce in a moment. There are basically three MOSFET characteristics directly describing the behaviour of it:
 
-
 - $\frac{g_m}{I_D}$ : Transconductance Efficiency 
 - $\frac{\omega_{T}}{f_T}$  : Transit frequency
 - $\frac{g_m}{g_{ds}}$ : Intrinsic Gain
 
-
 To understand the first characteristic for our FETs we have to take a look at the different operating points which depend on the applied voltages. Whenever we apply voltages to a FET in order to control a specific drain current $I_{D}$, we can operate the FET in either weak inversion, strong inversion or moderate inversion. This behaviour is controlled by the Overdrive Voltage $V_{OV}$ which is defined as the difference between the gate-source voltage and the threshold voltage. To note this small point the drain-current is controlled by the voltage between gate and source. Whenever an nmos is not being used as a low-side switch or amplifier or the pmos is being used as a low-side component problems can arise. Since we are using FETs in our switched capacitor integrator for example this is quite important. 
 
 $$
-    V_{OV} = V_{GS} - V_{TH} \tag{27}
+    V_{OV} = V_{GS} - V_{TH}
 $$
 
 We have to keep in mind that the threshold voltage isn't a magical number that can be applied to every MOSFET, it rather depends on the geometry (with W and L for example) and other factors. For the example nmos given in the Analog Circuit Design IHP SG13G2 Devices Table by Professor Pretl, the threshold voltage is 0.5V. Therefore the overdrive voltage describes how "much" the gate-source voltage is above the threshold of the FET. Depending on this overdrive voltage the circuit/ic designer can apply different $\frac{g_{M}}{I_{D}}$ values with the unit [$\frac{1}{V}$]. This unit is derived in the following way:
@@ -278,13 +275,13 @@ We have to keep in mind that the threshold voltage isn't a magical number that c
 With $g_{M}$ defined by:
 
 $$
-g_{M} = \frac{\partial I_D}{\partial V_{GS}}  \tag{28}
+g_{M} = \frac{\partial I_D}{\partial V_{GS}}
 $$
 
 and $I_{D}$ having the unit Ampere [A] and the voltage $V_{GS}$ we get:
 
 $$
-\frac{\frac{A}{V}}{A} = \frac{1}{V} \tag{29}
+\frac{\frac{A}{V}}{A} = \frac{1}{V}
 $$
 
 Before we continue with the $\frac{g_{M}}{I_{D}}$ method we want to note that there also is the *square-law* model with which circuit designers can design MOSFET circuits. This model is usually applicable for PCB circuits and takes the situation into account where the MOSFET is driven in the stong inversion state. The square-law model is being applied assuming that the FET is operating in the "linear" or "triode" mode, however on nanometer scale FETs (down to 130 nm with the IHP-SG13G2 PDK) this model doesn't give us precise solutions anymore. Many effects like parasitic capacitances alter the operational behaviour of the FET and lead to the square-law model deviating afar from the real-world behaviour in many situations [@SQRLaw].
@@ -292,7 +289,7 @@ Before we continue with the $\frac{g_{M}}{I_{D}}$ method we want to note that th
 The square-model drain-current behavior is being described by the following formula:
 
 $$
-I_{D} = \frac{Z \cdot \overline{\mu_n} \cdot C_{OX}}{L} [(V_{GS} - V_{T}) \cdot V_{DS} - \frac{V_{DS}^2}{2}]  \tag{30}
+I_{D} = \frac{Z \cdot \overline{\mu_n} \cdot C_{OX}}{L} [(V_{GS} - V_{T}) \cdot V_{DS} - \frac{V_{DS}^2}{2}]
 $$
 
 with the two conditions:
@@ -310,7 +307,7 @@ with following definitions:
 The threshold voltage is defined as:
 
 $$
-V_T = 2 \phi_F + \frac{\epsilon_s}{C_{OX}} \sqrt{\frac{2q N_{A}}{\epsilon} (2\phi_F)} \tag{31}
+V_T = 2 \phi_F + \frac{\epsilon_s}{C_{OX}} \sqrt{\frac{2q N_{A}}{\epsilon} (2\phi_F)}
 $$
 
 with:
@@ -318,12 +315,11 @@ with:
 $\phi_F$ being the Fermi Potential (surface potential) defined by:
 
 $$
-\phi_F = \frac{kT}{q} \cdot ln (\frac{N_A}{n_i}) \tag{32}
+\phi_F = \frac{kT}{q} \cdot ln (\frac{N_A}{n_i})
 $$
 
 with $N_A$ being the acceptor doping concentration and $n_i$ being the intrinsic carrier concentration. 
 The term 2 $\phi_F$ corresponds to the surface potential required to achieve strong inversion. 
-
 
 For more details the reader can consult [@SQRLaw],[@MurmannGmId] or [@gmId].
 
@@ -331,7 +327,7 @@ To illustrate the problems of the square-law model when designing MOSFET circuit
 
 Transconductance Efficiency:
 $$
-\frac{g_m}{I_D} \cong \frac{2}{V_{OV}} \tag{33}
+\frac{g_m}{I_D} \cong \frac{2}{V_{OV}}
 $$
 
 higher efficiencs here means more transconductance for the same drain current.
@@ -339,7 +335,7 @@ higher efficiencs here means more transconductance for the same drain current.
 Transit Frequency: 
 
 $$
-\frac{g_M}{C_{gg}} \cong \frac{3}{2}\frac{\mu V_{OV}}{L^2} \tag{34}
+\frac{g_M}{C_{gg}} \cong \frac{3}{2}\frac{\mu V_{OV}}{L^2}
 $$
 
 higher transit frequency for the same gate-capacitance.
@@ -348,7 +344,7 @@ higher transit frequency for the same gate-capacitance.
 Intrinsic Gain:
 
 $$
-\frac{g_m}{g_{ds}} \cong \frac{2}{\lambda V_{OV}} \tag{35}
+\frac{g_m}{g_{ds}} \cong \frac{2}{\lambda V_{OV}}
 $$
 
 high transconductance (at same drain-current $I_D$) without higher output conductance. 
@@ -388,7 +384,6 @@ The lenght of the MOSFET channel also has a large influence on it's frequency ch
 
 ![transit frequency vs. channel length L [@hpretlacd]](/images/sec_xschem/ac_eaa_ft_vs_L.png){#fig-ft_vs_L width=80%}
 
-
 The operating areas of interest for us are the saturation region (when using the FET as an amplifier for example) and the region when the FET is being used to "just" work as a switch. With setting $V_{DS}$ to $\frac{V_{DD}}{2}$ we keep the FET in saturation. Reminding ourselves again that with larger $g_M$ we have more "gain" and with a smaller $I_D$ we have higher efficiency we try to hit the sweetspot between size (as every square milimeter has it's cost) and current consumption (if we have wearable battery powered devices for example). Keeping also in mind that temperature has a large effect we cannot use arbitratily large drain currents. 
 
 Following plot visualizes the dependancy of $\frac{g_M}{I_D}$ to the gate-source voltage and shows the transit frequency behaviour too:
@@ -427,7 +422,7 @@ lambda_p = 0.1     # Channel length modulation PMOS [1/V]
 These parameters are critical for calculating transistor drain current in saturation:
 
 $$
-I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 \tag{24}
+I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 
 $$
 
 The differential pair (M1 and M2) defines the input transconductance of the OTA. Sizing begins by selecting bias current and overdrive voltage (V$_{OV}$):
@@ -490,7 +485,7 @@ print(f"ro3: {ro3:.2e} Ω")
 The OTA's DC gain is:
 
 $$
-A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3}) \tag{25}
+A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3})
 $$
 
 In Python:
