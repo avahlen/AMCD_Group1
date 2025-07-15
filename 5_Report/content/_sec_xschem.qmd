@@ -52,14 +52,14 @@ Adopting this debugging approach significantly enhanced the efficiency and accur
 ## OTA Circuit Integration Self-built Five-Transistor OTA  {#sec-self-built-ota}
 Initially, our group developed our own five-transistor OTA schematic within Xschem to gain practical insights and explore various design parameters.
 
-Figure \@fig-self-built-ota shows the minimalist OTA designed during the early project phase. The circuit follows the five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly $$ g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr) $$
+Figure @fig-self-built-ota shows the minimalist OTA designed during the early project phase. The circuit follows the five-transistor topology: an NMOS differential pair (M8/M3) converts the input difference into two anti-phase drain currents; a PMOS current mirror (M1/M7) then forces these currents to recombine at the single-ended node v_out, generating voltage gain of roughly $$ g_{m,\text{pair}}\bigl(r_{o,\text{M1}} \parallel r_{o,\text{M7}}\bigr) $$
 Biasing is supplied by the tail branch (M4→M2), where the external i_bias current is mirrored into M2.
 
 ![Self-built five-transistor OTA schematic.](../images/sec_xschem/self_build_ota.png){#fig-self-built-ota width=80% fig-alt="schematic of the five-transistor OTA prototype"}
 
 ### Validation of Self-built OTA – unity-gain buffer  {#sec-ota-ug}
 
-To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (Fig. \@fig-ota-ug-tb): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.  
+To verify large-signal behaviour the prototype OTA was configured as a unity-gain follower (Fig. @fig-ota-ug-tb): v_out is shorted to the inverting input, and the non-inverting input is driven by a single rail-to-rail pulse PULSE(0 1.2 10m 1u 1u 20m 2) The stimulus holds 0 V for 10 ms, rises to 1.2 V in 1 µs, remains high for 20 ms, and then returns to 0 V.  
 The long two-second period guarantees only one transition inside the 100 ms simulation window.  
 A 20 µA current source on i_bias establishes the tail current, with supplies at V<sub>DD</sub> = 1.5 V and V<sub>SS</sub> = 0 V.
 
@@ -134,7 +134,7 @@ This result confirms that the OTA produces a constant output voltage in response
 
 ## gm‑C Biquad Prototype – Concept and Implementation {#sec-gm-biquad}
 
-After initially developing our own basic five-transistor OTA to explore the design flow and simulation process in Xschem, we proceeded to study and simulate several OTA topologies provided by Prof. Pretel. This included hands-on experimentation with his differential architectures and cascode-enhanced designs, allowing us to deepen our understanding of performance trade-offs and layout considerations in analog IC design.
+After initially developing our own basic five-transistor OTA to explore the design flow and simulation process in Xschem, we proceeded to study and simulate several OTA topologies provided by Prof. Pretl. This included hands-on experimentation with his differential architectures and cascode-enhanced designs, allowing us to deepen our understanding of performance trade-offs and layout considerations in analog IC design.
 
 In this final design step, we returned to building our own OTA, this time using an improved architecture specifically tailored for integration into a gm‑C biquad filter. The goal was to implement a fully differential, tunable low-pass filter using transconductors and capacitors only. By controlling the OTA bias current, we aimed to achieve continuous tuning of the filter's cut-off frequency without modifying passive components.
 
@@ -142,7 +142,7 @@ The following section presents the concept, schematic implementation, and simula
 
 ### OTA Implementation for gm‑C Biquad
 
-The OTA used in our gm‑C biquad implementation is structurally inspired by the differential architecture shown in Figure 3.15(c) of Baker’s CMOS analog design textbook. As illustrated in Figure @fig-ota-implemented, the OTA consists of a fully differential input stage, a folded current-mirror load, and a programmable tail current source, making it well-suited for use as a transconductor in gm‑C filters.
+The OTA used in our gm‑C biquad implementation is structurally inspired by the differential architecture shown in Figure 3.15(c) of @baker2010cmos analog design textbook. As illustrated in Figure @fig-ota-implemented, the OTA consists of a fully differential input stage, a folded current-mirror load, and a programmable tail current source, making it well-suited for use as a transconductor in gm‑C filters.
 
 The core of the OTA includes a differential NMOS input pair ($M_7$, $M_8$), which converts the input voltage difference $(v_\text{inp} - v_\text{inn})$ into a differential current. These currents are then mirrored and steered by the PMOS current mirror loads ($M_2$ through $M_6$) into the output branches ($v_\text{outp}$ and $v_\text{outn}$). The top mirrors are folded downward into the output stage, creating high output impedance and helping increase gain—similar to the folded-cascode concept seen in the reference OTA.
 
