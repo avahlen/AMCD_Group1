@@ -9,12 +9,6 @@ reference designs by Prof. Pretl and, finally, to a “advanced” OTA driving a
 * **Gm-C biquad** – With that insight experience the next step was sizing a new OTA, embedded four copies in a Baker-style biquad, and verified low-pass behaviour
   in Ngspice.  Although the filter has yet to reach textbook performance, the design flow until the AC analysis ran without critical errors.
 
-Armed with that insight we sized a new OTA,
-  embedded four copies in a Baker-style biquad, and verified low-pass behaviour
-  in Ngspice. Although the filter has yet to reach textbook performance
-  (excess capacitor area and modest accuracy), the core transconductor
-  operated as intended and the full design flow—from Docker setup to AC without critical errors.
-
 Beyond the circuits themselves other issue were tackled in the IC design flow:
 absolute path handling inside Docker, strict symbol classification,
 plain-text netlist debugging, and (just as important) team communication.
