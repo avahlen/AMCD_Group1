@@ -109,6 +109,7 @@ C {gnd.sym} 280 -170 0 0 {name=l6 lab=GND}
 C {devices/code_shown.sym} 560 -420 0 0 {name=NGSPICE only_toplevel=true 
 value="
 .param lp=1u wp=8u l=1u w=3.2u c=20n
+*.param lp=0.13u wp=0.15U l=0.13u w=0.15u c=10n
 .temp 27
 .control
 option sparse

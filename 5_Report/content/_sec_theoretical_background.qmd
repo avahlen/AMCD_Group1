@@ -241,6 +241,8 @@ The transistors $M_1$ and $M_2$ form a differential pair, which is biased by the
 
 A current mirror consists of at least two transistors, one working as the input (reference) source and the other ones as copies of it. As the name suggests, the primary function of a current mirror is to copy the input current to the output, ensuring that the output current is an exact duplicate of the input. Importantly, the flow of the input current is unaffected by the size of the mirrored output current or any variations in it.
 
+![A current mirror (taken from @nerdsdostuff_current_mirror)](../images/sec_theorectical_background/current_mirror.png){#fig-current_mirror width=40%}
+
 This behavior is made possible by two key characteristics of the current mirror: its relatively low input resistance and its relatively high output resistance. The low input resistance ensures the input current remains stable regardless of drive conditions, and the high output resistance maintains a constant output current independent of load variations. (@analog_university_current_mirror)
 
 A current mirror is also capable of copying one current and converting it to multiple different outputs. This is possible by attaching more transistors with their gate $G$ to the drain $D$ of the reference transistor. By scaling the width and length of each output transistor differently, multiple scales of the input current can be created. Hereby, a big advantage is when using MOSFETs, due to the fact that no current is flowing through the gate. In the case of BJTs, a compensation circuit is added. (@hpretlacd)
@@ -251,7 +253,7 @@ A current mirror is also capable of copying one current and converting it to mul
 
 A differential pair, also referred to as a differential amplifier, is an electronic circuit designed to compare the difference between two input voltages while minimizing any voltage that is common to both inputs. It consists of two transistors and can have two inputs and two outputs, as seen in @fig-diff_pair. 
 
-![A differential pair @hpretlacd](../images/sec_theorectical_background/differential_pair.png){#fig-diff_pair}
+![A differential pair (taken from @hpretlacd)](../images/sec_theorectical_background/differential_pair.png){#fig-diff_pair}
 
 Its primary function is to amplify the difference between two input signals while rejecting any common-mode signals, which are identical in both amplitude and phase at the two inputs. This property makes the differential pair highly effective in noise reduction and signal processing applications. In a typical differential pair using MOSFETs, the two transistors are matched in terms of their electrical characteristics, such as threshold voltage $V_{th}$ and transconductance $g_m$. The inputs are applied to the gates $G$ of the MOSFETs, while the outputs are taken from the drains $D$. A current source is usually connected to the sources $S$ of the MOSFETs to provide a constant bias current, here noted as $g_{\text{tail}}$ or like in @fig-5tota as $I_{\text{bias}}$.
 
