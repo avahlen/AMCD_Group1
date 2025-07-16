@@ -627,19 +627,29 @@ Figure&nbsp;2.4: <span class="citation" data-cites="hpretlacd">H. Pretl and Mich
 <section id="sec-current_mirror" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="sec-current_mirror"><span class="header-section-number">2.2.3</span> Current Mirror</h3>
 <p>A current mirror consists of at least two transistors, one working as the input (reference) source and the other ones as copies of it. As the name suggests, the primary function of a current mirror is to copy the input current to the output, ensuring that the output current is an exact duplicate of the input. Importantly, the flow of the input current is unaffected by the size of the mirrored output current or any variations in it.</p>
+<div id="fig-current_mirror" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-current_mirror-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../images/sec_theorectical_background/current_mirror.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-current_mirror-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5: A current mirror (taken from <span class="citation" data-cites="nerdsdostuff_current_mirror">Nerds Do Stuff (<a href="references.html#ref-nerdsdostuff_current_mirror" role="doc-biblioref">2024</a>)</span>)
+</figcaption>
+</figure>
+</div>
 <p>This behavior is made possible by two key characteristics of the current mirror: its relatively low input resistance and its relatively high output resistance. The low input resistance ensures the input current remains stable regardless of drive conditions, and the high output resistance maintains a constant output current independent of load variations. (<span class="citation" data-cites="analog_university_current_mirror">Analog University (<a href="references.html#ref-analog_university_current_mirror" role="doc-biblioref">2024</a>)</span>)</p>
 <p>A current mirror is also capable of copying one current and converting it to multiple different outputs. This is possible by attaching more transistors with their gate <span class="math inline">\(G\)</span> to the drain <span class="math inline">\(D\)</span> of the reference transistor. By scaling the width and length of each output transistor differently, multiple scales of the input current can be created. Hereby, a big advantage is when using MOSFETs, due to the fact that no current is flowing through the gate. In the case of BJTs, a compensation circuit is added. (<span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span>)</p>
 </section>
 <section id="sec-diff_pair" class="level3" data-number="2.2.4">
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="sec-diff_pair"><span class="header-section-number">2.2.4</span> Differential Pair</h3>
-<p>A differential pair, also referred to as a differential amplifier, is an electronic circuit designed to compare the difference between two input voltages while minimizing any voltage that is common to both inputs. It consists of two transistors and can have two inputs and two outputs, as seen in <a href="#fig-diff_pair" class="quarto-xref">Figure&nbsp;<span>2.5</span></a>.</p>
+<p>A differential pair, also referred to as a differential amplifier, is an electronic circuit designed to compare the difference between two input voltages while minimizing any voltage that is common to both inputs. It consists of two transistors and can have two inputs and two outputs, as seen in <a href="#fig-diff_pair" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>.</p>
 <div id="fig-diff_pair" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diff_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../images/sec_theorectical_background/differential_pair.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diff_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.5: A differential pair <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span>
+Figure&nbsp;2.6: A differential pair (taken from <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span>)
 </figcaption>
 </figure>
 </div>
@@ -674,14 +684,14 @@ Circuit symbol of MOSFETs
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In the literature, the circuit symbol of MOSFETs is not uniform. Some denote them with a small arrow between the gate (<span class="math inline">\(G\)</span>) and source (<span class="math inline">\(S\)</span>), which is not very precise due to the fact MOSFETs are symmetric. This means that the drain (<span class="math inline">\(D\)</span>) and source (<span class="math inline">\(S\)</span>) can be interchanged, and the names are only defined to make circuits clearer. Therefore, an accurate symbol for the n-MOS (shown in <a href="#fig-nmos" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>) and p-MOS (shown in <a href="#fig-pmos" class="quarto-xref">Figure&nbsp;<span>2.7</span></a>) is shown in the following figures taken from <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span>:</p>
+<p>In the literature, the circuit symbol of MOSFETs is not uniform. Some denote them with a small arrow between the gate (<span class="math inline">\(G\)</span>) and source (<span class="math inline">\(S\)</span>), which is not very precise due to the fact MOSFETs are symmetric. This means that the drain (<span class="math inline">\(D\)</span>) and source (<span class="math inline">\(S\)</span>) can be interchanged, and the names are only defined to make circuits clearer. Therefore, an accurate symbol for the n-MOS (shown in <a href="#fig-nmos" class="quarto-xref">Figure&nbsp;<span>2.7</span></a>) and p-MOS (shown in <a href="#fig-pmos" class="quarto-xref">Figure&nbsp;<span>2.8</span></a>) is shown in the following figures taken from <span class="citation" data-cites="hpretlacd">H. Pretl and Michael Koefinger (<a href="references.html#ref-hpretlacd" role="doc-biblioref">2025</a>)</span>:</p>
 <div id="fig-nmos" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../images/sec_theorectical_background/nmos_symbol.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.6: n-MOSFET circuit symbol
+Figure&nbsp;2.7: n-MOSFET circuit symbol
 </figcaption>
 </figure>
 </div>
@@ -691,7 +701,7 @@ Figure&nbsp;2.6: n-MOSFET circuit symbol
 <img src="../images/sec_theorectical_background/pmos_symbol.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.7: p-MOSFET circuit symbol
+Figure&nbsp;2.8: p-MOSFET circuit symbol
 </figcaption>
 </figure>
 </div>
@@ -724,14 +734,14 @@ Warning
 </section>
 <section id="small-signal-representation" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="small-signal-representation"><span class="header-section-number">2.3.2</span> Small-Signal Representation</h3>
-<p>By applying different voltages to a MOSFET, different behaviours appear. But there is one thing which is very unliked by engineers and others, all these transfer functions are non linear. So making any calculations by hand is nearly impossible. That’s why in practise the biasing method exists. This is done by applying a dc voltage to the terminals of the MOSFET and during operation only a small signal change appears. With this technique an <strong>Operating Point</strong> is created, which enables to assume a linear behaviour in its small signal area (like in <a href="#fig-mosfetoppoint" class="quarto-xref">Figure&nbsp;<span>2.8</span></a>). Because the MOSFET is put into an small operation point and all the changes applied are very small, this linearisation area is called <em>Small-signal model</em>.</p>
+<p>By applying different voltages to a MOSFET, different behaviours appear. But there is one thing which is very unliked by engineers and others, all these transfer functions are non linear. So making any calculations by hand is nearly impossible. That’s why in practise the biasing method exists. This is done by applying a dc voltage to the terminals of the MOSFET and during operation only a small signal change appears. With this technique an <strong>Operating Point</strong> is created, which enables to assume a linear behaviour in its small signal area (like in <a href="#fig-mosfetoppoint" class="quarto-xref">Figure&nbsp;<span>2.9</span></a>). Because the MOSFET is put into an small operation point and all the changes applied are very small, this linearisation area is called <em>Small-signal model</em>.</p>
 <div id="fig-mosfetoppoint" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mosfetoppoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../images/sec_theorectical_background/mosfet_oppoint.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mosfetoppoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.8: MOSFET drain current vs.&nbsp;drain-to-source voltage for several values
+Figure&nbsp;2.9: MOSFET drain current vs.&nbsp;drain-to-source voltage for several values
 </figcaption>
 </figure>
 </div>
@@ -762,7 +772,7 @@ Important variables
 <img src="../images/sec_theorectical_background/mosfet_smsi.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mosfetsmsi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.9: MOSFET-Small Signal Model
+Figure&nbsp;2.10: MOSFET-Small Signal Model
 </figcaption>
 </figure>
 </div>
@@ -809,6 +819,9 @@ H. Pretl and Michael Koefinger. 2025. <span>“<span>Analog Circuit Design</span
 </div>
 <div id="ref-gm_acakids" class="csl-entry" role="listitem">
 Kids, Academic. 2025. <span>“Transconductance.”</span> <a href="https://academickids.com/encyclopedia/index.php/Transconductance">https://academickids.com/encyclopedia/index.php/Transconductance</a>.
+</div>
+<div id="ref-nerdsdostuff_current_mirror" class="csl-entry" role="listitem">
+Nerds Do Stuff. 2024. <span>“Current Mirror: Working and Circuit.”</span> <a href="https://nerdsdostuff.com/electronic_circuits/current-mirror-working-and-circuit/ ">https://nerdsdostuff.com/electronic_circuits/current-mirror-working-and-circuit/ </a>.
 </div>
 <div id="ref-aslkpro2012" class="csl-entry" role="listitem">
 Rao, K. R. K., and C. P. Ravikumar. 2012. <em>Analog System Lab Kit PRO MANUAL</em>. Texas Instruments.
